@@ -34,8 +34,43 @@ const packages = [
 
 const OurPackages = () => {
   return (
-    <section className="bg-white py-24 md:py-32 overflow-hidden">
+    <section className="bg-white py-20 overflow-hidden">
       <div className="w-full px-4 sm:px-10 lg:px-20 mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center space-y-8 mb-20 md:mb-28">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-[#f8f5f0] border border-[#e8e6df] text-[10px] font-bold tracking-[0.3em] text-[#8e8578] uppercase font-sans">
+            <span className="w-1 h-1 rounded-full bg-[#8e8578]" />
+            OUR PACKAGES
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="space-y-6 flex flex-col items-center">
+            <h2 className="text-6xl md:text-7xl lg:text-[84px] font-serif text-[#5c4d3d] leading-tight">
+              Three Pathways
+            </h2>
+
+            {/* Decorative Separator */}
+            <div className="flex items-center gap-5 opacity-40">
+              <div className="h-px w-12 md:w-16 bg-[#5c4d3d]" />
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#5c4d3d]" />
+              <div className="h-px w-12 md:w-16 bg-[#5c4d3d]" />
+            </div>
+
+            <p className="max-w-[540px] text-base md:text-[17px] leading-relaxed text-[#5c4d3d]/70 font-sans pt-2">
+              Choose the package that matches your property goals and budget.
+              Each pathway is designed for clarity and results.
+            </p>
+          </motion.div>
+        </div>
+
         {/* Packages Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 w-full">
           {packages.map((pkg, index) => (
@@ -47,7 +82,7 @@ const OurPackages = () => {
               transition={{ delay: index * 0.2, duration: 0.8 }}
               className="group flex flex-col space-y-6">
               {/* Image Container */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-100">
+              <div className="relative aspect-3/4 w-full overflow-hidden bg-gray-100">
                 <Image
                   src={pkg.image}
                   alt={pkg.title}
