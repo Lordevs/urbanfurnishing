@@ -1,27 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
 
 const steps = [
   {
     number: "01",
     title: "Choose Your Package",
-    description: "STEP 1 OF 4",
+    step: "STEP 1 OF 4",
   },
   {
     number: "02",
     title: "Confirm Scope & Timeline",
-    description: "STEP 2 OF 4",
+    step: "STEP 2 OF 4",
   },
   {
     number: "03",
     title: "Procurement & Installation",
-    description: "STEP 3 OF 4",
+    step: "STEP 3 OF 4",
   },
   {
     number: "04",
     title: "Property Ready",
-    description: "STEP 4 OF 4",
+    step: "STEP 4 OF 4",
   },
 ];
 
@@ -45,7 +46,7 @@ const OurProcess = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="space-y-4">
-            <h2 className="text-4xl md:text-6xl font-serif text-[#635647]">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif text-[#635647]">
               How We Work
             </h2>
             <p className="max-w-xl text-sm md:text-base leading-relaxed text-muted-foreground/60 font-sans">
@@ -55,57 +56,54 @@ const OurProcess = () => {
           </motion.div>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
+        {/* Steps Row */}
+        <div className="flex flex-col md:flex-row items-stretch gap-0 w-full">
           {steps.map((step, index) => (
-            <div
-              key={step.number}
-              className="relative flex flex-col items-center">
-              {/* Connecting Line (Desktop only) */}
-              {index !== steps.length - 1 && (
-                <div className="hidden lg:flex absolute top-1/2 -right-4 w-8 items-center justify-center z-0 translate-x-1/2">
-                  <div className="h-px w-full bg-[#635647]/20" />
-                  <div className="w-1.5 h-1.5 bg-[#dcd7cf] absolute" />
-                </div>
-              )}
-
+            <div key={step.number} className="flex items-center flex-1 min-w-0">
+              {/* Step Card */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.8 }}
-                className="w-full relative group">
-                {/* Card Container */}
-                <div className="bg-[#f8f5f0] h-[280px] w-full relative p-8 flex flex-col justify-end">
-                  {/* Floating Number Badge */}
-                  <div className="absolute top-8 left-8 w-10 h-10 bg-[#5c4d3d] flex items-center justify-center text-white/50 text-xs font-bold z-20 shadow-sm">
+                className="flex-1 h-full">
+                <Card className="relative gap-0 py-00  bg-[#f8f5f0] border-none rounded-none shadow-none h-full overflow-visible">
+                  {/* Dark Number Badge — overhanging top-left */}
+                  <div className="absolute -top-4 left-6 z-20 w-11 h-11 bg-[#5c4d3d] flex items-center justify-center text-white/60 text-[11px] font-bold shadow-md">
                     {step.number}
                   </div>
 
-                  {/* Large Background Number */}
-                  <div className="absolute top-8 right-8 z-0">
-                    <span className="text-[100px] font-serif leading-none text-[#635647]/5 select-none pointer-events-none">
+                  <CardContent className="p-8 pt-12 flex flex-col justify-between h-full min-h-[220px] relative overflow-hidden">
+                    {/* Large Faint Background Number */}
+                    <span className="absolute -top-8 right-4 text-[120px] font-serif font-bold text-[#635647]/5 leading-none select-none pointer-events-none">
                       {step.number}
                     </span>
-                  </div>
 
-                  {/* Content */}
-                  <div className="relative z-10 space-y-4 pb-2">
-                    {/* Small Divider */}
-                    <div className="w-8 h-px bg-[#635647]/20 mb-6" />
+                    {/* Top thin divider */}
+                    <div className="w-10 h-px bg-[#635647]/20 mb-6" />
 
-                    <h3 className="text-xl font-serif text-[#635647] leading-tight min-h-[56px] flex items-end">
+                    {/* Title */}
+                    <h3 className="text-xl md:text-2xl font-serif text-[#635647] leading-snug flex-1">
                       {step.title}
                     </h3>
 
-                    <div className="pt-8">
-                      <p className="text-[9px] font-bold tracking-[0.25em] text-[#635647]/40 uppercase font-sans">
-                        {step.description}
-                      </p>
-                    </div>
+                    {/* Step label */}
+                    <p className="text-[9px] font-bold tracking-[0.3em] text-[#635647]/40 uppercase font-sans mt-10">
+                      {step.step}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Connector Arrow (between steps) */}
+              {index !== steps.length - 1 && (
+                <div className="hidden md:flex items-center px-3 shrink-0 z-10">
+                  <div className="flex items-center gap-1">
+                    <div className="w-4 h-px bg-[#c5bdb4]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#c5bdb4]" />
                   </div>
                 </div>
-              </motion.div>
+              )}
             </div>
           ))}
         </div>
