@@ -1,6 +1,7 @@
 import HeroSection from "@/components/hero-section";
 import WhoWeWorkWith from "@/components/who-we-work-with";
 import OurPackages from "@/components/our-packages";
+import InteriorDetail from "@/components/interior-detail";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <WhoWeWorkWith />
       <OurPackages />
+      <InteriorDetail />
     </main>
   );
 }
