@@ -34,7 +34,7 @@ const Navbar = () => {
                 priority
               />
             </div>
-            <span className="text-xl font-medium tracking-tight text-[#8E7D62]">
+            <span className="text-xl font-light tracking-tight text-primary">
               Furnishing
             </span>
           </Link>
@@ -45,15 +45,17 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative flex items-center gap-2 text-xs font-semibold tracking-[0.2em] transition-colors hover:text-[#8E7D62] ${
-                  pathname === item.href ? "text-[#8E7D62]" : "text-gray-600"
+                className={`relative flex items-center gap-2 text-xs font-semibold tracking-[0.2em] transition-colors hover:text-primary ${
+                  pathname === item.href
+                    ? "text-primary"
+                    : "text-muted-foreground"
                 }`}>
                 <item.icon className="h-4 w-4" />
                 {item.title.toUpperCase()}
                 {pathname === item.href && (
                   <motion.div
                     layoutId="underline"
-                    className="absolute -bottom-1 left-0 h-0.5 w-full bg-[#8E7D62]"
+                    className="absolute -bottom-1 left-0 h-0.5 w-full bg-primary"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -64,7 +66,7 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Link href="/contact">
-              <Button className="bg-[#635647] hover:bg-[#4a4035] text-white rounded-none px-8 py-6 text-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-none px-8 py-6 text-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg">
                 Book Consultation
               </Button>
             </Link>
@@ -95,16 +97,16 @@ const Navbar = () => {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`flex items-center gap-4 px-6 py-4 text-sm font-semibold tracking-widest transition-colors hover:bg-[#8E7D62]/5 ${
+                        className={`flex items-center gap-4 px-6 py-4 text-sm font-semibold tracking-widest transition-colors hover:bg-primary/5 ${
                           pathname === item.href
-                            ? "text-[#8E7D62] bg-[#8E7D62]/5"
-                            : "text-gray-600"
+                            ? "text-primary bg-primary/5"
+                            : "text-muted-foreground"
                         }`}>
                         <item.icon
                           className={`h-5 w-5 ${
                             pathname === item.href
-                              ? "text-[#8E7D62]"
-                              : "text-gray-400"
+                              ? "text-primary"
+                              : "text-muted-foreground/60"
                           }`}
                         />
                         {item.title.toUpperCase()}
@@ -114,7 +116,7 @@ const Navbar = () => {
                 </div>
                 <div className="p-6 border-t mt-auto">
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full bg-[#635647] hover:bg-[#4a4035] text-white rounded-none py-6 text-sm font-medium tracking-wide">
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-none py-6 text-sm font-medium tracking-wide">
                       Book Consultation
                     </Button>
                   </Link>
