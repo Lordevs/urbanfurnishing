@@ -33,8 +33,8 @@ const commitments = [
 
 const OurCommitment = () => {
   return (
-    <section className="w-full mx-auto bg-[#F0E9DD]/20 py-20 my-24">
-      <div className="w-full px-4 sm:px-10 lg:px-16 mx-auto flex flex-col items-center">
+    <section className="w-full mx-auto px-4 sm:px-10 lg:px-16 my-24">
+      <div className="w-full bg-[#F0E9DD]/20 py-20 md:py-24 px-6 sm:px-12 lg:px-20 mx-auto flex flex-col items-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
