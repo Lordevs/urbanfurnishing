@@ -1,4 +1,6 @@
 import DynamicHero from "@/components/common/dynamic-hero";
+import InvestorTurnkey from "@/components/packages/investor-turnkey";
+import EndUserSignature from "@/components/packages/end-user-signature";
 
 export default function Packages() {
   return (
@@ -22,6 +24,8 @@ export default function Packages() {
           </>
         }
       />
+      <InvestorTurnkey />
+      <EndUserSignature />
     </main>
   );
 }
