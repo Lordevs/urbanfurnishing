@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const InteriorDetail = () => {
   return (
-    <section className="relative w-full h-[40vh] md:h-[90vh] overflow-hidden">
+    <section className="relative w-full h-[40vh] md:h-[80vh] overflow-hidden">
       <Image
-        src="/Interior-detail.webp"
+        src="/home/Interior-detail.webp"
         alt="Interior Detail"
         fill
         className="object-cover"

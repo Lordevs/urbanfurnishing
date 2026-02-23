@@ -27,7 +27,7 @@ const Navbar = () => {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/logo.svg"
+                src="/common/logo.svg"
                 alt="UF Logo"
                 fill
                 className="object-contain"

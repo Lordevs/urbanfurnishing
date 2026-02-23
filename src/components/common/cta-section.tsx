@@ -8,18 +8,16 @@ export default function CtaSection() {
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/cta.webp"
+          src="/common/cta.webp"
           alt="Call to action background"
           fill
           className="object-cover object-center"
           quality={100}
         />
-        {/* Optional overlay to darken the background slightly if needed */}
-        <div className="absolute inset-0 bg-black/10 mix-blend-multiply"></div>
       </div>
 
       {/* Glassmorphism Container */}
-      <div className="relative z-10 w-[90%] max-w-4xl mx-auto flex flex-col items-center justify-center px-6 py-20 border border-white/20 bg-white/10 backdrop-blur-sm text-white text-center">
+      <div className="relative z-10 w-[90%] max-w-4xl mx-auto flex flex-col items-center justify-center px-6 py-20 border border-white/5 bg-white/25 backdrop-blur-[px] text-white text-center">
         {/* Top Badge */}
         <div className="mb-6 inline-flex items-center gap-3 border border-white/30 px-3 py-1.5 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-light">
           <Component className="w-3 h-3" />

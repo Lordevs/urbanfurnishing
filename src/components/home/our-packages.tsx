@@ -9,7 +9,7 @@ const packages = [
   {
     number: "01",
     title: "Investor Turnkey",
-    image: "/packages-1.webp",
+    image: "/home/packages-1.webp",
     description:
       "Fast, rental-ready properties with neutral, market-tested design",
     href: "/services/investor",
@@ -17,7 +17,7 @@ const packages = [
   {
     number: "02",
     title: "End-User Signature",
-    image: "/packages-2.webp",
+    image: "/home/packages-2.webp",
     description:
       "Personalised interiors that reflect your style with curated finishes",
     href: "/services/residential",
@@ -25,7 +25,7 @@ const packages = [
   {
     number: "03",
     title: "Developer Solutions",
-    image: "/packages-3.webp",
+    image: "/home/packages-3.webp",
     description:
       "Scalable furnishing for multiple units with consistent quality",
     href: "/services/developer",

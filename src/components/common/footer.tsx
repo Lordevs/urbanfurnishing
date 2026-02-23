@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="max-w-md">
             <div className="flex items-end gap-3 mb-6">
               <Image
-                src="/logo.svg"
+                src="/common/logo.svg"
                 alt="UH Furnishing Logo"
                 width={48}
                 height={40}

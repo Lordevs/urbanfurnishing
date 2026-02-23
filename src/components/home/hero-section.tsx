@@ -30,7 +30,7 @@ const HeroSection = () => {
       {/* Background Image Container */}
       <div className="relative h-[85vh] w-full">
         <Image
-          src="/hero-image.webp"
+          src="/home/hero-image.webp"
           alt="Modern Interior Design"
           fill
           className="object-cover object-center"
