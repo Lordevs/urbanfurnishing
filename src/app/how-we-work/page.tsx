@@ -1,4 +1,4 @@
-import HowWeWorkHero from "@/components/how-we-work/how-we-work-hero";
+import DynamicHero from "@/components/common/dynamic-hero";
 import StepOdd from "@/components/how-we-work/steps/stepodd";
 import Stepeven from "@/components/how-we-work/steps/stepeven";
 import OurCommitment from "@/components/how-we-work/our-commitment";
@@ -6,7 +6,18 @@ import OurCommitment from "@/components/how-we-work/our-commitment";
 export default function HowWeWork() {
   return (
     <main className="flex min-h-screen flex-col">
-      <HowWeWorkHero />
+      <DynamicHero
+        badgeText="OUR PROCESS"
+        title="How We Work"
+        description={
+          <>
+            A simple, structured process designed for clarity and
+            <br className="hidden sm:block" /> accountability. From consultation
+            to completion, you&apos;ll always know
+            <br className="hidden sm:block" /> what to expect.
+          </>
+        }
+      />
       <StepOdd
         stepNumber="01"
         title="Consultation & Package Selection"

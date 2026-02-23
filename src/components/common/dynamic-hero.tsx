@@ -2,7 +2,13 @@
 
 import { motion } from "framer-motion";
 
-const HowWeWorkHero = () => {
+interface PageHeroProps {
+  badgeText: string;
+  title: string;
+  description: React.ReactNode;
+}
+
+const DynamicHero = ({ badgeText, title, description }: PageHeroProps) => {
   return (
     <section className="w-full bg-[#F7F3ED] py-32 flex flex-col items-center justify-center text-center">
       <div className="max-w-3xl px-6 md:px-12 mx-auto flex flex-col items-center">
@@ -13,7 +19,7 @@ const HowWeWorkHero = () => {
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#f4f1eb] border border-[#e8e4db] text-[9px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.25em] text-[#9A8C7A] uppercase font-sans mb-8 md:mb-10">
           <span className="w-1 h-1 rounded-full bg-[#8B7355]" />
-          OUR PROCESS
+          {badgeText}
         </motion.div>
 
         {/* Heading */}
@@ -22,7 +28,7 @@ const HowWeWorkHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-[86px] font-serif text-[#6b5c4a] leading-tight mb-8 md:mb-10 lg:mb-12 font-light">
-          How We Work
+          {title}
         </motion.h1>
 
         {/* Decorative Separator */}
@@ -41,15 +47,12 @@ const HowWeWorkHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-[15px] md:text-[16px] text-[#9A8C7A] font-light font-sans max-w-xl leading-relaxed mx-auto">
-          A simple, structured process designed for clarity and
-          <br className="hidden sm:block" /> accountability. From consultation
-          to completion, you&apos;ll always know
-          <br className="hidden sm:block" /> what to expect.
+          className="text-[15px] md:text-[18px] text-[#9A8C7A] font-light font-sans max-w-xl leading-relaxed mx-auto">
+          {description}
         </motion.p>
       </div>
     </section>
   );
 };
 
-export default HowWeWorkHero;
+export default DynamicHero;
