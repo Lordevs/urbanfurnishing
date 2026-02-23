@@ -1,59 +1,67 @@
-# Privacy Policy for Smart Range Leather
+# Privacy Policy for Urban Furnishing
 
-**Effective Date:** January 2026
+**Effective Date:** February 2026
 
-## Introduction
+## 1. Introduction
 
-Smart Range Leather ("we", "our", or "us") respects your privacy and is committed to protecting the personal information that you share with us. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website www.smartrangeleather.com ("Site") or make use of our services. Please read this policy carefully.
+Urban Furnishing ("we", "our", or "us") respects your privacy and is committed to protecting the personal information that you share with us. This Privacy Policy details the types of data we collect, how we use it, and how we safeguard it when you visit our website (www.urbanfurnishing.com) or book our end-to-end furnishing services.
 
-## Information We Collect
+## 2. Information We Collect
 
-We collect both personal and non-personal information when you use our website:
+To effectively manage our Turnkey, Signature, and Developer furnishing packages, we collect the following:
 
-1.  **Personal Information:** This includes information you provide when making a purchase, creating an account, or contacting us, such as your name, email address, mailing address, phone number, and payment details.
-2.  **Non-Personal Information:** We collect data such as browser type, IP address, device type, browsing patterns, and usage statistics to improve your experience on our website.
+### Personal & Contact Information
 
-## How We Use Your Information
+- Names, email addresses, and phone numbers provided via our "Book Consultation" forms.
+- Billing details, bank transfers, or payment card information processed securely when confirming a project scope.
 
-We use the information collected in the following ways:
+### Property & Project Information
 
-1.  **To Process Transactions:** Personal information is used to process orders, payments, and deliveries.
-2.  **To Improve Our Website:** Non-personal information helps us analyze website performance and user interactions to improve our services.
-3.  **For Marketing Purposes:** With your consent, we may send promotional emails about new products, special offers, or other updates related to Smart Range Leather.
-4.  **Customer Service:** We may use your personal information to respond to inquiries, resolve issues, and provide customer support.
+- Physical addresses, floor plans, layout documents, or photography of the property intended for furnishing.
+- Access codes, key locations, or security desk protocols required for our installation teams to enter the premises.
 
-## How We Protect Your Information
+### Automatically Collected Data
 
-We implement a variety of security measures to ensure the safety of your personal information, including encryption and secure socket layer (SSL) technology for online transactions.
+- Device types, IP addresses, and browsing behavior on our platform, gathered via standard website analytics to improve our digital interface.
 
-## Cookies and Tracking Technologies
+## 3. How We Use Your Information
 
-Our website uses cookies to enhance your user experience. Cookies are small files that store information about your preferences to help customize your online experience. You can manage your cookie preferences through your browser settings.
+We strictly use the information collected for the following operational purposes:
 
-## Sharing Your Information
+- **Project Execution:** To accurately scope, design, deliver, and install furniture in your designated property.
+- **Communication:** To provide you with timeline milestones, delivery alerts, and handover documentation.
+- **Security & Verification:** To process secure payments and verify the legal ownership or tenancy rights to the property we are servicing.
+- **Service Enhancement:** To analyze website metrics and refine our digital portfolio and package offerings.
 
-We do not sell, trade, or rent your personal information to third parties. However, we may share information with:
+## 4. Sharing Your Information
 
-1.  **Service Providers:** Trusted third-party partners who assist in operating our website and business, such as payment processors, delivery services, and email marketing platforms.
-2.  **Legal Compliance:** If required by law, we may disclose your information in response to legal proceedings or government requests.
+We operate as a fully managed service, which occasionally requires sharing partial data with trusted third parties:
 
-## Your Rights
+- **Logistics & Delivery Partners:** Sharing property addresses and immediate contact data to ensure timely freight drop-offs.
+- **Specialized Contractors:** If custom joinery, electrical, or specialized installations are required, your property details (and relevant floor plans) may be temporarily shared with vetted subcontractors.
+- **Payment Processors:** To securely manage high-value transactions regarding invoice settlements.
 
-You have the right to:
+_We will never sell, lease, or rent your personal data to external marketing agencies._
 
-1.  **Access:** Request a copy of the personal data we hold about you.
-2.  **Correction:** Correct any inaccurate or incomplete information.
-3.  **Deletion:** Request that we delete your personal data, subject to legal limitations.
+## 5. Security of Keys and Access Codes
 
-To exercise these rights, please contact us at privacy@smartrangeleather.com.
+We understand that you entrust us with access to your properties. All physical keys, fob devices, and digital alarm codes are highly restricted, logged internally by your dedicated Project Manager, and only distributed to the active installation team on the direct day of service.
 
-## Changes to This Privacy Policy
+## 6. Retention of Data
 
-We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Effective Date." We encourage you to review this page periodically.
+We retain your property layouts, design templates, and invoicing history indefinitely to provide swift post-handover support, process warranty claims on furniture, or rapidly deploy future packages for repeat Developer / Bulk clients.
 
-## Contact Us
+## 7. Your Data Rights
 
-If you have any questions or concerns about this Privacy Policy, please contact us:
+Depending on your local jurisdiction, you hold the right to:
 
-- **Email:** privacy@smartrangeleather.com
-- **Phone:** +92 XXX XXXXXXX
+- Request an exported file of the personal data we hold about you.
+- Request corrections to any inaccurate billing or property information.
+- Request the deletion of your personal data (excluding data we are legally obligated to retain for tax, security, or contractual liability purposes).
+
+## 8. Contacting Our Data Controller
+
+If you have any questions, concerns, or requests to exercise your data rights regarding this Privacy Policy, please contact us immediately:
+
+- **Email:** privacy@urbanfurnishing.com
+- **Phone:** +44 XXX XXXXXXX
