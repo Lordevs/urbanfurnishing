@@ -22,8 +22,8 @@ const Stepeven = ({
   features,
 }: StepEvenProps) => {
   return (
-    <section className="w-full container mx-auto bg-[#F7F3ED] py-20 px-4 md:px-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section className="w-full mx-auto px-4 sm:px-10 lg:px-16 my-12 md:my-20">
+      <div className="w-full bg-[#F7F3ED] py-20 px-6 sm:px-12 lg:px-20 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Left Column: Content */}
         <div className="flex flex-col space-y-8 order-2 lg:order-1 lg:pr-10">
           {/* Badge & Heading Block */}
@@ -46,7 +46,7 @@ const Stepeven = ({
             {/* Separator Line */}
             <div className="w-16 h-px bg-[#8e8578] opacity-60" />
 
-            <p className="text-[14px] md:text-[20px] max-w-[600px] leading-relaxed text-[#9a8c7a] font-light">
+            <p className="text-[14px] md:text-[18px] max-w-[600px] leading-relaxed text-[#9a8c7a] font-light">
               {description}
             </p>
           </motion.div>
@@ -101,7 +101,7 @@ const Stepeven = ({
           </div>
 
           {/* Floating Badge */}
-          <div className="absolute right-11 top-11 lg:top-15 lg:right-15 z-10 lg:w-14 lg:h-14 w-8 h-8 rounded-full bg-[#827159]/90 backdrop-blur-sm shadow flex items-center justify-center translate-x-1/2 -translate-y-1/2">
+          <div className="absolute right-11 top-11 lg:top-15 lg:right-15 z-10 lg:w-14 lg:h-14 w-8 h-8 rounded-full bg-[#8B7355] backdrop-blur-sm shadow flex items-center justify-center translate-x-1/2 -translate-y-1/2">
             <span className="text-white font-serif text-lg md:text-xl">
               {stepNumber}
             </span>
