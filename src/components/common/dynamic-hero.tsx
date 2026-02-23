@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 interface PageHeroProps {
   badgeText: string;
-  title: string;
+  title: React.ReactNode;
   description: React.ReactNode;
 }
 
