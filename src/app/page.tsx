@@ -4,7 +4,6 @@ import OurPackages from "@/components/home/our-packages";
 import TextOverlayBanner from "@/components/common/text-overlay-banner";
 import OurProcess from "@/components/home/our-process";
 import SignatureDesign from "@/components/home/signature-design";
-import CtaSection from "@/components/common/cta-section";
 
 export default function Home() {
   return (
@@ -24,7 +23,6 @@ export default function Home() {
       />
       <OurProcess />
       <SignatureDesign />
-      <CtaSection />
     </main>
   );
 }
