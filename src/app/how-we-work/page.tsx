@@ -1,6 +1,7 @@
 import HowWeWorkHero from "@/components/how-we-work/how-we-work-hero";
 import StepOdd from "@/components/how-we-work/steps/stepodd";
 import Stepeven from "@/components/how-we-work/steps/stepeven";
+import OurCommitment from "@/components/how-we-work/our-commitment";
 
 export default function HowWeWork() {
   return (
@@ -58,6 +59,7 @@ export default function HowWeWork() {
           "Post-handover support period",
         ]}
       />
+      <OurCommitment />
     </main>
   );
 }
