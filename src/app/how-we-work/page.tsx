@@ -19,7 +19,19 @@ export default function HowWeWork() {
           "Package recommendation",
         ]}
       />
-      <Stepeven />
+      <Stepeven
+        stepNumber="02"
+        title="Scope Confirmation & Timeline"
+        description="Everything is documented upfront with clear deliverables, milestones, and pricing. You will know exactly what to expect at every stage."
+        imageSrc="/how-we-work/scope-confirmation-timeline.webp"
+        imageAlt="Scope Confirmation & Timeline"
+        features={[
+          "Detailed scope document",
+          "Design presentation",
+          "Fixed pricing agreement",
+          "Project timeline with milestones",
+        ]}
+      />
       <StepOdd
         stepNumber="03"
         title="Procurement & Installation"
@@ -31,6 +43,19 @@ export default function HowWeWork() {
           "Coordinated delivery schedule",
           "Professional installation",
           "Regular progress updates",
+        ]}
+      />
+      <Stepeven
+        stepNumber="04"
+        title="Handover & Support"
+        description="Final walkthrough and handover of your fully furnished property. Our responsibility doesn't end at installation—we provide post-handover support."
+        imageSrc="/how-we-work/handover-support.webp"
+        imageAlt="Handover & Support"
+        features={[
+          "Complete property walkthrough",
+          "Documentation handover",
+          "Care & maintenance guidelines",
+          "Post-handover support period",
         ]}
       />
     </main>

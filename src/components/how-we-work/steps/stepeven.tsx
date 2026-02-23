@@ -4,14 +4,23 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
-const features = [
-  "Detailed scope document",
-  "Design presentation",
-  "Fixed pricing agreement",
-  "Project timeline with milestones",
-];
+export interface StepEvenProps {
+  stepNumber: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  features: string[];
+}
 
-const Stepeven = () => {
+const Stepeven = ({
+  stepNumber,
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  features,
+}: StepEvenProps) => {
   return (
     <section className="w-full container mx-auto bg-[#F7F3ED] py-20 px-4 md:px-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -27,20 +36,18 @@ const Stepeven = () => {
             {/* Step Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ebe6df] border border-[#e0d9d0] text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-[#9A8C7A] uppercase font-sans">
               <span className="w-1 h-1 rounded-full bg-[#827159]" />
-              STEP 02
+              STEP {stepNumber}
             </div>
 
             <h2 className="text-4xl md:text-5xl lg:text-[46px] font-serif text-[#6b6256] font-light leading-tight">
-              Scope Confirmation & Timeline
+              {title}
             </h2>
 
             {/* Separator Line */}
             <div className="w-16 h-px bg-[#8e8578] opacity-60" />
 
             <p className="text-[14px] md:text-[20px] max-w-[600px] leading-relaxed text-[#9a8c7a] font-light">
-              Everything is documented upfront with clear deliverables,
-              milestones, and pricing. You will know exactly what to expect at
-              every stage.
+              {description}
             </p>
           </motion.div>
 
@@ -85,17 +92,19 @@ const Stepeven = () => {
           {/* Image Container */}
           <div className="relative aspect-4/3 w-full overflow-hidden">
             <Image
-              src="/how-we-work/scope-confirmation-timeline.webp"
-              alt="Scope Confirmation & Timeline"
+              src={imageSrc}
+              alt={imageAlt}
               fill
               className="object-cover"
-              quality={95}
+              quality={100}
             />
           </div>
 
-          {/* Floating '02' Badge */}
+          {/* Floating Badge */}
           <div className="absolute right-11 top-11 lg:top-15 lg:right-15 z-10 lg:w-14 lg:h-14 w-8 h-8 rounded-full bg-[#827159]/90 backdrop-blur-sm shadow flex items-center justify-center translate-x-1/2 -translate-y-1/2">
-            <span className="text-white font-serif text-lg md:text-xl">02</span>
+            <span className="text-white font-serif text-lg md:text-xl">
+              {stepNumber}
+            </span>
           </div>
         </motion.div>
       </div>
