@@ -2,6 +2,7 @@ import DynamicHero from "@/components/common/dynamic-hero";
 import StepOdd from "@/components/how-we-work/steps/stepodd";
 import Stepeven from "@/components/how-we-work/steps/stepeven";
 import OurCommitment from "@/components/how-we-work/our-commitment";
+import CtaSection from "@/components/common/cta-section";
 
 export default function HowWeWork() {
   return (
@@ -71,6 +72,7 @@ export default function HowWeWork() {
         ]}
       />
       <OurCommitment />
+      <CtaSection />
     </main>
   );
 }

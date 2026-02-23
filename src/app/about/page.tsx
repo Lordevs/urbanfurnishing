@@ -3,6 +3,7 @@ import WhoWeServe from "@/components/about/who-we-serve";
 import OurValues from "@/components/about/our-values";
 import OurApproach from "@/components/about/our-approach";
 import TextOverlayBanner from "@/components/common/text-overlay-banner";
+import CtaSection from "@/components/common/cta-section";
 
 export default function About() {
   return (
@@ -22,6 +23,7 @@ export default function About() {
         }
       />
       <WhoWeServe />
+      <CtaSection />
     </main>
   );
 }

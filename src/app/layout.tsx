@@ -3,7 +3,6 @@ import { Cormorant, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
-import CtaSection from "@/components/common/cta-section";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -32,7 +31,6 @@ export default function RootLayout({
         suppressHydrationWarning>
         <Navbar />
         {children}
-        <CtaSection />
         <Footer />
       </body>
     </html>

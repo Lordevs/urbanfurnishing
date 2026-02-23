@@ -3,6 +3,7 @@ import InvestorTurnkey from "@/components/packages/investor-turnkey";
 import EndUserSignature from "@/components/packages/end-user-signature";
 import DeveloperBulk from "@/components/packages/developer-bulk";
 import PackageOverview from "@/components/packages/package-overview";
+import CtaSection from "@/components/common/cta-section";
 
 export default function Packages() {
   return (
@@ -30,6 +31,7 @@ export default function Packages() {
       <EndUserSignature />
       <DeveloperBulk />
       <PackageOverview />
+      <CtaSection />
     </main>
   );
 }

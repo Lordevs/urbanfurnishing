@@ -1,6 +1,7 @@
 import DynamicHero from "@/components/common/dynamic-hero";
 import ContactForm from "@/components/contact/contact-form";
 import WhatHappensNext from "@/components/contact/what-happens-next";
+import CtaSection from "@/components/common/cta-section";
 
 export default function Contact() {
   return (
@@ -12,6 +13,11 @@ export default function Contact() {
       />
       <ContactForm />
       <WhatHappensNext />
+      <CtaSection
+        badgeText="SKIP THE FORM"
+        title="Prefer to Book Directly?"
+        description="Schedule a consultation call to discuss your project in detail."
+      />
     </main>
   );
 }
