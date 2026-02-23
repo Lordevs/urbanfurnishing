@@ -1,3 +1,4 @@
+import { ROUTES } from "@/constants/route";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -36,21 +37,21 @@ export default function Footer() {
               <ul className="space-y-4 text-[13px] font-light">
                 <li>
                   <Link
-                    href="#"
+                    href={ROUTES.ABOUT}
                     className="hover:text-[#8E7D62] transition-colors">
                     About
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href={ROUTES.HOW_WE_WORK}
                     className="hover:text-[#8E7D62] transition-colors">
                     How We Work
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href={ROUTES.PACKAGES}
                     className="hover:text-[#8E7D62] transition-colors">
                     Packages
                   </Link>
@@ -65,7 +66,7 @@ export default function Footer() {
               <ul className="space-y-4 text-[13px] font-light">
                 <li>
                   <Link
-                    href="#"
+                    href={ROUTES.CONTACT}
                     className="hover:text-[#8E7D62] transition-colors">
                     Book Consultation
                   </Link>
@@ -82,10 +83,14 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center text-[11px] font-light tracking-wide gap-4">
           <p>© 2026 UH Furnishing. All rights reserved.</p>
           <div className="flex items-center gap-8">
-            <Link href="#" className="hover:text-[#8E7D62] transition-colors">
+            <Link
+              href={ROUTES.PRIVACY_POLICY}
+              className="hover:text-[#8E7D62] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-[#8E7D62] transition-colors">
+            <Link
+              href={ROUTES.TERMS_OF_SERVICE}
+              className="hover:text-[#8E7D62] transition-colors">
               Terms of Service
             </Link>
           </div>
