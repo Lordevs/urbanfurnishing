@@ -4,17 +4,26 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
-const features = [
-  "Initial property assessment",
-  "Budget discussion",
-  "Timeline confirmation",
-  "Package recommendation",
-];
+export interface StepOddProps {
+  stepNumber: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  features: string[];
+}
 
-const Step1 = () => {
+const StepOdd = ({
+  stepNumber,
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  features,
+}: StepOddProps) => {
   return (
     <section className="w-full bg-white py-20 px-4 md:px-12">
-      <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Left Column: Image with Decorative Borders */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -31,17 +40,19 @@ const Step1 = () => {
           {/* Image Container */}
           <div className="relative aspect-4/3 w-full overflow-hidden">
             <Image
-              src="/how-we-work/consultation-package-selection.webp"
-              alt="Consultation & Package Selection"
+              src={imageSrc}
+              alt={imageAlt}
               fill
               className="object-cover"
               quality={95}
             />
           </div>
 
-          {/* Floating '01' Badge */}
+          {/* Floating Badge */}
           <div className="absolute right-11 top-11 lg:top-15 lg:right-15 z-10 lg:w-14 lg:h-14 w-8 h-8 rounded-full bg-[#827159]/90 backdrop-blur-sm shadow flex items-center justify-center translate-x-1/2 -translate-y-1/2">
-            <span className="text-white font-serif text-lg md:text-xl">01</span>
+            <span className="text-white font-serif text-lg md:text-xl">
+              {stepNumber}
+            </span>
           </div>
         </motion.div>
 
@@ -57,20 +68,18 @@ const Step1 = () => {
             {/* Step Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#F7F3ED] border border-[#e8e4db] text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-[#9A8C7A] uppercase font-sans">
               <span className="w-1 h-1 rounded-full bg-[#9A8C7A]" />
-              STEP 01
+              STEP {stepNumber}
             </div>
 
             <h2 className="text-4xl md:text-5xl lg:text-[46px] font-serif text-[#6b6256] font-light leading-tight">
-              Consultation & Package Selection
+              {title}
             </h2>
 
             {/* Separator Line */}
             <div className="w-16 h-px bg-[#8e8578] opacity-60" />
 
             <p className="text-[14px] md:text-[20px] max-w-[600px] leading-relaxed text-[#9a8c7a] font-light">
-              We begin with a detailed consultation to understand your property
-              type, timeline, and intended use. Based on your needs, we
-              recommend the most suitable package pathway.
+              {description}
             </p>
           </motion.div>
 
@@ -103,4 +112,4 @@ const Step1 = () => {
   );
 };
 
-export default Step1;
+export default StepOdd;
