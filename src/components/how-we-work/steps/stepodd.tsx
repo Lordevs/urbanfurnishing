@@ -22,8 +22,8 @@ const StepOdd = ({
   features,
 }: StepOddProps) => {
   return (
-    <section className="w-full bg-white py-20 px-4 md:px-12">
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section className="w-full mx-auto px-4 sm:px-10 lg:px-16 my-12 md:my-20">
+      <div className="w-full py-20 px-6 sm:px-12 lg:px-20 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Left Column: Image with Decorative Borders */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
