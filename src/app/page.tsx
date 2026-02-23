@@ -1,8 +1,8 @@
-import HeroSection from "@/components/hero-section";
-import WhoWeWorkWith from "@/components/who-we-work-with";
-import OurPackages from "@/components/our-packages";
-import InteriorDetail from "@/components/interior-detail";
-import OurProcess from "@/components/our-process";
+import HeroSection from "@/components/home/hero-section";
+import WhoWeWorkWith from "@/components/home/who-we-work-with";
+import OurPackages from "@/components/home/our-packages";
+import InteriorDetail from "@/components/home/interior-detail";
+import OurProcess from "@/components/home/our-process";
 import CtaSection from "@/components/common/cta-section";
 
 export default function Home() {
