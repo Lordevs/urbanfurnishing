@@ -1,6 +1,6 @@
 import HowWeWorkHero from "@/components/how-we-work/how-we-work-hero";
-import StepOdd from "@/components/how-we-work/steps/step-1&3";
-import Step2 from "@/components/how-we-work/steps/step-2&4";
+import StepOdd from "@/components/how-we-work/steps/stepodd";
+import Stepeven from "@/components/how-we-work/steps/stepeven";
 
 export default function HowWeWork() {
   return (
@@ -19,7 +19,7 @@ export default function HowWeWork() {
           "Package recommendation",
         ]}
       />
-      <Step2 />
+      <Stepeven />
       <StepOdd
         stepNumber="03"
         title="Procurement & Installation"
