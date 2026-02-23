@@ -116,7 +116,7 @@ const Navbar = () => {
                 </div>
                 <div className="p-6 border-t mt-auto">
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-none py-6 text-sm font-medium tracking-wide">
+                    <Button className="w-full  bg-primary hover:bg-primary/90 text-primary-foreground rounded-none py-6 text-sm font-medium tracking-wide">
                       Book Consultation
                     </Button>
                   </Link>

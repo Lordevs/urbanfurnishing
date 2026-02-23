@@ -3,6 +3,7 @@ import WhoWeWorkWith from "@/components/who-we-work-with";
 import OurPackages from "@/components/our-packages";
 import InteriorDetail from "@/components/interior-detail";
 import OurProcess from "@/components/our-process";
+import CtaSection from "@/components/common/cta-section";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <OurPackages />
       <InteriorDetail />
       <OurProcess />
+      <CtaSection />
     </main>
   );
 }
