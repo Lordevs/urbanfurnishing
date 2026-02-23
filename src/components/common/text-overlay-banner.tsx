@@ -3,18 +3,29 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const InteriorDetail = () => {
+interface TextOverlayBannerProps {
+  imageSrc: string;
+  imageAlt?: string;
+  text: React.ReactNode;
+}
+
+const TextOverlayBanner = ({
+  imageSrc,
+  imageAlt = "Interior Detail",
+  text,
+}: TextOverlayBannerProps) => {
   return (
     <section className="relative w-full h-[40vh] md:h-[80vh] overflow-hidden">
       <Image
-        src="/home/Interior-detail.webp"
-        alt="Interior Detail"
+        src={imageSrc}
+        alt={imageAlt}
         fill
         className="object-cover"
+        quality={95}
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Text Content */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 text-center">
@@ -23,14 +34,12 @@ const InteriorDetail = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full max-w-5xl text-4xl md:text-6xl lg:text-[72px] font-sans font-normal text-white leading-[1.15] md:leading-[1.2] tracking-wide">
-          Delivered on time. <br />
-          Priced clearly. <br />
-          Managed end-to-end.
+          className="w-full max-w-4xl text-[45px] font-sans font-light text-white leading-[1.3] md:leading-[1.4] tracking-wide">
+          {text}
         </motion.h2>
       </div>
     </section>
   );
 };
 
-export default InteriorDetail;
+export default TextOverlayBanner;

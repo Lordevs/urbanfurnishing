@@ -1,7 +1,7 @@
 import HeroSection from "@/components/home/hero-section";
 import WhoWeWorkWith from "@/components/home/who-we-work-with";
 import OurPackages from "@/components/home/our-packages";
-import InteriorDetail from "@/components/home/interior-detail";
+import TextOverlayBanner from "@/components/common/text-overlay-banner";
 import OurProcess from "@/components/home/our-process";
 import SignatureDesign from "@/components/home/signature-design";
 import CtaSection from "@/components/common/cta-section";
@@ -12,7 +12,16 @@ export default function Home() {
       <HeroSection />
       <WhoWeWorkWith />
       <OurPackages />
-      <InteriorDetail />
+      <TextOverlayBanner
+        imageSrc="/home/Interior-detail.webp"
+        text={
+          <>
+            Delivered on time. <br />
+            Priced clearly. <br />
+            Managed end-to-end.
+          </>
+        }
+      />
       <OurProcess />
       <SignatureDesign />
       <CtaSection />
