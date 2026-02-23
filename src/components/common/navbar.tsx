@@ -66,7 +66,7 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Link href="/contact">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-none px-8 py-6 text-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg">
+              <Button className="bg-primary cursor-pointer hover:bg-primary/90 text-primary-foreground rounded-none px-8 py-6 text-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg">
                 Book Consultation
               </Button>
             </Link>
