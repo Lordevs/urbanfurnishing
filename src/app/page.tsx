@@ -3,6 +3,7 @@ import WhoWeWorkWith from "@/components/home/who-we-work-with";
 import OurPackages from "@/components/home/our-packages";
 import InteriorDetail from "@/components/home/interior-detail";
 import OurProcess from "@/components/home/our-process";
+import SignatureDesign from "@/components/home/signature-design";
 import CtaSection from "@/components/common/cta-section";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <OurPackages />
       <InteriorDetail />
       <OurProcess />
+      <SignatureDesign />
       <CtaSection />
     </main>
   );
