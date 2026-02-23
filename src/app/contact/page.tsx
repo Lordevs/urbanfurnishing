@@ -1,5 +1,6 @@
 import DynamicHero from "@/components/common/dynamic-hero";
 import ContactForm from "@/components/contact/contact-form";
+import WhatHappensNext from "@/components/contact/what-happens-next";
 
 export default function Contact() {
   return (
@@ -10,6 +11,7 @@ export default function Contact() {
         description="Ready to transform your property? Get in touch to discuss your furnishing needs and timeline."
       />
       <ContactForm />
+      <WhatHappensNext />
     </main>
   );
 }
