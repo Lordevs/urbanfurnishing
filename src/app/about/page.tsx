@@ -1,4 +1,5 @@
 import AboutHeroSection from "@/components/about/about-hero-section";
+import WhoWeServe from "@/components/about/who-we-serve";
 import OurValues from "@/components/about/our-values";
 import OurApproach from "@/components/about/our-approach";
 import TextOverlayBanner from "@/components/common/text-overlay-banner";
@@ -20,6 +21,7 @@ export default function About() {
           </>
         }
       />
+      <WhoWeServe />
     </main>
   );
 }
