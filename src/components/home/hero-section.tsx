@@ -45,9 +45,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-5xl w-full bg-white/70 backdrop-blur-[2px] border border-white/40 md:rounded-[2.5rem] pt-16 pb-8 md:pt-20 md:pb-6 px-4 sm:px-10 text-center space-y-6 lg:space-y-10 shadow-[0_25px_60px_rgba(0,0,0,0.1)] flex flex-col items-center">
+            className="relative max-w-5xl w-full bg-white/70 backdrop-blur-[2px] border border-white/40 md:rounded-[2.5rem] pt-16 pb-8 md:pt-15 md:pb-6 px-4 sm:px-12 text-center space-y-6 lg:space-y-8 shadow-[0_25px_60px_rgba(0,0,0,0.1)] flex flex-col items-center">
             {/* Top Badge Overlay */}
-            <div className="absolute top-4 md:top-9 left-1/2 -translate-x-1/2 md:-translate-y-1/2 inline-flex items-center gap-2 md:gap-3 px-4 md:px-8 py-2 md:py-3 bg-white border border-black/5 shadow-[0_4px_15px_rgba(0,0,0,0.05)] z-10 whitespace-nowrap">
+            <div className="absolute top-4 md:top-10 left-1/2 -translate-x-1/2 md:-translate-y-1/2 inline-flex items-center gap-2 md:gap-3 px-4 md:px-8 py-2 md:py-3 bg-white border border-black/5 shadow-[0_4px_15px_rgba(0,0,0,0.05)] z-10 whitespace-nowrap">
               <span className="text-primary font-bold text-base">•</span>
               <span className="text-[10px] tracking-[0.4em] font-bold text-muted-foreground/60 uppercase">
                 Turnkey Furnishing Solutions
