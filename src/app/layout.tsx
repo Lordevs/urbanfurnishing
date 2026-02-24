@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${cormorant.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning>
         <Navbar />
-        <Toaster richColors />
+        <Toaster richColors position="top-right" duration={3000} closeButton />
         {children}
         <Footer />
       </body>

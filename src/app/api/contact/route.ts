@@ -37,36 +37,36 @@ export async function POST(req: Request) {
       to: contactEmail, // Always send leads to the defined contact email
       subject: `New Customer Inquiry: ${subject}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-          <h2 style="color: #1a1a1a; border-bottom: 2px solid #000; padding-bottom: 10px;">New Customer Inquiry</h2>
-          <p>You have received a new contact form submission via Fadi Fragrance.</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #e8e4db; background-color: #ffffff;">
+          <h2 style="color: #5c4d3d; border-bottom: 2px solid #5c4d3d; padding-bottom: 10px; font-weight: normal; margin-top: 0;">New Customer Inquiry</h2>
+          <p style="color: #6b6256; line-height: 1.6;">You have received a new contact form submission via the <strong>Urban Furnishing</strong> website.</p>
           
-          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+          <table style="width: 100%; border-collapse: collapse; margin-top: 25px;">
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Full Name:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #eee;">${name}</td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0; font-weight: bold; color: #5c4d3d; width: 120px;">Full Name:</td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0; color: #6b6256;">${name}</td>
             </tr>
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Email:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #eee;"><a href="mailto:${email}">${email}</a></td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0; font-weight: bold; color: #5c4d3d;">Email:</td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0;"><a href="mailto:${email}" style="color: #8e8578; text-decoration: none;">${email}</a></td>
             </tr>
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #eee;">${phone}</td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0; font-weight: bold; color: #5c4d3d;">Phone:</td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0; color: #6b6256;">${phone}</td>
             </tr>
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Subject:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #eee;">${subject}</td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0; font-weight: bold; color: #5c4d3d;">Subject:</td>
+              <td style="padding: 12px 10px; border-bottom: 1px solid #f6f4f0; color: #6b6256;">${subject}</td>
             </tr>
           </table>
           
-          <div style="margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
-            <h3 style="margin-top: 0; font-size: 16px;">Message:</h3>
-            <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
+          <div style="margin-top: 30px; padding: 20px; background-color: #fdfaf6; border: 1px solid #f3efe8;">
+            <h3 style="margin-top: 0; font-size: 14px; color: #5c4d3d; text-transform: uppercase; letter-spacing: 1px;">Message / Details</h3>
+            <p style="white-space: pre-wrap; line-height: 1.6; color: #6b6256; margin-bottom: 0;">${message}</p>
           </div>
           
-          <p style="font-size: 12px; color: #666; margin-top: 30px; text-align: center;">
-            Sent from Fadi Fragrance Website.
+          <p style="font-size: 11px; color: #9A8C7A; margin-top: 40px; text-align: center; text-transform: uppercase; letter-spacing: 2px;">
+            Sent securely via Urban Furnishing
           </p>
         </div>
       `,
@@ -79,39 +79,45 @@ export async function POST(req: Request) {
     }
 
     // 2. Send confirmation email to the Applicant
-    const shopLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL || "https://fadifragrance.com"}/shop`;
+    const urlBase =
+      process.env.NEXT_PUBLIC_FRONTEND_URL || "https://urbanfurnishing.ae";
+    const packagesLink = `${urlBase}/packages`;
 
     await resend.emails.send({
       from: process.env.SENDER_EMAIL || "onboarding@resend.dev",
       to: isTesting ? contactEmail : email,
-      subject: "Inquiry Received - Fadi Fragrance",
+      subject: "Inquiry Received - Urban Furnishing",
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center;">
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; background-color: #ffffff; border: 1px solid #e8e4db;">
+          
+          <div style="margin-bottom: 30px;">
+            <h1 style="color: #5c4d3d; font-weight: normal; margin-bottom: 10px;">Thank You, ${name}.</h1>
+            <div style="width: 40px; height: 1px; background-color: #d2cab9; margin: 0 auto;"></div>
+          </div>
 
-          <h1 style="color: #000;">Thank You, ${name}!</h1>
-          <p style="font-size: 16px; color: #333; line-height: 1.6;">
-            We have received your inquiry regarding <strong>${subject}</strong>. 
-            Our team will reach out to you within 24 hours.
+          <p style="font-size: 15px; color: #6b6256; line-height: 1.8; margin-bottom: 30px;">
+            We successfully received your inquiry regarding <strong>${subject}</strong>. 
+            Our regional team will review your project details and reach out to you shortly to schedule your consultation.
           </p>
           
-          <div style="margin: 40px 0; padding: 30px; background-color: #f4f4f4; border-radius: 15px;">
-            <h2 style="margin-top: 0;">Explore Our Collection</h2>
-            <p>Discover our latest fragrances and signature scents.</p>
-            <a href="${shopLink}" style="display: inline-block; background-color: #000; color: white; padding: 15px 30px; text-decoration: none; border-radius: 30px; font-weight: bold; margin-top: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
-              Browse Shop
+          <div style="margin: 40px 0; padding: 40px 30px; background-color: #fdfaf6; border: 1px solid #f3efe8;">
+            <h2 style="margin-top: 0; color: #5c4d3d; font-weight: normal; font-size: 20px;">Explore Our Pathways</h2>
+            <p style="color: #8e8578; font-size: 14px; margin-bottom: 25px;">Discover our carefully designed turnkey furnishing pathways built for speed, quality, and design intent.</p>
+            <a href="${packagesLink}" style="display: inline-block; background-color: #5D4E3C; color: #ffffff; padding: 14px 32px; text-decoration: none; font-weight: bold; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;">
+              View Packages
             </a>
           </div>
           
-          <p style="font-size: 14px; color: #666;">
-            Need immediate assistance? Reach out to our support team.
+          <p style="font-size: 13px; color: #9A8C7A; margin-bottom: 40px;">
+            Need immediate assistance? Feel free to reply to this email directly.
           </p>
           
-          <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
-          
-          <p style="font-size: 12px; color: #999;">
-            Fadi Fragrance<br/>
-            Premium Scent Collection
-          </p>
+          <div style="border-top: 1px solid #e8e4db; margin-top: 30px; padding-top: 30px;">
+            <p style="font-size: 11px; color: #9A8C7A; text-transform: uppercase; letter-spacing: 2px;">
+              Urban Furnishing<br/>
+              <span style="display: inline-block; margin-top: 5px; color: #d2cab9;">Turnkey Furnishing & Fit-Out</span>
+            </p>
+          </div>
         </div>
       `,
     });
