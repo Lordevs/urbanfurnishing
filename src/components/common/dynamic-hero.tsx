@@ -10,8 +10,8 @@ interface PageHeroProps {
 
 const DynamicHero = ({ badgeText, title, description }: PageHeroProps) => {
   return (
-    <section className="w-full bg-[#F7F3ED] py-32 flex flex-col items-center justify-center text-center">
-      <div className="max-w-3xl px-6 md:px-12 mx-auto flex flex-col items-center">
+    <section className="w-full bg-[#F7F3ED] py-20 md:py-32 flex flex-col items-center justify-center text-center">
+      <div className="max-w-3xl px-4 sm:px-6 md:px-12 mx-auto flex flex-col items-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -27,7 +27,7 @@ const DynamicHero = ({ badgeText, title, description }: PageHeroProps) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-[86px] font-serif text-[#6b5c4a] leading-tight mb-8 md:mb-10 lg:mb-12 font-light">
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-[86px] font-serif text-[#6b5c4a] leading-tight mb-8 md:mb-10 lg:mb-12 font-light">
           {title}
         </motion.h1>
 

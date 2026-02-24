@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const WhoWeServe = () => {
   return (
-    <section className="w-full py-24 flex flex-col items-center justify-center text-center">
+    <section className="w-full py-16 md:py-24 flex flex-col items-center justify-center text-center">
       <div className="max-w-3xl px-6 md:px-12 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

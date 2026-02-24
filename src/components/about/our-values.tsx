@@ -36,7 +36,7 @@ const OurValues = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20 max-w-4xl mx-auto space-y-8 px-2 md:px-0">
+          className="mb-12 md:mb-20 max-w-4xl mx-auto space-y-8 px-4 md:px-0">
           <p className="text-xl md:text-2xl lg:text-[26px] leading-relaxed text-[#9A8C7A] font-light">
             UH Furnishing is a turnkey furnishing and fit-out company built for
             the UAE property market. We work with investors, homeowners, and
@@ -59,8 +59,8 @@ const OurValues = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-6xl mx-auto">
           <Card className="bg-[#F0E9DD] py-0 gap-0 border-none rounded-none shadow-none">
-            <CardContent className="px-8 md:px-16 py-16 md:py-24">
-              <div className="text-center mb-16 md:mb-20">
+            <CardContent className="px-6 md:px-16 py-12 md:py-24">
+              <div className="text-center mb-12 md:mb-20">
                 <span className="text-[10px] font-bold tracking-[0.2em] text-[#B2A081] uppercase font-sans mb-4 block">
                   OUR VALUES
                 </span>

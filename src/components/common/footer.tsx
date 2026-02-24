@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#FAFAFA]  border-t border-[#F2F0E8] pt-20 pb-8 px-6 md:px-12 lg:px-24 text-[#9A8C7A]">
+    <footer className="w-full bg-[#FAFAFA]  border-t border-[#F2F0E8] pt-12 md:pt-20 pb-8 px-4 sm:px-6 md:px-12 lg:px-24 text-[#9A8C7A]">
       <div className=" mx-auto flex flex-col">
-        <div className="flex flex-col md:flex-row justify-between mb-24 gap-12">
+        <div className="flex flex-col lg:flex-row justify-between mb-16 md:mb-24 gap-12">
           {/* Logo & Description */}
           <div className="max-w-md">
             <div className="flex items-end gap-3 mb-6">
@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div className="flex flex-col sm:flex-row gap-16 md:gap-48 mr-4 md:mr-20">
+          <div className="flex flex-col sm:flex-row gap-12 sm:gap-16 md:gap-48 mr-0 lg:mr-4 xl:mr-20">
             <div>
               <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#B2A081] mb-6">
                 Company
@@ -80,9 +80,9 @@ export default function Footer() {
         <div className="w-full h-px bg-[#EAE6DF] mb-8"></div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row justify-between items-center text-[11px] font-light tracking-wide gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center text-[11px] font-light tracking-wide gap-4 text-center md:text-left">
           <p>© 2026 UH Furnishing. All rights reserved.</p>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center justify-center md:justify-end gap-6 md:gap-8">
             <Link
               href={ROUTES.PRIVACY_POLICY}
               className="hover:text-[#8E7D62] transition-colors">

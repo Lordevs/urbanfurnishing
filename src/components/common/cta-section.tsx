@@ -23,7 +23,7 @@ export default function CtaSection({
   buttonLink = ROUTES.CONTACT,
 }: CtaSectionProps) {
   return (
-    <section className="relative w-full min-h-[600px] flex items-center justify-center py-24">
+    <section className="relative w-full min-h-[600px] flex items-center justify-center py-16 md:py-24">
       {/* Background Image */}
       <div className="absolute inset-0 -z-10 bg-[#4a3f35]">
         <Image
@@ -41,7 +41,7 @@ export default function CtaSection({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 w-[90%] max-w-4xl mx-auto flex flex-col items-center justify-center px-6 py-20 bg-white/10 backdrop-blur-[px] border border-white/20 text-white text-center shadow-sm">
+        className="relative z-10 w-[90%] max-w-4xl mx-auto flex flex-col items-center justify-center px-4 sm:px-6 py-16 md:py-20 bg-white/10 backdrop-blur-[px] border border-white/20 text-white text-center shadow-sm">
         {/* Top Badge */}
         <div className="mb-6 inline-flex items-center gap-2 px-3 py-1.5 border border-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-[#ebe6df] font-sans">
           <span className="w-1 h-1 rounded-full bg-[#ebe6df]" />
@@ -49,7 +49,7 @@ export default function CtaSection({
         </div>
 
         {/* Heading */}
-        <h2 className="font-serif text-4xl md:text-5xl lg:text-[54px] mb-8 font-light text-white leading-tight">
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] mb-8 font-light text-white leading-tight">
           {title}
         </h2>
 

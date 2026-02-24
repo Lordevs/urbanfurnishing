@@ -38,14 +38,14 @@ const HeroSection = () => {
         />
 
         {/* Glassmorphism Card Wrapper */}
-        <div className="absolute inset-0 flex items-center justify-center p-2 md:p-12">
+        <div className="absolute inset-0 flex items-center justify-center p-4 md:p-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-5xl w-full bg-white/70 backdrop-blur-[2px] border border-white/40 rounded-[2.5rem] sm:pt-15 sm:pb-4 px-10 pt-20 pb-6 text-center space-y-2 lg:space-y-10 shadow-[0_25px_60px_rgba(0,0,0,0.1)] flex flex-col items-center">
+            className="relative max-w-5xl w-full bg-white/70 backdrop-blur-[2px] border border-white/40 md:rounded-[2.5rem] pt-16 pb-8 md:pt-20 md:pb-6 px-4 sm:px-10 text-center space-y-6 lg:space-y-10 shadow-[0_25px_60px_rgba(0,0,0,0.1)] flex flex-col items-center">
             {/* Top Badge Overlay */}
-            <div className="absolute top-9 left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-3 px-8 py-3 bg-white border border-black/5 shadow-[0_4px_15px_rgba(0,0,0,0.05)] rounded-none z-10 whitespace-nowrap">
+            <div className="absolute top-4 md:top-9 left-1/2 -translate-x-1/2 md:-translate-y-1/2 inline-flex items-center gap-2 md:gap-3 px-4 md:px-8 py-2 md:py-3 bg-white border border-black/5 shadow-[0_4px_15px_rgba(0,0,0,0.05)] z-10 whitespace-nowrap">
               <span className="text-primary font-bold text-base">•</span>
               <span className="text-[10px] tracking-[0.4em] font-bold text-muted-foreground/60 uppercase">
                 Turnkey Furnishing Solutions
@@ -53,20 +53,20 @@ const HeroSection = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-[96px] font-serif font-semibold text-primary leading-28 tracking-tight ">
+            <h1 className="text-5xl sm:text-7xl lg:text-[96px] font-serif font-semibold text-primary leading-tight lg:leading-28 tracking-tight">
               Turnkey Furnishing <br />{" "}
-              <span className="text-primary/60 font-serif font-semibold text-[96px]">
+              <span className="text-primary/60 font-serif font-semibold text-5xl sm:text-7xl lg:text-[96px]">
                 & Fit-Out
               </span>
             </h1>
 
             {/* Subheading */}
-            <p className="max-w-2xl text-xl md:text-2xl text-primary font-bold tracking-tight leading-relaxed">
+            <p className="max-w-2xl text-lg sm:text-xl md:text-2xl text-primary font-bold tracking-tight leading-relaxed">
               For investors, homeowners, and developers in the UAE
             </p>
 
             {/* Feature Boxes */}
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
               {[
                 "On-Time Delivery",
                 "Clear Pricing",
@@ -74,7 +74,7 @@ const HeroSection = () => {
               ].map((label) => (
                 <div
                   key={label}
-                  className="px-10 py-4 bg-white/80 border border-black/5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] text-[11px] font-bold tracking-tight text-primary/80">
+                  className="px-4 md:px-10 py-2 md:py-4 bg-white/80 border border-black/5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] text-[10px] md:text-[11px] font-bold tracking-tight text-primary/80">
                   {label}
                 </div>
               ))}
@@ -107,13 +107,7 @@ const HeroSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className={`flex flex-col items-center ${
-                  idx === 0
-                    ? "md:items-center"
-                    : idx === 2
-                      ? "md:items-center"
-                      : "md:items-center"
-                } text-center ${idx === 0 ? "md:text-center" : idx === 2 ? "md:text-center" : ""}`}>
+                className="flex flex-col items-center text-center">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-sans font-extralight text-primary/80 tracking-tighter flex items-center leading-tight">
                   {stat.value2 ? (
                     <div className="flex items-center">

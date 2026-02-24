@@ -26,7 +26,7 @@ const steps = [
 
 const WhatHappensNext = () => {
   return (
-    <section className="w-full py-24">
+    <section className="w-full py-16 md:py-24">
       <div className="w-full px-4 sm:px-10 lg:px-16 mx-auto flex flex-col items-center">
         {/* Badge */}
         <motion.div
@@ -45,7 +45,7 @@ const WhatHappensNext = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-[54px] font-serif text-[#6b5c4a] leading-tight mb-16 md:mb-20 font-light text-center">
+          className="text-4xl sm:text-5xl lg:text-[54px] font-serif text-[#6b5c4a] leading-tight mb-16 md:mb-20 font-light text-center">
           Your Journey With Us
         </motion.h2>
 
@@ -79,7 +79,7 @@ const WhatHappensNext = () => {
                   </div>
 
                   {/* Large Background Number */}
-                  <div className="absolute top-16 -translate-y-1/2 right-4 md:right-8 z-0 pointer-events-none select-none">
+                  <div className="absolute top-12 md:top-16 -translate-y-1/2 right-4 md:right-8 z-0 pointer-events-none select-none">
                     <span className="text-[90px] font-sans font-extralight text-[#9a8c7a] opacity-[0.05]">
                       {item.number}
                     </span>

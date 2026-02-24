@@ -32,7 +32,7 @@ const comparisonData = [
 
 const PackageOverview = () => {
   return (
-    <section className="w-full bg-[#f6f5f1] py-24 md:py-32">
+    <section className="w-full bg-[#f6f5f1] py-16 md:py-32">
       <div className="w-full px-4 sm:px-10 lg:px-16 mx-auto flex flex-col items-center">
         {/* Badge */}
         <motion.div
@@ -51,7 +51,7 @@ const PackageOverview = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-[50px] font-serif text-[#6b5c4a] leading-tight mb-8 font-light text-center">
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-serif text-[#6b5c4a] leading-tight mb-8 font-light text-center">
           Package Overview
         </motion.h2>
 
@@ -77,7 +77,7 @@ const PackageOverview = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}>
               <Card className="bg-[#FCFBF9] gap-0 py-0 border-none rounded-none shadow-sm h-full relative overflow-hidden group">
-                <CardContent className="p-8 md:p-10 flex flex-col space-y-8 h-full">
+                <CardContent className="p-6 sm:p-8 md:p-10 flex flex-col space-y-8 h-full">
                   <h3 className="text-[11px] font-bold tracking-widest text-[#9A8C7A] uppercase font-sans">
                     {col.title}
                   </h3>

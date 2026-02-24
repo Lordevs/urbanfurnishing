@@ -30,7 +30,7 @@ const audiences = [
 
 const WhoWeWorkWith = () => {
   return (
-    <section className="bg-white py-24 md:py-32 overflow-hidden">
+    <section className="bg-white py-16 md:py-32 overflow-hidden">
       <div className="w-full px-4 sm:px-10 lg:px-20 mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center space-y-4 mb-20">
@@ -48,7 +48,7 @@ const WhoWeWorkWith = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="space-y-6">
-            <h2 className="text-4xl md:text-6xl font-serif text-[#635647]">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#635647]">
               Who We Work With
             </h2>
             <div className="h-0.5 w-20 bg-[#635647]/20 mx-auto" />
@@ -56,7 +56,7 @@ const WhoWeWorkWith = () => {
         </div>
 
         {/* Audience Cards Grid - Matching Layout Width */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12 w-full">
           {audiences.map((item, index) => (
             <motion.div
               key={item.number}
@@ -66,7 +66,7 @@ const WhoWeWorkWith = () => {
               transition={{ delay: index * 0.2, duration: 0.8 }}
               className="h-full flex">
               <Card className="relative py-0 gap-0 w-full bg-[#f8f5f0] border-none rounded-none shadow-none group overflow-visible flex flex-col">
-                <CardContent className="p-10 md:p-14 flex flex-col items-center text-center space-y-8 grow justify-between">
+                <CardContent className="p-8 lg:p-14 flex flex-col items-center text-center space-y-8 grow justify-between">
                   {/* Corner Badge - Overlapping */}
                   <div className="absolute -top-3 -right-3 w-14 h-14 bg-[#5c4d3d] flex items-center justify-center text-white/50 text-[11px] font-bold shadow-[0_4px_15px_rgba(0,0,0,0.2)] z-20">
                     {item.number}
@@ -74,7 +74,7 @@ const WhoWeWorkWith = () => {
 
                   {/* Icon & Background Number Section */}
                   <div className="relative h-32 w-full flex items-center justify-center">
-                    <span className="absolute right-[-20%] md:right-[-18%] lg:right-[-12%] top-[-65%] text-[180px] font-serif font-light text-black/1.5 leading-none select-none pointer-events-none">
+                    <span className="absolute right-[-10%] md:right-[-18%] lg:right-[-12%] top-[-40%] sm:top-[-65%] text-[120px] sm:text-[180px] font-serif font-light text-black/1.5 leading-none select-none pointer-events-none">
                       {item.number}
                     </span>
 
@@ -87,7 +87,7 @@ const WhoWeWorkWith = () => {
 
                   {/* Text Content */}
                   <div className="space-y-6 flex flex-col items-center w-full relative z-10">
-                    <h3 className="text-3xl lg:text-[32px] font-serif text-[#635647]">
+                    <h3 className="text-2xl lg:text-[32px] font-serif text-[#635647]">
                       {item.title}
                     </h3>
 

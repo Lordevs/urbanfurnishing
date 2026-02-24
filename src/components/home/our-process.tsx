@@ -28,7 +28,7 @@ const steps = [
 
 const OurProcess = () => {
   return (
-    <section className="bg-[#fdfcf9] py-24 md:py-32 overflow-hidden">
+    <section className="bg-[#fdfcf9] py-16 md:py-32 overflow-hidden">
       <div className="w-full px-4 sm:px-10 lg:px-20 mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center space-y-4 mb-20">
@@ -46,7 +46,7 @@ const OurProcess = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="space-y-4">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif text-[#635647]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif text-[#635647]">
               How We Work
             </h2>
             <p className="max-w-xl text-sm md:text-base leading-relaxed text-muted-foreground/60 font-sans">
@@ -57,7 +57,7 @@ const OurProcess = () => {
         </div>
 
         {/* Steps Row */}
-        <div className="flex flex-col md:flex-row items-stretch gap-0 w-full">
+        <div className="flex flex-col md:flex-row items-stretch gap-10 md:gap-0 w-full">
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-center flex-1 min-w-0">
               {/* Step Card */}
@@ -67,13 +67,13 @@ const OurProcess = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.8 }}
                 className="flex-1 h-full">
-                <Card className="relative gap-0 py-00  bg-[#f8f5f0] border-none rounded-none shadow-none h-full overflow-visible">
+                <Card className="relative gap-0 py-0 bg-[#f8f5f0] border-none rounded-none shadow-none h-full overflow-visible">
                   {/* Dark Number Badge — overhanging top-left */}
                   <div className="absolute -top-4 left-6 z-20 w-11 h-11 bg-[#5c4d3d] flex items-center justify-center text-white/60 text-[11px] font-bold shadow-md">
                     {step.number}
                   </div>
 
-                  <CardContent className="p-8 pt-12 flex flex-col justify-between h-full min-h-[220px] relative overflow-hidden">
+                  <CardContent className="p-6 md:p-8 pt-12 md:pt-12 flex flex-col justify-between h-full min-h-[220px] relative overflow-hidden">
                     {/* Large Faint Background Number */}
                     <span className="absolute -top-8 right-4 text-[120px] font-serif font-bold text-[#635647]/5 leading-none select-none pointer-events-none">
                       {step.number}

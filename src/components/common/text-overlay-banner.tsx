@@ -34,7 +34,7 @@ const TextOverlayBanner = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full max-w-4xl text-[45px] font-sans font-light text-white leading-[1.3] md:leading-[1.4] tracking-wide">
+          className="w-full max-w-4xl text-2xl sm:text-3xl md:text-[45px] font-sans font-light text-white leading-[1.3] md:leading-[1.4] tracking-wide">
           {text}
         </motion.h2>
       </div>

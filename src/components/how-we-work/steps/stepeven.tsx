@@ -23,7 +23,7 @@ const Stepeven = ({
 }: StepEvenProps) => {
   return (
     <section className="w-full mx-auto px-4 sm:px-10 lg:px-16 my-12 md:my-20">
-      <div className="w-full bg-[#F7F3ED] py-20 px-6 sm:px-12 lg:px-20 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div className="w-full bg-[#F7F3ED] py-12 md:py-20 px-6 sm:px-12 lg:px-20 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
         {/* Left Column: Content */}
         <div className="flex flex-col space-y-8 order-2 lg:order-1 lg:pr-10">
           {/* Badge & Heading Block */}
@@ -39,7 +39,7 @@ const Stepeven = ({
               STEP {stepNumber}
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-[46px] font-serif text-[#6b6256] font-light leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-serif text-[#6b6256] font-light leading-tight">
               {title}
             </h2>
 

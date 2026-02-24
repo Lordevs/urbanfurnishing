@@ -33,9 +33,9 @@ const PackageSection = ({
   reverse = false,
 }: PackageSectionProps) => {
   return (
-    <section className="w-full bg-[#FCFBF9] py-10  overflow-hidden">
+    <section className="w-full bg-[#FCFBF9] py-10 md:py-16 overflow-hidden">
       <div className="w-full px-4 sm:px-10 lg:px-16 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Image Column */}
           <motion.div
             initial={{ opacity: 0, x: reverse ? 30 : -30 }}
@@ -102,7 +102,7 @@ const PackageSection = ({
                 {badgeTitle}
               </div>
 
-              <h2 className="text-4xl md:text-5xl lg:text-[54px] font-serif text-[#6b6256] font-light leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-serif text-[#6b6256] font-light leading-tight">
                 {title}
               </h2>
 

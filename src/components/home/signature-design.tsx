@@ -26,9 +26,9 @@ const features = [
 
 const SignatureDesign = () => {
   return (
-    <section className="bg-white py-24 md:py-32 overflow-hidden">
+    <section className="bg-white py-16 md:py-32 overflow-hidden">
       <div className="w-full px-4 sm:px-10 lg:px-20 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -61,7 +61,7 @@ const SignatureDesign = () => {
             </p>
 
             {/* Feature Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 md:mt-4">
               {features.map((feature) => (
                 <div
                   key={feature.num}
@@ -107,7 +107,7 @@ const SignatureDesign = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative lg:ml-10">
+            className="relative lg:ml-10 hidden lg:block">
             {/* Top-Left Border Decorator */}
             <div className="absolute -top-6 -left-6 md:-top-8 md:-left-8 w-16 h-16 md:w-24 md:h-24 border-t border-l border-[#dcd7ce] z-0" />
 

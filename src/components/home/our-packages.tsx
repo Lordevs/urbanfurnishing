@@ -34,7 +34,7 @@ const packages = [
 
 const OurPackages = () => {
   return (
-    <section className="bg-white py-20 overflow-hidden">
+    <section className="bg-white py-16 md:py-20 overflow-hidden">
       <div className="w-full px-4 sm:px-10 lg:px-20 mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center space-y-8 mb-20 md:mb-28">
@@ -53,7 +53,7 @@ const OurPackages = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="space-y-6 flex flex-col items-center">
-            <h2 className="text-6xl md:text-7xl lg:text-[84px] font-serif text-[#5c4d3d] leading-tight">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[84px] font-serif text-[#5c4d3d] leading-tight">
               Three Pathways
             </h2>
 
@@ -72,7 +72,7 @@ const OurPackages = () => {
         </div>
 
         {/* Packages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 w-full">
           {packages.map((pkg, index) => (
             <motion.div
               key={pkg.title}

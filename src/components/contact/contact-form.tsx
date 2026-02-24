@@ -33,7 +33,7 @@ const contactDetails = [
 
 const ContactForm = () => {
   return (
-    <section className="w-full py-20 px-4 md:px-12">
+    <section className="w-full py-16 md:py-20 px-4 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
         {/* Left Column: Information */}
         <div className="flex flex-col space-y-10 lg:pr-4">
@@ -49,7 +49,7 @@ const ContactForm = () => {
               CONTACT INFORMATION
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-[46px] font-serif text-[#6b6256] font-light leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-serif text-[#6b6256] font-light leading-tight">
               Let&apos;s Start a Conversation
             </h2>
 
@@ -110,7 +110,7 @@ const ContactForm = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="w-full bg-white p-8 md:p-12 lg:p-16 h-full flex flex-col justify-center">
+          className="w-full bg-white p-6 sm:p-8 md:p-12 lg:p-16 h-full flex flex-col justify-center">
           <div className="space-y-6">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#f6f4f0] border border-[#e8e4db] text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-[#9A8C7A] uppercase font-sans">
@@ -118,7 +118,7 @@ const ContactForm = () => {
               SEND MESSAGE
             </div>
 
-            <h3 className="text-3xl md:text-4xl lg:text-[40px] font-serif text-[#6b6256] font-light">
+            <h3 className="text-[28px] sm:text-3xl md:text-4xl lg:text-[40px] font-serif text-[#6b6256] font-light">
               Quick Inquiry
             </h3>
 
