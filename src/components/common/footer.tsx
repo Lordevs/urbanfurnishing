@@ -38,21 +38,21 @@ export default function Footer() {
                 <li>
                   <Link
                     href={ROUTES.ABOUT}
-                    className="hover:text-[#8E7D62] transition-colors">
+                    className="hover:text-[#8E7D62] hover:font-bold hover:underline transition-all duration-300">
                     About
                   </Link>
                 </li>
                 <li>
                   <Link
                     href={ROUTES.HOW_WE_WORK}
-                    className="hover:text-[#8E7D62] transition-colors">
+                    className="hover:text-[#8E7D62] hover:font-bold hover:underline transition-all duration-300">
                     How We Work
                   </Link>
                 </li>
                 <li>
                   <Link
                     href={ROUTES.PACKAGES}
-                    className="hover:text-[#8E7D62] transition-colors">
+                    className="hover:text-[#8E7D62] hover:font-bold hover:underline transition-all duration-300">
                     Packages
                   </Link>
                 </li>
@@ -67,7 +67,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href={ROUTES.CONTACT}
-                    className="hover:text-[#8E7D62] transition-colors">
+                    className="hover:text-[#8E7D62] hover:font-bold hover:underline transition-all duration-300">
                     Book Consultation
                   </Link>
                 </li>
@@ -85,12 +85,12 @@ export default function Footer() {
           <div className="flex items-center justify-center md:justify-end gap-6 md:gap-8">
             <Link
               href={ROUTES.PRIVACY_POLICY}
-              className="hover:text-[#8E7D62] transition-colors">
+              className="hover:text-[#8E7D62] hover:font-bold hover:underline transition-all duration-300">
               Privacy Policy
             </Link>
             <Link
               href={ROUTES.TERMS_OF_SERVICE}
-              className="hover:text-[#8E7D62] transition-colors">
+              className="hover:text-[#8E7D62] hover:font-bold hover:underline transition-all duration-300">
               Terms of Service
             </Link>
           </div>

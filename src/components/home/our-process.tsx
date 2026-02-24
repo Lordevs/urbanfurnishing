@@ -67,7 +67,7 @@ const OurProcess = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.8 }}
                 className="flex-1 h-full">
-                <Card className="relative gap-0 py-0 bg-[#f8f5f0] border-none rounded-none shadow-none h-full overflow-visible">
+                <Card className="relative gap-0 py-0 bg-[#f8f5f0] border-none rounded-none shadow-none h-full overflow-visible transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
                   {/* Dark Number Badge — overhanging top-left */}
                   <div className="absolute -top-4 left-6 z-20 w-11 h-11 bg-[#5c4d3d] flex items-center justify-center text-white/60 text-[11px] font-bold shadow-md">
                     {step.number}

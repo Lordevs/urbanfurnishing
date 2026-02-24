@@ -65,7 +65,7 @@ const WhoWeWorkWith = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
               className="h-full flex">
-              <Card className="relative py-0 gap-0 w-full bg-[#f8f5f0] border-none rounded-none shadow-none group overflow-visible flex flex-col">
+              <Card className="relative py-0 gap-0 w-full bg-[#f8f5f0] border-none rounded-none shadow-none group overflow-visible flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                 <CardContent className="p-8 lg:p-14 flex flex-col items-center text-center space-y-8 grow justify-between">
                   {/* Corner Badge - Overlapping */}
                   <div className="absolute -top-3 -right-3 w-14 h-14 bg-[#5c4d3d] flex items-center justify-center text-white/50 text-[11px] font-bold shadow-[0_4px_15px_rgba(0,0,0,0.2)] z-20">
