@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, ArrowRight, Send } from "lucide-react";
@@ -7,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 const contactDetails = [
   {
@@ -32,6 +35,50 @@ const contactDetails = [
 ];
 
 const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message.");
+      }
+
+      toast.success(
+        "Your message has been sent! We will get back to you soon.",
+      );
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch (error: any) {
+      toast.error(error.message || "An unexpected error occurred.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <section className="w-full py-16 md:py-20 px-4 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
@@ -125,12 +172,16 @@ const ContactForm = () => {
             {/* Separator Line */}
             <div className="w-16 h-px bg-[#8e8578] opacity-60 mt-4 mb-8" />
 
-            <form className="space-y-6 pt-2">
+            <form onSubmit={handleSubmit} className="space-y-6 pt-2">
               <div className="space-y-2.5">
                 <Label className="text-[10px] md:text-[11px] font-bold tracking-widest text-[#9A8C7A] uppercase">
                   Full Name *
                 </Label>
                 <Input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   placeholder="Your full name"
                   className="bg-[#FCFBF9] border-[#e8e4db] h-12 text-[#5D4E3C] rounded-none focus-visible:ring-1 focus-visible:ring-[#8e8578] font-light placeholder:text-[#b0a79a]"
                 />
@@ -141,6 +192,10 @@ const ContactForm = () => {
                   Email Address *
                 </Label>
                 <Input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   placeholder="your@email.com"
                   type="email"
                   className="bg-[#FCFBF9] border-[#e8e4db] h-12 text-[#5D4E3C] rounded-none focus-visible:ring-1 focus-visible:ring-[#8e8578] font-light placeholder:text-[#b0a79a]"
@@ -149,9 +204,13 @@ const ContactForm = () => {
 
               <div className="space-y-2.5">
                 <Label className="text-[10px] md:text-[11px] font-bold tracking-widest text-[#9A8C7A] uppercase">
-                  Phone Number
+                  Phone Number *
                 </Label>
                 <Input
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
                   placeholder="+971 XX XXX XXXX"
                   type="tel"
                   className="bg-[#FCFBF9] border-[#e8e4db] h-12 text-[#5D4E3C] rounded-none focus-visible:ring-1 focus-visible:ring-[#8e8578] font-light placeholder:text-[#b0a79a]"
@@ -160,9 +219,16 @@ const ContactForm = () => {
 
               <div className="space-y-2.5">
                 <Label className="text-[10px] md:text-[11px] font-bold tracking-widest text-[#9A8C7A] uppercase">
-                  Property Type
+                  Subject *
                 </Label>
-                <Input className="bg-[#FCFBF9] border-[#e8e4db] h-12 text-[#5D4E3C] rounded-none focus-visible:ring-1 focus-visible:ring-[#8e8578] font-light" />
+                <Input
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  placeholder="E.g. Investment Property Furnishing"
+                  className="bg-[#FCFBF9] border-[#e8e4db] h-12 text-[#5D4E3C] rounded-none focus-visible:ring-1 focus-visible:ring-[#8e8578] font-light placeholder:text-[#b0a79a]"
+                />
               </div>
 
               <div className="space-y-2.5">
@@ -170,15 +236,21 @@ const ContactForm = () => {
                   Message *
                 </Label>
                 <Textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   placeholder="Tell us about your project..."
                   className="bg-[#FCFBF9] border-[#e8e4db] min-h-[140px] text-[#5D4E3C] rounded-none focus-visible:ring-1 focus-visible:ring-[#8e8578] font-light placeholder:text-[#b0a79a] resize-none"
                 />
               </div>
 
               <Button
-                type="button"
-                className="w-full bg-[#5D4E3C] hover:bg-[#4a3e2f] text-white rounded-none h-[54px] mt-6 tracking-wide text-[13px] font-medium flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
-                Send Message <ArrowRight className="w-4 h-4 ml-1" />
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#5D4E3C] hover:bg-[#4a3e2f] text-white rounded-none h-[54px] mt-6 tracking-wide text-[13px] font-medium flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none">
+                {isLoading ? "Sending..." : "Send Message"}{" "}
+                {!isLoading && <ArrowRight className="w-4 h-4 ml-1" />}
               </Button>
             </form>
           </div>

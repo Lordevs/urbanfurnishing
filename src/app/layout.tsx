@@ -3,6 +3,7 @@ import { Cormorant, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${cormorant.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning>
         <Navbar />
+        <Toaster richColors />
         {children}
         <Footer />
       </body>
