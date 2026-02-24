@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MoveRight } from "lucide-react";
+import { ROUTES } from "@/constants/route";
 
 const packages = [
   {
@@ -12,7 +13,7 @@ const packages = [
     image: "/home/packages-1.webp",
     description:
       "Fast, rental-ready properties with neutral, market-tested design",
-    href: "/services/investor",
+    href: ROUTES.PACKAGES,
   },
   {
     number: "02",
@@ -20,7 +21,7 @@ const packages = [
     image: "/home/packages-2.webp",
     description:
       "Personalised interiors that reflect your style with curated finishes",
-    href: "/services/residential",
+    href: ROUTES.PACKAGES,
   },
   {
     number: "03",
@@ -28,7 +29,7 @@ const packages = [
     image: "/home/packages-3.webp",
     description:
       "Scalable furnishing for multiple units with consistent quality",
-    href: "/services/developer",
+    href: ROUTES.PACKAGES,
   },
 ];
 
@@ -114,8 +115,9 @@ const OurPackages = () => {
                 {/* EXPLORE Link */}
                 <Link
                   href={pkg.href}
-                  className="inline-flex items-center gap-2 pt-2 text-[10px] font-bold tracking-[0.25em] text-[#635647] uppercase group-hover:opacity-70 transition-opacity">
-                  Explore <MoveRight className="w-3 h-3" />
+                  className="inline-flex items-center gap-2 pt-2 text-[10px] font-bold tracking-[0.25em] text-[#635647] uppercase hover:opacity-70 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]">
+                  Explore{" "}
+                  <MoveRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </motion.div>

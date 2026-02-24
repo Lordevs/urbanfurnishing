@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MoveRight, CheckCircle2, Component } from "lucide-react";
+import { ROUTES } from "@/constants/route";
 
 const features = [
   {
@@ -91,10 +92,10 @@ const SignatureDesign = () => {
             </div>
 
             {/* Link */}
-            <div className="pt-4">
+            <div className="pt-4 flex">
               <Link
-                href="#"
-                className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.25em] text-[#5c4d3d] uppercase hover:opacity-70 transition-opacity">
+                href={ROUTES.PACKAGES}
+                className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.25em] text-[#5c4d3d] uppercase hover:opacity-70 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]">
                 EXPLORE SIGNATURE DESIGN{" "}
                 <MoveRight className="w-3.5 h-3.5 ml-1" />
               </Link>

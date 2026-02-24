@@ -178,7 +178,7 @@ const PackageSection = ({
               transition={{ duration: 0.8, delay: 0.6 }}
               className="pt-4">
               <Link href={ROUTES.CONTACT}>
-                <Button className="bg-[#5D4E3C] hover:bg-[#4a3e2f] text-white rounded-none py-6 px-8 text-sm font-medium tracking-wide flex items-center gap-2 transition-all duration-300">
+                <Button className="bg-[#5D4E3C] hover:bg-[#4a3e2f] text-white rounded-none py-6 px-8 text-sm font-medium tracking-wide flex items-center gap-2 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]">
                   Book Consultation <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>

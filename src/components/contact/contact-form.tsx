@@ -177,7 +177,7 @@ const ContactForm = () => {
 
               <Button
                 type="button"
-                className="w-full bg-[#5D4E3C] hover:bg-[#4a3e2f] text-white rounded-none h-[54px] mt-6 tracking-wide text-[13px] font-medium flex items-center justify-center gap-2 transition-colors">
+                className="w-full bg-[#5D4E3C] hover:bg-[#4a3e2f] text-white rounded-none h-[54px] mt-6 tracking-wide text-[13px] font-medium flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
                 Send Message <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </form>

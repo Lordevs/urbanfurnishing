@@ -63,7 +63,7 @@ export default function CtaSection({
 
         {/* Button */}
         <Link href={buttonLink}>
-          <Button className="bg-white cursor-pointer hover:bg-[#f6f5f1] text-[#5D4E3C] border-none rounded-none w-[250px] py-5 h-auto text-[13px] font-medium tracking-wide flex items-center gap-2 transition-colors duration-300">
+          <Button className="bg-white cursor-pointer hover:bg-[#f6f5f1] text-[#5D4E3C] border-none rounded-none w-[250px] py-5 h-auto text-[13px] font-medium tracking-wide flex items-center gap-2 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]">
             {buttonText} <ArrowRight className="w-4 h-4 ml-1" />
           </Button>
         </Link>

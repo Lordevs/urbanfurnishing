@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/ui/animated-number";
+import Link from "next/link";
+import { ROUTES } from "@/constants/route";
 
 const HeroSection = () => {
   const stats = [
@@ -82,15 +84,19 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto">
-              <Button className="w-full cursor-pointer sm:w-80 bg-primary hover:bg-primary/90 text-primary-foreground rounded-none py-8 text-sm font-bold tracking-wide flex items-center justify-center gap-3 group transition-all duration-300 shadow-2xl">
-                Book Consultation
-                <MoveRight className="h-5 w-5 transition-transform group-hover:translate-x-1.5" />
-              </Button>
-              <Button
-                variant="outline"
-                className="w-full cursor-pointer sm:w-80 border border-black/5 bg-white/80 backdrop-blur-sm hover:bg-white hover:text-primary/20 text-primary font-bold rounded-none py-8 text-sm tracking-wide transition-all duration-300 shadow-xl">
-                View Packages
-              </Button>
+              <Link href={ROUTES.CONTACT} className="w-full sm:w-auto">
+                <Button className="w-full cursor-pointer sm:w-80 bg-primary hover:bg-primary/90 text-primary-foreground rounded-none py-8 text-sm font-bold tracking-wide flex items-center justify-center gap-3 group transition-all duration-300 shadow-2xl hover:scale-[1.02] active:scale-[0.98]">
+                  Book Consultation
+                  <MoveRight className="h-5 w-5 transition-transform group-hover:translate-x-1.5" />
+                </Button>
+              </Link>
+              <Link href={ROUTES.PACKAGES} className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  className="w-full cursor-pointer sm:w-80 border border-black/5 bg-white/80 backdrop-blur-sm hover:bg-white hover:text-primary/20 text-primary font-bold rounded-none py-8 text-sm tracking-wide transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                  View Packages
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

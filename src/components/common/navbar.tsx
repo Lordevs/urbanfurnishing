@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import { navItems } from "@/lib/nav-items";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/route";
 import {
   Sheet,
   SheetContent,
@@ -65,8 +66,8 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Link href="/contact">
-              <Button className="bg-primary cursor-pointer hover:bg-primary/90 text-primary-foreground rounded-none px-8 py-6 text-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg">
+            <Link href={ROUTES.CONTACT}>
+              <Button className="bg-primary cursor-pointer hover:bg-primary/90 text-primary-foreground rounded-none px-8 py-6 text-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg hover:scale-[1.04] active:scale-[0.97]">
                 Book Consultation
               </Button>
             </Link>
@@ -115,8 +116,8 @@ const Navbar = () => {
                   ))}
                 </div>
                 <div className="p-6 border-t mt-auto">
-                  <Link href="/contact" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full  bg-primary hover:bg-primary/90 text-primary-foreground rounded-none py-6 text-sm font-medium tracking-wide">
+                  <Link href={ROUTES.CONTACT} onClick={() => setIsOpen(false)}>
+                    <Button className="w-full  bg-primary hover:bg-primary/90 text-primary-foreground rounded-none py-6 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
                       Book Consultation
                     </Button>
                   </Link>
