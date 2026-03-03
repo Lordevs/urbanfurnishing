@@ -125,7 +125,7 @@ const HeroSection = () => {
                     <AnimatedNumber value={stat.value} suffix={stat.suffix} />
                   )}
                 </div>
-                <div className="text-[8px] md:text-[9px] font-bold tracking-[0.2em] text-muted-foreground/80 uppercase font-sans mt-0.5">
+                <div className="text-[8px] md:text-[9px] font-bold tracking-[0.2em] text-[#5A4D42] uppercase font-sans mt-0.5">
                   {stat.label}
                 </div>
               </motion.div>

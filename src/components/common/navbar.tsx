@@ -47,9 +47,7 @@ const Navbar = () => {
                 key={item.href}
                 href={item.href}
                 className={`relative flex items-center gap-2 text-xs font-semibold tracking-[0.2em] transition-colors hover:text-primary ${
-                  pathname === item.href
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                  pathname === item.href ? "text-primary" : "text-foreground/70"
                 }`}>
                 <item.icon className="h-4 w-4" />
                 {item.title.toUpperCase()}
