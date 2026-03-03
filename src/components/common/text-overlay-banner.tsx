@@ -20,8 +20,10 @@ const TextOverlayBanner = ({
         src={imageSrc}
         alt={imageAlt}
         fill
+        sizes="100vw"
+        loading="lazy"
         className="object-cover"
-        quality={95}
+        quality={80}
       />
 
       {/* Dark Overlay */}

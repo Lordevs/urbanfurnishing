@@ -121,8 +121,10 @@ const SignatureDesign = () => {
                 src="/home/signature-design.webp"
                 alt="Elena Falconer"
                 fill
+                sizes="(max-width: 1024px) 0vw, 50vw"
+                loading="lazy"
                 className="object-cover scale-[1.15]"
-                quality={95}
+                quality={85}
               />
             </div>
           </motion.div>

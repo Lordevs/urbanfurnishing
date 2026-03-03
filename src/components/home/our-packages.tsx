@@ -88,6 +88,8 @@ const OurPackages = () => {
                   src={pkg.image}
                   alt={pkg.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading="lazy"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
