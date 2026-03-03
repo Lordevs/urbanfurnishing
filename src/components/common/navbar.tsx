@@ -78,6 +78,7 @@ const Navbar = () => {
                 <Button
                   variant="ghost"
                   size="icon"
+                  aria-label="Open navigation menu"
                   className="text-gray-600 hover:bg-transparent">
                   <Menu className="h-6 w-6" />
                 </Button>
