@@ -73,8 +73,12 @@ const ContactForm = () => {
         "Your message has been sent! We will get back to you soon.",
       );
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    } catch (error: any) {
-      toast.error(error.message || "An unexpected error occurred.");
+    } catch (error: unknown) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred.",
+      );
     } finally {
       setIsLoading(false);
     }
