@@ -38,7 +38,7 @@ const WhoWeWorkWith = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] md:text-[11px] font-bold tracking-[0.4em] text-muted-foreground/40 uppercase font-sans">
+            className="text-[10px] md:text-[11px] font-bold tracking-[0.4em] text-muted-foreground/80 uppercase font-sans">
             Who We Serve
           </motion.span>
 
@@ -93,7 +93,7 @@ const WhoWeWorkWith = () => {
 
                     <div className="h-px w-20 bg-black/5" />
 
-                    <p className="text-sm md:text-base leading-relaxed text-muted-foreground/60 max-w-[280px] font-sans">
+                    <p className="text-sm md:text-base leading-relaxed text-muted-foreground max-w-[280px] font-sans">
                       {item.description}
                     </p>
                   </div>

@@ -107,7 +107,7 @@ const Navbar = () => {
                           className={`h-5 w-5 ${
                             pathname === item.href
                               ? "text-primary"
-                              : "text-muted-foreground/60"
+                              : "text-muted-foreground"
                           }`}
                         />
                         {item.title.toUpperCase()}

@@ -36,7 +36,7 @@ const OurProcess = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] md:text-[11px] font-bold tracking-[0.4em] text-muted-foreground/40 uppercase font-sans">
+            className="text-[10px] md:text-[11px] font-bold tracking-[0.4em] text-muted-foreground/80 uppercase font-sans">
             OUR PROCESS
           </motion.span>
 
@@ -49,7 +49,7 @@ const OurProcess = () => {
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif text-[#635647]">
               How We Work
             </h2>
-            <p className="max-w-xl text-sm md:text-base leading-relaxed text-muted-foreground/60 font-sans">
+            <p className="max-w-xl text-sm md:text-base leading-relaxed text-muted-foreground font-sans">
               A simple, structured process designed for clarity and
               accountability
             </p>

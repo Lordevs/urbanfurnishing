@@ -49,7 +49,7 @@ const HeroSection = () => {
             {/* Top Badge Overlay */}
             <div className="absolute top-4 md:top-10 left-1/2 -translate-x-1/2 md:-translate-y-1/2 inline-flex items-center gap-2 md:gap-3 px-4 md:px-8 py-2 md:py-3 bg-white border border-black/5 shadow-[0_4px_15px_rgba(0,0,0,0.05)] z-10 whitespace-nowrap">
               <span className="text-primary font-bold text-base">•</span>
-              <span className="text-[10px] tracking-[0.4em] font-bold text-muted-foreground/60 uppercase">
+              <span className="text-[10px] tracking-[0.4em] font-bold text-muted-foreground uppercase">
                 Turnkey Furnishing Solutions
               </span>
             </div>
@@ -125,7 +125,7 @@ const HeroSection = () => {
                     <AnimatedNumber value={stat.value} suffix={stat.suffix} />
                   )}
                 </div>
-                <div className="text-[8px] md:text-[9px] font-bold tracking-[0.2em] text-muted-foreground/40 uppercase font-sans mt-0.5">
+                <div className="text-[8px] md:text-[9px] font-bold tracking-[0.2em] text-muted-foreground/80 uppercase font-sans mt-0.5">
                   {stat.label}
                 </div>
               </motion.div>
