@@ -48,7 +48,7 @@ export default function Services() {
   return (
     <section className="py-20 w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-muted">
       <div className="text-center mb-16">
-        <h2 className="text-4xl sm:text-5xl font-semibold text-[#1a1a1a] mb-6">
+        <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-[#1a1a1a] mb-6">
           Three <span className="text-[#C9A76A]">Pathway</span> <br />
           Services
         </h2>
