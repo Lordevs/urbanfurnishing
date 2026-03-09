@@ -1,30 +1,23 @@
-import HeroSection from "@/components/home/hero-section";
-import WhoWeWorkWith from "@/components/home/who-we-work-with";
-import OurPackages from "@/components/home/our-packages";
-import TextOverlayBanner from "@/components/common/text-overlay-banner";
-import OurProcess from "@/components/home/our-process";
-import SignatureDesign from "@/components/home/signature-design";
-import CtaSection from "@/components/common/cta-section";
+import Hero from "@/components/home/hero";
+import Services from "@/components/home/services";
+import PathwayNav from "@/components/home/pathway-nav";
+import Packages from "@/components/home/packages";
+import SingleItems from "@/components/home/single-items";
+import HowWeWork from "@/components/home/how-we-work";
+import CTA from "@/components/common/cta";
+import SignatureDesign from "@/components/common/signature-design";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
-      <HeroSection />
-      <WhoWeWorkWith />
-      <OurPackages />
-      <TextOverlayBanner
-        imageSrc="/home/Interior-detail.webp"
-        text={
-          <>
-            Delivered on time. <br />
-            Priced clearly. <br />
-            Managed end-to-end.
-          </>
-        }
-      />
-      <OurProcess />
+    <main className="min-h-screen">
+      <Hero />
+      <Services />
+      <PathwayNav />
+      <Packages />
+      <SingleItems />
       <SignatureDesign />
-      <CtaSection />
+      <HowWeWork />
+      <CTA />
     </main>
   );
 }
