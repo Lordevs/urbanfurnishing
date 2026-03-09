@@ -9,7 +9,7 @@ export default function SignatureDesign() {
   return (
     <section
       id="design-expert"
-      className="py-24 w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white">
+      className=" w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white">
       <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
         {/* Left Content */}
         <motion.div

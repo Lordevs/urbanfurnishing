@@ -3,6 +3,7 @@ import Services from "@/components/home/services";
 import PathwayNav from "@/components/home/pathway-nav";
 import Packages from "@/components/home/packages";
 import SingleItems from "@/components/home/single-items";
+import HowWeWork from "@/components/home/how-we-work";
 import SignatureDesign from "@/components/common/signature-design";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <Packages />
       <SingleItems />
       <SignatureDesign />
+      <HowWeWork />
     </main>
   );
 }
