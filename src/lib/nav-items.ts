@@ -1,4 +1,4 @@
-import { Home, Users, Briefcase, Mail } from "lucide-react";
+import { Home, Boxes, Armchair, Sparkles, CalendarDays } from "lucide-react";
 import { ROUTES } from "@/constants/route";
 import { NavItem } from "@/types/nav";
 
@@ -9,18 +9,23 @@ export const navItems: NavItem[] = [
     icon: Home,
   },
   {
-    title: "About",
-    href: ROUTES.ABOUT,
-    icon: Users,
+    title: "Packages",
+    href: ROUTES.PACKAGES,
+    icon: Boxes,
   },
   {
-    title: "How We Work",
-    href: ROUTES.HOW_WE_WORK,
-    icon: Briefcase,
+    title: "Single Products",
+    href: ROUTES.SINGLE_PRODUCTS,
+    icon: Armchair,
   },
   {
-    title: "Contact",
-    href: ROUTES.CONTACT,
-    icon: Mail,
+    title: "Our New Design Expert",
+    href: ROUTES.OUR_NEW_DESIGN_EXPERT,
+    icon: Sparkles,
+  },
+  {
+    title: "Book Consultation",
+    href: ROUTES.BOOK_CONSULTATION,
+    icon: CalendarDays,
   },
 ];
