@@ -20,7 +20,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <nav className="sticky top-0 z-50 w-full">
       <div className="w-full px-4 sm:px-10 lg:px-16">
         <div className="flex h-20 items-center justify-between">
           {/* Logo Section */}
@@ -49,7 +49,7 @@ const Navbar = () => {
                   className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                     isActive
                       ? "bg-[#412A1F]/90 text-white"
-                      : "text-[#1A1A1A] hover:text-[#412A1F]"
+                      : "text-foreground hover:text-primary"
                   }`}>
                   {item.title}
                 </Link>
@@ -60,9 +60,9 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center">
             <Link href={ROUTES.BOOK_CONSULTATION}>
-              <Button className="rounded-full bg-[#412A1F] hover:bg-[#412A1F]/90 text-primary-foreground flex items-center gap-3 pr-2 pl-7 h-12 text-sm font-medium transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
+              <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-3 pr-2 pl-7 h-12 text-sm font-medium transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
                 Get in Touch
-                <div className="bg-white rounded-full p-1.5 text-[#412A1F] flex items-center justify-center">
+                <div className="bg-white rounded-full p-1.5 text-primary flex items-center justify-center">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
               </Button>
@@ -115,7 +115,7 @@ const Navbar = () => {
                     <Link
                       href={ROUTES.BOOK_CONSULTATION}
                       onClick={() => setIsOpen(false)}>
-                      <Button className="w-full rounded-full bg-[#412A1F] hover:bg-[#412A1F]/90 text-white flex items-center justify-between px-8 h-14 text-md font-medium shadow-lg transition-transform active:scale-95">
+                      <Button className="w-full rounded-full bg-[#412A1F] hover:bg-primary/90 text-white flex items-center justify-between px-8 h-14 text-md font-medium shadow-lg transition-transform active:scale-95">
                         Get in Touch
                         <div className="bg-white rounded-full p-2 text-[#412A1F]">
                           <ArrowUpRight className="h-5 w-5" />
