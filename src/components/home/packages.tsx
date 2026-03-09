@@ -43,7 +43,7 @@ const packagesData = [
 
 export default function Packages() {
   return (
-    <section className="py-20 w-full px-4 sm:px-10 lg:px-16 max-w-[1400px] mx-auto">
+    <section className="w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-6">
         <h2 className="text-5xl sm:text-6xl font-semibold tracking-tight">
           <span className="text-[#1a1a1a]">Our </span>

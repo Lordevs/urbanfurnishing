@@ -2,7 +2,7 @@ import { ArrowUp } from "lucide-react";
 
 export default function PathwayNav() {
   return (
-    <div className="w-full px-4 sm:px-10 lg:px-16 max-w-[1400px] mx-auto py-8">
+    <div className="w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto py-8">
       <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-[#FCFAF8] border border-[#F0EBE3] shadow-sm">
         <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center bg-white shadow-sm shrink-0">
           <ArrowUp className="w-4 h-4 text-gray-500" />
