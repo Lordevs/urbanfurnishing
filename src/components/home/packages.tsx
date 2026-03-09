@@ -13,7 +13,7 @@ const packagesData: CarouselItemData[] = [
       { label: "Package", value: "Package - 1" },
       { label: "Focus", value: "Rental-Ready" },
     ],
-    img: "/landing/home/packages-img-1.webp",
+    img: "/landing/home/packages/packages-img-1.webp",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const packagesData: CarouselItemData[] = [
       { label: "Package", value: "Package - 2" },
       { label: "Focus", value: "Clean aesthetics" },
     ],
-    img: "/landing/home/packages-img-2.webp",
+    img: "/landing/home/packages/packages-img-2.webp",
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const packagesData: CarouselItemData[] = [
       { label: "Package", value: "Package - 3" },
       { label: "Focus", value: "Premium Standard" },
     ],
-    img: "/landing/home/packages-img-3.webp",
+    img: "/landing/home/packages/packages-img-3.webp",
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const packagesData: CarouselItemData[] = [
       { label: "Package", value: "Package - 4" },
       { label: "Focus", value: "Inviting Tones" },
     ],
-    img: "/landing/home/packages-img-4.webp",
+    img: "/landing/home/packages/packages-img-4.webp",
   },
 ];
 

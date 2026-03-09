@@ -11,28 +11,28 @@ const singleItemsData: CarouselItemData[] = [
     title: "Sofa Item",
     description:
       "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item-img-1.webp",
+    img: "/landing/home/single-item/single-item-img-1.webp",
   },
   {
     id: 2,
     title: "Sofa Item",
     description:
       "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item-img-2.webp",
+    img: "/landing/home/single-item/single-item-img-2.webp",
   },
   {
     id: 3,
     title: "Lounge Chair",
     description:
       "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item-img-3.webp",
+    img: "/landing/home/single-item/single-item-img-3.webp",
   },
   {
     id: 4,
     title: "Lounge Chair",
     description:
       "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item-img-4.webp",
+    img: "/landing/home/single-item/single-item-img-4.webp",
   },
 ];
 

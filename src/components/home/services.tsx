@@ -4,20 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check, ArrowUpRight } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 const servicesData = [
   {
     id: "packages",
     title: "Select Packages",
     desc: "Browse our curated collections designed for every room. Complete furniture sets that work together perfectly.",
-    img: "/landing/home/services-img-1.webp",
+    img: "/landing/home/services/services-img-1.webp",
     features: [
       "Complete room solutions",
       "Pre-matched furniture sets",
@@ -28,7 +22,7 @@ const servicesData = [
     id: "shop",
     title: "Shop Individually",
     desc: "Pick and choose exactly what you need. Build your own style with our extensive single product collection.",
-    img: "/landing/home/services-img-2.webp",
+    img: "/landing/home/services/services-img-2.webp",
     features: [
       "1000+ unique pieces",
       "Mix and match styles",
@@ -39,7 +33,7 @@ const servicesData = [
     id: "expert",
     title: "Use Our Design Expert",
     desc: "Work with professional interior designers who bring your vision to life with personalized service.",
-    img: "/landing/home/services-img-3.webp",
+    img: "/landing/home/services/services-img-3.webp",
     features: [
       "1-on-1 consultation",
       "Custom design plans",
@@ -102,7 +96,7 @@ export default function Services() {
                 {/* Background SVG for all states */}
                 <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-100 transition-opacity duration-300">
                   <img
-                    src="/landing/home/services.svg"
+                    src="/landing/home/services/services.svg"
                     alt="bg effect"
                     className="w-full h-full object-cover"
                   />
