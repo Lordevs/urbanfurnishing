@@ -18,16 +18,16 @@ export default function Hero() {
     <section
       id="home-hero"
       className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
-      <div className="relative w-full h-screen rounded-[16px] overflow-hidden flex flex-col justify-center px-8 sm:px-16 lg:px-24">
+      <div className="relative w-full h-screen rounded-[16px] flex flex-col justify-center px-8 sm:px-16 lg:px-24">
         {/* Background & Overlay */}
         <Image
           src="/landing/home/hero-section.webp"
           alt="Modern Architecture"
           fill
-          className="object-cover"
+          className="object-cover rounded-[16px]"
           priority
         />
-        <div className="absolute inset-0 bg-[#170D0D]/40" />
+        <div className="absolute inset-0 bg-[#170D0D]/40 rounded-[16px]" />
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl">
@@ -79,7 +79,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="absolute bottom-0 right-0 bg-white px-4 rounded-tl-[16px] border-r-3 py-10 sm:py-12 lg:py-22 flex items-center gap-10  shadow-[-20px_-20px_50px_rgba(0,0,0,0.05)]">
+          className="absolute bottom-0 right-0 bg-white px-4 rounded-tl-[24px] rounded-br-[16px] py-10 sm:py-12 lg:py-22 flex items-center gap-10 z-20 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
           {stats.map((stat, index) => (
             <div
               key={index}

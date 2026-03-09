@@ -163,8 +163,8 @@ export default function Services() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute -bottom-px -right-px z-20">
-                    <div className="bg-white p-1 rounded-tl-[24px] pointer-events-none">
+                    className="absolute -bottom-[3px] -right-[3px] z-20">
+                    <div className="bg-white p-1 rounded-full pointer-events-none">
                       <div className="w-12 h-12 bg-[#412A1F] text-white rounded-full flex items-center justify-center shadow-lg pointer-events-auto cursor-pointer hover:bg-[#2b1b16] transition-colors">
                         <ArrowUpRight className="w-6 h-6" />
                       </div>
