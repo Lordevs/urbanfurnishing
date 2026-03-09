@@ -19,7 +19,7 @@ export default function Hero() {
       <div className="relative w-full h-screen rounded-[16px] overflow-hidden flex flex-col justify-center px-8 sm:px-16 lg:px-24">
         {/* Background & Overlay */}
         <Image
-          src="/home/hero-section.webp"
+          src="/landing/home/hero-section.webp"
           alt="Modern Architecture"
           fill
           className="object-cover"
