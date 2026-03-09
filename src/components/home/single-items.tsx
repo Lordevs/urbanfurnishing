@@ -45,6 +45,7 @@ export default function SingleItems() {
       items={singleItemsData}
       defaultButtonText="Discover Collection"
       className="py-10 pb-20"
+      id="single-items"
     />
   );
 }

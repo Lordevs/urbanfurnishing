@@ -53,6 +53,7 @@ export default function Packages() {
       items={packagesData}
       defaultButtonText="Package Details"
       className="py-10"
+      id="packages"
     />
   );
 }

@@ -27,6 +27,7 @@ interface ItemCarouselProps {
   items: CarouselItemData[];
   defaultButtonText?: string;
   className?: string; // Add optional className to section wrapper
+  id?: string;
 }
 
 export function ItemCarousel({
@@ -36,9 +37,11 @@ export function ItemCarousel({
   items,
   defaultButtonText = "Package Details",
   className,
+  id,
 }: ItemCarouselProps) {
   return (
     <section
+      id={id}
       className={cn(
         "w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto py-20",
         className,
