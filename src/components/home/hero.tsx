@@ -35,7 +35,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl lg:text-[64px] font-semibold tracking-tight text-white mb-6 leading-[1.1]">
+            className="text-4xl sm:text-5xl lg:text-[64px] font-serif font-semibold tracking-tight text-white mb-6 leading-[1.1]">
             Design Your Space. Define <br />
             Your Comfort.
           </motion.h1>
