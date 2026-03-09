@@ -4,6 +4,7 @@ import PathwayNav from "@/components/home/pathway-nav";
 import Packages from "@/components/home/packages";
 import SingleItems from "@/components/home/single-items";
 import HowWeWork from "@/components/home/how-we-work";
+import CTA from "@/components/common/cta";
 import SignatureDesign from "@/components/common/signature-design";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <SingleItems />
       <SignatureDesign />
       <HowWeWork />
+      <CTA />
     </main>
   );
 }
