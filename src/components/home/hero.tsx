@@ -15,7 +15,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="px-4 sm:px-6  lg:px-10">
+    <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
       <div className="relative w-full h-screen rounded-[16px] overflow-hidden flex flex-col justify-center px-8 sm:px-16 lg:px-24">
         {/* Background & Overlay */}
         <Image

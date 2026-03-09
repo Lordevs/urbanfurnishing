@@ -52,7 +52,7 @@ export default function Services() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-20 container mx-auto w-full">
+    <section className="py-20 w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-4xl sm:text-5xl font-semibold text-[#1a1a1a] mb-6">
           Three <span className="text-[#C9A76A]">Pathway</span> <br />
