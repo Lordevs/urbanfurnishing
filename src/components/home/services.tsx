@@ -49,7 +49,7 @@ const servicesData = [
 ];
 
 export default function Services() {
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
   return (
     <section className="py-20 w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-muted">
@@ -66,21 +66,21 @@ export default function Services() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         {servicesData.map((service, idx) => {
-          const isHovered = hoveredCard === service.id;
+          const isActive = activeCard === service.id;
 
           return (
             <motion.div
               key={service.id}
               className="relative rounded-[24px] overflow-visible"
-              onHoverStart={() => setHoveredCard(service.id)}
-              onHoverEnd={() => setHoveredCard(null)}
+              onMouseEnter={() => setActiveCard(service.id)}
+              onMouseLeave={() => setActiveCard(null)}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}>
               <div
                 className={`absolute inset-0 rounded-[24px] transition-opacity duration-300 z-0 pointer-events-none ${
-                  isHovered ? "opacity-100" : "opacity-0"
+                  isActive ? "opacity-100" : "opacity-0"
                 }`}
                 style={{
                   background:
@@ -89,18 +89,18 @@ export default function Services() {
               />
 
               <Card
-                className={`relative flex flex-col h-full rounded-[23px] overflow-hidden transition-all duration-500 z-10 m-px border ${
-                  isHovered
+                className={`relative flex flex-col h-full rounded-[23px] overflow-hidden transition-all duration-300 z-10 m-px border ${
+                  isActive
                     ? "bg-[#251814] text-white border-transparent"
                     : "bg-[#FDFCF9] text-black border-[#E5E0DA]"
                 }`}
                 style={{
-                  boxShadow: isHovered
+                  boxShadow: isActive
                     ? "0 20px 40px rgba(0,0,0,0.15)"
                     : "0 4px 6px rgba(0,0,0,0.02)",
                 }}>
                 {/* Background SVG for all states */}
-                <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-100 transition-opacity duration-300">
                   <img
                     src="/landing/home/services.svg"
                     alt="bg effect"
@@ -122,14 +122,14 @@ export default function Services() {
 
                   <div className="px-2 pb-6 flex flex-col flex-1">
                     <h3
-                      className={`text-xl sm:text-2xl font-semibold mb-3 ${
-                        isHovered ? "text-white" : "text-[#1a1a1a]"
+                      className={`text-xl sm:text-2xl font-semibold mb-3 transition-colors duration-300 ${
+                        isActive ? "text-white" : "text-[#1a1a1a]"
                       }`}>
                       {service.title}
                     </h3>
                     <p
-                      className={`text-sm mb-6 leading-relaxed ${
-                        isHovered ? "text-white/80" : "text-gray-500"
+                      className={`text-sm mb-6 leading-relaxed transition-colors duration-300 ${
+                        isActive ? "text-white/80" : "text-gray-500"
                       }`}>
                       {service.desc}
                     </p>
@@ -138,16 +138,16 @@ export default function Services() {
                       {service.features.map((feature, index) => (
                         <li key={index} className="flex items-center gap-3">
                           <div
-                            className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 ${
-                              isHovered
+                            className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 transition-colors duration-300 ${
+                              isActive
                                 ? "bg-[#C9A76A] text-white"
                                 : "bg-[#544641] text-white"
                             }`}>
                             <Check className="w-3 h-3 stroke-3" />
                           </div>
                           <span
-                            className={`text-sm font-medium ${
-                              isHovered ? "text-white/90" : "text-[#1a1a1a]"
+                            className={`text-sm font-medium transition-colors duration-300 ${
+                              isActive ? "text-white/90" : "text-[#1a1a1a]"
                             }`}>
                             {feature}
                           </span>
@@ -156,22 +156,21 @@ export default function Services() {
                     </ul>
                   </div>
                 </CardContent>
-
-                {/* Floating Arrow Button - Only visible on hovered active card */}
-                {isHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute -bottom-[3px] -right-[3px] z-20">
-                    <div className="bg-white p-1 rounded-full pointer-events-none">
-                      <div className="w-12 h-12 bg-[#412A1F] text-white rounded-full flex items-center justify-center shadow-lg pointer-events-auto cursor-pointer hover:bg-[#2b1b16] transition-colors">
-                        <ArrowUpRight className="w-6 h-6" />
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
               </Card>
+
+              {/* Floating Arrow Button - Rendered always, visually toggled for smooth CSS transition */}
+              <div
+                className={`absolute -bottom-4 -right-4 z-20 transition-all duration-300 ease-out origin-top-left ${
+                  isActive
+                    ? "opacity-100 scale-100 pointer-events-auto"
+                    : "opacity-0 scale-75 pointer-events-none"
+                }`}>
+                <div className="bg-[#F7F7F7] p-2 rounded-full">
+                  <div className="w-12 h-12 bg-[#412A1F] text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-[#2b1b16] transition-colors">
+                    <ArrowUpRight className="w-6 h-6" />
+                  </div>
+                </div>
+              </div>
             </motion.div>
           );
         })}
