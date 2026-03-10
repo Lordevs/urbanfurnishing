@@ -193,8 +193,10 @@ export default function ConsultationForm() {
                       Package Interest <span className="text-[#C9A76A]">*</span>
                     </label>
                     <div className="relative">
-                      <select className="appearance-none w-full bg-[#FFF8F0] border border-[#E8E1DA] text-[#412A1F] h-[50px] text-[13px] font-light rounded-[8px] px-3 focus:outline-none focus:ring-1 focus:ring-[#C9A76A]/30 transition-all">
-                        <option value="" disabled selected>
+                      <select
+                        defaultValue=""
+                        className="appearance-none w-full cursor-pointer bg-[#FFF8F0] border border-[#E8E1DA] text-[#412A1F] h-[50px] text-[13px] font-light rounded-[8px] px-3 focus:outline-none focus:ring-1 focus:ring-[#C9A76A]/30 transition-all">
+                        <option value="" disabled>
                           Select a package
                         </option>
                         <option value="investor">Investor Turnkey</option>
@@ -225,8 +227,10 @@ export default function ConsultationForm() {
                       Project Timeline
                     </label>
                     <div className="relative">
-                      <select className="appearance-none w-full bg-[#FFF8F0] border border-[#E8E1DA] text-[#412A1F] h-[50px] text-[13px] font-light rounded-[8px] px-3 focus:outline-none focus:ring-1 focus:ring-[#C9A76A]/30 transition-all">
-                        <option value="" disabled selected>
+                      <select
+                        defaultValue=""
+                        className="appearance-none w-full cursor-pointer bg-[#FFF8F0] border border-[#E8E1DA] text-[#412A1F] h-[50px] text-[13px] font-light rounded-[8px] px-3 focus:outline-none focus:ring-1 focus:ring-[#C9A76A]/30 transition-all">
+                        <option value="" disabled>
                           Select timeline
                         </option>
                         <option value="immediately">Immediately</option>
@@ -265,7 +269,7 @@ export default function ConsultationForm() {
                         key={type}
                         type="button"
                         onClick={() => setPropertyType(type)}
-                        className={`flex-1 min-w-[100px] h-[50px] rounded-[8px] text-[13px] font-medium transition-all ${
+                        className={`flex-1 min-w-[100px] h-[50px] rounded-[8px] text-[13px] font-medium transition-all cursor-pointer ${
                           propertyType === type
                             ? "bg-[#C9A76A]/5 border border-[#C9A76A] text-[#412A1F]"
                             : "bg-[#FFF8F0] border border-[#E8E1DA] text-[#8F877C] hover:border-[#C9A76A]/50"
@@ -298,7 +302,7 @@ export default function ConsultationForm() {
                         key={method}
                         type="button"
                         onClick={() => setContactMethod(method)}
-                        className={`flex-1 min-w-[120px] h-[50px] rounded-[8px] text-[13px] font-medium transition-all ${
+                        className={`flex-1 min-w-[120px] h-[50px] rounded-[8px] text-[13px] font-medium transition-all cursor-pointer ${
                           contactMethod === method
                             ? "bg-[#C9A76A]/5 border border-[#C9A76A] text-[#412A1F]"
                             : "bg-[#FFF8F0] border border-[#E8E1DA] text-[#8F877C] hover:border-[#C9A76A]/50"
