@@ -77,10 +77,10 @@ export default function Journey() {
                 </div>
 
                 <div className="flex flex-col gap-2.5 max-w-[320px]">
-                  <h3 className="text-[28px] font-medium font-serif text-[#5D4E3C] tracking-tight">
+                  <h3 className="text-[22px] font-medium font-serif text-[#5D4E3C] tracking-tight">
                     {step.title}
                   </h3>
-                  <p className="text-[#9B8B7A] text-[20px] font-light leading-relaxed">
+                  <p className="text-[#9B8B7A] text-[18px] font-light leading-relaxed">
                     {step.description}
                   </p>
                 </div>

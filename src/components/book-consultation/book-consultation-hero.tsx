@@ -17,7 +17,7 @@ const benefits = [
 export default function BookConsultationHero() {
   return (
     <HeroSection
-      imageSrc="/book-consultation-hero-section.webp"
+      imageSrc="/landing/book-consultation/book-consultation-hero-section.webp"
       imageAlt="Book Consultation"
       title={
         <>
