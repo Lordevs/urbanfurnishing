@@ -31,7 +31,7 @@ export default function HomeHero() {
             <Button className="group rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#352219] text-white flex items-center justify-between gap-4 py-2 pr-2 pl-7 h-[56px] sm:h-[60px] text-sm sm:text-base font-medium transition-all duration-300 shadow-lg shadow-black/10 border-none">
               Get in Touch
               <div className="bg-white rounded-full p-2.5 sm:p-3 text-[#412A1F] transition-transform duration-300 group-hover:scale-95">
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-7 w-7 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
             </Button>
           </Link>
