@@ -40,7 +40,7 @@ export default function HowWeWork() {
           {/* Left Column */}
           <div className="lg:w-[45%] w-full relative">
             <div className="relative z-20 mb-12">
-              <h2 className="text-[32px] sm:text-[42px]  font-medium tracking-tight text-[#1a1a1a] mb-6">
+              <h2 className="text-[32px] sm:text-[56px] font-serif font-medium tracking-tight text-[#1a1a1a] mb-6">
                 How We <span className="text-[#C9A76A]">Work</span>
               </h2>
 
@@ -103,10 +103,10 @@ export default function HowWeWork() {
                   </div>
 
                   <div className="flex flex-col gap-2 pt-1 sm:pt-2">
-                    <h3 className="text-[18px] sm:text-[20px] font-medium tracking-tight text-[#1a1a1a]">
+                    <h3 className="text-[24px] sm:text-[28px] font-serif font-medium tracking-tight text-[#1a1a1a]">
                       {step.title}
                     </h3>
-                    <p className="text-[#A3A3A3] text-[13px] sm:text-[13px] leading-[1.8] tracking-wide max-w-[95%] font-light">
+                    <p className="text-[#000000]/50 text-[13px] sm:text-[16px] leading-[1.8] tracking-wide max-w-xl font-light">
                       {step.description}
                     </p>
                   </div>

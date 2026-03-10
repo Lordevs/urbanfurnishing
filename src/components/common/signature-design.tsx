@@ -92,16 +92,16 @@ export default function SignatureDesign() {
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-wrap items-center gap-4">
-            <Button className="rounded-full bg-[#412A1F] hover:bg-[#412A1F]/90 text-white flex items-center gap-2 pr-1.5 pl-5 h-10 text-[12px] font-normal transition-all duration-300 shadow-none border-none">
+          <div className="flex flex-wrap items-center gap-4 mt-2">
+            <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-1.5 pl-6 h-12 text-[14.5px] font-medium transition-all duration-300 shadow-none border-none cursor-pointer">
               Meet the Team
-              <div className="bg-white rounded-full p-1 text-[#412A1F]">
-                <ArrowUpRight className="h-3.5 w-3.5" />
+              <div className="bg-[#FDF4E7] rounded-full p-2 text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
               </div>
             </Button>
             <Button
               variant="outline"
-              className="rounded-full border-[#E8E8E8] text-[#818181] hover:bg-gray-50 hover:text-gray-900 h-10 px-8 text-[12px] font-normal transition-all duration-300 shadow-none">
+              className="rounded-full border border-[#DED4C6] bg-transparent text-[#5D4E3C] hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer">
               Our Story
             </Button>
           </div>
