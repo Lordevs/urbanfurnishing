@@ -47,9 +47,9 @@ export function ItemCarousel({
         className,
       )}>
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-6">
-        <h2 className="text-5xl sm:text-6xl font-semibold tracking-tight">
-          <span className="text-[#1a1a1a]">{titlePrefix} </span>
-          <span className="text-[#C9A76A]">{titleHighlight}</span>
+        <h2 className="text-5xl sm:text-6xl  font-semibold tracking-tight">
+          <span className="text-[#1a1a1a] font-serif ">{titlePrefix} </span>
+          <span className="text-[#C9A76A] font-serif ">{titleHighlight}</span>
         </h2>
         <p className="max-w-md lg:max-w-xl text-gray-500 text-sm sm:text-lg leading-relaxed">
           {description}
@@ -85,12 +85,12 @@ export function ItemCarousel({
                         "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 50%, #000000 100%)",
                     }}>
                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10 w-full">
-                      <h3 className="text-white text-2xl font-semibold mb-2 drop-shadow-md">
+                      <h3 className="text-white font-serif text-2xl font-semibold mb-2 drop-shadow-md">
                         {item.title}
                       </h3>
 
                       {item.description && (
-                        <p className="text-white/85 text-[13px] leading-relaxed mb-6 font-light">
+                        <p className="text-white/50 text-[13px] leading-relaxed mb-6 font-light">
                           {item.description}
                         </p>
                       )}

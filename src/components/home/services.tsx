@@ -65,7 +65,7 @@ export default function Services() {
           return (
             <motion.div
               key={service.id}
-              className="relative rounded-[24px] overflow-visible"
+              className="relative rounded-[24px] overflow-visible cursor-pointer"
               onMouseEnter={() => setActiveCard(service.id)}
               onMouseLeave={() => setActiveCard(null)}
               initial={{ opacity: 0, y: 30 }}
@@ -83,18 +83,26 @@ export default function Services() {
               />
 
               <Card
-                className={`relative flex flex-col h-full rounded-[23px] overflow-hidden transition-all duration-300 z-10 m-px border ${
+                className={`relative flex flex-col h-full rounded-[23px] overflow-hidden transition-all duration-300 z-10 m-px border bg-[#FDFCF9] ${
                   isActive
-                    ? "bg-[#251814] text-white border-transparent"
-                    : "bg-[#FDFCF9] text-black border-[#E5E0DA]"
+                    ? "text-white border-transparent"
+                    : "text-black border-[#E5E0DA]"
                 }`}
                 style={{
                   boxShadow: isActive
                     ? "0 20px 40px rgba(0,0,0,0.15)"
                     : "0 4px 6px rgba(0,0,0,0.02)",
                 }}>
+                {/* Expanding dark background from bottom right */}
+                <div 
+                   className="absolute inset-0 bg-[#251814] transition-all duration-500 ease-out z-0 pointer-events-none"
+                   style={{
+                     clipPath: isActive ? "circle(150% at 100% 100%)" : "circle(0% at 100% 100%)",
+                   }}
+                />
+
                 {/* Background SVG for all states */}
-                <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 w-full h-full z-1 pointer-events-none opacity-100 transition-opacity duration-300">
                   <img
                     src="/landing/home/services/services.svg"
                     alt="bg effect"

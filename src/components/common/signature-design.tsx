@@ -18,8 +18,10 @@ export default function SignatureDesign() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="lg:w-[55%] flex flex-col justify-center">
-          <h2 className="text-[32px] sm:text-[42px] font-medium tracking-tight text-[#412A1F] mb-8">
-            Our <span className="text-[#C9A76A]">Signature Design</span> Service
+          <h2 className="text-[32px] sm:text-[42px] font-medium tracking-tight font-serif text-[#5D4E3C] mb-8">
+            Our{" "}
+            <span className="text-[#C9A76A] font-serif">Signature Design</span>{" "}
+            Service
           </h2>
 
           {/* Quote Block */}
@@ -43,17 +45,17 @@ export default function SignatureDesign() {
               </svg>
             </div>
 
-            <p className="italic text-[#907A6D] text-[14px] leading-[1.8] mb-3 mt-1 pr-6 tracking-wide">
+            <p className="italic text-[#603D2C] text-[14px] leading-[1.8] mb-3 mt-1 pr-6 tracking-wide">
               "Every space tells a story. Our mission is to help you tell yours
               through thoughtfully curated interiors that combine functionality
               with timeless elegance."
             </p>
-            <p className="text-[11px] text-[#A69C92]">
+            <p className="text-[11px] text-[#5D4E3C]/60">
               Elena Falconer, Founder & CEO
             </p>
           </div>
 
-          <p className="text-[#A3A3A3] text-[13px] sm:text-[13px] leading-[1.8] tracking-wide mb-12 max-w-[95%] font-light">
+          <p className="text-[#5D4E3C]/60 text-[13px] sm:text-[13px] leading-[1.8] tracking-wide mb-12 max-w-[95%] font-light">
             With over 15 years of experience in luxury property development and
             interior design, Elena founded Urban Finishing to bridge the gap
             between vision and reality. Her commitment to excellence and client
@@ -64,26 +66,26 @@ export default function SignatureDesign() {
           {/* Stats */}
           <div className="flex flex-wrap items-center gap-14 sm:gap-24 mb-10">
             <div className="flex flex-col gap-1.5 items-center sm:items-start text-center sm:text-left">
-              <span className="text-2xl sm:text-[28px] font-medium text-[#412A1F]">
+              <span className="text-2xl sm:text-[28px] font-medium text-[#8D7366]">
                 15+
               </span>
-              <span className="text-[11px] text-[#B0B0B0] font-normal">
+              <span className="text-[11px] text-[#5D4E3C]/50 font-normal">
                 Years Experience
               </span>
             </div>
             <div className="flex flex-col gap-1.5 items-center sm:items-start text-center sm:text-left">
-              <span className="text-2xl sm:text-[28px] font-medium text-[#412A1F]">
+              <span className="text-2xl sm:text-[28px] font-medium text-[#8D7366]">
                 500+
               </span>
-              <span className="text-[11px] text-[#B0B0B0] font-normal">
+              <span className="text-[11px] text-[#5D4E3C]/50 font-normal">
                 Happy Clients
               </span>
             </div>
             <div className="flex flex-col gap-1.5 items-center sm:items-start text-center sm:text-left">
-              <span className="text-2xl sm:text-[28px] font-medium text-[#412A1F]">
+              <span className="text-2xl sm:text-[28px] font-medium text-[#8D7366]">
                 98%
               </span>
-              <span className="text-[11px] text-[#B0B0B0] font-normal">
+              <span className="text-[11px] text-[#5D4E3C]/50 font-normal">
                 Success Rate
               </span>
             </div>
