@@ -39,7 +39,7 @@ const packagesData = [
       { text: "NEW", color: "bg-[#D1B072]" },
       { text: "-24% OFF", color: "bg-[#1A1A1A]" },
     ],
-    image: "/landing/packages/packages-img-1.webp",
+    image: "/landing/packages/packages-product-img-1.webp",
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ const packagesData = [
       { text: "VALUE PACK", color: "bg-[#D1B072]" },
       { text: "-23% OFF", color: "bg-[#1A1A1A]" },
     ],
-    image: "/landing/packages/packages-img-2.webp",
+    image: "/landing/packages/packages-product-img-2.webp",
   },
   {
     id: 3,
@@ -66,7 +66,7 @@ const packagesData = [
     originalPrice: "AED 2,499",
     saveText: "Save AED 600",
     badges: [{ text: "-24% OFF", color: "bg-[#1A1A1A]" }],
-    image: "/landing/packages/packages-img-3.webp",
+    image: "/landing/packages/packages-product-img-2.webp",
   },
   {
     id: 4,
@@ -78,7 +78,7 @@ const packagesData = [
     originalPrice: "AED 1,699",
     saveText: "Save AED 400",
     badges: [{ text: "-24% OFF", color: "bg-[#1A1A1A]" }],
-    image: "/landing/packages/packages-img-4.webp",
+    image: "/landing/packages/packages-product-img-3.webp",
   },
   {
     id: 5,
@@ -94,7 +94,7 @@ const packagesData = [
       { text: "BEST SELLER", color: "bg-[#D1B072]" },
       { text: "-24% OFF", color: "bg-[#1A1A1A]" },
     ],
-    image: "/landing/packages/packages-img-5.webp",
+    image: "/landing/packages/packages-product-img-4.webp",
   },
   {
     id: 6,
@@ -106,7 +106,7 @@ const packagesData = [
     originalPrice: "",
     saveText: "",
     badges: [],
-    image: "/landing/packages/packages-img-6.webp",
+    image: "/landing/packages/packages-product-img-5.webp",
   },
   {
     id: 7,
@@ -118,7 +118,7 @@ const packagesData = [
     originalPrice: "",
     saveText: "",
     badges: [],
-    image: "/landing/packages/packages-img-7.webp",
+    image: "/landing/packages/packages-product-img-4.webp",
   },
   {
     id: 8,
@@ -133,7 +133,7 @@ const packagesData = [
       { text: "PREMIUM", color: "bg-[#D1B072]" },
       { text: "-24% OFF", color: "bg-[#1A1A1A]" },
     ],
-    image: "/landing/packages/packages-img-8.webp",
+    image: "/landing/packages/packages-product-img-5.webp",
   },
   {
     id: 9,
@@ -145,7 +145,7 @@ const packagesData = [
     originalPrice: "",
     saveText: "",
     badges: [],
-    image: "/landing/packages/packages-img-9.webp",
+    image: "/landing/packages/packages-product-img-3.webp",
   },
 ];
 
