@@ -9,7 +9,7 @@ export default function Testimonial() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/common/img.webp"
+          src="/common/testimonial.webp"
           alt="Interior design showcase"
           fill
           className="object-cover w-full h-full"

@@ -75,7 +75,7 @@ const Navbar = () => {
             <Link href={ROUTES.BOOK_CONSULTATION}>
               <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-3 pr-2 pl-7 h-12 text-sm font-medium transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
                 Get in Touch
-                <div className="bg-white rounded-full p-1.5 text-primary flex items-center justify-center">
+                <div className="bg-[#FFF8F0] rounded-full p-1.5 text-primary flex items-center justify-center">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
               </Button>
