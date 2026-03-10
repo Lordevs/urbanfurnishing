@@ -54,7 +54,7 @@ export function FeaturedCollections() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl sm:text-[40px] font-bold text-[#1A1A1A] mb-3 tracking-tight">
+          className="text-4xl sm:text-[40px] font-serif font-bold text-[#000000] mb-3 tracking-tight">
           Featured Collections
         </motion.h2>
         <motion.p
@@ -107,12 +107,12 @@ export function FeaturedCollections() {
                   </div>
 
                   {/* Right: Content */}
-                  <div className="flex-1 p-7 lg:p-9 flex flex-col justify-between">
+                  <div className="flex-1 p-7 lg:p-6 flex flex-col justify-between">
                     <div>
                       <h4 className="text-[#C9A76A] text-[10.5px] font-bold tracking-[0.15em] uppercase mb-2">
                         {item.category}
                       </h4>
-                      <h3 className="text-[26px] font-bold text-[#1A1A1A] leading-tight mb-3">
+                      <h3 className="text-[26px] font-serif font-bold text-[#1A1A1A] leading-tight mb-3">
                         {item.title}
                       </h3>
                       <p className="text-[#666666] text-[14.5px] mb-6 leading-relaxed">
@@ -120,13 +120,13 @@ export function FeaturedCollections() {
                       </p>
 
                       {/* Features Grid */}
-                      <div className="grid grid-cols-2 gap-3 mb-6">
+                      <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-6 sm:mb-8">
                         {item.features.map((feature, i) => (
                           <div
                             key={i}
-                            className="flex items-center gap-2.5 bg-[#FDFDFD] border border-[#F5F5F5] px-3.5 py-2.5 rounded-lg">
-                            <div className="w-[5px] h-[5px] rounded-full bg-[#D1B072] shrink-0" />
-                            <span className="text-[12.5px] text-[#333333] font-medium leading-tight">
+                            className="flex items-center gap-3 bg-[#FAFAFA] border border-[#F2F2F2] px-4 py-3 rounded-[12px]">
+                            <div className="w-[4px] h-[4px] rounded-full bg-[#D1B072] shrink-0" />
+                            <span className="text-[12px] lg:text-[13px] text-[#333333] font-medium leading-tight">
                               {feature}
                             </span>
                           </div>
@@ -154,30 +154,32 @@ export function FeaturedCollections() {
                     </div>
 
                     {/* Footer / Price Area */}
-                    <div className="border-t border-[#F0F0F0] pt-6 flex items-end justify-between">
-                      <div>
-                        <p className="text-[#888888] text-[12px] mb-1">
-                          Package Price
-                        </p>
-                        <div className="flex items-baseline gap-2.5 mb-1.5">
-                          <span className="text-[26px] font-bold text-[#1A1A1A] leading-none">
-                            {item.price}
-                          </span>
-                          {item.originalPrice && (
-                            <span className="text-[#AAAAAA] text-[14px] line-through decoration-[#CCCCCC]">
-                              {item.originalPrice}
+                    <div className="border-t border-[#F0F0F0] pt-4 flex flex-col mt-auto justify-end">
+                      <p className="text-[#888888] text-[12px] lg:text-[13px] font-medium mb-1">
+                        Package Price
+                      </p>
+                      <div className="flex flex-wrap items-end justify-between gap-x-5">
+                        <div className="flex flex-col shrink-0">
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-[24px] lg:text-[28px] font-bold text-[#000000] leading-none tracking-tight whitespace-nowrap">
+                              {item.price}
                             </span>
-                          )}
+                            {item.originalPrice && (
+                              <span className="text-[#B3B3B3] text-[14px] lg:text-[15px] font-medium tracking-tight line-through whitespace-nowrap">
+                                {item.originalPrice}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[#C5A67C] text-[12px] lg:text-[13px] font-medium whitespace-nowrap mt-0.5">
+                            {item.saveText}
+                          </p>
                         </div>
-                        <p className="text-[#C9A76A] text-[11.5px] font-medium">
-                          {item.saveText}
-                        </p>
-                      </div>
 
-                      <Button className="bg-[#3D261C] hover:bg-[#2C1A11] text-white rounded-[12px] px-5 sm:px-6 h-auto font-medium flex items-center gap-2 transition-all shadow-md">
-                        <ShoppingCart className="w-4 h-4" />
-                        Add to Cart
-                      </Button>
+                        <Button className="bg-[#422C20] hover:bg-[#322118] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none shrink-0 ml-auto">
+                          <ShoppingCart className="w-[16px] h-[16px]" />
+                          <span className="whitespace-nowrap">Add to Cart</span>
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
