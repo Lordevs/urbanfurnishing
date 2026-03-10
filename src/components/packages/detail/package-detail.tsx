@@ -22,10 +22,26 @@ const images = [
 ];
 
 const includedFeatures = [
-  { image: "/landing/detail-page/free-delivery.svg", title: "Free Delivery", subtitle: "On all packages" },
-  { image: "/landing/detail-page/warranty.svg", title: "10 Year Warranty", subtitle: "Full coverage" },
-  { image: "/landing/detail-page/fast-delivery.svg", title: "Fast Delivery", subtitle: "2-3 weeks" },
-  { image: "/landing/detail-page/expert-assembly.svg", title: "Expert Assembly", subtitle: "Professional setup" },
+  {
+    image: "/landing/detail-page/free-delivery.svg",
+    title: "Free Delivery",
+    subtitle: "On all packages",
+  },
+  {
+    image: "/landing/detail-page/warranty.svg",
+    title: "10 Year Warranty",
+    subtitle: "Full coverage",
+  },
+  {
+    image: "/landing/detail-page/fast-delivery.svg",
+    title: "Fast Delivery",
+    subtitle: "2-3 weeks",
+  },
+  {
+    image: "/landing/detail-page/expert-assembly.svg",
+    title: "Expert Assembly",
+    subtitle: "Professional setup",
+  },
 ];
 
 const features = [
@@ -37,6 +53,24 @@ const features = [
   "Complimentary white-glove delivery service",
   "Professional assembly and setup included",
   "Eco-friendly and sustainably sourced materials",
+];
+
+const specifications = [
+  { label: "Composition Material", value: "Solid Wood & Premium Fiber Cloth" },
+  { label: "Overall Dimensions", value: "240cm x 180cm x 85cm" },
+  { label: "Weight Capacity", value: "Up to 350kg (Tested Rigorously)" },
+  { label: "Seat Height", value: "Ergonomic 45cm standard" },
+  { label: "Assembly Process", value: "Professional assembly included" },
+  { label: "Care Instructions", value: "Professional cleaning recommended" },
+];
+
+const whatsIncludedList = [
+  "1x Modern 3-Seater Sofa Unit",
+  "2x Matching Comfort Accent Chairs",
+  "1x Solid Wood Coffee Table",
+  "4x Decorative Throw Pillows",
+  "Official Warranty Documentation",
+  "Care Guide & Maintenance Kit",
 ];
 
 export function PackageDetail() {
@@ -201,7 +235,7 @@ export function PackageDetail() {
           </div>
 
           {/* What's Included label grid */}
-          <div className="mb-14">
+          <div className="mb-12">
             <h4 className="text-[16px] font-bold text-[#1A1A1A] mb-5">
               What's Included
             </h4>
@@ -211,7 +245,7 @@ export function PackageDetail() {
                   key={idx}
                   className="flex items-center gap-4 bg-white border border-[#F2F2F2] rounded-[16px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                   <div className="w-12 h-12 bg-[#FDFBF7] border border-[#F0EBE0] rounded-[12px] flex items-center justify-center shrink-0">
-                    <img 
+                    <img
                       src={feat.image}
                       alt={feat.title}
                       className="w-5 h-5 object-contain"
@@ -248,20 +282,58 @@ export function PackageDetail() {
             )}
           </div>
 
-          {/* Features Detail Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-10">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
-                <div className="w-6 h-6 rounded-full bg-linear-to-r from-[#C9A76A] to-[#B3905A] flex items-center justify-center shrink-0 shadow-sm shadow-[#C9A76A]/20">
-                  <Check className="w-3 h-3 text-white stroke-3" />
-                </div>
-                <span className="text-[12px] text-[#555555] font-semibold leading-tight pr-2">
-                  {feature}
-                </span>
+          {/* Dynamic Details Area */}
+          <div className="mb-10 min-h-[160px]">
+            {activeTab === "Features & Benefits" && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {features.map((feature, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                    <div className="w-6 h-6 rounded-full bg-linear-to-r from-[#C9A76A] to-[#B3905A] flex items-center justify-center shrink-0 shadow-sm shadow-[#C9A76A]/20">
+                      <Check className="w-3 h-3 text-white stroke-3" />
+                    </div>
+                    <span className="text-[12px] text-[#555555] font-semibold leading-tight pr-2">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
+
+            {activeTab === "Specifications" && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {specifications.map((spec, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center justify-between gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                    <span className="text-[12px] text-[#888888] font-medium shrink-0">
+                      {spec.label}
+                    </span>
+                    <span className="text-[12px] text-[#1A1A1A] font-semibold text-right leading-tight wrap-break-word">
+                      {spec.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === "What's Included" && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {whatsIncludedList.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                    <div className="w-6 h-6 rounded-full bg-[#FCF9F3] border border-[#F2EAD9] flex items-center justify-center shrink-0">
+                      <div className="w-2 h-2 rounded-full bg-[#C9A76A]" />
+                    </div>
+                    <span className="text-[12px] text-[#555555] font-semibold leading-tight pr-2">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
