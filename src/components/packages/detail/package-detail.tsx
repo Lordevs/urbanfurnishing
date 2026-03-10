@@ -7,10 +7,7 @@ import {
   Minus,
   Plus,
   ShoppingCart,
-  Truck,
-  ShieldCheck,
   Clock,
-  Wrench,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -25,10 +22,10 @@ const images = [
 ];
 
 const includedFeatures = [
-  { icon: Truck, title: "Free Delivery", subtitle: "On all packages" },
-  { icon: ShieldCheck, title: "10 Year Warranty", subtitle: "Full coverage" },
-  { icon: Clock, title: "Fast Delivery", subtitle: "2-3 weeks" },
-  { icon: Wrench, title: "Expert Assembly", subtitle: "Professional setup" },
+  { image: "/landing/detail-page/free-delivery.svg", title: "Free Delivery", subtitle: "On all packages" },
+  { image: "/landing/detail-page/warranty.svg", title: "10 Year Warranty", subtitle: "Full coverage" },
+  { image: "/landing/detail-page/fast-delivery.svg", title: "Fast Delivery", subtitle: "2-3 weeks" },
+  { image: "/landing/detail-page/expert-assembly.svg", title: "Expert Assembly", subtitle: "Professional setup" },
 ];
 
 const features = [
@@ -57,7 +54,7 @@ export function PackageDetail() {
         {/* Top: Images */}
         <div className="w-full flex flex-col gap-4">
           {/* Main Image */}
-          <div className="relative aspect-16/9 sm:aspect-2/1 w-full rounded-[24px] overflow-hidden group">
+          <div className="relative aspect-video sm:aspect-2/1 w-full rounded-[24px] overflow-hidden group">
             <Image
               src={images[activeImage]}
               alt="Package Detail"
@@ -118,7 +115,7 @@ export function PackageDetail() {
           <div className="flex flex-col gap-4 mb-8">
             <div className="flex items-center gap-2">
               <div className="bg-[#FCF9F3] text-[#C9A76A] px-3.5 py-1.5 rounded-full flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase border border-[#F2EAD9]">
-                <div className="w-[5px] h-[5px] rounded-full bg-[#C9A76A]" />
+                <div className="w-[5px] h-[5px] rounded-full bg-[#C9A76A] drop-shadow-[0_0_2px_rgba(201,167,106,0.3)]" />
                 Living Room
               </div>
             </div>
@@ -128,7 +125,7 @@ export function PackageDetail() {
             </h1>
 
             <div className="flex items-center gap-3">
-              <div className="bg-[#BCA37F] text-white px-2.5 py-1 rounded-[6px] flex items-center gap-1.5 text-[12px] font-bold">
+              <div className="bg-linear-to-r from-[#C9A76A] to-[#C9A76A]/80 text-white px-2.5 py-1 rounded-[6px] flex items-center gap-1.5 text-[12px] font-bold">
                 <Star className="w-3.5 h-3.5 fill-white text-white" />
                 4.8
               </div>
@@ -171,34 +168,34 @@ export function PackageDetail() {
           {/* Quantity & Actions */}
           <div className="flex flex-col gap-4 mb-10 w-full max-w-4xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex items-center justify-between border border-[#EBEBEB] rounded-[8px] h-[52px] sm:w-[150px] px-4 shrink-0 bg-white">
-                <span className="text-[14px] text-[#888888] font-medium">
+              <div className="flex items-center justify-between border border-[#EBEBEB] rounded-[12px] h-[52px] sm:w-[190px] px-4 shrink-0 bg-white">
+                <span className="text-[14px] text-[#5D4E3C]/80 font-medium">
                   Quantity
                 </span>
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-3.5">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-5 h-5 rounded-full border border-[#EBEBEB] flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] hover:border-[#1A1A1A] transition-colors cursor-pointer shrink-0">
-                    <Minus className="w-2.5 h-2.5" />
+                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0">
+                    <Minus className="w-3.5 h-3.5" />
                   </button>
-                  <span className="text-[14px] font-bold text-[#1A1A1A] min-w-[12px] text-center">
+                  <span className="text-[15px] font-medium text-[#412A1F] min-w-[12px] text-center">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-5 h-5 rounded-full border border-[#EBEBEB] flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] hover:border-[#1A1A1A] transition-colors cursor-pointer shrink-0">
-                    <Plus className="w-2.5 h-2.5" />
+                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0">
+                    <Plus className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
 
-              <Button className="flex-1 h-[52px] bg-[#4B3B33] hover:bg-[#32231A] text-white rounded-[8px] text-[14px] font-bold flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer">
+              <Button className="flex-1 h-[52px] bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer border-none">
                 <ShoppingCart className="w-[18px] h-[18px]" />
                 Add to Cart
               </Button>
             </div>
 
-            <Button className="w-full h-[52px] bg-white border border-[#D9D1C7] hover:border-[#4B3B33] text-[#4B3B33] rounded-[8px] text-[14px] font-bold flex items-center justify-center transition-all bg-[#FCFBF9] shadow-sm cursor-pointer">
+            <Button className="w-full h-[52px] border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center hover:text-white transition-all bg-[#FCFBF9] shadow-sm cursor-pointer mt-1">
               Buy Now - Fast Checkout
             </Button>
           </div>
@@ -214,9 +211,10 @@ export function PackageDetail() {
                   key={idx}
                   className="flex items-center gap-4 bg-white border border-[#F2F2F2] rounded-[16px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                   <div className="w-12 h-12 bg-[#FDFBF7] border border-[#F0EBE0] rounded-[12px] flex items-center justify-center shrink-0">
-                    <feat.icon
-                      className="w-5 h-5 text-[#C9A76A]"
-                      strokeWidth={1.5}
+                    <img 
+                      src={feat.image}
+                      alt={feat.title}
+                      className="w-5 h-5 object-contain"
                     />
                   </div>
                   <div className="flex flex-col">
