@@ -17,7 +17,7 @@ const benefits = [
 export default function OurDesignExpertHero() {
   return (
     <HeroSection
-      imageSrc="/our-design-expert.webp"
+      imageSrc="/landing/our-new-design-expert/our-design-expert.webp"
       imageAlt="Our Design Expert"
       overlayGradient="bg-[#170D0D]/50"
       title={

@@ -3,6 +3,7 @@ import HowWeWork from "@/components/common/how-we-work";
 import SignatureDesign from "@/components/common/signature-design";
 import Testimonial from "@/components/common/testimonial";
 import OurDesignExpertHero from "@/components/our-new-design-expert/our-new-design-expert-hero";
+import DesignDirection from "@/components/our-new-design-expert/design-direction";
 
 export default function OurDesignExpertPage() {
   return (
@@ -10,6 +11,7 @@ export default function OurDesignExpertPage() {
       <OurDesignExpertHero />
       <SignatureDesign />
       <HowWeWork />
+      <DesignDirection />
       <Testimonial />
       <CTA />
     </main>
