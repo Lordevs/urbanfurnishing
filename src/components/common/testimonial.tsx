@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Testimonial() {
   return (
-    <section className="relative mb-20 w-full h-[600px] sm:h-[500px] overflow-hidden">
+    <section className="relative w-full h-[600px] sm:h-[500px] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

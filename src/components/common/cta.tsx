@@ -15,7 +15,7 @@ const stats = [
 export default function CTA() {
   return (
     <section>
-      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
+      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -48,13 +48,13 @@ const collections = [
 
 export function FeaturedCollections() {
   return (
-    <section className="py-24 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">
+    <section className="py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">
       <div className="mb-10 text-left">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl sm:text-[40px] font-serif font-bold text-[#000000] mb-3 tracking-tight">
+          className="text-4xl sm:text-[40px] font-serif font-bold text-[#000000] tracking-tight">
           Featured Collections
         </motion.h2>
         <motion.p
@@ -62,7 +62,7 @@ export function FeaturedCollections() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-[#666666] text-lg font-light">
+          className="text-[#000000]/60 text-lg font-light">
           Our most loved packages, handpicked for you
         </motion.p>
       </div>
