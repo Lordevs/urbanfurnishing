@@ -45,39 +45,40 @@ export default function Footer() {
   return (
     <footer className="w-full pt-20">
       {/* Newsletter Section */}
-      <div className="bg-card py-20">
-        <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
+      <div className="bg-card py-20 border-b border-[#F0EBE6]">
+        <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 flex flex-col lg:flex-row gap-12 lg:gap-24 items-center justify-between">
           <div className="lg:w-[45%] w-full">
-            <div className="inline-block border border-[#E8E8E8] bg-white rounded-full px-5 py-2 mb-6 shadow-sm">
-              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.15em] text-[#605a5a] uppercase">
+            <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-white rounded-full px-5 py-2 mb-6 shadow-sm">
+              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
                 Newsletter
               </span>
             </div>
-            <h2 className="text-[32px] sm:text-[42px] font-serif font-medium tracking-tight text-[#1a1a1a] mb-5">
-              Get Design <span className="text-[#C9A76A]">Inspiration</span>
+            <h2 className="text-[32px] sm:text-[42px] font-serif font-medium tracking-tight text-[#302B27] mb-5">
+              Get Design{" "}
+              <span className="text-[#C9A76A] font-serif">Inspiration</span>
             </h2>
-            <p className="text-[#A3A3A3] text-[14px] sm:text-[15px] leading-[1.8] tracking-wide font-light max-w-[95%]">
+            <p className="text-[#8F877C] text-[14px] sm:text-[15px] leading-[1.8] tracking-wide font-light max-w-[95%]">
               Join our community for curated interior tips, new collection
               launches, and exclusive promotions.
             </p>
           </div>
 
-          <div className="lg:w-[55%] w-full flex flex-col items-start lg:items-end">
-            <div className="w-full max-w-xl">
-              <div className="relative flex flex-col sm:flex-row items-center bg-white rounded-[32px] sm:rounded-full border border-[#E8E8E8] shadow-sm p-2 sm:p-1.5 focus-within:ring-1 focus-within:ring-[#C9A76A]/30 transition-all gap-2 sm:gap-0">
+          <div className="lg:w-full w-full flex flex-col items-start lg:items-end">
+            <div className="w-full ">
+              <div className="flex flex-col sm:flex-row items-center gap-3">
                 <Input
                   type="email"
                   placeholder="Your email address"
-                  className="border-none shadow-none focus-visible:ring-0 px-6 h-12 flex-1 text-[13px] sm:text-[14px] text-gray-700 placeholder:text-[#B0B0B0] bg-transparent font-light"
+                  className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-6 h-12 lg:h-[50px] flex-1 text-[13.5px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light w-full"
                 />
-                <Button className="rounded-full bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center justify-between sm:justify-center w-full sm:w-auto gap-12 sm:gap-6 px-6 sm:pr-2 sm:pl-6 h-12 sm:h-12 text-[13px] font-normal transition-all shadow-none shrink-0 border-none group">
+                <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between xl:justify-center gap-4 py-2 pr-1.5 pl-6 h-12 lg:h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-full sm:w-[155px] cursor-pointer">
                   Subscribe
-                  <div className="bg-white rounded-full p-2 sm:p-1.5 text-[#412A1F] transition-transform group-hover:scale-105">
-                    <ArrowUpRight className="h-4 w-4" />
+                  <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                    <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
                   </div>
                 </Button>
               </div>
-              <p className="text-[#B0B0B0] text-[11px] sm:text-[12px] mt-4 ml-4 font-light tracking-wide">
+              <p className="text-[#B0B0B0] text-[11px] sm:text-[12px] mt-3 sm:ml-4 font-light tracking-wide">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </div>

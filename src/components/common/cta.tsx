@@ -36,18 +36,18 @@ export default function CTA() {
           <div className="relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-20 p-10 sm:p-14 lg:p-20">
             {/* Left Content */}
             <div className="lg:w-[45%] w-full flex flex-col justify-center">
-              <h2 className="text-[32px] sm:text-[42px] font-medium tracking-tight text-white mb-6 leading-[1.2]">
-                Let's <span className="text-[#C9A76A]">Design</span> Your Space
-                Together
+              <h2 className="text-[32px] sm:text-[42px] font-serif font-medium tracking-tight text-white mb-6 leading-[1.2]">
+                Let's <span className="text-[#C9A76A] font-serif">Design</span>{" "}
+                Your Space Together
               </h2>
 
-              <p className="text-[#E0Dcd8] text-[15px] sm:text-[16px] leading-[1.8] font-light mb-10 max-w-[90%]">
+              <p className="text-white text-[15px] sm:text-[16px] leading-[1.8] font-light mb-10 max-w-[90%]">
                 Speak with our furnishing experts to plan, style, and optimize
                 your room with the right package and pieces.
               </p>
 
               <div>
-                <Button className="rounded-full bg-[#3B261D] hover:bg-[#2D1A12] text-white flex items-center gap-6 pr-1.5 pl-6 h-12 text-[13px] font-normal transition-all shadow-none border-none group">
+                <Button className="rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center gap-6 pr-1.5 pl-6 h-12 text-[13px] font-normal transition-all shadow-none border-none group">
                   Book Now
                   <div className="bg-white rounded-full p-1.5 text-[#412A1F] transition-transform group-hover:scale-105">
                     <ArrowUpRight className="h-4 w-4" />
@@ -61,17 +61,17 @@ export default function CTA() {
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="flex flex-col border-t border-[#8B7C6E] pt-6 relative">
+                  className="flex flex-col border-t border-[#FFCD96] pt-6 relative">
                   <div className="flex justify-between items-start mb-3">
-                    <span className="text-4xl sm:text-5xl font-normal text-white tracking-tight">
+                    <span className="text-4xl sm:text-5xl font-serif font-normal text-white tracking-tight">
                       {stat.value}
                     </span>
                     <ArrowUpRight
-                      className="text-[#C9A76A] w-6 h-6"
+                      className="text-[#FFCD96] w-12 h-12"
                       strokeWidth={1}
                     />
                   </div>
-                  <span className="text-[12px] sm:text-[13px] text-[#D0CACA] font-light tracking-wide">
+                  <span className="text-[12px] sm:text-[13px] text-white font-light tracking-wide">
                     {stat.label}
                   </span>
                 </div>
