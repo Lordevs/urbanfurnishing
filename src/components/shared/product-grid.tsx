@@ -34,9 +34,11 @@ interface ProductGridProps {
   categories: string[];
   items: GridItemProps[];
   detailRoute?: (id: string | number) => string;
+  limit?: number;
+  hidePagination?: boolean;
 }
 
-export function ProductGrid({ title, categories, items, detailRoute }: ProductGridProps) {
+export function ProductGrid({ title, categories, items, detailRoute, limit, hidePagination }: ProductGridProps) {
   const router = useRouter();
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -119,7 +121,7 @@ export function ProductGrid({ title, categories, items, detailRoute }: ProductGr
       {filteredItems.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           <AnimatePresence>
-            {filteredItems.map((pkg) => (
+            {(limit ? filteredItems.slice(0, limit) : filteredItems).map((pkg) => (
               <motion.div
                 key={pkg.id}
                 layout
@@ -228,29 +230,31 @@ export function ProductGrid({ title, categories, items, detailRoute }: ProductGr
       )}
 
       {/* Pagination */}
-      <div className="flex items-center justify-end gap-2.5 mt-16 pb-8">
-        <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-[#A5958A] text-white flex items-center justify-center transition-all shadow-sm cursor-pointer hover:bg-[#8F8177]">
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-        <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border-2 border-[#8A7969] text-[#8A7969] text-[14px] lg:text-[15px] font-bold flex items-center justify-center shadow-sm cursor-pointer hover:bg-[#FDFBF9]">
-          1
-        </button>
-        <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
-          2
-        </button>
-        <span className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest">
-          ...
-        </span>
-        <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
-          9
-        </button>
-        <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
-          10
-        </button>
-        <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
-          <ChevronRight className="w-4 h-4" />
-        </button>
-      </div>
+      {!hidePagination && (
+        <div className="flex items-center justify-end gap-2.5 mt-16 pb-8">
+          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-[#A5958A] text-white flex items-center justify-center transition-all shadow-sm cursor-pointer hover:bg-[#8F8177]">
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border-2 border-[#8A7969] text-[#8A7969] text-[14px] lg:text-[15px] font-bold flex items-center justify-center shadow-sm cursor-pointer hover:bg-[#FDFBF9]">
+            1
+          </button>
+          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
+            2
+          </button>
+          <span className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest">
+            ...
+          </span>
+          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
+            9
+          </button>
+          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
+            10
+          </button>
+          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
     </section>
   );
 }

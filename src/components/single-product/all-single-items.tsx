@@ -145,13 +145,22 @@ const singleItemsData: GridItemProps[] = [
   },
 ];
 
-export function AllSingleItems() {
+interface AllSingleItemsProps {
+  limit?: number;
+  hidePagination?: boolean;
+}
+
+export function AllSingleItems({
+  limit,
+  hidePagination,
+}: AllSingleItemsProps = {}) {
   return (
     <ProductGrid
       title="All Single Items"
       categories={categories}
       items={singleItemsData}
       detailRoute={(id) => ROUTES.SINGLE_PRODUCT_DETAIL(id.toString())}
+      limit={limit}
     />
   );
 }

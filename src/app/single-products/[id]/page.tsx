@@ -8,7 +8,7 @@ export default function SingleProductDetailPage() {
     <div className="min-h-screen">
       <SingleProductDetailHero />
       <SingleProductDetails />
-      <AllSingleItems />
+      <AllSingleItems limit={6} hidePagination={true} />
       <Testimonial />
     </div>
   );
