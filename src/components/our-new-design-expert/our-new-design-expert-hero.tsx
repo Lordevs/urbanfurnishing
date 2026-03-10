@@ -59,7 +59,7 @@ export default function OurDesignExpertHero() {
               background:
                 "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
             }}>
-            <h3 className="text-white text-[17px] sm:text-[18px] font-medium text-center mb-1">
+            <h3 className="text-white text-[17px] font-serif sm:text-[18px] font-medium text-center mb-1">
               Why Book With Us?
             </h3>
             <ul className="flex flex-col gap-4">

@@ -175,10 +175,13 @@ export function FeaturedCollections() {
                           </p>
                         </div>
 
-                        <Button className="bg-[#422C20] hover:bg-[#322118] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none shrink-0 ml-auto">
+                        <motion.button 
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none cursor-pointer shrink-0 ml-auto">
                           <ShoppingCart className="w-[16px] h-[16px]" />
                           <span className="whitespace-nowrap">Add to Cart</span>
-                        </Button>
+                        </motion.button>
                       </div>
                     </div>
                   </div>
