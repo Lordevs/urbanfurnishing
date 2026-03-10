@@ -1,6 +1,7 @@
 "use client";
 
 import { ProductGrid, GridItemProps } from "../shared/product-grid";
+import { ROUTES } from "@/constants/route";
 
 const categories = [
   "All",
@@ -17,7 +18,8 @@ const singleItemsData: GridItemProps[] = [
     id: 1,
     category: "OFFICE",
     title: "The Contemporary Collection",
-    description: "A curated living room suite featuring modern Italian design and premium craftsmanship",
+    description:
+      "A curated living room suite featuring modern Italian design and premium craftsmanship",
     pieces: 5,
     price: "AED 1,599",
     originalPrice: "AED 2,099",
@@ -32,7 +34,8 @@ const singleItemsData: GridItemProps[] = [
     id: 2,
     category: "DINING ROOM",
     title: "The Executive Workspace",
-    description: "Build your ideal home office with ergonomic furniture and smart storage solutions",
+    description:
+      "Build your ideal home office with ergonomic furniture and smart storage solutions",
     pieces: 5,
     price: "AED 999",
     originalPrice: "AED 1,299",
@@ -47,7 +50,8 @@ const singleItemsData: GridItemProps[] = [
     id: 3,
     category: "DINING ROOM",
     title: "The Grand Suite",
-    description: "Transform your master bedroom into a five-star hotel experience with luxury textiles",
+    description:
+      "Transform your master bedroom into a five-star hotel experience with luxury textiles",
     pieces: 7,
     price: "AED 1,899",
     originalPrice: "AED 2,499",
@@ -59,7 +63,8 @@ const singleItemsData: GridItemProps[] = [
     id: 4,
     category: "KIDS",
     title: "The Contemporary Collection",
-    description: "A curated living room suite featuring modern Italian design and premium craftsmanship",
+    description:
+      "A curated living room suite featuring modern Italian design and premium craftsmanship",
     pieces: 6,
     price: "AED 1,299",
     originalPrice: "AED 1,699",
@@ -71,7 +76,8 @@ const singleItemsData: GridItemProps[] = [
     id: 5,
     category: "LIVING ROOM",
     title: "The Contemporary Collection",
-    description: "A curated living room suite featuring modern Italian design and premium craftsmanship",
+    description:
+      "A curated living room suite featuring modern Italian design and premium craftsmanship",
     pieces: 8,
     price: "AED 2,399",
     originalPrice: "AED 3,299",
@@ -86,7 +92,8 @@ const singleItemsData: GridItemProps[] = [
     id: 6,
     category: "BEDROOM",
     title: "The Contemporary Collection",
-    description: "A curated living room suite featuring modern Italian design and premium craftsmanship",
+    description:
+      "A curated living room suite featuring modern Italian design and premium craftsmanship",
     pieces: 5,
     price: "AED 2,399",
     originalPrice: "",
@@ -98,7 +105,8 @@ const singleItemsData: GridItemProps[] = [
     id: 7,
     category: "LIVING ROOM",
     title: "The Contemporary Collection",
-    description: "A curated living room suite featuring modern Italian design and premium craftsmanship",
+    description:
+      "A curated living room suite featuring modern Italian design and premium craftsmanship",
     pieces: 5,
     price: "AED 1,799",
     originalPrice: "",
@@ -110,7 +118,8 @@ const singleItemsData: GridItemProps[] = [
     id: 8,
     category: "BEDROOM",
     title: "The Contemporary Collection",
-    description: "A curated living room suite featuring modern Italian design and premium craftsmanship",
+    description:
+      "A curated living room suite featuring modern Italian design and premium craftsmanship",
     pieces: 8,
     price: "AED 3,199",
     originalPrice: "AED 4,199",
@@ -125,7 +134,8 @@ const singleItemsData: GridItemProps[] = [
     id: 9,
     category: "OUTDOOR",
     title: "The Executive Workspace",
-    description: "Build your ideal home office with ergonomic furniture and smart storage solutions",
+    description:
+      "Build your ideal home office with ergonomic furniture and smart storage solutions",
     pieces: 9,
     price: "AED 2,199",
     originalPrice: "",
@@ -141,6 +151,7 @@ export function AllSingleItems() {
       title="All Single Items"
       categories={categories}
       items={singleItemsData}
+      detailRoute={(id) => ROUTES.SINGLE_PRODUCT_DETAIL(id.toString())}
     />
   );
 }

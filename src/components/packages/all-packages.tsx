@@ -135,12 +135,15 @@ const packagesData: GridItemProps[] = [
   },
 ];
 
+import { ROUTES } from "@/constants/route";
+
 export function AllPackages() {
   return (
     <ProductGrid
       title="All Packages"
       categories={categories}
       items={packagesData}
+      detailRoute={(id) => ROUTES.PACKAGES_DETAIL(id.toString())}
     />
   );
 }

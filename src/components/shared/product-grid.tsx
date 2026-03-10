@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -32,9 +33,11 @@ interface ProductGridProps {
   title: string;
   categories: string[];
   items: GridItemProps[];
+  detailRoute?: (id: string | number) => string;
 }
 
-export function ProductGrid({ title, categories, items }: ProductGridProps) {
+export function ProductGrid({ title, categories, items, detailRoute }: ProductGridProps) {
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -124,6 +127,7 @@ export function ProductGrid({ title, categories, items }: ProductGridProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
+                onClick={() => detailRoute && router.push(detailRoute(pkg.id))}
                 className="bg-white rounded-[20px] sm:rounded-[24px] overflow-hidden flex flex-col h-full border border-[#F2F2F2] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-pointer">
                 {/* Image Container */}
                 <div className="relative aspect-4/3 bg-[#F8F8F8] w-full shrink-0">
@@ -145,7 +149,9 @@ export function ProductGrid({ title, categories, items }: ProductGridProps) {
                   </div>
 
                   {/* Heart Button */}
-                  <button className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-105 transition-transform text-[#1A1A1A]">
+                  <button 
+                    onClick={(e) => e.stopPropagation()}
+                    className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-105 transition-transform text-[#1A1A1A]">
                     <Heart className="w-[14px] h-[14px]" />
                   </button>
                 </div>
@@ -203,7 +209,9 @@ export function ProductGrid({ title, categories, items }: ProductGridProps) {
                       </div>
                     </div>
 
-                    <Button className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 hover:scale-105 cursor-pointer shrink-0">
+                    <Button 
+                      onClick={(e) => e.stopPropagation()}
+                      className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 hover:scale-105 cursor-pointer shrink-0">
                       <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
                       Add
                     </Button>
