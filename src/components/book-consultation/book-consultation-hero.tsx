@@ -21,7 +21,8 @@ export default function BookConsultationHero() {
       imageAlt="Book Consultation"
       title={
         <>
-          Redefining <span className="text-[#C9A76A]">Furnishing</span>{" "}
+          Redefining{" "}
+          <span className="text-[#C9A76A] font-serif">Furnishing</span>{" "}
           Excellence
         </>
       }
