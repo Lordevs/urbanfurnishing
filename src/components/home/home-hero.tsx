@@ -28,10 +28,10 @@ export default function HomeHero() {
       buttons={
         <>
           <Link href={ROUTES.BOOK_CONSULTATION}>
-            <Button className="group rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#352219] text-white flex items-center justify-between gap-4 py-2 pr-2 pl-7 h-[56px] sm:h-[60px] text-sm sm:text-base font-medium transition-all duration-300 shadow-lg shadow-black/10 border-none">
+            <Button className="group rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-white flex items-center justify-between gap-5 py-2 pr-2.5 pl-7 h-[52px] text-[15px] font-normal transition-all duration-300 shadow-lg border border-white/10 hover:border-white/25">
               Get in Touch
-              <div className="bg-white rounded-full p-2.5 sm:p-3 text-[#412A1F] transition-transform duration-300 group-hover:scale-95">
-                <ArrowUpRight className="h-7 w-7 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <div className="bg-[#FFF8F0] rounded-full w-[36px] h-[36px] flex items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0">
+                <ArrowUpRight className="h-[25px] w-[25px] stroke-[1.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
             </Button>
           </Link>
