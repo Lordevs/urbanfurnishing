@@ -41,7 +41,7 @@ export function HeroSection({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[60px] font-serif font-semibold tracking-tight text-white mb-6 leading-[1.1]">
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[60px] font-serif font-semibold tracking-tight text-white mb-2 leading-[1.1]">
             {title}
           </motion.h1>
 
@@ -49,7 +49,7 @@ export function HeroSection({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-base sm:text-lg lg:text-3xl text-white/90 leading-relaxed mb-10 max-w-4xl font-light">
+            className="text-base sm:text-lg lg:text-3xl text-white/90 leading-relaxed mb-10 lg:max-w-4xl font-light">
             {description}
           </motion.p>
 

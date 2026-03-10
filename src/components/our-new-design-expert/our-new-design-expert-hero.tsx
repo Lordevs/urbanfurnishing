@@ -54,7 +54,7 @@ export default function OurDesignExpertHero() {
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
           className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20">
           <div
-            className="px-8 sm:px-12 py-8 sm:py-10 rounded-[24px] sm:rounded-[28px] shadow-lg flex flex-col gap-6 min-w-[300px] sm:min-w-[420px]"
+            className="px-8 sm:px-16 py-10 sm:py-8 rounded-[24px] sm:rounded-[28px]  shadow-lg flex flex-col gap-7 min-w-[320px] sm:min-w-[480px]"
             style={{
               background:
                 "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
