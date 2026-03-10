@@ -14,17 +14,12 @@ const benefits = [
   "No pressure or commitment",
 ];
 
-export default function SingleProductHero() {
+export default function SingleProductDetailHero() {
   return (
     <HeroSection
-      imageSrc="/landing/single-products/single-products.webp"
+      imageSrc="/landing/packages/packages-hero-section.webp"
       imageAlt="Packages Hero"
-      title={
-        <>
-          Expertly Curated{" "}
-          <span className="text-[#C9A76A] font-serif">Room Products.</span>{" "}
-        </>
-      }
+      title={<>Expertly Curated Room Collections</>}
       overlayGradient="bg-linear-to-r from-[#412A1F]/90 via-[#412A1F]/70 to-transparent"
       description="Designer-selected furniture packages that bring harmony to your space. Each collection is thoughtfully coordinated to save you time, money, and design guesswork"
       buttons={
