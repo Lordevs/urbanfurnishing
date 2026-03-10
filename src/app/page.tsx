@@ -1,4 +1,4 @@
-import Hero from "@/components/home/hero";
+import HomeHero from "@/components/home/home-hero";
 import Services from "@/components/home/services";
 import PathwayNav from "@/components/home/pathway-nav";
 import Packages from "@/components/home/packages";
@@ -10,7 +10,7 @@ import SignatureDesign from "@/components/common/signature-design";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Hero />
+      <HomeHero />
       <Services />
       <PathwayNav />
       <Packages />
