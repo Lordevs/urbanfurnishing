@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
 import { Toaster } from "@/components/ui/sonner";
+import { Metadata } from "next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -44,6 +45,11 @@ const lufga = localFont({
   ],
   variable: "--font-lufga",
 });
+
+export const metadata: Metadata = {
+  title: "Urban Furnishing",
+  description: "Urban Furnishing",
+};
 
 export default function RootLayout({
   children,
