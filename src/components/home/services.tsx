@@ -52,7 +52,7 @@ export default function Services() {
           Three <span className="text-[#C9A76A]">Pathway</span> <br />
           Services
         </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+        <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
           Three distinct ways to furnish your space. Each designed to match your
           preferences, timeline, and budget.
         </p>
@@ -116,14 +116,14 @@ export default function Services() {
 
                   <div className="px-2 pb-6 flex flex-col flex-1">
                     <h3
-                      className={`text-xl sm:text-2xl font-semibold mb-3 transition-colors duration-300 ${
-                        isActive ? "text-white" : "text-[#1a1a1a]"
+                      className={`text-xl sm:text-2xl font-semibold font-serif mb-3 transition-colors duration-300 ${
+                        isActive ? "text-white" : "text-black"
                       }`}>
                       {service.title}
                     </h3>
                     <p
-                      className={`text-sm mb-6 leading-relaxed transition-colors duration-300 ${
-                        isActive ? "text-white/80" : "text-gray-500"
+                      className={`text-[15px] mb-2 leading-relaxed transition-colors duration-300 ${
+                        isActive ? "text-white/80" : "text-black"
                       }`}>
                       {service.desc}
                     </p>
@@ -141,7 +141,7 @@ export default function Services() {
                           </div>
                           <span
                             className={`text-sm font-medium transition-colors duration-300 ${
-                              isActive ? "text-white/90" : "text-[#1a1a1a]"
+                              isActive ? "text-white/90" : "text-black"
                             }`}>
                             {feature}
                           </span>
