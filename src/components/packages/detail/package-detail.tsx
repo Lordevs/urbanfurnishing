@@ -83,7 +83,7 @@ export function PackageDetail() {
     setActiveImage((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <section className="py-12 lg:py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
+    <section className="py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
       <div className="w-full flex flex-col gap-10">
         {/* Top: Images */}
         <div className="w-full flex flex-col gap-4">
@@ -200,9 +200,9 @@ export function PackageDetail() {
           </div>
 
           {/* Quantity & Actions */}
-          <div className="flex flex-col gap-4 mb-10 w-full max-w-4xl mx-auto">
+          <div className="flex flex-col gap-4 mb-10 w-full max-w-8xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex items-center justify-between border border-[#EBEBEB] rounded-[12px] h-[52px] sm:w-[190px] px-4 shrink-0 bg-white">
+              <div className="flex items-center justify-between border border-[#EBEBEB] rounded-[12px] h-[52px] sm:w-[190px] pl-2 shrink-0 bg-white">
                 <span className="text-[14px] text-[#5D4E3C]/80 font-medium">
                   Quantity
                 </span>
