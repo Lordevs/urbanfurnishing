@@ -54,7 +54,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = item.href === ROUTES.HOME ? pathname === item.href : pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
@@ -104,7 +104,7 @@ const Navbar = () => {
 
                   <div className="flex-1 overflow-y-auto py-4">
                     {navItems.map((item) => {
-                      const isActive = pathname === item.href;
+                      const isActive = item.href === ROUTES.HOME ? pathname === item.href : pathname.startsWith(item.href);
                       return (
                         <Link
                           key={item.href}

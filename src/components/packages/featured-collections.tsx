@@ -1,9 +1,11 @@
 "use client";
 
+import { ROUTES } from "@/constants/route";
 import { FeaturedCarousel } from "../shared/featured-carousel";
 
 const collections = [
   {
+    id: 1,
     category: "LIVING ROOM",
     title: "Modern Living Essentials",
     description:
@@ -19,6 +21,7 @@ const collections = [
     image: "/landing/packages/feature-image-1.webp",
   },
   {
+    id: 2,
     category: "BEDROOM",
     title: "Luxury Bedroom Suite",
     description: "Transform your bedroom into a luxurious retreat",
@@ -40,6 +43,7 @@ export function FeaturedCollections() {
       title="Featured Collections"
       description="Our most loved packages, handpicked for you"
       items={collections}
+      detailRoute={(id) => ROUTES.PACKAGES_DETAIL(id.toString())}
     />
   );
 }

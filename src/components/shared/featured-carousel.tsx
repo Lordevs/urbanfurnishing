@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
 import {
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/carousel";
 
 export interface FeaturedItem {
+  id: string | number;
   category: string;
   title: string;
   description: string;
@@ -30,13 +32,16 @@ interface FeaturedCarouselProps {
   title: React.ReactNode;
   description: string;
   items: FeaturedItem[];
+  detailRoute?: (id: string | number) => string;
 }
 
 export function FeaturedCarousel({
   title,
   description,
   items,
+  detailRoute,
 }: FeaturedCarouselProps) {
+  const router = useRouter();
   return (
     <section className="py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">
       <div className="mb-10 text-left">
@@ -69,7 +74,9 @@ export function FeaturedCarousel({
               <CarouselItem
                 key={index}
                 className="pl-6 md:basis-full lg:basis-1/2">
-                <div className="flex flex-col sm:flex-row bg-white rounded-[24px] overflow-hidden border border-[#F0F0F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full min-h-[460px]">
+                <div 
+                  onClick={() => detailRoute && router.push(detailRoute(item.id))}
+                  className="flex flex-col sm:flex-row bg-white rounded-[24px] overflow-hidden border border-[#F0F0F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full min-h-[460px] cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all">
                   {/* Left: Image */}
                   <div className="relative w-full sm:w-[45%] shrink-0 min-h-[300px] sm:min-h-full bg-[#f8f8f8]">
                     <Image
@@ -97,7 +104,9 @@ export function FeaturedCarousel({
                     </div>
 
                     {/* Heart Button */}
-                    <button className="absolute top-5 right-5 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                    <button 
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute top-5 right-5 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform">
                       <Heart className="w-4 h-4 text-[#1A1A1A]" />
                     </button>
                   </div>
@@ -174,6 +183,7 @@ export function FeaturedCarousel({
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          onClick={(e: React.MouseEvent) => e.stopPropagation()}
                           className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none cursor-pointer shrink-0 ml-auto">
                           <ShoppingCart className="w-[16px] h-[16px]" />
                           <span className="whitespace-nowrap">Add to Cart</span>

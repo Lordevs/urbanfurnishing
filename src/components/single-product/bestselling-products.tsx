@@ -1,9 +1,11 @@
 "use client";
 
+import { ROUTES } from "@/constants/route";
 import { FeaturedCarousel } from "../shared/featured-carousel";
 
 const bestsellingData = [
   {
+    id: 1,
     category: "LIVING ROOM",
     title: "The Contemporary Collection",
     description:
@@ -19,9 +21,11 @@ const bestsellingData = [
     image: "/landing/single-products/bestselling-img-1.webp",
   },
   {
+    id: 2,
     category: "BEDROOM",
     title: "The Grand Suite",
-    description: "Transform your master bedroom into a five-star hotel experience with luxury textiles",
+    description:
+      "Transform your master bedroom into a five-star hotel experience with luxury textiles",
     features: ["King Size Bed Frame", "2 Nightstands", "Dresser", "Mirror"],
     pieces: 6,
     price: "AED 3,199",
@@ -40,6 +44,7 @@ export function BestsellingProducts() {
       title="Bestselling Products"
       description="Our most loved Single products, handpicked for you"
       items={bestsellingData}
+      detailRoute={(id) => ROUTES.SINGLE_PRODUCT_DETAIL(id.toString())}
     />
   );
 }
