@@ -101,8 +101,8 @@ export function PackageDetail() {
     setActiveImage((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <section className="py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
-      <div className="w-full flex flex-col gap-10">
+    <section className="sm:py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-x-hidden md:overflow-x-visible">
+      <div className="w-full flex-col gap-10 hidden md:flex">
         {/* Top: Images */}
         <div className="w-full flex flex-col gap-4">
           {/* Main Image */}
@@ -358,6 +358,216 @@ export function PackageDetail() {
                 ))}
               </div>
             )}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile exact match layout */}
+      <div className="flex flex-col md:hidden -mx-4 mt-2 mb-10">
+        {/* Mobile Images */}
+        <div className="relative aspect-4/3 w-full group mb-3">
+          <Image
+            src={images[activeImage]}
+            alt="Package Detail"
+            fill
+            className="object-cover transition-transform duration-500"
+          />
+          {/* Badges */}
+          <div className="absolute top-4 left-4">
+            <span className="bg-[#C9A76A] text-white text-[10px] font-bold px-3 py-[5px] rounded-lg tracking-wider">
+              SAVE 27%
+            </span>
+          </div>
+
+          <div className="absolute bottom-4 right-4 bg-[#1A1A1A]/95 text-white text-[11px] font-medium px-4 py-1.5 rounded-lg shadow-sm">
+            {activeImage + 1} / {images.length}
+          </div>
+
+          {/* Nav Arrows */}
+          <button
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md">
+            <ChevronLeft className="w-5 h-5 text-[#1A1A1A]" />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md">
+            <ChevronRight className="w-5 h-5 text-[#1A1A1A]" />
+          </button>
+        </div>
+
+        {/* Mobile Thumbnails */}
+        <div className="grid grid-cols-4 gap-2.5 px-4 mb-8">
+          {images.map((img, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveImage(idx)}
+              className={`relative aspect-square w-full rounded-xl overflow-hidden cursor-pointer ${
+                activeImage === idx ? "opacity-100" : "opacity-60"
+              }`}>
+              <Image
+                src={img}
+                alt={`Thumbnail ${idx + 1}`}
+                fill
+                className="object-cover"
+              />
+            </button>
+          ))}
+        </div>
+
+        {/* Info Box */}
+        <div className="px-4 flex flex-col mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="bg-[#C9A76A] text-white px-[9px] py-[3px] rounded-[6px] text-[10px] font-bold flex items-center gap-1">
+              4.8
+            </div>
+            <span className="text-[#888888] text-[12px] font-medium">
+              230 reviews
+            </span>
+          </div>
+
+          <h1 className="text-[26px] font-sans font-bold text-[#1A1A1A] leading-[1.2] mb-4">
+            Modern Living Essentials
+          </h1>
+
+          <p className="text-[#666666] text-[13px] leading-relaxed mb-6">
+            Discover cozy living with this 450 Sq ft Contemporary Collection,
+            all. Ready to install, curated furniture across different features
+            to ensure that there is nothing missing design wise to bring home
+            that cozy feeling on arriving home.
+          </p>
+
+          <div className="bg-[#FAFAFA] rounded-2xl p-5 mb-6 flex flex-col gap-4">
+            <div className="flex items-baseline gap-2">
+              <span className="text-[28px] font-bold text-[#1A1A1A]">
+                AED 2,399
+              </span>
+              <span className="text-[15px] font-medium text-[#B3B3B3] line-through">
+                AED 3,299
+              </span>
+            </div>
+            <p className="text-[#666666] text-[11px]">
+              Or 3 interest-free payments of AED 799 with{" "}
+              <span className="font-bold text-[#1A1A1A]">Tabby</span>
+            </p>
+
+            <div className="flex items-center gap-4 mt-2">
+              <span className="text-[13px] text-[#412A1F] font-medium min-w-[60px]">
+                Quantity
+              </span>
+              <div className="flex items-center bg-white border border-[#EBEBEB] rounded-[24px] px-2 py-1 flex-1 max-w-[120px] justify-between h-[42px]">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="w-8 h-8 flex items-center justify-center text-[#1A1A1A] hover:bg-gray-50 rounded-full">
+                  <Minus className="w-3.5 h-3.5" />
+                </button>
+                <span className="text-[14px] font-bold text-[#1A1A1A]">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="w-8 h-8 flex items-center justify-center text-[#1A1A1A] hover:bg-gray-50 rounded-full">
+                  <Plus className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            <Button
+              onClick={handleAddToCart}
+              className="w-full bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-xl h-[48px] text-[14px] font-medium flex items-center justify-center gap-2 mt-2">
+              <ShoppingCart className="w-[16px] h-[16px]" />
+              Add to Cart
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 mb-10">
+            <Button
+              onClick={handleAddToCart}
+              className="w-full border border-[#412A1F] text-[#412A1F] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none">
+              Buy Now
+            </Button>
+            <Button className="w-full border border-[#EBEBEB] text-[#1A1A1A] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none">
+              Add to Wishlist
+            </Button>
+          </div>
+        </div>
+
+        <div className="bg-[#FAFAFA] px-4 py-8 grid grid-cols-1 gap-10 border-t border-[#F2F2F2]">
+          {/* Mobile What's Included */}
+          <div>
+            <h2 className="text-[18px] font-bold text-[#1A1A1A] mb-5">
+              What&apos;s Included
+            </h2>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:mb-0 px-1">
+              {includedFeatures.map((feat, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white p-4 sm:p-5 rounded-[16px] flex flex-col items-center justify-center gap-3 text-center border border-[#F2F2F2]">
+                  <Image
+                    src={feat.image}
+                    width={32}
+                    height={32}
+                    alt={feat.title}
+                    className="mb-1"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-[12px] font-bold text-[#1A1A1A]">
+                      {feat.title}
+                    </span>
+                    <span className="text-[10px] text-[#888888]">
+                      {feat.subtitle}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Product Features */}
+          <div>
+            <h2 className="text-[18px] font-bold text-[#1A1A1A] mb-5">
+              Product Features
+            </h2>
+            <div className="flex flex-col gap-4 mb-8">
+              {features.slice(0, 5).map((feature, i) => (
+                <div key={i} className="flex gap-3 items-start">
+                  <div className="w-[18px] h-[18px] shrink-0 border-[1.5px] border-[#C9A76A] rounded-[4px] flex items-center justify-center mt-0.5">
+                    <Check className="w-3 h-3 text-[#C9A76A] stroke-3" />
+                  </div>
+                  <span className="text-[12px] text-[#444444] leading-snug">
+                    {feature}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Guarantees Boxes */}
+            <div className="flex flex-col gap-3">
+              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
+                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
+                <span className="text-[12px] font-medium text-[#444444]">
+                  100% money-back guarantee for returning unused
+                </span>
+              </div>
+              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
+                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
+                <span className="text-[12px] font-medium text-[#444444]">
+                  Cash on Delivery available for all orders
+                </span>
+              </div>
+              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
+                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
+                <span className="text-[12px] font-medium text-[#444444]">
+                  Comprehensive 5yr warranty and 7day return
+                </span>
+              </div>
+              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
+                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
+                <span className="text-[12px] font-medium text-[#444444]">
+                  7 days trial and 100% money return if not satisfied
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
