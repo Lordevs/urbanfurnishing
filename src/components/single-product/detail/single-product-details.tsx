@@ -199,7 +199,7 @@ export default function SingleProductDetails() {
 
           {/* Actions */}
           <div className="flex flex-col gap-3 mb-10">
-            <Button 
+            <Button
               onClick={handleAddToCart}
               className="w-full h-[54px] lg:h-[60px] bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[14px] text-[15px] font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-black/5 hover:scale-[1.01] cursor-pointer group">
               Add to Cart
@@ -207,7 +207,7 @@ export default function SingleProductDetails() {
                 <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
               </div>
             </Button>
-            <Button 
+            <Button
               onClick={handleAddToCart}
               className="w-full h-[54px] lg:h-[60px] bg-white border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-white  text-[#1A1A1A] rounded-[14px] text-[15px] font-bold flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer hover:-translate-y-0.5">
               Buy Now
