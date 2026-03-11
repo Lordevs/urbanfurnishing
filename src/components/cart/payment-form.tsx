@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Lock, CreditCard, Smartphone, Wallet, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/lib/cart-context";
 
 interface PaymentFormProps {
   onBack: () => void;
@@ -13,6 +14,23 @@ interface PaymentFormProps {
 
 export function PaymentForm({ onBack, onSubmit }: PaymentFormProps) {
   const [paymentMethod, setPaymentMethod] = useState("card");
+  const { items } = useCart();
+
+  const subtotal = items.reduce((acc, item) => {
+    const numericPrice = parseFloat(item.price.replace(/,/g, '').replace(/[^\d.]/g, ''));
+    return acc + (numericPrice || 0) * item.quantity;
+  }, 0);
+
+  const currencyMatch = items.length > 0 ? items[0].price.match(/^[^\d]+/) : null;
+  const currencySymbol = currencyMatch ? currencyMatch[0] : "₹";
+  
+  const shipping = items.length > 0 ? 200 : 0;
+  const tax = subtotal * 0.08;
+  const total = subtotal + shipping + tax;
+
+  const formatPrice = (value: number) => {
+    return `${currencySymbol}${value.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+  };
 
   return (
     <motion.div
@@ -173,15 +191,15 @@ export function PaymentForm({ onBack, onSubmit }: PaymentFormProps) {
             <div className="flex flex-col gap-4 mb-5">
               <div className="flex justify-between items-center text-[14px]">
                 <span className="text-[#333333]">Subtotal</span>
-                <span className="font-semibold text-[#1A1A1A]">₹10,000</span>
+                <span className="font-semibold text-[#1A1A1A]">{formatPrice(subtotal)}</span>
               </div>
               <div className="flex justify-between items-center text-[14px]">
                 <span className="text-[#333333]">Shipping</span>
-                <span className="font-semibold text-[#1A1A1A]">₹200</span>
+                <span className="font-semibold text-[#1A1A1A]">{formatPrice(shipping)}</span>
               </div>
               <div className="flex justify-between items-center text-[14px]">
                 <span className="text-[#333333]">Tax</span>
-                <span className="font-semibold text-[#1A1A1A]">₹800</span>
+                <span className="font-semibold text-[#1A1A1A]">{formatPrice(tax)}</span>
               </div>
             </div>
             
@@ -189,7 +207,7 @@ export function PaymentForm({ onBack, onSubmit }: PaymentFormProps) {
             
             <div className="flex justify-between items-center mb-8">
               <span className="text-[15px] font-medium text-[#1A1A1A]">Total</span>
-              <span className="text-[18px] font-bold text-[#1A1A1A]">₹11,000</span>
+              <span className="text-[18px] font-bold text-[#1A1A1A]">{formatPrice(total)}</span>
             </div>
             
             <div className="flex flex-col gap-3">

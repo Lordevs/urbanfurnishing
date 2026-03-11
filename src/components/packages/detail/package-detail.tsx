@@ -13,6 +13,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/lib/cart-context";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/constants/route";
 
 const images = [
   "/landing/detail-page/detail-image-1.webp",
@@ -77,6 +80,21 @@ export function PackageDetail() {
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Features & Benefits");
+
+  const { addItem } = useCart();
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    addItem({
+      id: "pkg-contemporary",
+      name: "The Contemporary Collection (Package)",
+      price: "₹10,000",
+      quantity: quantity,
+      image: images[0],
+      color: "Premium Set",
+    });
+    router.push(ROUTES.CART);
+  };
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % images.length);
   const prevImage = () =>
@@ -223,13 +241,17 @@ export function PackageDetail() {
                 </div>
               </div>
 
-              <Button className="flex-1 h-[52px] bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer border-none">
+              <Button 
+                onClick={handleAddToCart}
+                className="flex-1 h-[52px] bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer border-none">
                 <ShoppingCart className="w-[18px] h-[18px]" />
                 Add to Cart
               </Button>
             </div>
 
-            <Button className="w-full h-[52px] border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center hover:text-white transition-all bg-[#FCFBF9] shadow-sm cursor-pointer mt-1">
+            <Button 
+              onClick={handleAddToCart}
+              className="w-full h-[52px] border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center hover:text-white transition-all bg-[#FCFBF9] shadow-sm cursor-pointer mt-1">
               Buy Now - Fast Checkout
             </Button>
           </div>

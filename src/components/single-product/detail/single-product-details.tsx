@@ -16,6 +16,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/lib/cart-context";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/constants/route";
 
 const images = [
   "/landing/detail-page/detail-image-1.webp",
@@ -47,6 +50,21 @@ export default function SingleProductDetails() {
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Overview");
+
+  const { addItem } = useCart();
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    addItem({
+      id: "prod-milano",
+      name: "The Milano Collection",
+      price: "₹23,999",
+      quantity: quantity,
+      image: images[activeImage],
+      color: "Italian Leather",
+    });
+    router.push(ROUTES.CART);
+  };
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % images.length);
   const prevImage = () =>
@@ -181,13 +199,17 @@ export default function SingleProductDetails() {
 
           {/* Actions */}
           <div className="flex flex-col gap-3 mb-10">
-            <Button className="w-full h-[54px] lg:h-[60px] bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[14px] text-[15px] font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-black/5 hover:scale-[1.01] cursor-pointer group">
+            <Button 
+              onClick={handleAddToCart}
+              className="w-full h-[54px] lg:h-[60px] bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[14px] text-[15px] font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-black/5 hover:scale-[1.01] cursor-pointer group">
               Add to Cart
               <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
               </div>
             </Button>
-            <Button className="w-full h-[54px] lg:h-[60px] bg-white border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-white  text-[#1A1A1A] rounded-[14px] text-[15px] font-bold flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer hover:-translate-y-0.5">
+            <Button 
+              onClick={handleAddToCart}
+              className="w-full h-[54px] lg:h-[60px] bg-white border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-white  text-[#1A1A1A] rounded-[14px] text-[15px] font-bold flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer hover:-translate-y-0.5">
               Buy Now
             </Button>
           </div>

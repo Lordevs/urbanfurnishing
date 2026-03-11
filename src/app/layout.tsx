@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
+import { CartProvider } from "@/lib/cart-context";
 import { Toaster } from "@/components/ui/sonner";
 import { Metadata } from "next";
 
@@ -61,10 +62,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${lufga.variable} antialiased`}
         suppressHydrationWarning>
-        <Navbar />
-        <Toaster richColors position="top-right" duration={3000} closeButton />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          <Toaster richColors position="top-right" duration={3000} closeButton />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

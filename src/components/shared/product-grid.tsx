@@ -15,6 +15,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/lib/cart-context";
+import { ROUTES } from "@/constants/route";
 
 export interface GridItemProps {
   id: string | number;
@@ -40,8 +42,22 @@ interface ProductGridProps {
 
 export function ProductGrid({ title, categories, items, detailRoute, limit, hidePagination }: ProductGridProps) {
   const router = useRouter();
+  const { addItem } = useCart();
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleAddToCart = (e: React.MouseEvent, item: GridItemProps) => {
+    e.stopPropagation();
+    addItem({
+      id: item.id,
+      name: item.title,
+      price: item.price,
+      quantity: 1,
+      image: item.image,
+      color: item.category,
+    });
+    router.push(ROUTES.CART);
+  };
 
   const filteredItems = items.filter((pkg) => {
     const matchesCategory =
@@ -212,7 +228,7 @@ export function ProductGrid({ title, categories, items, detailRoute, limit, hide
                     </div>
 
                     <Button 
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => handleAddToCart(e, pkg)}
                       className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 hover:scale-105 cursor-pointer shrink-0">
                       <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
                       Add

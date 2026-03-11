@@ -4,8 +4,28 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/lib/cart-context";
 
 export function OrderSummary({ onProceed }: { onProceed?: () => void }) {
+  const { items } = useCart();
+
+  const subtotal = items.reduce((acc, item) => {
+    const numericPrice = parseFloat(item.price.replace(/,/g, '').replace(/[^\d.]/g, ''));
+    return acc + (numericPrice || 0) * item.quantity;
+  }, 0);
+
+  // Extract the original currency sign, fallback to ₹
+  const currencyMatch = items.length > 0 ? items[0].price.match(/^[^\d]+/) : null;
+  const currencySymbol = currencyMatch ? currencyMatch[0] : "₹";
+  
+  const shipping = items.length > 0 ? 200 : 0;
+  const tax = subtotal * 0.08; // 8% dynamic tax
+  const total = subtotal + shipping + tax;
+
+  const formatPrice = (value: number) => {
+    return `${currencySymbol}${value.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, x: 20 }}
@@ -18,15 +38,15 @@ export function OrderSummary({ onProceed }: { onProceed?: () => void }) {
       <div className="flex flex-col gap-5 mb-7">
         <div className="flex justify-between items-center text-[14px]">
           <span className="text-[#333333]">Subtotal</span>
-          <span className="font-semibold text-[#1A1A1A]">₹11,500</span>
+          <span className="font-semibold text-[#1A1A1A]">{formatPrice(subtotal)}</span>
         </div>
         <div className="flex justify-between items-center text-[14px]">
           <span className="text-[#333333]">Shipping</span>
-          <span className="font-semibold text-[#1A1A1A]">₹200</span>
+          <span className="font-semibold text-[#1A1A1A]">{formatPrice(shipping)}</span>
         </div>
         <div className="flex justify-between items-center text-[14px]">
           <span className="text-[#333333]">Tax</span>
-          <span className="font-semibold text-[#1A1A1A]">₹920</span>
+          <span className="font-semibold text-[#1A1A1A]">{formatPrice(tax)}</span>
         </div>
       </div>
       
@@ -34,7 +54,7 @@ export function OrderSummary({ onProceed }: { onProceed?: () => void }) {
       
       <div className="flex justify-between items-center mb-8">
         <span className="text-[16px] font-medium text-[#1A1A1A]">Total</span>
-        <span className="text-[18px] font-bold text-[#1A1A1A]">₹12,620</span>
+        <span className="text-[18px] font-bold text-[#1A1A1A]">{formatPrice(total)}</span>
       </div>
       
       <div className="flex flex-col gap-4">
@@ -47,7 +67,8 @@ export function OrderSummary({ onProceed }: { onProceed?: () => void }) {
         </Button>
         <Button 
           onClick={onProceed}
-          className="w-full h-[52px] mt-2 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5">
+          disabled={items.length === 0}
+          className="w-full h-[52px] mt-2 bg-[#412A1F] hover:bg-[#2C1A11] disabled:bg-[#412A1F]/50 disabled:cursor-not-allowed text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5">
           Proceed to Checkout
           <div className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[#412A1F] shrink-0">
             <ArrowUpRight className="w-4 h-4 stroke-2" />

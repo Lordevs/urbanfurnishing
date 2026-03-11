@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
+import { useCart } from "@/lib/cart-context";
+import { ROUTES } from "@/constants/route";
 import {
   Carousel,
   CarouselContent,
@@ -42,6 +44,20 @@ export function FeaturedCarousel({
   detailRoute,
 }: FeaturedCarouselProps) {
   const router = useRouter();
+  const { addItem } = useCart();
+
+  const handleAddToCart = (e: React.MouseEvent, item: FeaturedItem) => {
+    e.stopPropagation();
+    addItem({
+      id: item.id,
+      name: item.title,
+      price: item.price,
+      quantity: 1,
+      image: item.image,
+      color: item.category,
+    });
+    router.push(ROUTES.CART);
+  };
   return (
     <section className="py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">
       <div className="mb-10 text-left">
@@ -183,7 +199,7 @@ export function FeaturedCarousel({
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                          onClick={(e: React.MouseEvent) => handleAddToCart(e, item)}
                           className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none cursor-pointer shrink-0 ml-auto">
                           <ShoppingCart className="w-[16px] h-[16px]" />
                           <span className="whitespace-nowrap">Add to Cart</span>
