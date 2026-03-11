@@ -14,10 +14,66 @@ const stats = [
   { value: "98%", label: "Client Satisfaction" },
 ];
 
+const mobileStats = [
+  { value: "500+", label: "Projects Completed" },
+  { value: "15", label: "Years Experience" },
+  { value: "20+", label: "Design Awards" },
+  { value: "98%", label: "Client Satisfaction" },
+];
+
 export default function CTA() {
   return (
-    <section>
-      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 pt-20">
+    <section className="w-full">
+      {/* Mobile View */}
+      <div className="flex flex-col lg:hidden w-full bg-linear-to-b from-[#412A1F] to-[#5D4E3C] py-20 px-6">
+        <div className="flex flex-col text-center items-center">
+          <h2 className="text-[32px] font-sans font-bold text-white mb-4 leading-tight max-w-[280px]">
+            Let&apos;s Design Your Space Together
+          </h2>
+          <p className="text-white/80 text-[15px] leading-relaxed mb-10 max-w-[310px]">
+            Start your interior design journey today with a free consultation
+            from our expert team
+          </p>
+
+          <div className="flex flex-col gap-4 w-full max-w-[340px] mb-16">
+            <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
+              <Button className="w-full bg-[#C9A76A] hover:bg-[#B3905A] text-white font-medium py-6 rounded-[12px] text-[15px] shadow-none border-none">
+                Book Free Consultation
+              </Button>
+            </Link>
+            <Link href={ROUTES.PACKAGES} className="w-full">
+              <Button
+                variant="outline"
+                className="w-full bg-transparent border-white/40 hover:bg-white/10 text-white font-medium py-6 rounded-[12px] text-[15px]">
+                View Our Work
+              </Button>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-12 w-full max-w-[340px]">
+            {mobileStats.map((stat, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <span className="text-[40px] font-sans font-bold text-[#C9A76A] leading-none mb-3 flex items-center gap-1">
+                  {stat.value.replace("+", "").replace("%", "")}
+                  <span className="text-[24px]">
+                    {stat.value.includes("+")
+                      ? "+"
+                      : stat.value.includes("%")
+                        ? "%"
+                        : ""}
+                  </span>
+                </span>
+                <span className="text-[13px] text-white/90 text-center font-light">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop View */}
+      <div className="hidden lg:block max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -39,8 +95,9 @@ export default function CTA() {
             {/* Left Content */}
             <div className="lg:w-[45%] w-full flex flex-col justify-center">
               <h2 className="text-[32px] sm:text-[42px] font-serif font-medium tracking-tight text-white mb-6 leading-[1.2]">
-                Let&apos;s <span className="text-[#C9A76A] font-serif">Design</span>{" "}
-                Your Space Together
+                Let&apos;s{" "}
+                <span className="text-[#C9A76A] font-serif">Design</span> Your
+                Space Together
               </h2>
 
               <p className="text-white text-[15px] sm:text-[16px] leading-[1.8] font-light mb-10 max-w-[90%]">
