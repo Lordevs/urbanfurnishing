@@ -10,25 +10,25 @@ import { ROUTES } from "@/constants/route";
 
 const mobileSteps = [
   {
-    number: "01",
+    number: "1",
     title: "Consultation",
     description:
-      "Schedule a free consultation to discuss your needs and vision",
+      "Begin with a detailed consultation to understand your vision, preferences, and space requirements.",
   },
   {
-    number: "02",
-    title: "Design Ideation",
-    description: "Receive custom mood boards and 3D renderings",
+    number: "2",
+    title: "Design Selection",
+    description: "Our experts curate a personalized selection of furniture and decor that matches your style.",
   },
   {
-    number: "03",
-    title: "Delivery & Install",
-    description: "Professional delivery and installation service",
+    number: "3",
+    title: "Delivery Setup",
+    description: "We handle everything from delivery to professional installation, ensuring perfect placement.",
   },
   {
-    number: "04",
+    number: "4",
     title: "After Care",
-    description: "Ongoing support and maintenance guidance",
+    description: "Enjoy ongoing support with maintenance tips and style refresh recommendations.",
   },
 ];
 
@@ -67,22 +67,17 @@ export default function HowWeWork() {
     <section id="how-we-work" className="py-6 sm:py-20 bg-card overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         {/* Mobile View */}
-        <div className="flex flex-col lg:hidden">
-          <div className="flex flex-col items-center text-center px-2 mb-8">
-            <h2 className="text-[32px] sm:text-[40px] font-serif font-medium tracking-tight text-[#1a1a1a] mb-3">
-              How We <span className="text-[#C9A76A]">Work</span>
-            </h2>
-            <p className="text-[#000000]/50 text-[14px] sm:text-[16px] font-light max-w-[320px]">
-              Our streamlined process from consultation to installation
-            </p>
-          </div>
+        <div className="flex flex-col lg:hidden py-4">
+          <h2 className="text-[22px] font-bold text-[#1a1a1a] mb-5 tracking-tight px-1">
+            How We <span className="text-[#C9A76A]">Work</span>
+          </h2>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full aspect-[1.57] rounded-[16px] overflow-hidden mb-10">
+            className="relative w-full aspect-[1.57] rounded-[16px] overflow-hidden mb-6">
             <Image
               src={
                 isMobileHome
@@ -95,23 +90,23 @@ export default function HowWeWork() {
             />
           </motion.div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-3">
             {mobileSteps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex items-start gap-5">
-                <div className="shrink-0 flex items-center justify-center w-[52px] h-[52px] rounded-[14px] bg-linear-to-b from-[#C9A76A] to-[#B3905A] text-white font-medium text-[16px]">
+                className="flex items-start gap-4 p-5 rounded-[16px] bg-[#FAFAFA] border border-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
+                <div className="shrink-0 flex items-center justify-center w-[46px] h-[46px] rounded-full bg-[#C9A76A] text-white font-bold text-[18px]">
                   {step.number}
                 </div>
-                <div className="flex flex-col pt-1">
-                  <h3 className="text-[18px] sm:text-[20px] font-serif font-medium tracking-tight text-[#1a1a1a]">
+                <div className="flex flex-col pt-0.5">
+                  <h3 className="text-[15px] font-bold text-[#1a1a1a] mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-[#000000]/50 text-[13px] sm:text-[14px] leading-[1.8] font-light mt-0.5 pr-2">
+                  <p className="text-[#666666] text-[13px] leading-[1.6] font-medium">
                     {step.description}
                   </p>
                 </div>

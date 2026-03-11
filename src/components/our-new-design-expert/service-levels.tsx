@@ -132,7 +132,7 @@ export default function ServiceLevels() {
   return (
     <>
       {/* Mobile View */}
-      <section className="md:hidden flex flex-col py-12 px-4 bg-white relative">
+      <section className="md:hidden flex flex-col py-6 sm:py-12 px-4 bg-white relative">
         <div className="text-center mb-8">
           <h2 className="text-[25px] font-serif font-bold text-[#1A1A1A] mb-3 tracking-tight">
             Service Levels
