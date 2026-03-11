@@ -12,7 +12,8 @@ const mobileSteps = [
   {
     number: "01",
     title: "Consultation",
-    description: "Schedule a free consultation to discuss your needs and vision",
+    description:
+      "Schedule a free consultation to discuss your needs and vision",
   },
   {
     number: "02",
@@ -63,9 +64,8 @@ export default function HowWeWork() {
   const isMobileHome = pathname === "/" || pathname === ROUTES.HOME;
 
   return (
-    <section id="how-we-work" className="py-24 bg-card overflow-hidden">
+    <section id="how-we-work" className="py-6 sm:py-20 bg-card overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
-        
         {/* Mobile View */}
         <div className="flex flex-col lg:hidden">
           <div className="flex flex-col items-center text-center px-2 mb-8">
@@ -84,7 +84,11 @@ export default function HowWeWork() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative w-full aspect-[1.57] rounded-[16px] overflow-hidden mb-10">
             <Image
-              src={isMobileHome ? "/landing/home/how-we-work/how-we-work.webp" : "/landing/home/how-we-work/work-img.webp"}
+              src={
+                isMobileHome
+                  ? "/landing/home/how-we-work/how-we-work.webp"
+                  : "/landing/home/how-we-work/work-img.webp"
+              }
               alt="How We Work"
               fill
               className="object-cover"
