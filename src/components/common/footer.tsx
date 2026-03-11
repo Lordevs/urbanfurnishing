@@ -244,7 +244,7 @@ export default function Footer() {
                 Privacy
               </Link>
               <Link
-                href={ROUTES.TERMS_OF_SERVICE}
+                href={ROUTES.TERMS_AND_CONDITION}
                 className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Terms
               </Link>
@@ -253,11 +253,11 @@ export default function Footer() {
                 className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Cookies
               </Link>
-              <Link
+              {/* <Link
                 href={ROUTES.HOME}
                 className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Sitemap
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
