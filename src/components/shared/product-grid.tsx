@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -14,9 +11,12 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart-context";
-import { ROUTES } from "@/constants/route";
 
 export interface GridItemProps {
   id: string | number;
@@ -40,7 +40,14 @@ interface ProductGridProps {
   hidePagination?: boolean;
 }
 
-export function ProductGrid({ title, categories, items, detailRoute, limit, hidePagination }: ProductGridProps) {
+export function ProductGrid({
+  title,
+  categories,
+  items,
+  detailRoute,
+  limit,
+  hidePagination,
+}: ProductGridProps) {
   const router = useRouter();
   const { addItem } = useCart();
   const [activeCategory, setActiveCategory] = useState("All");
@@ -54,9 +61,7 @@ export function ProductGrid({ title, categories, items, detailRoute, limit, hide
       price: item.price,
       quantity: 1,
       image: item.image,
-      color: item.category,
     });
-    router.push(ROUTES.CART);
   };
 
   const filteredItems = items.filter((pkg) => {
@@ -126,7 +131,8 @@ export function ProductGrid({ title, categories, items, detailRoute, limit, hide
                 activeCategory === cat
                   ? "bg-[#422C20] text-white"
                   : "bg-[#F5F5F5] text-[#666666] hover:bg-[#EBEBEB] hover:text-[#1A1A1A]"
-              }`}>
+              }`}
+            >
               {cat}
             </button>
           ))}
@@ -137,106 +143,115 @@ export function ProductGrid({ title, categories, items, detailRoute, limit, hide
       {filteredItems.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           <AnimatePresence>
-            {(limit ? filteredItems.slice(0, limit) : filteredItems).map((pkg) => (
-              <motion.div
-                key={pkg.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => detailRoute && router.push(detailRoute(pkg.id))}
-                className="bg-white rounded-[20px] sm:rounded-[24px] overflow-hidden flex flex-col h-full border border-[#F2F2F2] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-pointer">
-                {/* Image Container */}
-                <div className="relative aspect-4/3 bg-[#F8F8F8] w-full shrink-0">
-                  <Image
-                    src={pkg.image}
-                    alt={pkg.title}
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Badges */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-1.5">
-                    {pkg.badges.map((badge, idx) => (
-                      <span
-                        key={idx}
-                        className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}>
-                        {badge.text}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Heart Button */}
-                  <button 
-                    onClick={(e) => e.stopPropagation()}
-                    className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-105 transition-transform text-[#1A1A1A]">
-                    <Heart className="w-[14px] h-[14px]" />
-                  </button>
-                </div>
-
-                {/* Content */}
-                <div className="p-5 lg:p-6 flex flex-col flex-1">
-                  <h4 className="text-[#C5A67C] text-[10px] sm:text-[11px] font-bold tracking-[0.12em] uppercase mb-1.5">
-                    {pkg.category}
-                  </h4>
-                  <h3 className="text-[18px] sm:text-[20px] font-bold text-[#1A1A1A] leading-tight mb-2">
-                    {pkg.title}
-                  </h3>
-                  <p className="text-[#888888] text-[13px] leading-relaxed mb-6 line-clamp-2">
-                    {pkg.description}
-                  </p>
-
-                  {/* Pieces Badge */}
-                  <div className="flex items-center gap-2.5 bg-[#FAFAFA] border border-[#F2F2F2] px-4 py-3 rounded-[12px] mb-6 w-full mt-auto">
-                    <svg
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="#C9A76A"
-                      className="w-[16px] h-[16px] shrink-0">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-                      />
-                    </svg>
-                    <span className="text-[13px] font-medium text-[#1A1A1A]">
-                      {pkg.pieces} Premium Pieces
-                    </span>
-                  </div>
-
-                  {/* Footer Price Block */}
-                  <div className="mt-auto flex items-end justify-between border-t border-[#F0F0F0] pt-5 lg:pt-6">
-                    <div className="flex flex-col">
-                      <div className="flex items-baseline gap-2 mb-0.5 whitespace-nowrap">
-                        <span className="text-[20px] lg:text-[24px] font-bold text-[#1A1A1A] leading-none tracking-tight">
-                          {pkg.price}
+            {(limit ? filteredItems.slice(0, limit) : filteredItems).map(
+              (pkg) => (
+                <motion.div
+                  key={pkg.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() =>
+                    detailRoute && router.push(detailRoute(pkg.id))
+                  }
+                  className="bg-white rounded-[20px] sm:rounded-[24px] overflow-hidden flex flex-col h-full border border-[#F2F2F2] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-pointer"
+                >
+                  {/* Image Container */}
+                  <div className="relative aspect-4/3 bg-[#F8F8F8] w-full shrink-0">
+                    <Image
+                      src={pkg.image}
+                      alt={pkg.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Badges */}
+                    <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+                      {pkg.badges.map((badge, idx) => (
+                        <span
+                          key={idx}
+                          className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}
+                        >
+                          {badge.text}
                         </span>
-                        {pkg.originalPrice && (
-                          <span className="text-[#B3B3B3] text-[13px] lg:text-[14px] font-medium tracking-tight line-through mt-0.5">
-                            {pkg.originalPrice}
-                          </span>
-                        )}
-                      </div>
-                      <div className="h-[18px]">
-                        {pkg.saveText && (
-                          <p className="text-[#C5A67C] text-[11px] lg:text-[12px] font-medium mt-0.5">
-                            {pkg.saveText}
-                          </p>
-                        )}
-                      </div>
+                      ))}
                     </div>
 
-                    <Button 
-                      onClick={(e) => handleAddToCart(e, pkg)}
-                      className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 hover:scale-105 cursor-pointer shrink-0">
-                      <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
-                      Add
-                    </Button>
+                    {/* Heart Button */}
+                    <button
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-105 transition-transform text-[#1A1A1A]"
+                    >
+                      <Heart className="w-[14px] h-[14px]" />
+                    </button>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Content */}
+                  <div className="p-5 lg:p-6 flex flex-col flex-1">
+                    <h4 className="text-[#C5A67C] text-[10px] sm:text-[11px] font-bold tracking-[0.12em] uppercase mb-1.5">
+                      {pkg.category}
+                    </h4>
+                    <h3 className="text-[18px] sm:text-[20px] font-bold text-[#1A1A1A] leading-tight mb-2">
+                      {pkg.title}
+                    </h3>
+                    <p className="text-[#888888] text-[13px] leading-relaxed mb-6 line-clamp-2">
+                      {pkg.description}
+                    </p>
+
+                    {/* Pieces Badge */}
+                    <div className="flex items-center gap-2.5 bg-[#FAFAFA] border border-[#F2F2F2] px-4 py-3 rounded-[12px] mb-6 w-full mt-auto">
+                      <svg
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="#C9A76A"
+                        className="w-[16px] h-[16px] shrink-0"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+                        />
+                      </svg>
+                      <span className="text-[13px] font-medium text-[#1A1A1A]">
+                        {pkg.pieces} Premium Pieces
+                      </span>
+                    </div>
+
+                    {/* Footer Price Block */}
+                    <div className="mt-auto flex items-end justify-between border-t border-[#F0F0F0] pt-5 lg:pt-6">
+                      <div className="flex flex-col">
+                        <div className="flex items-baseline gap-2 mb-0.5 whitespace-nowrap">
+                          <span className="text-[20px] lg:text-[24px] font-bold text-[#1A1A1A] leading-none tracking-tight">
+                            {pkg.price}
+                          </span>
+                          {pkg.originalPrice && (
+                            <span className="text-[#B3B3B3] text-[13px] lg:text-[14px] font-medium tracking-tight line-through mt-0.5">
+                              {pkg.originalPrice}
+                            </span>
+                          )}
+                        </div>
+                        <div className="h-[18px]">
+                          {pkg.saveText && (
+                            <p className="text-[#C5A67C] text-[11px] lg:text-[12px] font-medium mt-0.5">
+                              {pkg.saveText}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <Button
+                        onClick={(e) => handleAddToCart(e, pkg)}
+                        className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 hover:scale-105 cursor-pointer shrink-0"
+                      >
+                        <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
+                        Add
+                      </Button>
+                    </div>
+                  </div>
+                </motion.div>
+              ),
+            )}
           </AnimatePresence>
         </div>
       ) : (

@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
-import { useCart } from "@/lib/cart-context";
-import { ROUTES } from "@/constants/route";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 import {
   Carousel,
   CarouselContent,
@@ -13,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useCart } from "@/lib/cart-context";
 
 export interface FeaturedItem {
   id: string | number;
@@ -54,9 +54,7 @@ export function FeaturedCarousel({
       price: item.price,
       quantity: 1,
       image: item.image,
-      color: item.category,
     });
-    router.push(ROUTES.CART);
   };
   return (
     <section className="py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">
@@ -65,7 +63,8 @@ export function FeaturedCarousel({
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl sm:text-[40px] font-serif font-bold text-[#000000] tracking-tight">
+          className="text-4xl sm:text-[40px] font-serif font-bold text-[#000000] tracking-tight"
+        >
           {title}
         </motion.h2>
         <motion.p
@@ -73,7 +72,8 @@ export function FeaturedCarousel({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-[#000000]/60 text-lg font-light mt-2 sm:mt-1">
+          className="text-[#000000]/60 text-lg font-light mt-2 sm:mt-1"
+        >
           {description}
         </motion.p>
       </div>
@@ -84,15 +84,20 @@ export function FeaturedCarousel({
             align: "start",
             loop: false,
           }}
-          className="w-full">
+          className="w-full"
+        >
           <CarouselContent className="-ml-6">
             {items.map((item, index) => (
               <CarouselItem
                 key={index}
-                className="pl-6 md:basis-full lg:basis-1/2">
-                <div 
-                  onClick={() => detailRoute && router.push(detailRoute(item.id))}
-                  className="flex flex-col sm:flex-row bg-white rounded-[24px] overflow-hidden border border-[#F0F0F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full min-h-[460px] cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all">
+                className="pl-6 md:basis-full lg:basis-1/2"
+              >
+                <div
+                  onClick={() =>
+                    detailRoute && router.push(detailRoute(item.id))
+                  }
+                  className="flex flex-col sm:flex-row bg-white rounded-[24px] overflow-hidden border border-[#F0F0F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full min-h-[460px] cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all"
+                >
                   {/* Left: Image */}
                   <div className="relative w-full sm:w-[45%] shrink-0 min-h-[300px] sm:min-h-full bg-[#f8f8f8]">
                     <Image
@@ -108,7 +113,8 @@ export function FeaturedCarousel({
                         <span
                           className={`px-3.5 py-1.5 rounded-md ${
                             item.badge1Color || "bg-[#D1B072]"
-                          } text-white text-[10.5px] font-semibold tracking-wider uppercase text-center w-max`}>
+                          } text-white text-[10.5px] font-semibold tracking-wider uppercase text-center w-max`}
+                        >
                           {item.badge1}
                         </span>
                       )}
@@ -120,9 +126,10 @@ export function FeaturedCarousel({
                     </div>
 
                     {/* Heart Button */}
-                    <button 
+                    <button
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-5 right-5 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                      className="absolute top-5 right-5 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform"
+                    >
                       <Heart className="w-4 h-4 text-[#1A1A1A]" />
                     </button>
                   </div>
@@ -145,7 +152,8 @@ export function FeaturedCarousel({
                         {item.features.map((feature, i) => (
                           <div
                             key={i}
-                            className="flex items-center gap-3 bg-[#FAFAFA] border border-[#F2F2F2] px-4 py-3 rounded-[12px]">
+                            className="flex items-center gap-3 bg-[#FAFAFA] border border-[#F2F2F2] px-4 py-3 rounded-[12px]"
+                          >
                             <div className="w-[4px] h-[4px] rounded-full bg-[#D1B072] shrink-0" />
                             <span className="text-[12px] lg:text-[13px] text-[#333333] font-medium leading-tight line-clamp-1">
                               {feature}
@@ -161,7 +169,8 @@ export function FeaturedCarousel({
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
                           stroke="#C9A76A"
-                          className="w-5 h-5 shrink-0">
+                          className="w-5 h-5 shrink-0"
+                        >
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -199,8 +208,11 @@ export function FeaturedCarousel({
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={(e: React.MouseEvent) => handleAddToCart(e, item)}
-                          className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none cursor-pointer shrink-0 ml-auto">
+                          onClick={(e: React.MouseEvent) =>
+                            handleAddToCart(e, item)
+                          }
+                          className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none cursor-pointer shrink-0 ml-auto"
+                        >
                           <ShoppingCart className="w-[16px] h-[16px]" />
                           <span className="whitespace-nowrap">Add to Cart</span>
                         </motion.button>
