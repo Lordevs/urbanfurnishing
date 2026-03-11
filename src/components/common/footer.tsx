@@ -2,10 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MapPin, Mail, Phone, ArrowDownRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  MapPin,
+  Mail,
+  Phone,
+  ArrowDownRight,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
+import { navItems } from "@/lib/nav-items";
 
 const quickLinks = [
   "Living Room",
@@ -22,15 +29,6 @@ const packages = [
   "Developer Solutions",
   "Custom Projects",
   "Pricing",
-];
-
-const singleItems = [
-  "About Us",
-  "Portfolio",
-  "Process",
-  "Testimonials",
-  "Careers",
-  "Contact",
 ];
 
 const ourServices = [
@@ -54,7 +52,8 @@ export default function Footer() {
             </span>
           </div>
           <h2 className="text-[28px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
-            Get Design <span className="text-[#C9A76A] font-serif">Inspiration</span>
+            Get Design{" "}
+            <span className="text-[#C9A76A] font-serif">Inspiration</span>
           </h2>
           <p className="text-[#8F877C] text-[14px] leading-relaxed tracking-wide font-light mb-8 max-w-[95%]">
             Join our community for curated interior tips, new collection
@@ -125,7 +124,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Section */}
-      <div className="bg-[linear-gradient(180deg,#402A1E_90%)] pt-24 pb-10">
+      <div className="bg-[#402A1F]/95 pt-24 pb-10">
         <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
             {/* Brand Column */}
@@ -133,9 +132,9 @@ export default function Footer() {
               <Image
                 src="/common/logo.svg"
                 alt="UFF Logo"
-                width={70}
-                height={70}
-                className="mb-8 opacity-70 invert sepia hue-rotate-15 contrast-75 brightness-150"
+                width={80}
+                height={80}
+                className="mb-8 opacity-90 brightness-0 invert-[.7] sepia-[.4] saturate-[.8] hue-rotate-[10deg]"
               />
 
               <p className="text-[#D0CACA] text-[12px] sm:text-[13px] leading-[1.8] font-light mb-10 max-w-[85%] pr-4 tracking-wide">
@@ -166,15 +165,15 @@ export default function Footer() {
             {/* Links Columns */}
             <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
-                  Quick Links
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
+                  SHOP
                 </h4>
                 <ul className="flex flex-col gap-6">
                   {quickLinks.map((link) => (
                     <li key={link}>
                       <Link
                         href={ROUTES.SINGLE_PRODUCTS}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -183,7 +182,7 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
                   Packages
                 </h4>
                 <ul className="flex flex-col gap-6">
@@ -191,7 +190,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={ROUTES.PACKAGES}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -200,15 +199,22 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
-                  Single Items
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
+                  COMPANY
                 </h4>
                 <ul className="flex flex-col gap-6">
-                  {singleItems.map((link) => (
+                  {[
+                    "About Us",
+                    "Portfolio",
+                    "Process",
+                    "Testimonials",
+                    "Careers",
+                    "Contact",
+                  ].map((link) => (
                     <li key={link}>
                       <Link
-                        href={ROUTES.SINGLE_PRODUCTS}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
+                        href={ROUTES.HOME}
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -217,15 +223,15 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
-                  Our Services
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
+                  RESOURCES
                 </h4>
                 <ul className="flex flex-col gap-6">
                   {ourServices.map((link) => (
                     <li key={link}>
                       <Link
                         href={ROUTES.HOME}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -236,30 +242,30 @@ export default function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-[#8B7C6E]/20 gap-6">
-            <p className="text-[#A3A3A3] text-[10px] sm:text-[11px] font-light tracking-wide">
+          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-white/10 gap-6">
+            <p className="text-[#A3A3A3] text-[11px] font-normal tracking-wide">
               &copy; {new Date().getFullYear()} Urban Finishing LLC. All rights
               reserved.
             </p>
             <div className="flex items-center flex-wrap justify-center gap-6 sm:gap-8">
               <Link
                 href={ROUTES.PRIVACY_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Privacy
               </Link>
               <Link
                 href={ROUTES.TERMS_OF_SERVICE}
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Terms
               </Link>
               <Link
                 href={ROUTES.PRIVACY_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Cookies
               </Link>
               <Link
                 href={ROUTES.HOME}
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Sitemap
               </Link>
             </div>
