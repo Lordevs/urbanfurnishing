@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ROUTES } from "@/constants/route";
 
 const stats = [
   { value: "5x", label: "Higher retention rate" },
@@ -47,12 +49,14 @@ export default function CTA() {
               </p>
 
               <div>
-                <Button className="rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center gap-6 pr-1.5 pl-6 h-12 text-[13px] font-normal transition-all shadow-none border-none group">
-                  Book Now
-                  <div className="bg-white rounded-full p-1.5 text-[#412A1F] transition-transform group-hover:scale-105">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </div>
-                </Button>
+                <Link href={ROUTES.BOOK_CONSULTATION}>
+                  <Button className="rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center gap-6 pr-1.5 pl-6 h-12 text-[13px] font-normal transition-all shadow-none border-none group">
+                    Book Now
+                    <div className="bg-white rounded-full p-1.5 text-[#412A1F] transition-transform group-hover:scale-105">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </Button>
+                </Link>
               </div>
             </div>
 
