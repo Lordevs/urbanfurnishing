@@ -5,6 +5,7 @@ import { CheckoutSteps } from "@/components/cart/checkout-steps";
 import { CartItems } from "@/components/cart/cart-items";
 import { OrderSummary } from "@/components/cart/order-summary";
 import { AddressForm } from "@/components/cart/address-form";
+import { PaymentForm } from "@/components/cart/payment-form";
 
 export default function CartContent() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -28,6 +29,15 @@ export default function CartContent() {
           <AddressForm 
             onBack={() => setCurrentStep(1)} 
             onNext={() => setCurrentStep(3)} 
+          />
+        </div>
+      )}
+
+      {currentStep === 3 && (
+        <div className="mt-2 w-full">
+          <PaymentForm 
+            onBack={() => setCurrentStep(2)} 
+            onSubmit={() => console.log('Order Placed!')} 
           />
         </div>
       )}

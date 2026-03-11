@@ -95,8 +95,8 @@ export function AddressForm({ onNext, onBack }: AddressFormProps) {
               <div className="flex-1 flex flex-col gap-1.5">
                 <label className="text-[13px] font-medium text-[#1A1A1A]">State</label>
                 <div className="relative">
-                  <select className="w-full h-[46px] bg-[#F5F5F5] border-none rounded-[8px] px-3.5 text-[14px] text-[#888888]/80 appearance-none outline-none focus-visible:ring-1 focus-visible:ring-[#C9A76A] cursor-pointer">
-                    <option value="" disabled selected>Select stat</option>
+                  <select defaultValue="" className="w-full h-[46px] bg-[#F5F5F5] border-none rounded-[8px] px-3.5 text-[14px] text-[#888888]/80 appearance-none outline-none focus-visible:ring-1 focus-visible:ring-[#C9A76A] cursor-pointer">
+                    <option value="" disabled>Select state</option>
                     <option value="MH">Maharashtra</option>
                     <option value="DL">Delhi</option>
                     <option value="KA">Karnataka</option>
@@ -187,8 +187,8 @@ export function AddressForm({ onNext, onBack }: AddressFormProps) {
               <div className="flex-1 flex flex-col gap-1.5">
                 <label className="text-[13px] font-medium text-[#1A1A1A]">State</label>
                 <div className="relative">
-                  <select className="w-full h-[46px] bg-[#F5F5F5] border-none rounded-[8px] px-3.5 text-[14px] text-[#888888]/80 appearance-none outline-none focus-visible:ring-1 focus-visible:ring-[#C9A76A] cursor-pointer">
-                    <option value="" disabled selected>Select stat</option>
+                  <select defaultValue="" className="w-full h-[46px] bg-[#F5F5F5] border-none rounded-[8px] px-3.5 text-[14px] text-[#888888]/80 appearance-none outline-none focus-visible:ring-1 focus-visible:ring-[#C9A76A] cursor-pointer">
+                    <option value="" disabled>Select state</option>
                     <option value="MH">Maharashtra</option>
                     <option value="DL">Delhi</option>
                     <option value="KA">Karnataka</option>
