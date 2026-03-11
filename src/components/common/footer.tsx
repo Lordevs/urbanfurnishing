@@ -220,7 +220,7 @@ export default function Footer() {
                   {ourServices.map((link) => (
                     <li key={link}>
                       <Link
-                        href={ROUTES.HOME}
+                        href={`${ROUTES.HOME}#services`}
                         className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>

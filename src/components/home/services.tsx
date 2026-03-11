@@ -86,7 +86,7 @@ export default function Services() {
   const [activeCard, setActiveCard] = useState<string | null>(null);
 
   return (
-    <section className="py-16 sm:py-20 w-full bg-muted">
+    <section id="services" className="py-16 sm:py-20 w-full bg-muted">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         
         {/* Mobile View */}
