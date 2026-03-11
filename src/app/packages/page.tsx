@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Testimonial from "@/components/common/testimonial";
 import { AllPackages } from "@/components/packages/all-packages";
 import { FeaturedCollections } from "@/components/packages/featured-collections";
@@ -8,7 +10,9 @@ export default function Packages() {
     <div className="min-h-screen">
       <PackagesHero />
       <FeaturedCollections />
-      <AllPackages />
+      <Suspense fallback={null}>
+        <AllPackages />
+      </Suspense>
       <Testimonial />
     </div>
   );
