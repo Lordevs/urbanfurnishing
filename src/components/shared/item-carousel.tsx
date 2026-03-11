@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -111,7 +110,7 @@ export function ItemCarousel({
                           {item.buttonText || defaultButtonText}
                         </span>
                         <div className="bg-white rounded-full w-8 h-8 flex items-center justify-center shrink-0">
-                          <ArrowUpRight className="w-4 h-4 text-[#412A1F]" />
+                          <Image src="/common/arrow-up.svg" alt="Arrow Up" width={16} height={16} />
                         </div>
                       </div>
                     </div>
@@ -123,8 +122,12 @@ export function ItemCarousel({
 
           {/* Nav arrows customized to match image */}
           <div className="hidden sm:block z-10 pointer-events-none">
-            <CarouselPrevious className="absolute lg:-left-7 -left-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto [&_svg]:w-6 [&_svg]:h-6 [&_svg]:stroke-[1.5] z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100" />
-            <CarouselNext className="absolute lg:-right-7 -right-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto [&_svg]:w-6 [&_svg]:h-6 [&_svg]:stroke-[1.5] z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100" />
+            <CarouselPrevious className="absolute lg:-left-7 -left-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100">
+              <Image src="/common/arrow-left.svg" alt="Previous" width={24} height={24} />
+            </CarouselPrevious>
+            <CarouselNext className="absolute lg:-right-7 -right-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100">
+              <Image src="/common/arrow-right.svg" alt="Next" width={24} height={24} />
+            </CarouselNext>
           </div>
         </Carousel>
       </div>

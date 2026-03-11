@@ -9,7 +9,7 @@ export default function SignatureDesign() {
   return (
     <section
       id="design-expert"
-      className=" w-full py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white">
+      className="w-full lg:py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden">
       <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
         {/* Left Content */}
         <motion.div
@@ -46,9 +46,9 @@ export default function SignatureDesign() {
             </div>
 
             <p className="italic text-[#603D2C] text-[14px] leading-[1.8] mb-3 mt-1 pr-6 tracking-wide">
-              &quot;Every space tells a story. Our mission is to help you tell yours
-              through thoughtfully curated interiors that combine functionality
-              with timeless elegance.&quot;
+              &quot;Every space tells a story. Our mission is to help you tell
+              yours through thoughtfully curated interiors that combine
+              functionality with timeless elegance.&quot;
             </p>
             <p className="text-[11px] text-[#5D4E3C]/60">
               Elena Falconer, Founder & CEO
