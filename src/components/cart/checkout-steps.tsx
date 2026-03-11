@@ -1,14 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const steps = [
-  { id: 1, name: "Cart", active: true },
-  { id: 2, name: "Address", active: false },
-  { id: 3, name: "Payment", active: false },
-];
-
-export function CheckoutSteps() {
+export function CheckoutSteps({ currentStep = 1 }: { currentStep?: number }) {
+  const steps = [
+    { id: 1, name: "Cart", active: currentStep >= 1 },
+    { id: 2, name: "Address", active: currentStep >= 2 },
+    { id: 3, name: "Payment", active: currentStep >= 3 },
+  ];
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between py-6 mb-8 w-full border-b border-[#F2F2F2]/60 pb-8">
       <h1 className="text-3xl font-semibold font-serif text-[#0A0A0A] mb-8 sm:mb-0">

@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export function OrderSummary() {
+export function OrderSummary({ onProceed }: { onProceed?: () => void }) {
   return (
     <motion.div 
       initial={{ opacity: 0, x: 20 }}
@@ -45,7 +45,9 @@ export function OrderSummary() {
         <Button variant="outline" className="w-full h-[48px] rounded-[8px] border border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F9F9F9] font-medium text-[14px] shadow-sm cursor-pointer hover:-translate-y-0.5 transition-transform">
           Apply Code
         </Button>
-        <Button className="w-full h-[52px] mt-2 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5">
+        <Button 
+          onClick={onProceed}
+          className="w-full h-[52px] mt-2 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5">
           Proceed to Checkout
           <div className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[#412A1F] shrink-0">
             <ArrowUpRight className="w-4 h-4 stroke-2" />
