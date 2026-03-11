@@ -249,7 +249,7 @@ export default function Footer() {
                 Terms
               </Link>
               <Link
-                href={ROUTES.PRIVACY_POLICY}
+                href={ROUTES.COOKIES_POLICY}
                 className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Cookies
               </Link>
