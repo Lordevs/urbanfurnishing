@@ -32,12 +32,9 @@ const packages = [
 ];
 
 const ourServices = [
-  "Design Blog",
-  "Style Guide",
-  "FAQs",
-  "Delivery Info",
-  "Warranty",
-  "Support",
+  "Select Packages",
+  "Shop Individually",
+  "Use Our Design Expert",
 ];
 
 export default function Footer() {
@@ -134,7 +131,7 @@ export default function Footer() {
                 alt="UFF Logo"
                 width={80}
                 height={80}
-                className="mb-8 opacity-90 brightness-0 invert-[.7] sepia-[.4] saturate-[.8] hue-rotate-[10deg]"
+                className="mb-8 opacity-90 brightness-0 invert-[.7] sepia-[.4] saturate-[.8] hue-rotate-10"
               />
 
               <p className="text-[#D0CACA] text-[12px] sm:text-[13px] leading-[1.8] font-light mb-10 max-w-[85%] pr-4 tracking-wide">
@@ -203,19 +200,12 @@ export default function Footer() {
                   COMPANY
                 </h4>
                 <ul className="flex flex-col gap-6">
-                  {[
-                    "About Us",
-                    "Portfolio",
-                    "Process",
-                    "Testimonials",
-                    "Careers",
-                    "Contact",
-                  ].map((link) => (
-                    <li key={link}>
+                  {navItems.map((item) => (
+                    <li key={item.title}>
                       <Link
-                        href={ROUTES.HOME}
+                        href={item.href}
                         className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
-                        {link}
+                        {item.title}
                       </Link>
                     </li>
                   ))}
@@ -224,7 +214,7 @@ export default function Footer() {
 
               <div className="flex flex-col">
                 <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
-                  RESOURCES
+                  Services
                 </h4>
                 <ul className="flex flex-col gap-6">
                   {ourServices.map((link) => (
