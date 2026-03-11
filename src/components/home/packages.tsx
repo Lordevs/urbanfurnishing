@@ -13,7 +13,10 @@ function toCarouselItem(pkg: PackageListItem): CarouselItemData {
     title: pkg.name,
     img: pkg.thumbnail ?? "/landing/home/packages/packages-img-1.webp",
     fields: [
-      { label: "Package", value: pkg.package_type_display ?? pkg.package_type ?? "" },
+      {
+        label: "Package",
+        value: pkg.package_type_display ?? pkg.package_type ?? "",
+      },
       { label: "Category", value: pkg.category_name ?? "" },
     ],
   };
@@ -27,14 +30,16 @@ export default function Packages() {
     : (data?.results ?? []).map(toCarouselItem);
 
   return (
-    <ItemCarousel
-      titlePrefix="Our"
-      titleHighlight="Packages"
-      description="Choose from our curated packages designed to meet different needs. From fast rental-ready properties to personalized luxury interiors and scalable developer solutions."
-      items={items}
-      defaultButtonText="Package Details"
-      className="py-10"
-      id="packages"
-    />
+    <div className="w-full">
+      <ItemCarousel
+        titlePrefix="Our"
+        titleHighlight="Packages"
+        description="Choose from our curated packages designed to meet different needs. From fast rental-ready properties to personalized luxury interiors and scalable developer solutions."
+        items={items}
+        defaultButtonText="Package Details"
+        className="py-10"
+        id="packages"
+      />
+    </div>
   );
 }

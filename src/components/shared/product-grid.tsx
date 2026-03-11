@@ -3,9 +3,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
-  SlidersHorizontal,
-  LayoutGrid,
-  List as ListIcon,
   Heart,
   ShoppingCart,
   ChevronLeft,
@@ -101,7 +98,7 @@ export function ProductGrid({
       });
 
   return (
-    <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto pb-24">
+    <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto sm:pb-24">
       {/* Filter Header */}
       <div className="bg-white border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -115,16 +112,6 @@ export function ProductGrid({
           </div>
 
           <div className="flex flex-wrap items-center gap-3 lg:gap-4">
-            {/* View Toggles */}
-            <div className="bg-[#F5F5F5] p-1 rounded-[12px] flex items-center shrink-0">
-              <button className="bg-white text-[#1A1A1A] shadow-sm p-2 rounded-[8px] transition-all">
-                <LayoutGrid className="w-[18px] h-[18px]" />
-              </button>
-              <button className="text-[#888888] p-2 rounded-[8px] hover:text-[#1A1A1A] transition-all">
-                <ListIcon className="w-[18px] h-[18px]" />
-              </button>
-            </div>
-
             {/* Search */}
             <div className="relative w-full sm:w-auto flex-1 sm:flex-none">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
@@ -140,15 +127,15 @@ export function ProductGrid({
             </div>
 
             {/* Filter Button */}
-            <Button className="bg-[#422C20] hover:bg-[#322118] text-white rounded-[12px] h-11 px-6 text-[14px] font-medium flex items-center gap-2 shrink-0">
+            {/* <Button className="bg-[#422C20] hover:bg-[#322118] text-white rounded-[12px] h-11 px-6 text-[14px] font-medium flex items-center gap-2 shrink-0">
               <SlidersHorizontal className="w-4 h-4" />
               Filters
-            </Button>
+            </Button> */}
           </div>
         </div>
 
         {/* Categories */}
-        <div className="flex flex-wrap items-center gap-2 lg:gap-3 mt-6">
+        <div className="flex overflow-x-auto sm:flex-wrap items-center gap-2 lg:gap-3 mt-6 pb-2 sm:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -301,10 +288,13 @@ export function ProductGrid({
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
-          
-          {getPaginationItems(currentPage, totalPages).map((item, idx) => (
+
+          {getPaginationItems(currentPage, totalPages).map((item, idx) =>
             item === "..." ? (
-              <span key={`ellipsis-${idx}`} className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest">
+              <span
+                key={`ellipsis-${idx}`}
+                className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest"
+              >
                 ...
               </span>
             ) : (
@@ -319,11 +309,13 @@ export function ProductGrid({
               >
                 {item}
               </button>
-            )
-          ))}
+            ),
+          )}
 
           <button
-            onClick={() => onPageChange?.(Math.min(totalPages, currentPage + 1))}
+            onClick={() =>
+              onPageChange?.(Math.min(totalPages, currentPage + 1))
+            }
             disabled={currentPage === totalPages}
             className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >

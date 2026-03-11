@@ -18,11 +18,13 @@ function toFeaturedItem(prod: ProductListItem): FeaturedItem {
   const discountedPrice = prod.discounted_price
     ? parseFloat(prod.discounted_price)
     : undefined;
-    
+
   const price = discountedPrice ?? actualPrice;
   const originalPrice = discountedPrice ? actualPrice : undefined;
 
-  const saving = prod.money_saved ? Math.round(parseFloat(prod.money_saved)) : undefined;
+  const saving = prod.money_saved
+    ? Math.round(parseFloat(prod.money_saved))
+    : undefined;
 
   return {
     id: prod.slug,
@@ -37,9 +39,10 @@ function toFeaturedItem(prod: ProductListItem): FeaturedItem {
     saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,
     badge1: prod.tag?.replace("_", " ") || undefined,
     badge1Color: prod.tag ? TAG_BADGE_COLOR[prod.tag] : undefined,
-    badge2: prod.discount_percentage ? `-${prod.discount_percentage}% OFF` : undefined,
-    image:
-      prod.thumbnail ?? "/landing/single-products/bestselling-img-1.webp",
+    badge2: prod.discount_percentage
+      ? `-${prod.discount_percentage}% OFF`
+      : undefined,
+    image: prod.thumbnail ?? "/landing/single-products/bestselling-img-1.webp",
     itemType: "PRODUCT",
   };
 }

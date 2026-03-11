@@ -360,23 +360,20 @@ export default function SingleProductDetails({
 
             {activeTab === "Specifications" && (
               <div className="flex flex-col gap-2">
-                {data.specifications &&
-                data.specifications.length > 0 ? (
-                  data.specifications.map(
-                    (spec, idx) => (
-                      <div
-                        key={idx}
-                        className="flex justify-between items-center bg-[#FAFAFA] px-5 py-3.5 rounded-[12px]"
-                      >
-                        <span className="text-[#888888] text-[14px] font-medium">
-                          {spec.key}
-                        </span>
-                        <span className="text-[#1A1A1A] text-[14px] font-semibold">
-                          {spec.value}
-                        </span>
-                      </div>
-                    ),
-                  )
+                {data.specifications && data.specifications.length > 0 ? (
+                  data.specifications.map((spec, idx) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between items-center bg-[#FAFAFA] px-5 py-3.5 rounded-[12px]"
+                    >
+                      <span className="text-[#888888] text-[14px] font-medium">
+                        {spec.key}
+                      </span>
+                      <span className="text-[#1A1A1A] text-[14px] font-semibold">
+                        {spec.value}
+                      </span>
+                    </div>
+                  ))
                 ) : (
                   <p className="text-[#888] text-[14px]">
                     No specifications available.

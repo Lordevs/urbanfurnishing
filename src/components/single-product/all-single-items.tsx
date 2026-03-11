@@ -21,11 +21,13 @@ function toGridItem(prod: ProductListItem): GridItemProps {
   const discountedPrice = prod.discounted_price
     ? parseFloat(prod.discounted_price)
     : undefined;
-    
+
   const price = discountedPrice ?? actualPrice;
   const originalPrice = discountedPrice ? actualPrice : undefined;
 
-  const saving = prod.money_saved ? Math.round(parseFloat(prod.money_saved)) : undefined;
+  const saving = prod.money_saved
+    ? Math.round(parseFloat(prod.money_saved))
+    : undefined;
 
   const badges: GridItemProps["badges"] = [];
   if (prod.tag) {
@@ -52,8 +54,7 @@ function toGridItem(prod: ProductListItem): GridItemProps {
     originalPrice,
     saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,
     badges,
-    image:
-      prod.thumbnail ?? "/landing/single-products/single-item-img-1.webp",
+    image: prod.thumbnail ?? "/landing/single-products/single-item-img-1.webp",
     itemType: "PRODUCT",
   };
 }
@@ -102,9 +103,15 @@ export function AllSingleItems({
     page_size: PAGE_SIZE,
   });
 
-  const categoryLabels = ["All", ...(categoryData ?? []).map((c: { name: string }) => c.name)];
+  const categoryLabels = [
+    "All",
+    ...(categoryData ?? []).map((c: { name: string }) => c.name),
+  ];
   const categoryMap = Object.fromEntries(
-    (categoryData ?? []).map((c: { name: string; slug: string }) => [c.name, c.slug]),
+    (categoryData ?? []).map((c: { name: string; slug: string }) => [
+      c.name,
+      c.slug,
+    ]),
   );
 
   const items = (data?.results ?? []).map(toGridItem);
@@ -126,7 +133,10 @@ export function AllSingleItems({
 
   const activeCategoryName =
     selectedCategorySlug && categoryData
-      ? categoryData.find((c: { slug: string; name: string }) => c.slug === selectedCategorySlug)?.name ?? "All"
+      ? (categoryData.find(
+          (c: { slug: string; name: string }) =>
+            c.slug === selectedCategorySlug,
+        )?.name ?? "All")
       : "All";
 
   const handleCategoryChange = (cat: string) => {

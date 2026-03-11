@@ -12,8 +12,7 @@ function toCarouselItem(prod: ProductListItem): CarouselItemData {
     id: prod.id,
     title: prod.name,
     description: prod.short_description ?? undefined,
-    img:
-      prod.thumbnail ?? "/landing/home/single-item/single-item-img-1.webp",
+    img: prod.thumbnail ?? "/landing/home/single-item/single-item-img-1.webp",
   };
 }
 
@@ -25,14 +24,16 @@ export default function SingleItems() {
     : (data?.results ?? []).map(toCarouselItem);
 
   return (
-    <ItemCarousel
-      titlePrefix="Single"
-      titleHighlight="Items"
-      description="A curated selection of furniture and essentials designed to complete your space with style and functionality."
-      items={items}
-      defaultButtonText="Discover Collection"
-      className="py-10 pb-20"
-      id="single-items"
-    />
+    <div className="w-full">
+      <ItemCarousel
+        titlePrefix="Single"
+        titleHighlight="Items"
+        description="A curated selection of furniture and essentials designed to complete your space with style and functionality."
+        items={items}
+        defaultButtonText="Discover Collection"
+        className="py-10 pb-20"
+        id="single-items"
+      />
+    </div>
   );
 }

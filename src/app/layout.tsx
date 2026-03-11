@@ -70,11 +70,17 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${lufga.variable} antialiased`}
-        suppressHydrationWarning>
+        suppressHydrationWarning
+      >
         <Providers>
           <CartProvider>
             <Navbar />
-            <Toaster richColors position="top-right" duration={3000} closeButton />
+            <Toaster
+              richColors
+              position="top-right"
+              duration={3000}
+              closeButton
+            />
             {children}
             <Footer />
           </CartProvider>
