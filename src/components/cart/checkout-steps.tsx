@@ -11,7 +11,7 @@ const steps = [
 export function CheckoutSteps() {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between py-6 mb-8 w-full border-b border-[#F2F2F2]/60 pb-8">
-      <h1 className="text-3xl font-bold text-[#1A1A1A] mb-8 sm:mb-0">
+      <h1 className="text-3xl font-semibold font-serif text-[#0A0A0A] mb-8 sm:mb-0">
         Checkout
       </h1>
 

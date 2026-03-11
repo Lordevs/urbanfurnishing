@@ -41,8 +41,8 @@ export function CartItems() {
   const increment = (id: number) => {
     setItems((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
     );
   };
 
@@ -51,8 +51,8 @@ export function CartItems() {
       prev.map((item) =>
         item.id === id
           ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -63,8 +63,12 @@ export function CartItems() {
   return (
     <div className="flex flex-col gap-5 w-full">
       <div className="mb-2">
-        <h2 className="text-[22px] font-bold text-[#1A1A1A]">Shopping Cart</h2>
-        <p className="text-[#888888] text-[14px] mt-1">{items.length} items in your cart</p>
+        <h2 className="text-[22px] font-semibold font-serif text-[#0A0A0A]">
+          Shopping Cart
+        </h2>
+        <p className="text-[#888888] text-[14px] mt-1">
+          {items.length} items in your cart
+        </p>
       </div>
 
       {items.map((item, index) => (
@@ -104,13 +108,13 @@ export function CartItems() {
           </div>
 
           <div className="flex flex-col items-end justify-between h-full sm:h-[100px] mt-4 sm:mt-0 w-full sm:w-auto">
-            <button 
+            <button
               onClick={() => removeItem(item.id)}
               className="text-[#ef4444] hover:text-[#dc2626] transition-colors cursor-pointer mb-[30px] sm:mb-auto">
               <Trash2 className="w-[16px] h-[16px]" strokeWidth={2} />
             </button>
             <div className="flex items-center gap-4">
-              <button 
+              <button
                 onClick={() => decrement(item.id)}
                 className="w-8 h-8 rounded-[8px] border border-[#EBEBEB] flex items-center justify-center text-[#1A1A1A] hover:bg-[#F9F9F9] transition-colors cursor-pointer shrink-0">
                 <Minus className="w-3.5 h-3.5" />
@@ -118,7 +122,7 @@ export function CartItems() {
               <span className="text-[14px] font-medium text-[#1A1A1A] min-w-[12px] text-center">
                 {item.quantity}
               </span>
-              <button 
+              <button
                 onClick={() => increment(item.id)}
                 className="w-8 h-8 rounded-[8px] border border-[#EBEBEB] flex items-center justify-center text-[#1A1A1A] hover:bg-[#F9F9F9] transition-colors cursor-pointer shrink-0">
                 <Plus className="w-3.5 h-3.5" />
