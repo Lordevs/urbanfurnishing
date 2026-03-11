@@ -27,7 +27,7 @@ export default function CTA() {
       {/* Mobile View */}
       <div className="flex flex-col lg:hidden w-full bg-linear-to-b from-[#412A1F] to-[#5D4E3C] py-20 px-6">
         <div className="flex flex-col text-center items-center">
-          <h2 className="text-[32px] font-sans font-bold text-white mb-4 leading-tight max-w-[280px]">
+          <h2 className="text-[32px]  font-bold font-serif text-white mb-4 leading-tight max-w-[280px]">
             Let&apos;s Design Your Space Together
           </h2>
           <p className="text-white/80 text-[15px] leading-relaxed mb-10 max-w-[310px]">
