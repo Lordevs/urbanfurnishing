@@ -122,9 +122,9 @@ export function ItemCarousel({
           </CarouselContent>
 
           {/* Nav arrows customized to match image */}
-          <div className="hidden sm:block">
-            <CarouselPrevious className="absolute -left-5 lg:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDF9F1] border-none shadow-md hover:bg-[#F3EFE7] text-[#412A1F]" />
-            <CarouselNext className="absolute -right-5 lg:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDF9F1] border-none shadow-md hover:bg-[#F3EFE7] text-[#412A1F]" />
+          <div className="hidden sm:block z-10 pointer-events-none">
+            <CarouselPrevious className="absolute lg:-left-7 -left-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto [&_svg]:w-6 [&_svg]:h-6 [&_svg]:stroke-[1.5] z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100" />
+            <CarouselNext className="absolute lg:-right-7 -right-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto [&_svg]:w-6 [&_svg]:h-6 [&_svg]:stroke-[1.5] z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100" />
           </div>
         </Carousel>
       </div>
