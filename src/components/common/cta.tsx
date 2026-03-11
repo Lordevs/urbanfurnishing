@@ -39,7 +39,7 @@ export default function CTA() {
             {/* Left Content */}
             <div className="lg:w-[45%] w-full flex flex-col justify-center">
               <h2 className="text-[32px] sm:text-[42px] font-serif font-medium tracking-tight text-white mb-6 leading-[1.2]">
-                Let's <span className="text-[#C9A76A] font-serif">Design</span>{" "}
+                Let&apos;s <span className="text-[#C9A76A] font-serif">Design</span>{" "}
                 Your Space Together
               </h2>
 

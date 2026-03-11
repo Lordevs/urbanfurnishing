@@ -50,7 +50,7 @@ export default function ConsultationForm() {
                 Get In Touch
               </h3>
               <p className="text-[#E0Dcd8]/80 text-[13px] font-light mb-10 tracking-wide">
-                We're here to help bring your vision to life
+                We&apos;re here to help bring your vision to life
               </p>
 
               <div className="flex flex-col gap-5">
@@ -129,11 +129,11 @@ export default function ConsultationForm() {
               </div>
 
               <h3 className="text-3xl sm:text-4xl font-serif font-medium text-[#1a1a1a] mb-4 tracking-tight">
-                Let's Start Your{" "}
+                Let&apos;s Start Your{" "}
                 <span className="text-[#C9A76A] font-serif">Journey</span>
               </h3>
               <p className="text-[#8F877C] text-[13px] sm:text-[14px] font-light mb-12 tracking-wide">
-                Fill in the details below and we'll get back to you within 24
+                Fill in the details below and we&apos;ll get back to you within 24
                 hours to schedule your consultation.
               </p>
 

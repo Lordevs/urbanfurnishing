@@ -103,10 +103,11 @@ export default function Services() {
 
                 {/* Background SVG for all states */}
                 <div className="absolute inset-0 w-full h-full z-1 pointer-events-none opacity-100 transition-opacity duration-300">
-                  <img
+                  <Image
                     src="/landing/home/services/services.svg"
                     alt="bg effect"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
 

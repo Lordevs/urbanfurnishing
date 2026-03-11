@@ -241,7 +241,7 @@ export function PackageDetail() {
                 </div>
               </div>
 
-              <Button 
+              <Button
                 onClick={handleAddToCart}
                 className="flex-1 h-[52px] bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer border-none">
                 <ShoppingCart className="w-[18px] h-[18px]" />
@@ -249,7 +249,7 @@ export function PackageDetail() {
               </Button>
             </div>
 
-            <Button 
+            <Button
               onClick={handleAddToCart}
               className="w-full h-[52px] border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center hover:text-white transition-all bg-[#FCFBF9] shadow-sm cursor-pointer mt-1">
               Buy Now - Fast Checkout
@@ -259,7 +259,7 @@ export function PackageDetail() {
           {/* What's Included label grid */}
           <div className="mb-12">
             <h4 className="text-[16px] font-bold text-[#1A1A1A] mb-5">
-              What's Included
+              What&apos;s Included
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {includedFeatures.map((feat, idx) => (
@@ -267,10 +267,12 @@ export function PackageDetail() {
                   key={idx}
                   className="flex items-center gap-4 bg-white border border-[#F2F2F2] rounded-[16px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                   <div className="w-12 h-12 bg-[#FDFBF7] border border-[#F0EBE0] rounded-[12px] flex items-center justify-center shrink-0">
-                    <img
+                    <Image
                       src={feat.image}
                       alt={feat.title}
-                      className="w-5 h-5 object-contain"
+                      width={20}
+                      height={20}
+                      className="object-contain"
                     />
                   </div>
                   <div className="flex flex-col">

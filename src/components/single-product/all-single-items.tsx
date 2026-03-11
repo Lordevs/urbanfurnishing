@@ -161,6 +161,7 @@ export function AllSingleItems({
       items={singleItemsData}
       detailRoute={(id) => ROUTES.SINGLE_PRODUCT_DETAIL(id.toString())}
       limit={limit}
+      hidePagination={hidePagination}
     />
   );
 }

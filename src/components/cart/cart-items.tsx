@@ -34,7 +34,7 @@ export function CartItems() {
           </div>
           <h3 className="text-[18px] font-medium text-[#1A1A1A] mb-2">Your cart is empty</h3>
           <p className="text-[#888888] text-[14px] mb-8 text-center max-w-[280px]">
-            Looks like you haven't added anything to your cart yet.
+            Looks like you haven&apos;t added anything to your cart yet.
           </p>
           <Button 
             onClick={() => router.push(ROUTES.PACKAGES)}

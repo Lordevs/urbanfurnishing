@@ -24,18 +24,21 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("cart");
-    if (saved) {
+  const [items, setItems] = useState<CartItem[]>(() => {
+    if (typeof window !== "undefined") {
       try {
-        setItems(JSON.parse(saved));
+        const saved = localStorage.getItem("cart");
+        if (saved) return JSON.parse(saved);
       } catch (e) {
         console.error("Failed to parse cart", e);
       }
     }
+    return [];
+  });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
     setIsLoaded(true);
   }, []);
 

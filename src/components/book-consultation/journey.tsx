@@ -35,7 +35,7 @@ export default function Journey() {
             Us
           </h2>
           <p className="text-[#000000]/50 text-[18px] sm:text-[20px] font-light tracking-wide max-w-md mx-auto">
-            From consultation to completion, here's what to expect
+            From consultation to completion, here&apos;s what to expect
           </p>
         </div>
 
