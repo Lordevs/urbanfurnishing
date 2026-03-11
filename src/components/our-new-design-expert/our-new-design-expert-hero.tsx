@@ -38,7 +38,7 @@ export default function OurDesignExpertHero() {
             </Button>
           </Link>
 
-          <Link href="#services">
+          <Link href={ROUTES.PACKAGES}>
             <Button
               variant="outline"
               className="rounded-full bg-white/20 cursor-pointer backdrop-blur-md text-white hover:bg-white/30 h-[52px] px-8 text-[15px] font-normal transition-all duration-300 border border-white/20 hover:border-white/40 shadow-lg hover:-translate-y-0.5">

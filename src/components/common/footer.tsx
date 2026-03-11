@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin, Mail, Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/route";
 
 const quickLinks = [
   "Living Room",
@@ -135,7 +136,7 @@ export default function Footer() {
                   {quickLinks.map((link) => (
                     <li key={link}>
                       <Link
-                        href="#"
+                        href={ROUTES.SINGLE_PRODUCTS}
                         className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
                         {link}
                       </Link>
@@ -152,7 +153,7 @@ export default function Footer() {
                   {packages.map((link) => (
                     <li key={link}>
                       <Link
-                        href="#"
+                        href={ROUTES.PACKAGES}
                         className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
                         {link}
                       </Link>
@@ -169,7 +170,7 @@ export default function Footer() {
                   {singleItems.map((link) => (
                     <li key={link}>
                       <Link
-                        href="#"
+                        href={ROUTES.SINGLE_PRODUCTS}
                         className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
                         {link}
                       </Link>
@@ -186,7 +187,7 @@ export default function Footer() {
                   {ourServices.map((link) => (
                     <li key={link}>
                       <Link
-                        href="#"
+                        href={ROUTES.HOME}
                         className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
                         {link}
                       </Link>
@@ -205,22 +206,22 @@ export default function Footer() {
             </p>
             <div className="flex items-center flex-wrap justify-center gap-6 sm:gap-8">
               <Link
-                href="#"
+                href={ROUTES.PRIVACY_POLICY}
                 className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
                 Privacy
               </Link>
               <Link
-                href="#"
+                href={ROUTES.TERMS_OF_SERVICE}
                 className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
                 Terms
               </Link>
               <Link
-                href="#"
+                href={ROUTES.PRIVACY_POLICY}
                 className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
                 Cookies
               </Link>
               <Link
-                href="#"
+                href={ROUTES.HOME}
                 className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
                 Sitemap
               </Link>

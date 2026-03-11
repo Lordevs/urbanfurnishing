@@ -38,7 +38,7 @@ export default function SingleProductHero() {
             </Button>
           </Link>
 
-          <Link href="#packages">
+          <Link href={ROUTES.PACKAGES}>
             <Button
               variant="outline"
               className="rounded-full bg-white/70 cursor-pointer backdrop-blur-md text-[#412A1F] hover:bg-white/90 h-[56px] px-8 text-[14px] font-semibold transition-all duration-300 border-none shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
