@@ -144,7 +144,7 @@ export function FeaturedCollections() {
                   </div>
                 </div>
 
-                <h3 className="text-[18px] font-sans font-bold text-[#1A1A1A] leading-tight mb-2">
+                <h3 className="text-[18px] font-serif font-bold text-[#1A1A1A] leading-tight mb-2">
                   {item.title}
                 </h3>
 

@@ -11,11 +11,12 @@ export default function DesignDirection() {
       {/* Mobile View */}
       <div className="md:hidden flex flex-col py-12 px-4 bg-white">
         <div className="text-center mb-8">
-          <h2 className="text-[25px] font-bold text-[#1A1A1A] mb-3 tracking-tight">
+          <h2 className="text-[25px] font-bold font-serif text-[#1A1A1A] mb-3 tracking-tight">
             Design Direction
           </h2>
           <p className="text-[#666666] text-[13.5px] font-medium leading-[1.6] max-w-[280px] mx-auto">
-            Explore our curated styles and find inspiration for your perfect space
+            Explore our curated styles and find inspiration for your perfect
+            space
           </p>
         </div>
 
@@ -26,21 +27,29 @@ export default function DesignDirection() {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image src={`${BASE}/design-direction-1.webp`} alt="Design 1" fill className="object-cover" />
+              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <Image
+                src={`${BASE}/design-direction-1.webp`}
+                alt="Design 1"
+                fill
+                className="object-cover"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image src={`${BASE}/design-direction-2.webp`} alt="Design 2" fill className="object-cover" />
+              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <Image
+                src={`${BASE}/design-direction-2.webp`}
+                alt="Design 2"
+                fill
+                className="object-cover"
+              />
             </motion.div>
           </div>
-          
+
           {/* Row 2: 3 items */}
           <div className="grid grid-cols-3 gap-3">
             <motion.div
@@ -48,27 +57,39 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image src={`${BASE}/design-direction-3.webp`} alt="Design 3" fill className="object-cover" />
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <Image
+                src={`${BASE}/design-direction-3.webp`}
+                alt="Design 3"
+                fill
+                className="object-cover"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image src={`${BASE}/design-direction-4.webp`} alt="Design 4" fill className="object-cover" />
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <Image
+                src={`${BASE}/design-direction-4.webp`}
+                alt="Design 4"
+                fill
+                className="object-cover"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image src={`${BASE}/design-direction-5.webp`} alt="Design 5" fill className="object-cover" />
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <Image
+                src={`${BASE}/design-direction-5.webp`}
+                alt="Design 5"
+                fill
+                className="object-cover"
+              />
             </motion.div>
           </div>
 
@@ -79,18 +100,26 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image src={`${BASE}/design-direction-6.webp`} alt="Design 6" fill className="object-cover" />
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <Image
+                src={`${BASE}/design-direction-6.webp`}
+                alt="Design 6"
+                fill
+                className="object-cover"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image src={`${BASE}/design-direction-7.webp`} alt="Design 7" fill className="object-cover" />
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <Image
+                src={`${BASE}/design-direction-7.webp`}
+                alt="Design 7"
+                fill
+                className="object-cover"
+              />
             </motion.div>
           </div>
         </div>

@@ -426,7 +426,7 @@ export function PackageDetail() {
             </span>
           </div>
 
-          <h1 className="text-[26px] font-sans font-bold text-[#1A1A1A] leading-[1.2] mb-4">
+          <h1 className="text-[26px] font-serif font-bold text-[#1A1A1A] leading-[1.2] mb-4">
             Modern Living Essentials
           </h1>
 
@@ -439,10 +439,10 @@ export function PackageDetail() {
 
           <div className="bg-[#FAFAFA] rounded-2xl p-5 mb-6 flex flex-col gap-4">
             <div className="flex items-baseline gap-2">
-              <span className="text-[28px] font-bold text-[#1A1A1A]">
+              <span className="text-[28px] font-serif font-bold text-[#1A1A1A]">
                 AED 2,399
               </span>
-              <span className="text-[15px] font-medium text-[#B3B3B3] line-through">
+              <span className="text-[15px] font-serif font-medium text-[#B3B3B3] line-through">
                 AED 3,299
               </span>
             </div>
@@ -495,7 +495,7 @@ export function PackageDetail() {
         <div className="bg-[#FAFAFA] px-4 py-8 grid grid-cols-1 gap-10 border-t border-[#F2F2F2]">
           {/* Mobile What's Included */}
           <div>
-            <h2 className="text-[18px] font-bold text-[#1A1A1A] mb-5">
+            <h2 className="text-[18px] font-serif font-bold text-[#1A1A1A] mb-5">
               What&apos;s Included
             </h2>
             <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:mb-0 px-1">
@@ -525,7 +525,7 @@ export function PackageDetail() {
 
           {/* Mobile Product Features */}
           <div>
-            <h2 className="text-[18px] font-bold text-[#1A1A1A] mb-5">
+            <h2 className="text-[18px] font-serif font-bold text-[#1A1A1A] mb-5">
               Product Features
             </h2>
             <div className="flex flex-col gap-4 mb-8">

@@ -160,7 +160,7 @@ export default function SingleProductDetails() {
 
           {/* Badges */}
           <div className="flex items-center gap-3 mb-3">
-            <div className="bg-[#C9A76A] text-white text-[10px] font-bold px-3 py-1 rounded-[6px] tracking-wide uppercase">
+            <div className="bg-[#C9A76A] font-serif text-white text-[10px] font-bold px-3 py-1 rounded-[6px] tracking-wide uppercase">
               LIVING ROOM
             </div>
             <div className="bg-[#F5F5F5] flex items-center gap-1.5 px-3 py-1 rounded-[6px]">
@@ -186,14 +186,14 @@ export default function SingleProductDetails() {
           <div className="bg-[#FAFAFA] rounded-[16px] p-5 mb-5 flex flex-col gap-1">
             <span className="text-[13px] text-[#888888]">Package Price</span>
             <div className="flex items-center gap-3">
-              <span className="text-[26px] font-bold text-[#1A1A1A]">
+              <span className="text-[26px] font-serif font-bold text-[#1A1A1A]">
                 AED 23,999
               </span>
-              <span className="text-[16px] text-[#AAAAAA] line-through">
+              <span className="text-[16px] font-serif text-[#AAAAAA] line-through">
                 AED 31,999
               </span>
             </div>
-            <span className="text-[#C9A76A] text-[13px] font-medium mt-1">
+            <span className="text-[#C9A76A] font-serif text-[13px] font-medium mt-1">
               Save AED 8,000 (25% off)
             </span>
           </div>
@@ -207,7 +207,7 @@ export default function SingleProductDetails() {
           </Button>
 
           {/* What's Included */}
-          <h3 className="text-[18px] font-bold text-[#1A1A1A] mb-4 flex items-center gap-2">
+          <h3 className="text-[18px] font-bold font-serif text-[#1A1A1A] mb-4 flex items-center gap-2">
             What's Included
           </h3>
           <div className="flex flex-col gap-3.5 mb-8">
@@ -224,7 +224,7 @@ export default function SingleProductDetails() {
           </div>
 
           {/* Features */}
-          <h3 className="text-[18px] font-bold text-[#1A1A1A] mb-4">
+          <h3 className="text-[18px] font-bold font-serif text-[#1A1A1A] mb-4">
             Features
           </h3>
           <div className="grid grid-cols-2 gap-3 mb-8">
@@ -257,7 +257,7 @@ export default function SingleProductDetails() {
           <hr className="border-[#EBEBEB] w-full mb-6" />
 
           {/* Dimensions */}
-          <h3 className="text-[18px] font-bold text-[#1A1A1A] mb-4">
+          <h3 className="text-[18px] font-bold font-serif text-[#1A1A1A] mb-4">
             Dimensions
           </h3>
           <div className="flex flex-col gap-3.5 mb-8">
@@ -279,7 +279,7 @@ export default function SingleProductDetails() {
 
         <div className="px-4">
           {/* You Might Also Like */}
-          <h3 className="text-[20px] font-bold text-[#1A1A1A] mb-5">
+          <h3 className="text-[20px] font-bold font-serif text-[#1A1A1A] mb-5">
             You Might Also Like
           </h3>
           <div className="flex flex-col gap-4">

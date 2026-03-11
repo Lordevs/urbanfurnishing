@@ -90,8 +90,10 @@ export function FeaturedCarousel({
               <CarouselItem
                 key={index}
                 className="pl-6 md:basis-full lg:basis-1/2">
-                <div 
-                  onClick={() => detailRoute && router.push(detailRoute(item.id))}
+                <div
+                  onClick={() =>
+                    detailRoute && router.push(detailRoute(item.id))
+                  }
                   className="flex flex-col sm:flex-row bg-white rounded-[24px] overflow-hidden border border-[#F0F0F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full min-h-[460px] cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all">
                   {/* Left: Image */}
                   <div className="relative w-full sm:w-[45%] shrink-0 min-h-[300px] sm:min-h-full bg-[#f8f8f8]">
@@ -120,7 +122,7 @@ export function FeaturedCarousel({
                     </div>
 
                     {/* Heart Button */}
-                    <button 
+                    <button
                       onClick={(e) => e.stopPropagation()}
                       className="absolute top-5 right-5 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform">
                       <Heart className="w-4 h-4 text-[#1A1A1A]" />
@@ -199,7 +201,9 @@ export function FeaturedCarousel({
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={(e: React.MouseEvent) => handleAddToCart(e, item)}
+                          onClick={(e: React.MouseEvent) =>
+                            handleAddToCart(e, item)
+                          }
                           className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none cursor-pointer shrink-0 ml-auto">
                           <ShoppingCart className="w-[16px] h-[16px]" />
                           <span className="whitespace-nowrap">Add to Cart</span>
@@ -213,10 +217,20 @@ export function FeaturedCarousel({
           </CarouselContent>
           <div className="hidden lg:block">
             <CarouselPrevious className="absolute -left-5 sm:-left-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-[54px] h-[54px] bg-[#FBEBD9] border-none hover:bg-[#F3DECA] shadow-lg">
-              <Image src="/common/arrow-left.svg" alt="Previous" width={20} height={20} />
+              <Image
+                src="/common/arrow-left.svg"
+                alt="Previous"
+                width={20}
+                height={20}
+              />
             </CarouselPrevious>
             <CarouselNext className="absolute -right-5 sm:-right-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-[54px] h-[54px] bg-[#FBEBD9] border-none hover:bg-[#F3DECA] shadow-lg">
-               <Image src="/common/arrow-right.svg" alt="Next" width={20} height={20} />
+              <Image
+                src="/common/arrow-right.svg"
+                alt="Next"
+                width={20}
+                height={20}
+              />
             </CarouselNext>
           </div>
         </Carousel>
