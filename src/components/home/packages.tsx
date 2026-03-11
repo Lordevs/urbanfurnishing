@@ -91,15 +91,19 @@ export default function Packages() {
   const currentPackage = allMobilePackages[currentPage - 1];
 
   const getPageNumbers = () => {
-    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (totalPages <= 5)
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
     if (currentPage <= 2) return [1, 2, "...", totalPages - 1, totalPages];
-    if (currentPage >= totalPages - 1) return [1, 2, "...", totalPages - 1, totalPages];
+    if (currentPage >= totalPages - 1)
+      return [1, 2, "...", totalPages - 1, totalPages];
     return [1, "...", currentPage, "...", totalPages];
   };
 
   return (
     <>
-      <div className="sm:hidden w-full px-4 py-16" id="packages-mobile">
+      <div
+        className="sm:hidden w-full px-4 py-10 sm:py-16"
+        id="packages-mobile">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-semibold tracking-tight mb-3">
             <span className="text-[#1a1a1a] font-serif">Our </span>
@@ -140,17 +144,17 @@ export default function Packages() {
             </div>
           </div>
 
-          {/* Pagination */}
-          <div className="flex items-center justify-center gap-1.5 mt-8">
+          {/* Pagination - Right Aligned with Card */}
+          <div className="flex items-center justify-end gap-1.5 mt-8 w-full sm:max-w-[400px]">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
-              className={`w-8 h-8 flex items-center justify-center rounded-[4px] transition-colors cursor-pointer ${
+              className={`w-8 h-8 flex items-center justify-center rounded-[4px] transition-colors ${
                 currentPage === 1
-                  ? "bg-[#B5A89F] text-white cursor-not-allowed border border-[#B5A89F]"
-                  : "border border-[#E5E5E5] text-gray-500 hover:bg-gray-50"
+                  ? "bg-[#B5A89F] border border-[#B5A89F] text-white cursor-not-allowed"
+                  : "bg-white border border-[#E5E5E5] text-[#1E293B] hover:bg-gray-50 cursor-pointer"
               }`}>
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5 stroke-2" />
             </button>
 
             {getPageNumbers().map((pageNum, idx) => (
@@ -160,12 +164,12 @@ export default function Packages() {
                   typeof pageNum === "number" && setCurrentPage(pageNum)
                 }
                 disabled={pageNum === "..."}
-                className={`w-8 h-8 flex items-center justify-center rounded-[4px] text-[13px] font-bold transition-colors cursor-pointer ${
+                className={`w-8 h-8 flex items-center justify-center rounded-[4px] text-[13px] font-bold transition-colors ${
                   pageNum === currentPage
                     ? "border border-[#603D2C] text-[#603D2C]"
                     : pageNum === "..."
-                      ? "border border-[#E5E5E5] text-[#1A1A1A] cursor-default"
-                      : "border border-[#E5E5E5] text-[#1A1A1A] hover:bg-gray-50"
+                      ? "border border-[#E5E5E5] text-[#1E293B] cursor-default"
+                      : "border border-[#E5E5E5] text-[#1E293B] hover:bg-gray-50 cursor-pointer"
                 }`}>
                 {pageNum}
               </button>
@@ -176,12 +180,12 @@ export default function Packages() {
                 setCurrentPage((prev) => Math.min(totalPages, prev + 1))
               }
               disabled={currentPage === totalPages}
-              className={`w-8 h-8 flex items-center justify-center rounded-[4px] transition-colors cursor-pointer ${
+              className={`w-8 h-8 flex items-center justify-center rounded-[4px] transition-colors bg-white ${
                 currentPage === totalPages
-                  ? "border border-[#E5E5E5] text-[#D1D5DB] cursor-not-allowed"
-                  : "border border-[#E5E5E5] text-[#9CA3AF] hover:bg-gray-50"
+                  ? "border border-[#E5E5E5] text-[#9CA3AF] cursor-not-allowed"
+                  : "border border-[#E5E5E5] text-[#1E293B] hover:bg-gray-50 cursor-pointer"
               }`}>
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 stroke-2" />
             </button>
           </div>
         </div>
