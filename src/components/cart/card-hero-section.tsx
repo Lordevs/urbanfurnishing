@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
+import Link from "next/link";
+
+import { HeroSection } from "@/components/shared/hero-section";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
-import { HeroSection } from "@/components/shared/hero-section";
 
 const benefits = [
   "Free 30-minute consultation",

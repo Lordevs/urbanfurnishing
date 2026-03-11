@@ -1,10 +1,11 @@
 "use client";
 
+import { ArrowUpRight, MapPin, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MapPin, Mail, Phone } from "lucide-react";
-import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ROUTES } from "@/constants/route";
 
 const quickLinks = [

@@ -1,19 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu } from "lucide-react";
-import { navItems } from "@/lib/nav-items";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+
 import { Button } from "@/components/ui/button";
-import { ROUTES } from "@/constants/route";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { ROUTES } from "@/constants/route";
+import { navItems } from "@/lib/nav-items";
 
 const Navbar = () => {
   const pathname = usePathname();

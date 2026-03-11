@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
+import Link from "next/link";
+
+import { HeroSection } from "@/components/shared/hero-section";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
-import { HeroSection } from "@/components/shared/hero-section";
 
 const benefits = [
   "Free 30-minute consultation",
@@ -43,7 +44,8 @@ export default function PackagesHero() {
           <Link href={ROUTES.PACKAGES}>
             <Button
               variant="outline"
-              className="rounded-full bg-white/70 cursor-pointer backdrop-blur-md text-[#412A1F] hover:bg-white/90 h-[56px] px-8 text-[14px] font-semibold transition-all duration-300 border-none shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
+              className="rounded-full bg-white/70 cursor-pointer backdrop-blur-md text-[#412A1F] hover:bg-white/90 h-[56px] px-8 text-[14px] font-semibold transition-all duration-300 border-none shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10"
+            >
               Explore Packages
             </Button>
           </Link>
@@ -54,7 +56,8 @@ export default function PackagesHero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20">
+          className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20"
+        >
           <div className="px-2 sm:px-16 py-2 sm:py-5 rounded-[24px] sm:rounded-[28px] shadow-lg flex flex-col gap-7 min-w-[300px] sm:min-w-[480px] bg-[#FFF8F0]/70 backdrop-blur-sm border border-[#F0E9DD]">
             <h3 className="text-[#412A1F] text-[18px] font-serif sm:text-[20px] font-medium text-center mb-2">
               Why Book With Us?

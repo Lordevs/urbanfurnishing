@@ -12,29 +12,31 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useCart } from "@/lib/cart-context";
+import { useCart } from "@/context/cart-context";
 
 export interface FeaturedItem {
-  id: string | number;
+  id: string;
+  slug: string;
   category: string;
   title: string;
   description: string;
   features: string[];
   pieces: number;
-  price: string;
-  originalPrice?: string;
+  price: number;
+  originalPrice?: number;
   saveText?: string;
   badge1?: string;
   badge1Color?: string;
   badge2?: string;
   image: string;
+  itemType: "PRODUCT" | "PACKAGE";
 }
 
 interface FeaturedCarouselProps {
   title: React.ReactNode;
   description: string;
   items: FeaturedItem[];
-  detailRoute?: (id: string | number) => string;
+  detailRoute?: (id: string) => string;
 }
 
 export function FeaturedCarousel({
@@ -50,10 +52,12 @@ export function FeaturedCarousel({
     e.stopPropagation();
     addItem({
       id: item.id,
+      slug: item.slug,
       name: item.title,
       price: item.price,
       quantity: 1,
       image: item.image,
+      itemType: item.itemType,
     });
   };
   return (

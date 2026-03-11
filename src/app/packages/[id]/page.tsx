@@ -1,10 +1,15 @@
 import Testimonial from "@/components/common/testimonial";
 import { PackageDetail } from "@/components/packages/detail/package-detail";
 
-export default function PackageDetailPage() {
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+export default async function PackageDetailPage({ params }: Props) {
+  const { id } = await params;
   return (
     <div className="min-h-screen">
-      <PackageDetail />
+      <PackageDetail slug={id} />
       <Testimonial />
     </div>
   );

@@ -16,28 +16,44 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/lib/cart-context";
+import { useCart } from "@/context/cart-context";
 
 export interface GridItemProps {
-  id: string | number;
+  id: string;
+  slug: string;
   category: string;
   title: string;
   description: string;
   pieces: number;
-  price: string;
-  originalPrice: string;
-  saveText: string;
+  price: number;
+  originalPrice?: number;
+  saveText?: string;
   badges: { text: string; color: string }[];
   image: string;
+  itemType: "PRODUCT" | "PACKAGE";
 }
 
 interface ProductGridProps {
   title: string;
   categories: string[];
   items: GridItemProps[];
-  detailRoute?: (id: string | number) => string;
+  detailRoute?: (id: string) => string;
   limit?: number;
   hidePagination?: boolean;
+  activeCategory?: string;
+  currentPage?: number;
+  totalPages?: number;
+  onPageChange?: (page: number) => void;
+  /** Called with the selected category label when the user changes tabs. Optional — if omitted, filtering is handled client-side. */
+  onCategoryChange?: (category: string) => void;
+}
+
+function getPaginationItems(current: number, total: number) {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  if (current <= 4) return [1, 2, 3, 4, 5, "...", total];
+  if (current >= total - 3)
+    return [1, "...", total - 4, total - 3, total - 2, total - 1, total];
+  return [1, "...", current - 1, current, current + 1, "...", total];
 }
 
 export function ProductGrid({
@@ -47,32 +63,42 @@ export function ProductGrid({
   detailRoute,
   limit,
   hidePagination,
+  activeCategory,
+  currentPage = 1,
+  totalPages = 1,
+  onPageChange,
+  onCategoryChange,
 }: ProductGridProps) {
   const router = useRouter();
   const { addItem } = useCart();
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [internalActiveCategory, setInternalActiveCategory] = useState("All");
+  const currentCategory = activeCategory ?? internalActiveCategory;
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleAddToCart = (e: React.MouseEvent, item: GridItemProps) => {
     e.stopPropagation();
     addItem({
       id: item.id,
+      slug: item.slug,
       name: item.title,
       price: item.price,
       quantity: 1,
       image: item.image,
+      itemType: item.itemType,
     });
   };
 
-  const filteredItems = items.filter((pkg) => {
-    const matchesCategory =
-      activeCategory === "All" ||
-      pkg.category.toLowerCase() === activeCategory.toLowerCase();
-    const matchesSearch =
-      pkg.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      pkg.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredItems = onCategoryChange
+    ? items // parent drives filtering via onCategoryChange; show all items passed in
+    : items.filter((pkg) => {
+        const matchesCategory =
+          currentCategory === "All" ||
+          pkg.category.toLowerCase() === currentCategory.toLowerCase();
+        const matchesSearch =
+          pkg.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          pkg.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
 
   return (
     <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto pb-24">
@@ -126,9 +152,14 @@ export function ProductGrid({
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => {
+                if (activeCategory === undefined) {
+                  setInternalActiveCategory(cat);
+                }
+                onCategoryChange?.(cat);
+              }}
               className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition-colors ${
-                activeCategory === cat
+                currentCategory === cat
                   ? "bg-[#422C20] text-white"
                   : "bg-[#F5F5F5] text-[#666666] hover:bg-[#EBEBEB] hover:text-[#1A1A1A]"
               }`}
@@ -261,27 +292,41 @@ export function ProductGrid({
       )}
 
       {/* Pagination */}
-      {!hidePagination && (
+      {!hidePagination && totalPages > 1 && (
         <div className="flex items-center justify-end gap-2.5 mt-16 pb-8">
-          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-[#A5958A] text-white flex items-center justify-center transition-all shadow-sm cursor-pointer hover:bg-[#8F8177]">
+          <button
+            onClick={() => onPageChange?.(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             <ChevronLeft className="w-4 h-4" />
           </button>
-          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border-2 border-[#8A7969] text-[#8A7969] text-[14px] lg:text-[15px] font-bold flex items-center justify-center shadow-sm cursor-pointer hover:bg-[#FDFBF9]">
-            1
-          </button>
-          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
-            2
-          </button>
-          <span className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest">
-            ...
-          </span>
-          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
-            9
-          </button>
-          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#1A1A1A] text-[14px] lg:text-[15px] font-bold hover:border-[#8A7969] hover:text-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
-            10
-          </button>
-          <button className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer">
+          
+          {getPaginationItems(currentPage, totalPages).map((item, idx) => (
+            item === "..." ? (
+              <span key={`ellipsis-${idx}`} className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest">
+                ...
+              </span>
+            ) : (
+              <button
+                key={`page-${item}`}
+                onClick={() => onPageChange?.(item as number)}
+                className={`w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] flex items-center justify-center shadow-sm cursor-pointer transition-all text-[14px] lg:text-[15px] font-bold ${
+                  currentPage === item
+                    ? "bg-white border-2 border-[#8A7969] text-[#8A7969]"
+                    : "bg-white border border-[#EBEBEB] text-[#1A1A1A] hover:border-[#8A7969] hover:text-[#8A7969]"
+                }`}
+              >
+                {item}
+              </button>
+            )
+          ))}
+
+          <button
+            onClick={() => onPageChange?.(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+            className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>

@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import {
   Star,
   Minus,
@@ -11,18 +9,17 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  AlertCircle,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useCart } from "@/lib/cart-context";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/constants/route";
+import { useState } from "react";
 
-const images = [
-  "/landing/detail-page/detail-image-1.webp",
-  "/landing/detail-page/detail-image-2.webp",
-  "/landing/detail-page/detail-image-3.webp",
-  "/landing/detail-page/detail-image-4.webp",
-];
+import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/route";
+import { useCart } from "@/context/cart-context";
+import { usePackageDetail } from "@/hooks/queries/use-package-detail";
+import { formatAED } from "@/lib/utils";
 
 const includedFeatures = [
   {
@@ -47,36 +44,11 @@ const includedFeatures = [
   },
 ];
 
-const features = [
-  "Premium upholstery with stain-resistant fabric protection",
-  "Solid wood frame construction for lasting durability",
-  "Hand-crafted details and expert finishing",
-  "Ergonomically designed for maximum comfort",
-  "10-year structural warranty included",
-  "Complimentary white-glove delivery service",
-  "Professional assembly and setup included",
-  "Eco-friendly and sustainably sourced materials",
-];
+interface PackageDetailProps {
+  slug: string;
+}
 
-const specifications = [
-  { label: "Composition Material", value: "Solid Wood & Premium Fiber Cloth" },
-  { label: "Overall Dimensions", value: "240cm x 180cm x 85cm" },
-  { label: "Weight Capacity", value: "Up to 350kg (Tested Rigorously)" },
-  { label: "Seat Height", value: "Ergonomic 45cm standard" },
-  { label: "Assembly Process", value: "Professional assembly included" },
-  { label: "Care Instructions", value: "Professional cleaning recommended" },
-];
-
-const whatsIncludedList = [
-  "1x Modern 3-Seater Sofa Unit",
-  "2x Matching Comfort Accent Chairs",
-  "1x Solid Wood Coffee Table",
-  "4x Decorative Throw Pillows",
-  "Official Warranty Documentation",
-  "Care Guide & Maintenance Kit",
-];
-
-export function PackageDetail() {
+export function PackageDetail({ slug }: PackageDetailProps) {
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("Features & Benefits");
@@ -84,15 +56,74 @@ export function PackageDetail() {
   const { addItem } = useCart();
   const router = useRouter();
 
+  const { data, isLoading, isError } = usePackageDetail(slug);
+
+  if (isLoading) {
+    return (
+      <section className="py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto min-h-[60vh] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-[#C9A76A] border-t-transparent rounded-full animate-spin" />
+      </section>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <section className="py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto min-h-[60vh] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <AlertCircle className="w-12 h-12 text-red-500" />
+          <h2 className="text-xl font-bold text-[#1A1A1A]">
+            Package not found
+          </h2>
+        </div>
+      </section>
+    );
+  }
+
+  const images =
+    data.images.length > 0
+      ? [
+          ...data.images
+            .filter((i) => i.is_primary || i.order === 0)
+            .map((i) => i.image),
+          ...data.images
+            .filter((i) => !i.is_primary && i.order !== 0)
+            .map((i) => i.image),
+        ]
+      : ["/landing/detail-page/detail-image-1.webp"];
+
+  const actualPrice = parseFloat(data.actual_price);
+  const effectivePrice = data.effective_price
+    ? parseFloat(data.effective_price)
+    : data.discounted_price
+      ? parseFloat(data.discounted_price)
+      : null;
+  const price = effectivePrice ?? actualPrice;
+  const originalPrice = effectivePrice ? actualPrice : null;
+  const savingAmount = data.money_saved ? parseFloat(data.money_saved) : null;
+
+  const currentFeatures = data.features_and_benefits?.length
+    ? data.features_and_benefits
+    : data.key_benefits?.length
+      ? data.key_benefits
+      : (data.features ?? []);
+
+  const currentSpecs = data.specifications ?? [];
+  const currentWhatsIncluded = data.whats_included ?? [];
+
   const handleAddToCart = () => {
     addItem({
-      id: "pkg-contemporary",
-      name: "The Contemporary Collection (Package)",
-      price: "₹10,000",
+      id: data.id,
+      slug: data.slug,
+      name: data.name,
+      price: price || 0,
       quantity: quantity,
       image: images[0],
-      color: "Premium Set",
+      itemType: "PACKAGE",
     });
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
     router.push(ROUTES.CART);
   };
 
@@ -114,11 +145,13 @@ export function PackageDetail() {
               className="object-cover transition-transform duration-500"
             />
             {/* Badges */}
-            <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-              <span className="bg-[#C9A76A] text-white text-[11px] sm:text-[12px] font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-sm">
-                Save 27%
-              </span>
-            </div>
+            {data.discount_percentage ? (
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
+                <span className="bg-[#C9A76A] text-white text-[11px] sm:text-[12px] font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-sm">
+                  Save {data.discount_percentage}%
+                </span>
+              </div>
+            ) : null}
 
             <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6">
               <span className="bg-[#1A1A1A]/80 backdrop-blur-md text-white text-[11px] sm:text-[12px] font-medium px-4 py-1.5 rounded-full shadow-sm">
@@ -129,12 +162,14 @@ export function PackageDetail() {
             {/* Nav Arrows */}
             <button
               onClick={prevImage}
-              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 rounded-[14px] sm:rounded-[16px] flex items-center justify-center shadow-lg hover:bg-white transition-colors cursor-pointer">
+              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 rounded-[14px] sm:rounded-[16px] flex items-center justify-center shadow-lg hover:bg-white transition-colors cursor-pointer"
+            >
               <ChevronLeft className="w-5 h-5 text-[#1A1A1A]" />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 rounded-[14px] sm:rounded-[16px] flex items-center justify-center shadow-lg hover:bg-white transition-colors cursor-pointer">
+              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 rounded-[14px] sm:rounded-[16px] flex items-center justify-center shadow-lg hover:bg-white transition-colors cursor-pointer"
+            >
               <ChevronRight className="w-5 h-5 text-[#1A1A1A]" />
             </button>
           </div>
@@ -149,7 +184,8 @@ export function PackageDetail() {
                   activeImage === idx
                     ? "border-[#412A1F] shadow-sm scale-100"
                     : "border-transparent hover:border-[#EBEBEB] scale-[0.98]"
-                }`}>
+                }`}
+              >
                 <Image
                   src={img}
                   alt={`Thumbnail ${idx + 1}`}
@@ -168,12 +204,13 @@ export function PackageDetail() {
             <div className="flex items-center gap-2">
               <div className="bg-[#FCF9F3] text-[#C9A76A] px-3.5 py-1.5 rounded-full flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase border border-[#F2EAD9]">
                 <div className="w-[5px] h-[5px] rounded-full bg-[#C9A76A] drop-shadow-[0_0_2px_rgba(201,167,106,0.3)]" />
-                Living Room
+                {data.category_name || "Package"} &bull;{" "}
+                {data.package_type_display || data.package_type || "Standard"}
               </div>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#453127] leading-tight">
-              Modern Living Essentials
+              {data.name}
             </h1>
 
             <div className="flex items-center gap-3">
@@ -188,10 +225,9 @@ export function PackageDetail() {
             </div>
 
             <p className="text-[#5D4E3C]/80 text-[14px] sm:text-[15px] leading-relaxed mt-1">
-              Complete your living room with this contemporary furniture set.
-              Expertly curated collection featuring premium materials and
-              timeless design that transforms any space. Each piece is carefully
-              selected to ensure perfect harmony and lasting quality.
+              {data.short_description ||
+                data.description ||
+                "No description provided."}
             </p>
           </div>
 
@@ -199,22 +235,34 @@ export function PackageDetail() {
           <div className="bg-linear-to-r from-white via-[#FFF8F0] to-white border border-[#F2EFE9] rounded-[20px] p-6 lg:p-8 mb-8 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
             <div className="flex items-end gap-3 mb-4">
               <span className="text-4xl lg:text-[46px] font-bold text-[#412A1F] leading-none tracking-tight">
-                AED 2,399
+                {formatAED(price)}
               </span>
-              <span className="text-[#5D4E3C]/30 text-[16px] lg:text-[20px] font-medium tracking-tight line-through mb-1.5">
-                AED 3,299
-              </span>
+              {originalPrice && (
+                <span className="text-[#5D4E3C]/30 text-[16px] lg:text-[20px] font-medium tracking-tight line-through mb-1.5">
+                  {formatAED(originalPrice)}
+                </span>
+              )}
             </div>
-            <div className="flex flex-col gap-3">
-              <div className="bg-[#F0FDF4] text-[#008236] w-max px-3 py-1 rounded-full flex items-center gap-1.5 text-[11px] font-bold tracking-wide">
-                <Check className="w-3.5 h-3.5 stroke-3" />
-                Save AED 900
+            {savingAmount && (
+              <div className="flex flex-col gap-3">
+                <div className="bg-[#F0FDF4] text-[#008236] w-max px-3 py-1 rounded-full flex items-center gap-1.5 text-[11px] font-bold tracking-wide">
+                  <Check className="w-3.5 h-3.5 stroke-3" />
+                  Save {formatAED(savingAmount)}
+                </div>
+                <div className="flex items-center gap-1.5 text[#5D4E3C]/80 text-[11px] font-medium">
+                  <Clock className="w-3.5 h-3.5" />
+                  Fast delivery and professional assembly
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 text[#5D4E3C]/80 text-[11px] font-medium">
-                <Clock className="w-3.5 h-3.5" />
-                35% savings vs. individual items
+            )}
+            {!savingAmount && (
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-1.5 text[#5D4E3C]/80 text-[11px] font-medium">
+                  <Clock className="w-3.5 h-3.5" />
+                  Fast delivery and professional assembly
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Quantity & Actions */}
@@ -227,7 +275,8 @@ export function PackageDetail() {
                 <div className="flex items-center gap-3.5">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0">
+                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
+                  >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
                   <span className="text-[15px] font-medium text-[#412A1F] min-w-[12px] text-center">
@@ -235,7 +284,8 @@ export function PackageDetail() {
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0">
+                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
+                  >
                     <Plus className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -243,15 +293,17 @@ export function PackageDetail() {
 
               <Button
                 onClick={handleAddToCart}
-                className="flex-1 h-[52px] bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer border-none">
+                className="flex-1 h-[52px] bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer border-none"
+              >
                 <ShoppingCart className="w-[18px] h-[18px]" />
                 Add to Cart
               </Button>
             </div>
 
             <Button
-              onClick={handleAddToCart}
-              className="w-full h-[52px] border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center hover:text-white transition-all bg-[#FCFBF9] shadow-sm cursor-pointer mt-1">
+              onClick={handleBuyNow}
+              className="w-full h-[52px] border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center hover:text-white transition-all bg-[#FCFBF9] shadow-sm cursor-pointer mt-1"
+            >
               Buy Now - Fast Checkout
             </Button>
           </div>
@@ -265,7 +317,8 @@ export function PackageDetail() {
               {includedFeatures.map((feat, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-4 bg-white border border-[#F2F2F2] rounded-[16px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                  className="flex items-center gap-4 bg-white border border-[#F2F2F2] rounded-[16px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+                >
                   <div className="w-12 h-12 bg-[#FDFBF7] border border-[#F0EBE0] rounded-[12px] flex items-center justify-center shrink-0">
                     <Image
                       src={feat.image}
@@ -299,7 +352,8 @@ export function PackageDetail() {
                     activeTab === tab
                       ? "bg-linear-to-r from-[#C9A76A] to-[#B3905A] text-white shadow-md shadow-[#C9A76A]/20"
                       : "text-[#888888] hover:text-[#1A1A1A]"
-                  }`}>
+                  }`}
+                >
                   {tab}
                 </button>
               ),
@@ -310,10 +364,11 @@ export function PackageDetail() {
           <div className="mb-10 min-h-[160px]">
             {activeTab === "Features & Benefits" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {features.map((feature, idx) => (
+                {currentFeatures.map((feature, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+                  >
                     <div className="w-6 h-6 rounded-full bg-linear-to-r from-[#C9A76A] to-[#B3905A] flex items-center justify-center shrink-0 shadow-sm shadow-[#C9A76A]/20">
                       <Check className="w-3 h-3 text-white stroke-3" />
                     </div>
@@ -327,12 +382,13 @@ export function PackageDetail() {
 
             {activeTab === "Specifications" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {specifications.map((spec, idx) => (
+                {currentSpecs.map((spec, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center justify-between gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center justify-between gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+                  >
                     <span className="text-[12px] text-[#888888] font-medium shrink-0">
-                      {spec.label}
+                      {spec.key}
                     </span>
                     <span className="text-[12px] text-[#1A1A1A] font-semibold text-right leading-tight wrap-break-word">
                       {spec.value}
@@ -344,10 +400,11 @@ export function PackageDetail() {
 
             {activeTab === "What's Included" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {whatsIncludedList.map((item, idx) => (
+                {currentWhatsIncluded.map((item, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+                  >
                     <div className="w-6 h-6 rounded-full bg-[#FCF9F3] border border-[#F2EAD9] flex items-center justify-center shrink-0">
                       <div className="w-2 h-2 rounded-full bg-[#C9A76A]" />
                     </div>

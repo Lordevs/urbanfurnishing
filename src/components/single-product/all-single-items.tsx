@@ -1,149 +1,82 @@
 "use client";
 
-import { ProductGrid, GridItemProps } from "../shared/product-grid";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+
 import { ROUTES } from "@/constants/route";
+import { useProductCategories } from "@/hooks/queries/use-categories";
+import { useProducts } from "@/hooks/queries/use-products";
+import type { ProductListItem } from "@/types/api";
 
-const categories = [
-  "All",
-  "Living Room",
-  "Bedroom",
-  "Dining Room",
-  "Office",
-  "Outdoor",
-  "Kids",
-];
+import { ProductGrid, GridItemProps } from "../shared/product-grid";
 
-const singleItemsData: GridItemProps[] = [
-  {
-    id: 1,
-    category: "OFFICE",
-    title: "The Contemporary Collection",
-    description:
-      "A curated living room suite featuring modern Italian design and premium craftsmanship",
-    pieces: 5,
-    price: "AED 1,599",
-    originalPrice: "AED 2,099",
-    saveText: "Save AED 500",
-    badges: [
-      { text: "NEW", color: "bg-[#D1B072]" },
-      { text: "-24% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/single-products/single-item-img-1.webp",
-  },
-  {
-    id: 2,
-    category: "DINING ROOM",
-    title: "The Executive Workspace",
-    description:
-      "Build your ideal home office with ergonomic furniture and smart storage solutions",
-    pieces: 5,
-    price: "AED 999",
-    originalPrice: "AED 1,299",
-    saveText: "Save AED 300",
-    badges: [
-      { text: "VALUE PACK", color: "bg-[#D1B072]" },
-      { text: "-23% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/single-products/single-item-img-2.webp",
-  },
-  {
-    id: 3,
-    category: "DINING ROOM",
-    title: "The Grand Suite",
-    description:
-      "Transform your master bedroom into a five-star hotel experience with luxury textiles",
-    pieces: 7,
-    price: "AED 1,899",
-    originalPrice: "AED 2,499",
-    saveText: "Save AED 600",
-    badges: [{ text: "-24% OFF", color: "bg-[#1A1A1A]" }],
-    image: "/landing/single-products/single-item-img-3.webp",
-  },
-  {
-    id: 4,
-    category: "KIDS",
-    title: "The Contemporary Collection",
-    description:
-      "A curated living room suite featuring modern Italian design and premium craftsmanship",
-    pieces: 6,
-    price: "AED 1,299",
-    originalPrice: "AED 1,699",
-    saveText: "Save AED 400",
-    badges: [{ text: "-24% OFF", color: "bg-[#1A1A1A]" }],
-    image: "/landing/single-products/single-item-img-4.webp",
-  },
-  {
-    id: 5,
-    category: "LIVING ROOM",
-    title: "The Contemporary Collection",
-    description:
-      "A curated living room suite featuring modern Italian design and premium craftsmanship",
-    pieces: 8,
-    price: "AED 2,399",
-    originalPrice: "AED 3,299",
-    saveText: "Save AED 900",
-    badges: [
-      { text: "BEST SELLER", color: "bg-[#D1B072]" },
-      { text: "-24% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/single-products/single-item-img-5.webp",
-  },
-  {
-    id: 6,
-    category: "BEDROOM",
-    title: "The Contemporary Collection",
-    description:
-      "A curated living room suite featuring modern Italian design and premium craftsmanship",
-    pieces: 5,
-    price: "AED 2,399",
-    originalPrice: "",
-    saveText: "",
-    badges: [],
-    image: "/landing/single-products/single-item-img-6.webp",
-  },
-  {
-    id: 7,
-    category: "LIVING ROOM",
-    title: "The Contemporary Collection",
-    description:
-      "A curated living room suite featuring modern Italian design and premium craftsmanship",
-    pieces: 5,
-    price: "AED 1,799",
-    originalPrice: "",
-    saveText: "",
-    badges: [],
-    image: "/landing/single-products/single-item-img-7.webp",
-  },
-  {
-    id: 8,
-    category: "BEDROOM",
-    title: "The Contemporary Collection",
-    description:
-      "A curated living room suite featuring modern Italian design and premium craftsmanship",
-    pieces: 8,
-    price: "AED 3,199",
-    originalPrice: "AED 4,199",
-    saveText: "Save AED 1000",
-    badges: [
-      { text: "PREMIUM", color: "bg-[#D1B072]" },
-      { text: "-24% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/single-products/single-item-img-8.webp",
-  },
-  {
-    id: 9,
-    category: "OUTDOOR",
-    title: "The Executive Workspace",
-    description:
-      "Build your ideal home office with ergonomic furniture and smart storage solutions",
-    pieces: 9,
-    price: "AED 2,199",
-    originalPrice: "",
-    saveText: "",
-    badges: [],
-    image: "/landing/single-products/single-item-img-9.webp",
-  },
-];
+const TAG_COLOR: Record<string, string> = {
+  BEST_SELLER: "bg-[#D1B072]",
+  PREMIUM: "bg-[#D1B072]",
+  VALUE_PACK: "bg-[#D1B072]",
+  NEW: "bg-[#D1B072]",
+};
+
+function toGridItem(prod: ProductListItem): GridItemProps {
+  const actualPrice = parseFloat(prod.actual_price);
+  const discountedPrice = prod.discounted_price
+    ? parseFloat(prod.discounted_price)
+    : undefined;
+    
+  const price = discountedPrice ?? actualPrice;
+  const originalPrice = discountedPrice ? actualPrice : undefined;
+
+  const saving = prod.money_saved ? Math.round(parseFloat(prod.money_saved)) : undefined;
+
+  const badges: GridItemProps["badges"] = [];
+  if (prod.tag) {
+    badges.push({
+      text: prod.tag.replace("_", " "),
+      color: TAG_COLOR[prod.tag] ?? "bg-[#D1B072]",
+    });
+  }
+  if (prod.discount_percentage) {
+    badges.push({
+      text: `-${prod.discount_percentage}% OFF`,
+      color: "bg-[#1A1A1A]",
+    });
+  }
+
+  return {
+    id: prod.slug,
+    slug: prod.slug,
+    category: prod.category_name?.toUpperCase() ?? "",
+    title: prod.name,
+    description: prod.short_description ?? "",
+    pieces: 0,
+    price,
+    originalPrice,
+    saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,
+    badges,
+    image:
+      prod.thumbnail ?? "/landing/single-products/single-item-img-1.webp",
+    itemType: "PRODUCT",
+  };
+}
+
+function GridSkeleton() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse"
+        >
+          <div className="aspect-4/3 bg-[#F0EBE4]" />
+          <div className="p-5 flex flex-col gap-3">
+            <div className="h-3 w-16 bg-[#F0EBE4] rounded" />
+            <div className="h-6 w-3/4 bg-[#F0EBE4] rounded" />
+            <div className="h-4 w-full bg-[#F0EBE4] rounded" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 interface AllSingleItemsProps {
   limit?: number;
@@ -154,14 +87,85 @@ export function AllSingleItems({
   limit,
   hidePagination,
 }: AllSingleItemsProps = {}) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  const selectedCategorySlug = searchParams.get("category");
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const PAGE_SIZE = 9;
+
+  const { data: categoryData } = useProductCategories();
+  const { data, isLoading } = useProducts({
+    ...(selectedCategorySlug ? { category__slug: selectedCategorySlug } : {}),
+    page: currentPage,
+    page_size: PAGE_SIZE,
+  });
+
+  const categoryLabels = ["All", ...(categoryData ?? []).map((c: { name: string }) => c.name)];
+  const categoryMap = Object.fromEntries(
+    (categoryData ?? []).map((c: { name: string; slug: string }) => [c.name, c.slug]),
+  );
+
+  const items = (data?.results ?? []).map(toGridItem);
+
+  if (isLoading) {
+    return (
+      <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto pb-24">
+        <div className="bg-white border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 animate-pulse">
+          <div className="flex gap-2">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="h-9 w-24 bg-[#F0EBE4] rounded-full" />
+            ))}
+          </div>
+        </div>
+        <GridSkeleton />
+      </section>
+    );
+  }
+
+  const activeCategoryName =
+    selectedCategorySlug && categoryData
+      ? categoryData.find((c: { slug: string; name: string }) => c.slug === selectedCategorySlug)?.name ?? "All"
+      : "All";
+
+  const handleCategoryChange = (cat: string) => {
+    const slug = cat === "All" ? null : categoryMap[cat];
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (slug) {
+      newParams.set("category", slug);
+    } else {
+      newParams.delete("category");
+    }
+    newParams.delete("page");
+    router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
+  };
+
+  const handlePageChange = (page: number) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (page > 1) {
+      newParams.set("page", String(page));
+    } else {
+      newParams.delete("page");
+    }
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
+
+  const totalPages = data?.count ? Math.ceil(data.count / PAGE_SIZE) : 1;
+
   return (
     <ProductGrid
       title="All Single Items"
-      categories={categories}
-      items={singleItemsData}
-      detailRoute={(id) => ROUTES.SINGLE_PRODUCT_DETAIL(id.toString())}
+      categories={categoryLabels}
+      items={items}
+      activeCategory={activeCategoryName}
+      detailRoute={(id) => ROUTES.SINGLE_PRODUCT_DETAIL(id)}
       limit={limit}
       hidePagination={hidePagination}
+      onCategoryChange={handleCategoryChange}
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
     />
   );
 }

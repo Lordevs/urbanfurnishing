@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 
 export default function SignatureDesign() {

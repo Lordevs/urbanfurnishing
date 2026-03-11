@@ -13,6 +13,17 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     qualities: [100, 95, 90, 85, 80, 75, 50, 25],
     minimumCacheTTL: 60,
+
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "urbanfurnishing-backend.onrender.com",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
   },
 
   // Optimize output

@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
 const stats = [

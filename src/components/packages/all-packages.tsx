@@ -1,149 +1,162 @@
 "use client";
 
-import { ProductGrid, GridItemProps } from "../shared/product-grid";
-
-const categories = [
-  "All",
-  "Living Room",
-  "Bedroom",
-  "Dining Room",
-  "Office",
-  "Outdoor",
-  "Kids",
-];
-
-const packagesData: GridItemProps[] = [
-  {
-    id: 1,
-    category: "OFFICE",
-    title: "Home Office Pro",
-    description: "Create a productive workspace at home",
-    pieces: 5,
-    price: "AED 1,599",
-    originalPrice: "AED 2,099",
-    saveText: "Save AED 500",
-    badges: [
-      { text: "NEW", color: "bg-[#D1B072]" },
-      { text: "-24% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/packages/packages-product-img-1.webp",
-  },
-  {
-    id: 2,
-    category: "DINING ROOM",
-    title: "Compact Dining Set",
-    description: "Perfect for apartments and cozy dining spaces",
-    pieces: 5,
-    price: "AED 999",
-    originalPrice: "AED 1,299",
-    saveText: "Save AED 300",
-    badges: [
-      { text: "VALUE PACK", color: "bg-[#D1B072]" },
-      { text: "-23% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/packages/packages-product-img-2.webp",
-  },
-  {
-    id: 3,
-    category: "DINING ROOM",
-    title: "Elegant Dining Collection",
-    description: "Host memorable dinners with this stylish dining set",
-    pieces: 7,
-    price: "AED 1,899",
-    originalPrice: "AED 2,499",
-    saveText: "Save AED 600",
-    badges: [{ text: "-24% OFF", color: "bg-[#1A1A1A]" }],
-    image: "/landing/packages/packages-product-img-2.webp",
-  },
-  {
-    id: 4,
-    category: "KIDS",
-    title: "Kids Dream Room",
-    description: "Fun and functional furniture for your little ones",
-    pieces: 6,
-    price: "AED 1,299",
-    originalPrice: "AED 1,699",
-    saveText: "Save AED 400",
-    badges: [{ text: "-24% OFF", color: "bg-[#1A1A1A]" }],
-    image: "/landing/packages/packages-product-img-3.webp",
-  },
-  {
-    id: 5,
-    category: "LIVING ROOM",
-    title: "Modern Living Essentials",
-    description: "Complete your living room with this contemporary furniture set",
-    pieces: 8,
-    price: "AED 2,399",
-    originalPrice: "AED 3,299",
-    saveText: "Save AED 900",
-    badges: [
-      { text: "BEST SELLER", color: "bg-[#D1B072]" },
-      { text: "-24% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/packages/packages-product-img-4.webp",
-  },
-  {
-    id: 6,
-    category: "BEDROOM",
-    title: "Classic Bedroom Comfort",
-    description: "Timeless bedroom furniture for restful nights",
-    pieces: 5,
-    price: "AED 2,399",
-    originalPrice: "",
-    saveText: "",
-    badges: [],
-    image: "/landing/packages/packages-product-img-5.webp",
-  },
-  {
-    id: 7,
-    category: "LIVING ROOM",
-    title: "Minimalist Studio Bundle",
-    description: "Perfect for small spaces and modern living",
-    pieces: 5,
-    price: "AED 1,799",
-    originalPrice: "",
-    saveText: "",
-    badges: [],
-    image: "/landing/packages/packages-product-img-4.webp",
-  },
-  {
-    id: 8,
-    category: "BEDROOM",
-    title: "Luxury Bedroom Suite",
-    description: "Transform your bedroom into a luxurious retreat",
-    pieces: 6,
-    price: "AED 3,199",
-    originalPrice: "AED 4,199",
-    saveText: "Save AED 1000",
-    badges: [
-      { text: "PREMIUM", color: "bg-[#D1B072]" },
-      { text: "-24% OFF", color: "bg-[#1A1A1A]" },
-    ],
-    image: "/landing/packages/packages-product-img-5.webp",
-  },
-  {
-    id: 9,
-    category: "OUTDOOR",
-    title: "Outdoor Oasis",
-    description: "Extend your living space outdoors with style",
-    pieces: 9,
-    price: "AED 2,199",
-    originalPrice: "",
-    saveText: "",
-    badges: [],
-    image: "/landing/packages/packages-product-img-3.webp",
-  },
-];
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 import { ROUTES } from "@/constants/route";
+import { usePackageCategories } from "@/hooks/queries/use-categories";
+import { usePackages } from "@/hooks/queries/use-packages";
+import type { PackageListItem } from "@/types/api";
+
+import { ProductGrid, GridItemProps } from "../shared/product-grid";
+
+const TAG_COLOR: Record<string, string> = {
+  BEST_SELLER: "bg-[#D1B072]",
+  PREMIUM: "bg-[#D1B072]",
+  VALUE_PACK: "bg-[#D1B072]",
+  NEW: "bg-[#D1B072]",
+};
+
+function toGridItem(pkg: PackageListItem): GridItemProps {
+  const actualPrice = parseFloat(pkg.actual_price);
+  const discountedPrice = pkg.discounted_price
+    ? parseFloat(pkg.discounted_price)
+    : undefined;
+    
+  const price = discountedPrice ?? actualPrice;
+  const originalPrice = discountedPrice ? actualPrice : undefined;
+  
+  const saving = pkg.money_saved ? Math.round(parseFloat(pkg.money_saved)) : undefined;
+
+  const badges: GridItemProps["badges"] = [];
+  if (pkg.tag) {
+    badges.push({
+      text: pkg.tag.replace("_", " "),
+      color: TAG_COLOR[pkg.tag] ?? "bg-[#D1B072]",
+    });
+  }
+  if (pkg.discount_percentage) {
+    badges.push({
+      text: `-${pkg.discount_percentage}% OFF`,
+      color: "bg-[#1A1A1A]",
+    });
+  }
+
+  return {
+    id: pkg.slug,
+    slug: pkg.slug,
+    category: pkg.category_name?.toUpperCase() ?? "",
+    title: pkg.name,
+    description: pkg.short_description ?? "",
+    pieces: pkg.pieces_count ?? 0,
+    price,
+    originalPrice,
+    saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,
+    badges,
+    image: pkg.thumbnail ?? "/landing/packages/packages-product-img-1.webp",
+    itemType: "PACKAGE",
+  };
+}
+
+function GridSkeleton() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse"
+        >
+          <div className="aspect-4/3 bg-[#F0EBE4]" />
+          <div className="p-5 flex flex-col gap-3">
+            <div className="h-3 w-16 bg-[#F0EBE4] rounded" />
+            <div className="h-6 w-3/4 bg-[#F0EBE4] rounded" />
+            <div className="h-4 w-full bg-[#F0EBE4] rounded" />
+            <div className="h-4 w-5/6 bg-[#F0EBE4] rounded" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function AllPackages() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  const selectedCategorySlug = searchParams.get("category");
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const PAGE_SIZE = 6;
+
+  const { data: categoryData } = usePackageCategories();
+  const { data, isLoading } = usePackages({
+    ...(selectedCategorySlug ? { category__slug: selectedCategorySlug } : {}),
+    page: currentPage,
+    page_size: PAGE_SIZE,
+  });
+
+  const categoryLabels = ["All", ...(categoryData ?? []).map((c: { name: string }) => c.name)];
+  const categoryMap = Object.fromEntries(
+    (categoryData ?? []).map((c: { name: string; slug: string }) => [c.name, c.slug]),
+  );
+
+  const items = (data?.results ?? []).map(toGridItem);
+
+  if (isLoading) {
+    return (
+      <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto pb-24">
+        <div className="bg-white border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 animate-pulse">
+          <div className="flex gap-2">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="h-9 w-24 bg-[#F0EBE4] rounded-full" />
+            ))}
+          </div>
+        </div>
+        <GridSkeleton />
+      </section>
+    );
+  }
+
+  const activeCategoryName =
+    selectedCategorySlug && categoryData
+      ? categoryData.find((c: { slug: string; name: string }) => c.slug === selectedCategorySlug)?.name ?? "All"
+      : "All";
+
+  const handleCategoryChange = (cat: string) => {
+    const slug = cat === "All" ? null : categoryMap[cat];
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (slug) {
+      newParams.set("category", slug);
+    } else {
+      newParams.delete("category");
+    }
+    // Reset to page 1 on category change
+    newParams.delete("page");
+    router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
+  };
+
+  const handlePageChange = (page: number) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (page > 1) {
+      newParams.set("page", String(page));
+    } else {
+      newParams.delete("page");
+    }
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
+
+  const totalPages = data?.count ? Math.ceil(data.count / PAGE_SIZE) : 1;
+
   return (
     <ProductGrid
       title="All Packages"
-      categories={categories}
-      items={packagesData}
-      detailRoute={(id) => ROUTES.PACKAGES_DETAIL(id.toString())}
+      categories={categoryLabels}
+      items={items}
+      activeCategory={activeCategoryName}
+      detailRoute={(id) => ROUTES.PACKAGES_DETAIL(id)}
+      onCategoryChange={handleCategoryChange}
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
     />
   );
 }
