@@ -138,7 +138,7 @@ export default function Packages() {
               <p className="text-[#DDA15E] text-[13px] font-medium mb-3">
                 {currentPackage.price}
               </p>
-              <button className="w-full py-2.5 border border-[#E5E5E5] text-[#2c1a11]/70 rounded-[4px] text-[12px] font-semibold tracking-wide hover:bg-gray-50 transition-colors cursor-pointer">
+              <button className="w-full py-2.5 border border-[#C9A76A] text-[#2c1a11]/70 rounded-[4px] text-[12px] font-semibold tracking-wide hover:bg-gray-50 transition-colors cursor-pointer">
                 View Details
               </button>
             </div>
