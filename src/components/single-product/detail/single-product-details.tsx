@@ -104,7 +104,6 @@ export default function SingleProductDetails() {
       image: images[activeImage],
       color: "Italian Leather",
     });
-    router.push(ROUTES.CART);
   };
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % images.length);

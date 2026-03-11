@@ -56,7 +56,6 @@ export function FeaturedCarousel({
       image: item.image,
       color: item.category,
     });
-    router.push(ROUTES.CART);
   };
   return (
     <section className="py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">

@@ -63,7 +63,6 @@ export function ProductGrid({
       image: item.image,
       color: item.category,
     });
-    router.push(ROUTES.CART);
   };
 
   const filteredItems = items.filter((pkg) => {

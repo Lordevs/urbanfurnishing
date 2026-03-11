@@ -5,7 +5,7 @@ import { FeaturedCarousel } from "../shared/featured-carousel";
 
 const bestsellingData = [
   {
-    id: 1,
+    id: "best-1",
     category: "LIVING ROOM",
     title: "The Contemporary Collection",
     description:
@@ -21,7 +21,7 @@ const bestsellingData = [
     image: "/landing/single-products/bestselling-img-1.webp",
   },
   {
-    id: 2,
+    id: "best-2",
     category: "BEDROOM",
     title: "The Grand Suite",
     description:

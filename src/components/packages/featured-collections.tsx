@@ -16,7 +16,7 @@ import { FeaturedCarousel } from "../shared/featured-carousel";
 
 const collections = [
   {
-    id: 1,
+    id: "pkg-1",
     category: "LIVING ROOM",
     title: "Modern Living Essentials",
     description:
@@ -32,7 +32,7 @@ const collections = [
     image: "/landing/packages/feature-image-1.webp",
   },
   {
-    id: 2,
+    id: "pkg-2",
     category: "BEDROOM",
     title: "Luxury Bedroom Suite",
     description: "Transform your bedroom into a luxurious retreat",
@@ -64,7 +64,6 @@ export function FeaturedCollections() {
       image: item.image,
       color: item.category,
     });
-    router.push(ROUTES.CART);
   };
 
   const getPageNumbers = () => {

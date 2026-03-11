@@ -93,7 +93,6 @@ export function PackageDetail() {
       image: images[0],
       color: "Premium Set",
     });
-    router.push(ROUTES.CART);
   };
 
   const nextImage = () => setActiveImage((prev) => (prev + 1) % images.length);

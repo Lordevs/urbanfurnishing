@@ -64,7 +64,7 @@ export default function RootLayout({
         suppressHydrationWarning>
         <CartProvider>
           <Navbar />
-          <Toaster richColors position="top-right" duration={3000} closeButton />
+          <Toaster richColors position="top-right" duration={3000} />
           {children}
           <Footer />
         </CartProvider>

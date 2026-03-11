@@ -15,7 +15,7 @@ const categories = [
 
 const singleItemsData: GridItemProps[] = [
   {
-    id: 1,
+    id: "single-1",
     category: "OFFICE",
     title: "The Contemporary Collection",
     description:
@@ -31,7 +31,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-1.webp",
   },
   {
-    id: 2,
+    id: "single-2",
     category: "DINING ROOM",
     title: "The Executive Workspace",
     description:
@@ -47,7 +47,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-2.webp",
   },
   {
-    id: 3,
+    id: "single-3",
     category: "DINING ROOM",
     title: "The Grand Suite",
     description:
@@ -60,7 +60,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-3.webp",
   },
   {
-    id: 4,
+    id: "single-4",
     category: "KIDS",
     title: "The Contemporary Collection",
     description:
@@ -73,7 +73,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-4.webp",
   },
   {
-    id: 5,
+    id: "single-5",
     category: "LIVING ROOM",
     title: "The Contemporary Collection",
     description:
@@ -89,7 +89,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-5.webp",
   },
   {
-    id: 6,
+    id: "single-6",
     category: "BEDROOM",
     title: "The Contemporary Collection",
     description:
@@ -102,7 +102,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-6.webp",
   },
   {
-    id: 7,
+    id: "single-7",
     category: "LIVING ROOM",
     title: "The Contemporary Collection",
     description:
@@ -115,7 +115,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-7.webp",
   },
   {
-    id: 8,
+    id: "single-8",
     category: "BEDROOM",
     title: "The Contemporary Collection",
     description:
@@ -131,7 +131,7 @@ const singleItemsData: GridItemProps[] = [
     image: "/landing/single-products/single-item-img-8.webp",
   },
   {
-    id: 9,
+    id: "single-9",
     category: "OUTDOOR",
     title: "The Executive Workspace",
     description:
