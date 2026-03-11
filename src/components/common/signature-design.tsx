@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function SignatureDesign() {
@@ -10,7 +10,54 @@ export default function SignatureDesign() {
     <section
       id="design-expert"
       className="w-full lg:py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden">
-      <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+      {/* Mobile View */}
+      <div className="block lg:hidden py-10">
+        <h2 className="text-[28px] sm:text-[32px] font-serif font-bold tracking-tight mb-4 leading-[1.2]">
+          <span className="text-[#3D261C] font-serif">Our </span>
+          <span className="text-[#C9A76A] font-serif">Signature Design</span>
+          <br />
+          <span className="text-[#3D261C] font-serif">Service</span>
+        </h2>
+        <p className="text-[#5D4E3C]/80 text-[13px] leading-[1.6] mb-8 pr-4">
+          Experience personalized interior design with our expert team. We
+          transform your vision into reality through comprehensive consultation,
+          custom designs, and seamless execution.
+        </p>
+
+        <ul className="flex flex-col gap-4 mb-8">
+          {[
+            "Free Consultation",
+            "Custom 3D Designs",
+            "Professional Installation",
+            "Lifetime Support",
+          ].map((item, idx) => (
+            <li key={idx} className="flex items-center gap-3">
+              <div className="w-[22px] h-[22px] rounded-full bg-[#FDF8F0] flex items-center justify-center shrink-0">
+                <Check className="w-3.5 h-3.5 text-[#C9A76A]" strokeWidth={3} />
+              </div>
+              <span className="text-[#3D261C] text-[13px] font-semibold">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <button className="bg-[#3D261C] text-white text-[12px] px-6 py-3.5 rounded-[6px] font-medium mb-10 tracking-wide hover:bg-[#2C1A11] transition-colors cursor-pointer">
+          Book Consultation
+        </button>
+
+        <div className="relative w-full aspect-3/4 overflow-hidden rounded-[16px]">
+          <Image
+            src="/common/signature-design-img.webp"
+            alt="Signature Design Service"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </div>
+
+      {/* Desktop View */}
+      <div className="hidden lg:flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -96,7 +143,7 @@ export default function SignatureDesign() {
             <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-1.5 pl-6 h-12 text-[14.5px] font-medium transition-all duration-300 shadow-none border-none cursor-pointer">
               Meet the Team
               <div className="bg-[#FDF4E7] rounded-full p-2 text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
+                <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-2" />
               </div>
             </Button>
             <Button
