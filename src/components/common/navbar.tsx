@@ -118,13 +118,9 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[320px] bg-white p-0">
                   <div className="flex flex-col h-full">
-                    <div className="p-6 border-b">
-                      <SheetTitle className="text-xl font-light tracking-tight text-primary">
-                        Navigation
-                      </SheetTitle>
-                    </div>
+                    <SheetTitle className="sr-only">Navigation</SheetTitle>
 
-                    <div className="flex-1 overflow-y-auto py-4">
+                    <div className="flex-1 overflow-y-auto">
                       {navItems.map((item) => {
                         const isActive =
                           item.href === ROUTES.HOME
@@ -135,7 +131,7 @@ const Navbar = () => {
                             key={item.href}
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className={`flex items-center gap-4 px-8 py-4 text-md font-medium transition-all ${
+                            className={`flex items-center gap-4 px-4 py-4 text-md font-medium transition-all ${
                               isActive
                                 ? "text-primary bg-primary/5 border-l-4 border-primary"
                                 : "text-muted-foreground hover:bg-gray-50"
