@@ -37,12 +37,13 @@ export default function PackagesHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[36px] font-sans font-semibold leading-tight text-white mb-5 tracking-tight">
-              Complete <span className="text-[#C9A76A]">Room</span>
+              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
+              Complete <span className="text-[#C9A76A] font-serif">Room</span>
               <br />
-              <span className="text-[#C9A76A]">Packages.</span> Complete
+              <span className="text-[#C9A76A] font-serif">Packages.</span>{" "}
+              Complete
               <br />
-              <span className="text-[#C9A76A]">Peace of Mind</span>
+              <span className="text-[#C9A76A] font-serif">Peace of Mind</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

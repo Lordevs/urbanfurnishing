@@ -212,8 +212,12 @@ export function FeaturedCarousel({
             ))}
           </CarouselContent>
           <div className="hidden lg:block">
-            <CarouselPrevious className="absolute -left-5 sm:-left-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-[54px] h-[54px] bg-[#FBEBD9] border-none text-[#3D261C] hover:bg-[#F3DECA] hover:text-[#2C1A11] shadow-lg [&_svg]:w-6! [&_svg]:h-6! [&_svg]:stroke-1!" />
-            <CarouselNext className="absolute -right-5 sm:-right-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-[54px] h-[54px] bg-[#FBEBD9] border-none text-[#3D261C] hover:bg-[#F3DECA] hover:text-[#2C1A11] shadow-lg [&_svg]:w-6! [&_svg]:h-6! [&_svg]:stroke-1!" />
+            <CarouselPrevious className="absolute -left-5 sm:-left-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-[54px] h-[54px] bg-[#FBEBD9] border-none hover:bg-[#F3DECA] shadow-lg">
+              <Image src="/common/arrow-left.svg" alt="Previous" width={20} height={20} />
+            </CarouselPrevious>
+            <CarouselNext className="absolute -right-5 sm:-right-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-[54px] h-[54px] bg-[#FBEBD9] border-none hover:bg-[#F3DECA] shadow-lg">
+               <Image src="/common/arrow-right.svg" alt="Next" width={20} height={20} />
+            </CarouselNext>
           </div>
         </Carousel>
       </div>
