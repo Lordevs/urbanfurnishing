@@ -129,6 +129,25 @@ const Navbar = () => {
                   <div className="flex flex-col h-full">
                     <SheetTitle className="sr-only">Navigation</SheetTitle>
 
+                    {/* Mobile Sidebar Logo */}
+                    <div className="p-6 border-b border-gray-100/50">
+                      <Link
+                        href={ROUTES.HOME}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center gap-2 group"
+                      >
+                        <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
+                          <Image
+                            src="/common/logo.svg"
+                            alt="UF Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
+                      </Link>
+                    </div>
+
                     <div className="flex-1 overflow-y-auto">
                       {navItems.map((item) => {
                         const isActive =
