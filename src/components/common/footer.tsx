@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  ArrowUpRight,
-  MapPin,
-  Mail,
-  Phone,
-  ArrowDownRight,
-} from "lucide-react";
+import { MapPin, Mail, Phone, ArrowDownRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -143,16 +137,15 @@ export default function Footer() {
                   className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer">
                   {isPending ? "Connecting..." : "Subscribe"}
                   {!isPending && (
-                    <Image
-                      src="/common/arrow-up.svg"
-                      alt="Arrow Up"
-                      width={12}
-                      height={12}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                    // <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                    //   <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
-                    // </div>
+                    <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
+                      <Image
+                        src="/common/arrow-up.svg"
+                        alt="Arrow Up"
+                        width={12}
+                        height={12}
+                        className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </div>
                   )}
                 </Button>
               </div>
@@ -191,7 +184,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-3 w-full">
                   <Mail className="w-4 h-4 text-[#C9A76A]" strokeWidth={1.5} />
-                  <span className="tracking-wide">hello@urbanheights.ae</span>
+                  <span className="tracking-wide">info@uhfurnishing.ae</span>
                 </div>
                 <div className="flex items-center gap-3 w-full">
                   <MapPin

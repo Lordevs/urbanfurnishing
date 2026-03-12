@@ -150,8 +150,14 @@ export default function SignatureDesign() {
               className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-1.5 pl-6 h-12 text-[14.5px] font-medium transition-all duration-300 shadow-none border-none cursor-pointer">
               <Link href={ROUTES.BOOK_CONSULTATION}>
                 Meet the Team
-                <div className="bg-[#FDF4E7] rounded-full p-2 text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                  <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-2" />
+                <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
+                  <Image
+                    src="/common/arrow-up.svg"
+                    alt="Arrow Up"
+                    width={12}
+                    height={12}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
                 </div>
               </Link>
             </Button>

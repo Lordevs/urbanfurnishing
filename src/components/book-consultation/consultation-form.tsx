@@ -21,6 +21,7 @@ import {
   contactSchema,
   type ContactFormValues,
 } from "@/schemas/contact.schema";
+import Image from "next/image";
 
 // Label → backend enum value maps
 const PACKAGE_OPTIONS = [
@@ -60,8 +61,7 @@ const ChevronDown = () => (
       height="12"
       viewBox="0 0 24 24"
       fill="none"
-      className="text-[#8F877C]"
-    >
+      className="text-[#8F877C]">
       <path
         d="M6 9L12 15L18 9"
         stroke="currentColor"
@@ -129,8 +129,7 @@ export default function ConsultationForm() {
               style={{
                 background:
                   "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-              }}
-            >
+              }}>
               <div className="inline-flex items-center justify-center border border-white/20 bg-white/10 rounded-full px-4 py-1.5 mb-8">
                 <span className="text-[10px] font-semibold tracking-[0.15em] text-[#E0Dcd8] uppercase">
                   CONTACT DETAILS
@@ -157,8 +156,7 @@ export default function ConsultationForm() {
                 ].map(({ icon: Icon, label, value }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-4 bg-white/25 p-4 sm:p-5 rounded-[16px]"
-                  >
+                    className="flex items-center gap-4 bg-white/25 p-4 sm:p-5 rounded-[16px]">
                     <div className="w-10 h-10 rounded-full bg-[#C9A76A] flex items-center justify-center shrink-0">
                       <Icon className="w-4 h-4 text-white" />
                     </div>
@@ -183,8 +181,7 @@ export default function ConsultationForm() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-white p-8 sm:p-12 lg:p-14 rounded-[32px] shadow-sm border border-[#F0EBE6]"
-            >
+              className="bg-white p-8 sm:p-12 lg:p-14 rounded-[32px] shadow-sm border border-[#F0EBE6]">
               <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-[#FCFAF8] rounded-full px-4 py-1.5 mb-6">
                 <span className="text-[10px] font-semibold tracking-[0.15em] text-[#C9A76A] uppercase">
                   CONSULTATION FORM
@@ -207,8 +204,7 @@ export default function ConsultationForm() {
                       className="w-7 h-7 text-[#C9A76A]"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                      stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -229,8 +225,7 @@ export default function ConsultationForm() {
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className="flex flex-col gap-6"
-                  noValidate
-                >
+                  noValidate>
                   {/* Name Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
@@ -299,8 +294,7 @@ export default function ConsultationForm() {
                         <select
                           {...register("package_interest")}
                           className={SELECT_CLASS}
-                          defaultValue=""
-                        >
+                          defaultValue="">
                           <option value="" disabled>
                             Select a package
                           </option>
@@ -321,8 +315,7 @@ export default function ConsultationForm() {
                         <select
                           {...register("project_timeline")}
                           className={SELECT_CLASS}
-                          defaultValue=""
-                        >
+                          defaultValue="">
                           <option value="" disabled>
                             Select timeline
                           </option>
@@ -357,8 +350,7 @@ export default function ConsultationForm() {
                             selectedPropertyType === type
                               ? "bg-[#C9A76A]/5 border border-[#C9A76A] text-[#412A1F]"
                               : "bg-[#FFF8F0] border border-[#E8E1DA] text-[#8F877C] hover:border-[#C9A76A]/50"
-                          }`}
-                        >
+                          }`}>
                           {type}
                         </button>
                       ))}
@@ -399,8 +391,7 @@ export default function ConsultationForm() {
                             selectedContactMethod === value
                               ? "bg-[#C9A76A]/5 border border-[#C9A76A] text-[#412A1F]"
                               : "bg-[#FFF8F0] border border-[#E8E1DA] text-[#8F877C] hover:border-[#C9A76A]/50"
-                          }`}
-                        >
+                          }`}>
                           {label}
                         </button>
                       ))}
@@ -417,8 +408,7 @@ export default function ConsultationForm() {
                     />
                     <label
                       htmlFor="marketing_consent"
-                      className="text-[#8F877C] text-[11px] leading-relaxed font-light cursor-pointer"
-                    >
+                      className="text-[#8F877C] text-[11px] leading-relaxed font-light cursor-pointer">
                       I agree to receive communications from UH Furnishing
                       regarding my consultation request. I understand that my
                       information will be kept confidential and I can
@@ -430,8 +420,7 @@ export default function ConsultationForm() {
                   <Button
                     type="submit"
                     disabled={isPending}
-                    className="group w-full rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-4 py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4 disabled:opacity-70"
-                  >
+                    className="group w-full rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-4 py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4 disabled:opacity-70">
                     <span className="flex-1 text-center pr-4">
                       {isPending ? "Submitting..." : "Book Free Consultation"}
                     </span>
@@ -439,7 +428,13 @@ export default function ConsultationForm() {
                       {isPending ? (
                         <Loader2 className="h-[18px] w-[18px] animate-spin" />
                       ) : (
-                        <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
+                        <Image
+                          src="/common/arrow-up.svg"
+                          alt="Arrow Up"
+                          width={12}
+                          height={12}
+                          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
                       )}
                     </div>
                   </Button>
