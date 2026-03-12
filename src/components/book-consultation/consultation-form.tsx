@@ -2,15 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  Clock,
-  Loader2,
-  Lock,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { Clock, Loader2, Lock, Mail, MapPin, Phone } from "lucide-react";
 import { type DefaultValues, useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";

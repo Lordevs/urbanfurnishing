@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { usePackages } from "@/hooks/queries/use-packages";
 import { useProducts } from "@/hooks/queries/use-products";
 
-
 const SECTIONS = [
   { id: "packages", label: "Select Packages" },
   { id: "single-items", label: "Shop Individually" },
@@ -15,8 +14,14 @@ const SECTIONS = [
 ];
 
 export default function PathwayNav() {
-  const { data: packagesData } = usePackages({ is_featured: true, page_size: 4 });
-  const { data: productsData } = useProducts({ is_featured: true, page_size: 4 });
+  const { data: packagesData } = usePackages({
+    is_featured: true,
+    page_size: 4,
+  });
+  const { data: productsData } = useProducts({
+    is_featured: true,
+    page_size: 4,
+  });
 
   const hasPackages = (packagesData?.results?.length ?? 0) > 0;
   const hasProducts = (productsData?.results?.length ?? 0) > 0;
@@ -54,7 +59,6 @@ export default function PathwayNav() {
       const el = document.getElementById(section.id);
       if (el) observer.observe(el);
     });
-
 
     const handleScroll = () => {
       if (document.documentElement.scrollTop < 300) {
@@ -118,7 +122,6 @@ export default function PathwayNav() {
           <ArrowUp className="w-4 h-4 text-gray-500" />
         </button>
         {visibleSections.map((section) => {
-
           const isActive = activeSection === section.id;
           return (
             <button

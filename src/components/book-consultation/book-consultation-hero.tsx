@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowDownRight, Check } from "lucide-react";
+import { ArrowDownRight, Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
