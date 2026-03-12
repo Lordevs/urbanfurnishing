@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/route";
 
 export default function SignatureDesign() {
   return (
@@ -44,9 +46,11 @@ export default function SignatureDesign() {
           ))}
         </ul>
 
-        <button className="bg-[#3D261C] text-white text-[12px] px-6 py-3.5 rounded-[6px] font-medium mb-10 tracking-wide hover:bg-[#2C1A11] transition-colors cursor-pointer">
-          Book Consultation
-        </button>
+        <Link href={ROUTES.BOOK_CONSULTATION}>
+          <button className="bg-[#3D261C] text-white text-[12px] px-6 py-3.5 rounded-[6px] font-medium mb-10 tracking-wide hover:bg-[#2C1A11] transition-colors cursor-pointer">
+            Book Consultation
+          </button>
+        </Link>
 
         <div className="relative w-full aspect-3/4 overflow-hidden rounded-[16px]">
           <Image
@@ -144,17 +148,20 @@ export default function SignatureDesign() {
 
           {/* Buttons */}
           <div className="flex flex-wrap items-center gap-4 mt-2">
-            <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-1.5 pl-6 h-12 text-[14.5px] font-medium transition-all duration-300 shadow-none border-none cursor-pointer">
-              Meet the Team
-              <div className="bg-[#FDF4E7] rounded-full p-2 text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-2" />
-              </div>
+            <Button asChild className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-1.5 pl-6 h-12 text-[14.5px] font-medium transition-all duration-300 shadow-none border-none cursor-pointer">
+              <Link href={ROUTES.BOOK_CONSULTATION}>
+                Meet the Team
+                <div className="bg-[#FDF4E7] rounded-full p-2 text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                  <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-2" />
+                </div>
+              </Link>
             </Button>
             <Button
+              asChild
               variant="outline"
               className="rounded-full border border-[#DED4C6] bg-transparent text-[#5D4E3C] hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer"
             >
-              Our Story
+              <Link href={ROUTES.OUR_NEW_DESIGN_EXPERT}>Our Story</Link>
             </Button>
           </div>
         </motion.div>
