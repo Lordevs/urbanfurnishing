@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { ArrowUp } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
 import { cn } from "@/lib/utils";
 
 const SECTIONS = [
@@ -85,13 +86,13 @@ export default function PathwayNav() {
   };
 
   return (
-    <div className="sticky top-15 z-40 w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto py-4 sm:py-10 pointer-events-none -mt-4 mb-4">
+    <div className="hidden md:block sticky top-15 z-40 w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto py-4 sm:py-10 pointer-events-none -mt-4 mb-4">
       <div
         ref={scrollContainerRef}
         className="inline-flex items-center gap-2 p-1.5 rounded-full bg-card backdrop-blur-md border border-[#F0EBE3] shadow-md pointer-events-auto transition-all overflow-x-auto max-w-full no-scrollbar relative">
         <button
           onClick={scrollToHero}
-          className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center bg-white shadow-sm shrink-0 hover:bg-gray-50 transition-colors"
+          className="w-10 h-10 rounded-full cursor-pointer border border-gray-100 flex items-center justify-center bg-white shadow-sm shrink-0 hover:bg-gray-50 transition-colors"
           title="Scroll to Top">
           <ArrowUp className="w-4 h-4 text-gray-500" />
         </button>
@@ -103,9 +104,9 @@ export default function PathwayNav() {
               data-section={section.id}
               onClick={() => scrollToSection(section.id)}
               className={cn(
-                "px-4 sm:px-6 py-2.5  rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap",
+                "px-4 sm:px-6 py-2.5 cursor-pointer  rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap",
                 isActive
-                  ? "bg-[#412A1F] text-white shadow-sm"
+                  ? "bg-[#412A1F]/90 text-white shadow-sm"
                   : "bg-white text-gray-600 shadow-sm hover:shadow-md",
               )}>
               {section.label}

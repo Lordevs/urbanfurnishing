@@ -1,0 +1,452 @@
+{
+  "info": {
+    "name": "Urban Furnishing API",
+    "description": "Full API collection — Catalog (Categories, Products, Packages), Orders (Checkout, Promo Codes, Payment), and Contact.\nBase URL is managed via the {{base_url}} variable. Import the accompanying environment file.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "{{base_url}}",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Catalog — Categories",
+      "item": [
+        {
+          "name": "List All Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories", ""],
+              "query": [
+                { "key": "category_type", "value": "PRODUCT", "description": "Filter by type: PRODUCT or PACKAGE", "disabled": true },
+                { "key": "search", "value": "", "description": "Search by name", "disabled": true }
+              ]
+            },
+            "description": "Returns all active categories. Filter by ?category_type=PRODUCT or PACKAGE."
+          }
+        },
+        {
+          "name": "Category Detail",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories/:slug/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories", ":slug", ""],
+              "variable": [{ "key": "slug", "value": "living-room" }]
+            }
+          }
+        },
+        {
+          "name": "List Product Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/product-categories/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "product-categories", ""]
+            },
+            "description": "Returns only PRODUCT-type categories."
+          }
+        },
+        {
+          "name": "List Package Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/package-categories/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "package-categories", ""]
+            },
+            "description": "Returns only PACKAGE-type categories."
+          }
+        },
+        {
+          "name": "List Categories — Filter Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories/?category_type=PRODUCT",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories", ""],
+              "query": [{ "key": "category_type", "value": "PRODUCT" }]
+            }
+          }
+        },
+        {
+          "name": "List Categories — Filter Packages",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories/?category_type=PACKAGE",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories", ""],
+              "query": [{ "key": "category_type", "value": "PACKAGE" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Catalog — Products",
+      "item": [
+        {
+          "name": "List Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "products", ""],
+              "query": [
+                { "key": "category__slug", "value": "living-room", "description": "Filter by category slug", "disabled": true },
+                { "key": "tag", "value": "BEST_SELLER", "description": "Filter by tag: BEST_SELLER | VALUE_PACK | PREMIUM | NEW", "disabled": true },
+                { "key": "is_featured", "value": "true", "description": "Filter featured products only", "disabled": true },
+                { "key": "search", "value": "", "description": "Full-text search on name and short_description", "disabled": true },
+                { "key": "ordering", "value": "actual_price", "description": "Sort: actual_price | -actual_price | created_at | -created_at", "disabled": true },
+                { "key": "page", "value": "1", "disabled": true },
+                { "key": "page_size", "value": "10", "description": "Default 10, max 100", "disabled": true }
+              ]
+            },
+            "description": "Paginated list of active products. Default: 10 per page."
+          }
+        },
+        {
+          "name": "Product Detail",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/:slug/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "products", ":slug", ""],
+              "variable": [{ "key": "slug", "value": "example-sofa" }]
+            },
+            "description": "Full product detail: images, specs, benefits, overview, what's included."
+          }
+        },
+        {
+          "name": "List Products — Filter by Category",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/?category__slug=living-room",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "products", ""],
+              "query": [{ "key": "category__slug", "value": "living-room" }]
+            }
+          }
+        },
+        {
+          "name": "List Products — Filter by Tag",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/?tag=BEST_SELLER",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "products", ""],
+              "query": [{ "key": "tag", "value": "BEST_SELLER", "description": "BEST_SELLER | VALUE_PACK | PREMIUM | NEW" }]
+            }
+          }
+        },
+        {
+          "name": "List Products — Featured",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/?is_featured=true",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "products", ""],
+              "query": [{ "key": "is_featured", "value": "true" }]
+            },
+            "description": "Returns only products marked as featured."
+          }
+        },
+        {
+          "name": "List Products — Sort by Price (Low to High)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/?ordering=actual_price",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "products", ""],
+              "query": [{ "key": "ordering", "value": "actual_price" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Catalog — Packages",
+      "item": [
+        {
+          "name": "List Packages",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ""],
+              "query": [
+                { "key": "package_type", "value": "STUDIO", "description": "Filter by type: STUDIO | APARTMENT | ROOM", "disabled": true },
+                { "key": "category__slug", "value": "bedroom", "description": "Filter by category slug", "disabled": true },
+                { "key": "tag", "value": "BEST_SELLER", "description": "Filter by tag: BEST_SELLER | VALUE_PACK | PREMIUM | NEW", "disabled": true },
+                { "key": "is_featured", "value": "true", "description": "Filter featured packages only", "disabled": true },
+                { "key": "search", "value": "", "disabled": true },
+                { "key": "ordering", "value": "actual_price", "description": "Sort: actual_price | -actual_price | created_at | -created_at", "disabled": true },
+                { "key": "page", "value": "1", "disabled": true },
+                { "key": "page_size", "value": "10", "description": "Default 10, max 100", "disabled": true }
+              ]
+            },
+            "description": "Paginated list of active packages. Default: 10 per page."
+          }
+        },
+        {
+          "name": "Package Detail",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/:slug/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ":slug", ""],
+              "variable": [{ "key": "slug", "value": "studio-starter-pack" }]
+            },
+            "description": "Full package detail: images, specs, features & benefits, what's included."
+          }
+        },
+        {
+          "name": "List Packages — Filter by Type (Studio)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/?package_type=STUDIO",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ""],
+              "query": [{ "key": "package_type", "value": "STUDIO" }]
+            }
+          }
+        },
+        {
+          "name": "List Packages — Filter by Type (Apartment)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/?package_type=APARTMENT",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ""],
+              "query": [{ "key": "package_type", "value": "APARTMENT" }]
+            }
+          }
+        },
+        {
+          "name": "List Packages — Filter by Type (Room)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/?package_type=ROOM",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ""],
+              "query": [{ "key": "package_type", "value": "ROOM" }]
+            }
+          }
+        },
+        {
+          "name": "List Packages — Filter by Tag",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/?tag=BEST_SELLER",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ""],
+              "query": [{ "key": "tag", "value": "BEST_SELLER", "description": "BEST_SELLER | VALUE_PACK | PREMIUM | NEW" }]
+            },
+            "description": "Filter packages by tag. Values: BEST_SELLER | VALUE_PACK | PREMIUM | NEW"
+          }
+        },
+        {
+          "name": "List Packages — Featured",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/?is_featured=true",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ""],
+              "query": [{ "key": "is_featured", "value": "true" }]
+            },
+            "description": "Returns only packages marked as featured."
+          }
+        },
+        {
+          "name": "List Packages — Sort by Price (Low to High)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/packages/?ordering=actual_price",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "packages", ""],
+              "query": [{ "key": "ordering", "value": "actual_price" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders — Promo Codes",
+      "item": [
+        {
+          "name": "Validate Promo Code",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/promo-codes/validate/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "promo-codes", "validate", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SAVE20\",\n  \"subtotal\": \"5000.00\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Validates a promo code and returns a discount preview.\n\nResponse: { valid, code, discount_type, discount_amount, message }"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders — Checkout",
+      "item": [
+        {
+          "name": "Place Order",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "orders", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"item_type\": \"PRODUCT\",\n      \"id\": \"<product-uuid>\",\n      \"quantity\": 2\n    },\n    {\n      \"item_type\": \"PACKAGE\",\n      \"id\": \"<package-uuid>\",\n      \"quantity\": 1\n    }\n  ],\n  \"customer_email\": \"customer@example.com\",\n  \"customer_phone\": \"+971 50 123 4567\",\n  \"shipping_address\": {\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"street_address\": \"123 Sheikh Zayed Road\",\n    \"apartment_suite\": \"Apt 4B\",\n    \"city\": \"Dubai\",\n    \"state\": \"Dubai\",\n    \"postal_code\": \"00000\",\n    \"country\": \"UAE\"\n  },\n  \"billing_address\": {\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"company\": \"\",\n    \"street_address\": \"123 Sheikh Zayed Road\",\n    \"apartment_suite\": \"\",\n    \"city\": \"Dubai\",\n    \"state\": \"Dubai\",\n    \"postal_code\": \"00000\",\n    \"country\": \"UAE\"\n  },\n  \"promo_code\": \"SAVE20\",\n  \"payment_method\": \"CARD\",\n  \"notes\": \"Please call before delivery.\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Places a full order atomically. Creates Order + OrderItems + Payment (PENDING/CONFIRMED) in one transaction. Also decrements stock and increments promo usage.\n\npayment_method: CARD | CASH_ON_DELIVERY\npromo_code: optional\n\nResponse: { order_number, total_amount, status, message, client_secret (if CARD) }"
+          }
+        },
+        {
+          "name": "Place Order — Cash on Delivery",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "orders", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"item_type\": \"PRODUCT\",\n      \"id\": \"<product-uuid>\",\n      \"quantity\": 1\n    }\n  ],\n  \"customer_email\": \"customer@example.com\",\n  \"customer_phone\": \"+971 55 987 6543\",\n  \"shipping_address\": {\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"street_address\": \"45 Marina Walk\",\n    \"city\": \"Abu Dhabi\",\n    \"state\": \"Abu Dhabi\",\n    \"postal_code\": \"00000\",\n    \"country\": \"UAE\"\n  },\n  \"billing_address\": {\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Smith\",\n    \"street_address\": \"45 Marina Walk\",\n    \"city\": \"Abu Dhabi\",\n    \"state\": \"Abu Dhabi\",\n    \"postal_code\": \"00000\",\n    \"country\": \"UAE\"\n  },\n  \"payment_method\": \"CASH_ON_DELIVERY\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Order Detail (Status Lookup)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/:order_number/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "orders", ":order_number", ""],
+              "variable": [
+                {
+                  "key": "order_number",
+                  "value": "UF-20260309-00001",
+                  "description": "Order number from Place Order response"
+                }
+              ]
+            },
+            "description": "Returns full order detail including items, addresses, and payment status."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders — Payment",
+      "item": [
+        {
+          "name": "Confirm Payment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/payments/:order_number/confirm/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "payments", ":order_number", "confirm", ""],
+              "variable": [
+                {
+                  "key": "order_number",
+                  "value": "UF-20260309-00001",
+                  "description": "Order number from Place Order response"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gateway_payment_id\": \"pi_3OxyzStripePaymentIntentId\",\n  \"gateway_order_id\": \"order_StripeOrderRef\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Called by the frontend after the payment gateway confirms the transaction client-side.\n\nUpdates Payment status → SUCCESS and Order status → CONFIRMED.\n\ngateway_order_id is optional."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "item": [
+        {
+          "name": "Submit Contact Form",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contact/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "contact", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone_number\": \"+971 50 123 4567\",\n  \"package_interest\": \"APARTMENT\",\n  \"project_timeline\": \"3_MONTHS\",\n  \"property_type\": \"2BHK Apartment\",\n  \"project_description\": \"Looking to furnish my new apartment in Dubai Marina with a modern yet warm aesthetic.\",\n  \"preferred_contact\": \"WHATSAPP\",\n  \"marketing_consent\": true\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Submits the contact / consultation request form.\n\nOn success:\n- Saves the enquiry to the database (visible at /admin/contact/contactenquiry/)\n- Sends a confirmation email to the customer (from noreply@uhfurnishing.ae)\n- Sends an admin notification email to info@uhfurnishing.ae\n\npackage_interest: STUDIO | APARTMENT | ROOM | SINGLE_PRODUCT | NOT_SURE\nproject_timeline: ASAP | 1_MONTH | 3_MONTHS | 6_MONTHS | FLEXIBLE\npreferred_contact: EMAIL | PHONE | WHATSAPP\n\nRequired: first_name, last_name, email, phone_number\nAll other fields are optional."
+          }
+        },
+        {
+          "name": "Submit Contact Form — Minimal (required fields only)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contact/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "contact", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"email\": \"jane.smith@example.com\",\n  \"phone_number\": \"+971 55 987 6543\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Minimal payload — only the four required fields. All optional fields are omitted."
+          }
+        }
+      ]
+    }
+  ]
+}

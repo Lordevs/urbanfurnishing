@@ -4,56 +4,42 @@ import {
   ItemCarousel,
   CarouselItemData,
 } from "@/components/shared/item-carousel";
+import { usePackages } from "@/hooks/queries/use-packages";
+import type { PackageListItem } from "@/types/api";
 
-const packagesData: CarouselItemData[] = [
-  {
-    id: 1,
-    title: "Investor Turnkey",
+function toCarouselItem(pkg: PackageListItem): CarouselItemData {
+  return {
+    id: pkg.id,
+    title: pkg.name,
+    img: pkg.thumbnail ?? "/landing/home/packages/packages-img-1.webp",
     fields: [
-      { label: "Package", value: "Package - 1" },
-      { label: "Focus", value: "Rental-Ready" },
+      {
+        label: "Package",
+        value: pkg.package_type_display ?? pkg.package_type ?? "",
+      },
+      { label: "Category", value: pkg.category_name ?? "" },
     ],
-    img: "/landing/home/packages/packages-img-1.webp",
-  },
-  {
-    id: 2,
-    title: "Modern Architectural",
-    fields: [
-      { label: "Package", value: "Package - 2" },
-      { label: "Focus", value: "Clean aesthetics" },
-    ],
-    img: "/landing/home/packages/packages-img-2.webp",
-  },
-  {
-    id: 3,
-    title: "Luxury Corporate",
-    fields: [
-      { label: "Package", value: "Package - 3" },
-      { label: "Focus", value: "Premium Standard" },
-    ],
-    img: "/landing/home/packages/packages-img-3.webp",
-  },
-  {
-    id: 4,
-    title: "Warm Minimalist",
-    fields: [
-      { label: "Package", value: "Package - 4" },
-      { label: "Focus", value: "Inviting Tones" },
-    ],
-    img: "/landing/home/packages/packages-img-4.webp",
-  },
-];
+  };
+}
 
 export default function Packages() {
+  const { data, isLoading } = usePackages({ is_featured: true, page_size: 4 });
+
+  const items: CarouselItemData[] = isLoading
+    ? []
+    : (data?.results ?? []).map(toCarouselItem);
+
   return (
-    <ItemCarousel
-      titlePrefix="Our"
-      titleHighlight="Packages"
-      description="Choose from our curated packages designed to meet different needs. From fast rental-ready properties to personalized luxury interiors and scalable developer solutions."
-      items={packagesData}
-      defaultButtonText="Package Details"
-      className="py-10"
-      id="packages"
-    />
+    <div className="w-full">
+      <ItemCarousel
+        titlePrefix="Our"
+        titleHighlight="Packages"
+        description="Choose from our curated packages designed to meet different needs. From fast rental-ready properties to personalized luxury interiors and scalable developer solutions."
+        items={items}
+        defaultButtonText="Package Details"
+        className="py-10"
+        id="packages"
+      />
+    </div>
   );
 }

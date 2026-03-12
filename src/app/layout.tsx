@@ -1,10 +1,14 @@
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
-import "./globals.css";
-import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
+import Navbar from "@/components/common/navbar";
 import { Toaster } from "@/components/ui/sonner";
+import { CartProvider } from "@/context/cart-context";
+import { Providers } from "@/lib/providers";
+
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,6 +49,18 @@ const lufga = localFont({
   variable: "--font-lufga",
 });
 
+export const metadata: Metadata = {
+  title: {
+    default: "Urban Furnishing | Premium Furniture in UAE",
+    template: "%s | Urban Furnishing",
+  },
+  description:
+    "Discover premium furniture packages and single pieces curated for UAE homes. Explore our collections and book a free design consultation.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://urbanfurnishing.ae",
+  ),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,11 +70,21 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${lufga.variable} antialiased`}
-        suppressHydrationWarning>
-        <Navbar />
-        <Toaster richColors position="top-right" duration={3000} closeButton />
-        {children}
-        <Footer />
+        suppressHydrationWarning
+      >
+        <Providers>
+          <CartProvider>
+            <Navbar />
+            <Toaster
+              richColors
+              position="top-right"
+              duration={3000}
+              closeButton
+            />
+            {children}
+            <Footer />
+          </CartProvider>
+        </Providers>
       </body>
     </html>
   );

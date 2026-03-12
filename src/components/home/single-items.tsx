@@ -4,48 +4,36 @@ import {
   ItemCarousel,
   CarouselItemData,
 } from "@/components/shared/item-carousel";
+import { useProducts } from "@/hooks/queries/use-products";
+import type { ProductListItem } from "@/types/api";
 
-const singleItemsData: CarouselItemData[] = [
-  {
-    id: 1,
-    title: "Sofa Item",
-    description:
-      "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item/single-item-img-1.webp",
-  },
-  {
-    id: 2,
-    title: "Sofa Item",
-    description:
-      "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item/single-item-img-2.webp",
-  },
-  {
-    id: 3,
-    title: "Lounge Chair",
-    description:
-      "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item/single-item-img-3.webp",
-  },
-  {
-    id: 4,
-    title: "Lounge Chair",
-    description:
-      "Modern, durable furniture designed to prepare your property for immediate rental.",
-    img: "/landing/home/single-item/single-item-img-4.webp",
-  },
-];
+function toCarouselItem(prod: ProductListItem): CarouselItemData {
+  return {
+    id: prod.id,
+    title: prod.name,
+    description: prod.short_description ?? undefined,
+    img: prod.thumbnail ?? "/landing/home/single-item/single-item-img-1.webp",
+  };
+}
 
 export default function SingleItems() {
+  const { data, isLoading } = useProducts({ is_featured: true, page_size: 4 });
+
+  const items: CarouselItemData[] = isLoading
+    ? []
+    : (data?.results ?? []).map(toCarouselItem);
+
   return (
-    <ItemCarousel
-      titlePrefix="Single"
-      titleHighlight="Items"
-      description="A curated selection of furniture and essentials designed to complete your space with style and functionality."
-      items={singleItemsData}
-      defaultButtonText="Discover Collection"
-      className="py-10 pb-20"
-      id="single-items"
-    />
+    <div className="w-full">
+      <ItemCarousel
+        titlePrefix="Single"
+        titleHighlight="Items"
+        description="A curated selection of furniture and essentials designed to complete your space with style and functionality."
+        items={items}
+        defaultButtonText="Discover Collection"
+        className="py-10 pb-20"
+        id="single-items"
+      />
+    </div>
   );
 }

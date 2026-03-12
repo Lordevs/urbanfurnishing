@@ -1,10 +1,19 @@
 "use client";
 
+import {
+  ArrowUpRight,
+  MapPin,
+  Mail,
+  Phone,
+  ArrowDownRight,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MapPin, Mail, Phone } from "lucide-react";
-import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ROUTES } from "@/constants/route";
+import { navItems } from "@/lib/nav-items";
 
 const quickLinks = [
   "Living Room",
@@ -23,61 +32,88 @@ const packages = [
   "Pricing",
 ];
 
-const singleItems = [
-  "About Us",
-  "Portfolio",
-  "Process",
-  "Testimonials",
-  "Careers",
-  "Contact",
-];
-
 const ourServices = [
-  "Design Blog",
-  "Style Guide",
-  "FAQs",
-  "Delivery Info",
-  "Warranty",
-  "Support",
+  "Select Packages",
+  "Shop Individually",
+  "Use Our Design Expert",
 ];
 
 export default function Footer() {
   return (
     <footer className="w-full pt-20">
-      {/* Newsletter Section */}
-      <div className="bg-card py-20">
-        <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
-          <div className="lg:w-[45%] w-full">
-            <div className="inline-block border border-[#E8E8E8] bg-white rounded-full px-5 py-2 mb-6 shadow-sm">
-              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.15em] text-[#605a5a] uppercase">
+      {/* Mobile Newsletter Section */}
+      <div className="lg:hidden bg-card py-16 px-5 border-b border-[#F0EBE6] w-full">
+        <div className="flex flex-col items-start w-full">
+          <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-white rounded-full px-4 py-[6px] mb-6 shadow-sm">
+            <span className="text-[10px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
+              Newsletter
+            </span>
+          </div>
+          <h2 className="text-[28px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
+            Get Design{" "}
+            <span className="text-[#C9A76A] font-serif">Inspiration</span>
+          </h2>
+          <p className="text-[#8F877C] text-[14px] leading-relaxed tracking-wide font-light mb-8 max-w-[95%]">
+            Join our community for curated interior tips, new collection
+            launches, and exclusive promotions.
+          </p>
+
+          <div className="w-full flex flex-col items-center">
+            <div className="flex flex-row items-center gap-2 w-full">
+              <Input
+                type="email"
+                placeholder="Your email address"
+                className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-5 h-[48px] flex-1 text-[13px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light min-w-0"
+              />
+              <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-2 py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 cursor-pointer">
+                Subscribe
+                <div className="bg-[#FDF4E7] rounded-full p-[5px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                  <ArrowDownRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover:translate-x-px group-hover:translate-y-px stroke-[1.5]" />
+                </div>
+              </Button>
+            </div>
+            <p className="text-[#B0B0B0] text-[11px] mt-5 font-light tracking-wide text-center">
+              We respect your privacy. Unsubscribe at any time.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Newsletter Section */}
+      <div className="hidden lg:block bg-card py-20 border-b border-[#F0EBE6]">
+        <div className="max-w-8xl mx-auto px-10 lg:px-16 flex flex-row gap-24 items-center justify-between">
+          <div className="w-[45%]">
+            <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-white rounded-full px-5 py-2 mb-6 shadow-sm">
+              <span className="text-[11px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
                 Newsletter
               </span>
             </div>
-            <h2 className="text-[32px] sm:text-[42px] font-serif font-medium tracking-tight text-[#1a1a1a] mb-5">
-              Get Design <span className="text-[#C9A76A]">Inspiration</span>
+            <h2 className="text-[42px] font-serif font-medium tracking-tight text-[#302B27] mb-5">
+              Get Design{" "}
+              <span className="text-[#C9A76A] font-serif">Inspiration</span>
             </h2>
-            <p className="text-[#A3A3A3] text-[14px] sm:text-[15px] leading-[1.8] tracking-wide font-light max-w-[95%]">
+            <p className="text-[#8F877C] text-[15px] leading-[1.8] tracking-wide font-light max-w-[95%]">
               Join our community for curated interior tips, new collection
               launches, and exclusive promotions.
             </p>
           </div>
 
-          <div className="lg:w-[55%] w-full flex flex-col items-start lg:items-end">
-            <div className="w-full max-w-xl">
-              <div className="relative flex flex-col sm:flex-row items-center bg-white rounded-[32px] sm:rounded-full border border-[#E8E8E8] shadow-sm p-2 sm:p-1.5 focus-within:ring-1 focus-within:ring-[#C9A76A]/30 transition-all gap-2 sm:gap-0">
+          <div className="w-full flex flex-col items-end">
+            <div className="w-[80%] max-w-[500px]">
+              <div className="flex flex-row items-center gap-3">
                 <Input
                   type="email"
                   placeholder="Your email address"
-                  className="border-none shadow-none focus-visible:ring-0 px-6 h-12 flex-1 text-[13px] sm:text-[14px] text-gray-700 placeholder:text-[#B0B0B0] bg-transparent font-light"
+                  className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-6 h-[50px] flex-1 text-[13.5px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light w-full"
                 />
-                <Button className="rounded-full bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center justify-between sm:justify-center w-full sm:w-auto gap-12 sm:gap-6 px-6 sm:pr-2 sm:pl-6 h-12 sm:h-12 text-[13px] font-normal transition-all shadow-none shrink-0 border-none group">
+                <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer">
                   Subscribe
-                  <div className="bg-white rounded-full p-2 sm:p-1.5 text-[#412A1F] transition-transform group-hover:scale-105">
-                    <ArrowUpRight className="h-4 w-4" />
+                  <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                    <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
                   </div>
                 </Button>
               </div>
-              <p className="text-[#B0B0B0] text-[11px] sm:text-[12px] mt-4 ml-4 font-light tracking-wide">
+              <p className="text-[#B0B0B0] text-[12px] mt-3 ml-4 font-light tracking-wide">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </div>
@@ -86,7 +122,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Section */}
-      <div className="bg-[linear-gradient(180deg,#402A1E_90%)] pt-24 pb-10">
+      <div className="bg-[#402A1F]/95 pt-24 pb-10">
         <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
             {/* Brand Column */}
@@ -94,9 +130,9 @@ export default function Footer() {
               <Image
                 src="/common/logo.svg"
                 alt="UFF Logo"
-                width={70}
-                height={70}
-                className="mb-8 opacity-70 invert sepia hue-rotate-15 contrast-75 brightness-150"
+                width={80}
+                height={80}
+                className="mb-8 opacity-90 brightness-0 invert-[.7] sepia-[.4] saturate-[.8] hue-rotate-10"
               />
 
               <p className="text-[#D0CACA] text-[12px] sm:text-[13px] leading-[1.8] font-light mb-10 max-w-[85%] pr-4 tracking-wide">
@@ -127,15 +163,16 @@ export default function Footer() {
             {/* Links Columns */}
             <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
-                  Quick Links
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
+                  SHOP
                 </h4>
                 <ul className="flex flex-col gap-6">
                   {quickLinks.map((link) => (
                     <li key={link}>
                       <Link
-                        href="#"
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
+                        href={ROUTES.SINGLE_PRODUCTS}
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
+                      >
                         {link}
                       </Link>
                     </li>
@@ -144,15 +181,16 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
                   Packages
                 </h4>
                 <ul className="flex flex-col gap-6">
                   {packages.map((link) => (
                     <li key={link}>
                       <Link
-                        href="#"
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
+                        href={ROUTES.PACKAGES}
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
+                      >
                         {link}
                       </Link>
                     </li>
@@ -161,16 +199,17 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
-                  Single Items
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
+                  COMPANY
                 </h4>
                 <ul className="flex flex-col gap-6">
-                  {singleItems.map((link) => (
-                    <li key={link}>
+                  {navItems.map((item) => (
+                    <li key={item.title}>
                       <Link
-                        href="#"
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
-                        {link}
+                        href={item.href}
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
+                      >
+                        {item.title}
                       </Link>
                     </li>
                   ))}
@@ -178,15 +217,16 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-                <h4 className="text-[#B3935B] text-[10px] sm:text-[11px] font-semibold tracking-widest mb-8 uppercase">
-                  Our Services
+                <h4 className="text-[#C9A76A] text-[10px] sm:text-[11px] font-bold tracking-widest mb-8 uppercase">
+                  Services
                 </h4>
                 <ul className="flex flex-col gap-6">
                   {ourServices.map((link) => (
                     <li key={link}>
                       <Link
-                        href="#"
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-light tracking-wide transition-colors">
+                        href={`${ROUTES.HOME}#services`}
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
+                      >
                         {link}
                       </Link>
                     </li>
@@ -197,32 +237,35 @@ export default function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-[#8B7C6E]/20 gap-6">
-            <p className="text-[#A3A3A3] text-[10px] sm:text-[11px] font-light tracking-wide">
+          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-white/10 gap-6">
+            <p className="text-[#A3A3A3] text-[11px] font-normal tracking-wide">
               &copy; {new Date().getFullYear()} Urban Finishing LLC. All rights
               reserved.
             </p>
             <div className="flex items-center flex-wrap justify-center gap-6 sm:gap-8">
               <Link
-                href="#"
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+                href={ROUTES.PRIVACY_POLICY}
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
+              >
                 Privacy
               </Link>
               <Link
-                href="#"
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+                href={ROUTES.TERMS_AND_CONDITION}
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
+              >
                 Terms
               </Link>
               <Link
-                href="#"
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+                href={ROUTES.COOKIES_POLICY}
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
+              >
                 Cookies
               </Link>
-              <Link
-                href="#"
-                className="text-[#A3A3A3] hover:text-white text-[10px] sm:text-[11px] font-light tracking-wide transition-colors">
+              {/* <Link
+                href={ROUTES.HOME}
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Sitemap
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

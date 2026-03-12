@@ -1,4 +1,5 @@
 import { Home, Boxes, Armchair, Sparkles, CalendarDays } from "lucide-react";
+
 import { ROUTES } from "@/constants/route";
 import { NavItem } from "@/types/nav";
 

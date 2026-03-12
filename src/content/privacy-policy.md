@@ -64,4 +64,4 @@ Depending on your local jurisdiction, you hold the right to:
 If you have any questions, concerns, or requests to exercise your data rights regarding this Privacy Policy, please contact us immediately:
 
 - **Email:** privacy@urbanfurnishing.com
-- **Phone:** +44 XXX XXXXXXX
+- **Phone:** +971 50 123 4567
