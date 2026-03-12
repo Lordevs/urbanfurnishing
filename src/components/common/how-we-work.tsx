@@ -87,7 +87,7 @@ export default function HowWeWork() {
             <Image
               src={
                 isMobileHome
-                  ? "/landing/home/how-we-work/how-we-work.webp"
+                  ? "/landing/home/how-we-work/we-work.webp"
                   : "/landing/home/how-we-work/work-img.webp"
               }
               alt="How We Work"

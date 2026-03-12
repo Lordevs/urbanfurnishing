@@ -19,7 +19,7 @@ export default function HomeHero() {
     <HeroSection
       imageSrc="/landing/home/hero-section.webp"
       imageAlt="Modern Architecture"
-      heightClass="h-[60dvh] sm:h-screen"
+      heightClass="md:h-[60dvh] h-[85dvh] gap-10"
       title={
         <>
           Design Your Space. <br />
@@ -61,7 +61,7 @@ export default function HomeHero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="absolute bottom-4 right-4 sm:bottom-0 sm:right-0 bg-[#F9F9F9] sm:bg-white px-5 sm:px-6 rounded-[24px] sm:rounded-tl-[32px] sm:rounded-br-[24px] sm:rounded-bl-none sm:rounded-tr-none py-6 sm:py-12 lg:py-22 flex justify-between sm:justify-start items-center gap-6 sm:gap-14 z-20 shadow-xl sm:shadow-none w-[300px] sm:w-auto"
+          className="md:absolute bottom-4 right-4 sm:bottom-0 sm:right-0 bg-[#F9F9F9] sm:bg-white px-5 sm:px-6 rounded-[24px] sm:rounded-tl-[32px] sm:rounded-br-[24px] sm:rounded-bl-none sm:rounded-tr-none py-6 sm:py-12 lg:py-22 flex justify-between sm:justify-start items-center gap-6 sm:gap-14 z-20 shadow-xl sm:shadow-none w-[300px] sm:w-auto ml-auto mb-5"
         >
           {stats.map((stat, index) => (
             <div
