@@ -120,9 +120,17 @@ export default function OurDesignExpertHero() {
             <>
               <Link href={ROUTES.BOOK_CONSULTATION}>
                 <Button className="group rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-white flex items-center justify-between gap-5 py-2 pr-2.5 pl-7 h-[52px] text-[15px] font-normal transition-all duration-300 shadow-lg border border-white/10 hover:border-white/25">
-                  Get in Touch
-                  <div className="bg-[#FFF8F0] rounded-full w-[36px] h-[36px] flex items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0">
-                    <ArrowUpRight className="h-[18px] w-[18px] stroke-[1.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span className="hidden sm:inline text-white">
+                    Get in Touch
+                  </span>
+                  <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
+                    <Image
+                      src="/common/arrow-up.svg"
+                      alt="Arrow Up"
+                      width={12}
+                      height={12}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </div>
                 </Button>
               </Link>

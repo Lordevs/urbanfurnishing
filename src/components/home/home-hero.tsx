@@ -37,8 +37,8 @@ export default function HomeHero() {
                 <Image
                   src="/common/arrow-up.svg"
                   alt="Arrow Up"
-                  width={16}
-                  height={16}
+                  width={12}
+                  height={12}
                   className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </div>

@@ -143,9 +143,16 @@ export default function Footer() {
                   className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer">
                   {isPending ? "Connecting..." : "Subscribe"}
                   {!isPending && (
-                    <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                      <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
-                    </div>
+                    <Image
+                      src="/common/arrow-up.svg"
+                      alt="Arrow Up"
+                      width={12}
+                      height={12}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                    // <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                    //   <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
+                    // </div>
                   )}
                 </Button>
               </div>
