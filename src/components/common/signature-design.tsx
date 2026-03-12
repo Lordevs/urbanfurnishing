@@ -5,7 +5,6 @@ import { ArrowUpRight, Check } from "lucide-react";
 import Image from "next/image";
 
 import { ActionButton } from "@/components/shared/action-button";
-import { Button } from "@/components/ui/button";
 
 export default function SignatureDesign() {
   return (

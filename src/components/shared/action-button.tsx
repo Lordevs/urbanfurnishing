@@ -62,7 +62,7 @@ export function ActionButton({
       {(showArrow || icon) && isPrimary && (
         <div
           className={cn(
-            "hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0",
+            "flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0",
             iconContainerClassName,
           )}>
           {icon || (

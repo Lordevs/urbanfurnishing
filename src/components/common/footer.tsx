@@ -46,35 +46,34 @@ export default function Footer() {
       {/* Mobile Newsletter Section */}
       <div className="lg:hidden bg-card py-16 px-5 border-b border-[#F0EBE6] w-full">
         <div className="flex flex-col items-start w-full">
-          <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-white rounded-full px-4 py-[6px] mb-6 shadow-sm">
-            <span className="text-[10px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
+          <div className="inline-flex items-center justify-center border border-[#F0EBE6] bg-white rounded-full px-6 py-2 mb-6 shadow-sm">
+            <span className="text-[11px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
               Newsletter
             </span>
           </div>
-          <h2 className="text-[28px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
-            Get Design{" "}
-            <span className="text-[#C9A76A] font-serif">Inspiration</span>
+          <h2 className="text-[32px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
+            Get Design <span className="text-[#C9A76A] font-serif">Inspiration</span>
           </h2>
-          <p className="text-[#8F877C] text-[14px] leading-relaxed tracking-wide font-light mb-8 max-w-[95%]">
-            Join our community for curated interior tips, new collection
-            launches, and exclusive promotions.
+          <p className="text-[#8F877C] text-[15px] leading-relaxed tracking-wide font-light mb-8">
+            Join our community for curated interior tips, new collection launches, and exclusive promotions.
           </p>
 
           <div className="w-full flex flex-col items-center">
-            <div className="flex flex-row items-center gap-2 w-full">
+            <div className="flex flex-row items-center gap-3 w-full">
               <Input
                 type="email"
                 placeholder="Your email address"
-                className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-5 h-[48px] flex-1 text-[13px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light min-w-0"
+                className="rounded-full border border-[#F0EBE6] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-6 h-[54px] flex-[1.5] text-[14px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light min-w-0"
               />
               <ActionButton
                 label="Subscribe"
-                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px]"
+                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[54px] text-[15px] w-auto flex-1 px-5"
                 icon={<ArrowDownRight className="h-[14px] w-[14px] stroke-2" />}
-                iconContainerClassName="bg-[#FFF8F0] w-[26px] h-[26px] flex"
+                iconContainerClassName="bg-white w-[26px] h-[26px] flex text-[#3D261C] ml-2"
+                showArrow={false}
               />
             </div>
-            <p className="text-[#B0B0B0] text-[11px] mt-5 font-light tracking-wide text-center">
+            <p className="text-[#B0B0B0] text-[12px] mt-4 font-light tracking-wide text-center">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </div>
