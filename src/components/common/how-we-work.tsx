@@ -8,7 +8,9 @@ import { usePathname } from "next/navigation";
 
 import { ROUTES } from "@/constants/route";
 
+import { ActionButton } from "../shared/action-button";
 import { Button } from "../ui/button";
+
 
 const mobileSteps = [
   {
@@ -129,14 +131,11 @@ export default function HowWeWork() {
                 How We <span className="text-[#C9A76A]">Work</span>
               </h2>
 
-              <Link href={ROUTES.BOOK_CONSULTATION}>
-                <Button className="group rounded-full bg-[#412A1F] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-1.5 pl-6 h-12 text-[14.5px] font-medium transition-all duration-300 shadow-none border-none cursor-pointer">
-                  Get In Touch
-                  <div className="bg-[#FDF4E7] rounded-full p-2 text-[#412A1F] transition-transform duration-300 group-hover:scale-95">
-                    <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
-                  </div>
-                </Button>
-              </Link>
+              <ActionButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get In Touch"
+                className="bg-[#412A1F] hover:bg-[#2C1A11] pr-1.5 pl-6 h-12 text-[14.5px] font-medium"
+              />
             </div>
 
             <div className="relative mt-8 sm:mt-12 lg:mt-16">

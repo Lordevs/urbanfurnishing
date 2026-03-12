@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
@@ -37,18 +38,18 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col gap-4 w-full max-w-[340px] mb-16">
-            <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
-              <Button className="w-full bg-[#C9A76A] hover:bg-[#B3905A] text-white font-medium py-6 rounded-[12px] text-[15px] shadow-none border-none">
-                Book Free Consultation
-              </Button>
-            </Link>
-            <Link href={ROUTES.PACKAGES} className="w-full">
-              <Button
-                variant="outline"
-                className="w-full bg-transparent border-white/40 hover:bg-white/10 text-white font-medium py-6 rounded-[12px] text-[15px]">
-                View Our Work
-              </Button>
-            </Link>
+            <ActionButton
+              href={ROUTES.BOOK_CONSULTATION}
+              label="Book Free Consultation"
+              className="py-6 rounded-[12px] text-[15px] bg-[#C9A76A] hover:bg-[#B3905A]"
+              showArrow={false}
+            />
+            <ActionButton
+              href={ROUTES.PACKAGES}
+              label="View Our Work"
+              variant="outline"
+              className="py-6 rounded-[12px] text-[15px] border-white/40 hover:bg-white/10"
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-12 w-full max-w-[340px]">
@@ -107,14 +108,11 @@ export default function CTA() {
               </p>
 
               <div>
-                <Link href={ROUTES.BOOK_CONSULTATION}>
-                  <Button className="rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center gap-6 pr-1.5 pl-6 h-12 text-[13px] font-normal transition-all shadow-none border-none group">
-                    Book Now
-                    <div className="bg-white rounded-full p-1.5 text-[#412A1F] transition-transform group-hover:scale-105">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </div>
-                  </Button>
-                </Link>
+                <ActionButton
+                  href={ROUTES.BOOK_CONSULTATION}
+                  label="Book Now"
+                  className="bg-[#412A1F] hover:bg-[#2D1A12] pr-1.5 pl-6 h-12 text-[13px] font-normal"
+                />
               </div>
             </div>
 

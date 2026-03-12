@@ -5,6 +5,7 @@ import { Check, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -120,9 +121,11 @@ export default function Services() {
                     ))}
                   </ul>
                   
-                  <Button className="w-full mt-auto bg-[#5D4E3C] hover:bg-[#412A1F] text-[#F3EFE7] rounded-[8px] h-[46px] text-[13px] font-medium shadow-none border-none">
-                    Learn More
-                  </Button>
+                  <ActionButton
+                    label="Learn More"
+                    className="w-full mt-auto bg-[#5D4E3C] hover:bg-[#412A1F] text-[#F3EFE7] rounded-[8px] h-[46px] text-[13px] font-medium"
+                    showArrow={false}
+                  />
                 </div>
               </div>
             ))}
