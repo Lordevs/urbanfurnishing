@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  CheckCircle2,
-  Package,
-  ArrowRight,
-  ShoppingBag,
-  Loader2,
-} from "lucide-react";
+import { CheckCircle2, ShoppingBag, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -80,19 +74,6 @@ function SuccessContent() {
             >
               <ShoppingBag className="w-4 h-4" />
               Continue Shopping
-            </Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="w-full h-[54px] rounded-[14px] border border-border text-foreground hover:bg-muted font-bold transition-colors"
-          >
-            <Link
-              href={`${ROUTES.TRACK_ORDER}${orderNumber ? `?order=${orderNumber}` : ""}`}
-              className="flex items-center justify-center gap-2"
-            >
-              <Package className="w-4 h-4 text-secondary" />
-              Track Your Order
             </Link>
           </Button>
         </div>

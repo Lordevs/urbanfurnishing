@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Menu, ShoppingCart, Package } from "lucide-react";
+import { ArrowUpRight, Menu, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -87,23 +87,6 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Track Order Icon */}
-            <Link
-              href={ROUTES.TRACK_ORDER}
-              title="Track Order"
-              className={`p-2.5 rounded-full hover:bg-primary/5 transition-colors group ${
-                pathname === ROUTES.TRACK_ORDER ? "bg-primary/5" : ""
-              }`}
-            >
-              <Package
-                className={`h-6 w-6 transition-colors ${
-                  pathname === ROUTES.TRACK_ORDER
-                    ? "text-primary"
-                    : "text-foreground group-hover:text-primary"
-                }`}
-              />
-            </Link>
-
             {/* Cart Icon - Both Mobile (visible) and Desktop */}
             <Link
               href={ROUTES.CART}
@@ -145,6 +128,25 @@ const Navbar = () => {
                 <SheetContent side="right" className="w-[320px] bg-white p-0">
                   <div className="flex flex-col h-full">
                     <SheetTitle className="sr-only">Navigation</SheetTitle>
+
+                    {/* Mobile Sidebar Logo */}
+                    <div className="p-6 border-b border-gray-100/50">
+                      <Link
+                        href={ROUTES.HOME}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center gap-2 group"
+                      >
+                        <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
+                          <Image
+                            src="/common/logo.svg"
+                            alt="UF Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
+                      </Link>
+                    </div>
 
                     <div className="flex-1 overflow-y-auto">
                       {navItems.map((item) => {

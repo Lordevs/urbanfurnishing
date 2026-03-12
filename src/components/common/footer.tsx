@@ -9,10 +9,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ROUTES } from "@/constants/route";
+import { useNewsletterSubscribe } from "@/hooks/mutations/use-newsletter";
 import { navItems } from "@/lib/nav-items";
 
 const quickLinks = [
@@ -39,6 +41,20 @@ const ourServices = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const { mutate: subscribe, isPending } = useNewsletterSubscribe();
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    subscribe(
+      { email },
+      {
+        onSuccess: () => setEmail(""),
+      },
+    );
+  };
+
   return (
     <footer className="w-full pt-20">
       {/* Mobile Newsletter Section */}
@@ -58,24 +74,34 @@ export default function Footer() {
             launches, and exclusive promotions.
           </p>
 
-          <div className="w-full flex flex-col items-center">
-            <div className="flex flex-row items-center gap-3 w-full">
+          <form
+            onSubmit={handleSubscribe}
+            className="w-full flex flex-col items-center">
+            <div className="flex flex-row items-center gap-2 w-full">
               <Input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address"
-                className="rounded-full border border-[#F0EBE6] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-6 h-[54px] flex-[1.5] text-[14px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light min-w-0"
+                required
+                className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-5 h-[48px] flex-1 text-[13px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light min-w-0"
               />
-              <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-2 py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 cursor-pointer">
-                Subscribe
-                <div className="bg-[#FDF4E7] rounded-full p-[5px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                  <ArrowDownRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover:translate-x-px group-hover:translate-y-px stroke-[1.5]" />
-                </div>
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-2 py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 cursor-pointer">
+                {isPending ? "Subscribing..." : "Subscribe"}
+                {!isPending && (
+                  <div className="bg-[#FDF4E7] rounded-full p-[5px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                    <ArrowDownRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover:translate-x-px group-hover:translate-y-px stroke-[1.5]" />
+                  </div>
+                )}
               </Button>
             </div>
             <p className="text-[#B0B0B0] text-[12px] mt-4 font-light tracking-wide text-center">
               We respect your privacy. Unsubscribe at any time.
             </p>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -98,26 +124,36 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="w-full flex flex-col items-end">
+          <form
+            onSubmit={handleSubscribe}
+            className="w-full flex flex-col items-end">
             <div className="w-[80%] max-w-[500px]">
               <div className="flex flex-row items-center gap-3">
                 <Input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email address"
+                  required
                   className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-6 h-[50px] flex-1 text-[13.5px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light w-full"
                 />
-                <Button className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer">
-                  Subscribe
-                  <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                    <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
-                  </div>
+                <Button
+                  type="submit"
+                  disabled={isPending}
+                  className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer">
+                  {isPending ? "Connecting..." : "Subscribe"}
+                  {!isPending && (
+                    <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
+                      <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
+                    </div>
+                  )}
                 </Button>
               </div>
               <p className="text-[#B0B0B0] text-[12px] mt-3 ml-4 font-light tracking-wide">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -171,8 +207,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={ROUTES.SINGLE_PRODUCTS}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -189,8 +224,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={ROUTES.PACKAGES}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -207,8 +241,7 @@ export default function Footer() {
                     <li key={item.title}>
                       <Link
                         href={item.href}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {item.title}
                       </Link>
                     </li>
@@ -225,8 +258,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={`${ROUTES.HOME}#services`}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -245,20 +277,17 @@ export default function Footer() {
             <div className="flex items-center flex-wrap justify-center gap-6 sm:gap-8">
               <Link
                 href={ROUTES.PRIVACY_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Privacy
               </Link>
               <Link
                 href={ROUTES.TERMS_AND_CONDITION}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Terms
               </Link>
               <Link
                 href={ROUTES.COOKIES_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Cookies
               </Link>
               {/* <Link

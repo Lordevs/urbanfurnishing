@@ -25,8 +25,6 @@ export const API_ROUTES = {
 
   // ─── Orders ─────────────────────────────────────────────────
   ORDERS: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/orders/`,
-  ORDER_DETAIL: (orderNumber: string) =>
-    `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/orders/${orderNumber}/`,
 
   // ─── Promo Codes ────────────────────────────────────────────
   PROMO_VALIDATE: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/promo-codes/validate/`,
@@ -34,4 +32,7 @@ export const API_ROUTES = {
   // ─── Payments ───────────────────────────────────────────────
   PAYMENT_CONFIRM: (orderNumber: string) =>
     `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/payments/${orderNumber}/confirm/`,
+
+  // ─── Newsletter ─────────────────────────────────────────────
+  NEWSLETTER_SUBSCRIBE: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/newsletter/subscribe/`,
 } as const;
