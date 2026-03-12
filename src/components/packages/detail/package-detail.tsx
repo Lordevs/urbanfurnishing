@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Star,
   Minus,
   Plus,
   ShoppingCart,
@@ -220,17 +219,6 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               {data.name}
             </h1>
 
-            <div className="flex items-center gap-3">
-              <div className="bg-linear-to-r from-[#C9A76A] to-[#C9A76A]/80 text-white px-2.5 py-1 rounded-[6px] flex items-center gap-1.5 text-[12px] font-bold">
-                <Star className="w-3.5 h-3.5 fill-white text-white" />
-                4.8
-              </div>
-              <span className="text-[#888888] text-[13px] font-medium">
-                Based on <span className="font-bold text-[#444444]">124</span>{" "}
-                reviews
-              </span>
-            </div>
-
             <p className="text-[#5D4E3C]/80 text-[14px] sm:text-[15px] leading-relaxed mt-1">
               {data.short_description ||
                 data.description ||
@@ -302,8 +290,8 @@ export function PackageDetail({ slug }: PackageDetailProps) {
                 onClick={handleAddToCart}
                 disabled={!data.is_in_stock}
                 className={`flex-1 h-[52px] rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md border-none ${
-                   data.is_in_stock 
-                    ? "bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white cursor-pointer" 
+                  data.is_in_stock
+                    ? "bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white cursor-pointer"
                     : "bg-gray-200 text-gray-500 cursor-not-allowed"
                 }`}
               >
@@ -507,15 +495,6 @@ export function PackageDetail({ slug }: PackageDetailProps) {
 
         {/* Info Box */}
         <div className="px-4 flex flex-col mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="bg-[#C9A76A] text-white px-[9px] py-[3px] rounded-[6px] text-[10px] font-bold flex items-center gap-1">
-              4.8
-            </div>
-            <span className="text-[#888888] text-[12px] font-medium">
-              230 reviews
-            </span>
-          </div>
-
           <h1 className="text-[26px] font-serif font-bold text-[#1A1A1A] leading-[1.2] mb-4">
             Modern Living Essentials
           </h1>
@@ -587,7 +566,9 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               onClick={handleAddToCart}
               disabled={!data.is_in_stock}
               className={`w-full border border-[#412A1F] text-[#412A1F] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none ${
-                !data.is_in_stock ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400" : ""
+                !data.is_in_stock
+                  ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400"
+                  : ""
               }`}
             >
               {data.is_in_stock ? "Buy Now" : "Out of Stock"}

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Star,
   Minus,
   Plus,
   ArrowUpRight,
@@ -216,26 +215,6 @@ export default function SingleProductDetails({
           <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#1A1A1A] leading-tight mb-4">
             {data.name}
           </h1>
-
-          {/* Rating */}
-          <div className="flex items-center gap-3 mb-6">
-            <div className="flex items-center gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-4 h-4 ${
-                    i < 4
-                      ? "fill-[#1A1A1A] text-[#1A1A1A]"
-                      : "fill-transparent text-[#EBEBEB]"
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-[14px] text-[#666666] font-medium">
-              <span className="text-[#1A1A1A] font-bold">4.8</span> (127
-              reviews)
-            </span>
-          </div>
 
           <p className="text-[#666666] text-[15px] sm:text-[16px] leading-relaxed mb-8">
             {data.description ||
