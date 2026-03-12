@@ -5,6 +5,7 @@ import CTA from "@/components/common/cta";
 import Testimonial from "@/components/common/testimonial";
 
 export default function BookConsultation() {
+  // book consultation
   return (
     <main className="min-h-screen">
       <BookConsultationHero />
