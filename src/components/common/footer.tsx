@@ -69,7 +69,13 @@ export default function Footer() {
               />
               <ActionButton
                 label="Subscribe"
-                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium"
+                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px]"
+                icon={<ArrowDownRight className="h-[14px] w-[14px] stroke-2" />}
+                iconContainerClassName="bg-[#FFF8F0] w-[26px] h-[26px] flex"
+              />
+              <ActionButton
+                label="Subscribe"
+                className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 rounded-full h-[52px] text-[15px] border border-white/20"
                 showArrow={false}
               />
             </div>

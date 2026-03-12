@@ -5,6 +5,7 @@ import { ArrowDownRight, Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
@@ -60,19 +61,19 @@ export default function PackagesHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="flex flex-col gap-4">
-              <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
-                <Button className="w-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center gap-3 border shadow-none border-transparent">
-                  Get in Touch
-                  <div className="bg-[#FFF8F0] rounded-full w-[26px] h-[26px] flex items-center justify-center text-[#412A1F]">
-                    <ArrowDownRight className="h-[14px] w-[14px] stroke-2" />
-                  </div>
-                </Button>
-              </Link>
-              <Link href={ROUTES.PACKAGES} className="w-full">
-                <Button className="w-full bg-white/70 backdrop-blur-md text-[#412A1F] hover:bg-white/80 rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center px-8 border-none shadow-none">
-                  Explore Packages
-                </Button>
-              </Link>
+              <ActionButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get in Touch"
+                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px]"
+                icon={<ArrowDownRight className="h-[14px] w-[14px] stroke-2" />}
+                iconContainerClassName="bg-[#FFF8F0] w-[26px] h-[26px] flex"
+              />
+              <ActionButton
+                href={ROUTES.PACKAGES}
+                label="Explore Packages"
+                className="bg-white/70 backdrop-blur-md text-[#412A1F] hover:bg-white/80 rounded-full h-[52px] text-[15px] border-none"
+                showArrow={false}
+              />
             </motion.div>
           </div>
 
@@ -119,28 +120,19 @@ export default function PackagesHero() {
           description="Expertly curated furniture collections designed to transform any space. Save up to 35% compared to buying pieces individually."
           buttons={
             <>
-              <Link href={ROUTES.BOOK_CONSULTATION}>
-                <Button className="group rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-2.5 pl-7 h-[52px] text-[15px] font-normal transition-all duration-300 shadow-lg border border-white/10 hover:border-white/25">
-                  Get in Touch
-                  <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
-                    <Image
-                      src="/common/arrow-up.svg"
-                      alt="Arrow Up"
-                      width={16}
-                      height={16}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </div>
-                </Button>
-              </Link>
-
-              <Link href={ROUTES.PACKAGES}>
-                <Button
-                  variant="outline"
-                  className="rounded-full bg-white/70 cursor-pointer backdrop-blur-md text-[#412A1F] hover:bg-white/90 h-[56px] px-8 text-[14px] font-semibold transition-all duration-300 border-none shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
-                  Explore Packages
-                </Button>
-              </Link>
+              <ActionButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get in Touch"
+                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] border border-white/10 hover:border-white/25 pr-2.5 pl-7 h-[52px] text-[15px] font-normal"
+                iconContainerClassName="w-[30px] h-[30px] flex"
+              />
+ 
+              <ActionButton
+                href={ROUTES.PACKAGES}
+                label="Explore Packages"
+                variant="outline"
+                className="rounded-full bg-white/70 backdrop-blur-md text-[#412A1F] hover:bg-white/90 h-[56px] px-8 text-[14px] font-semibold"
+              />
             </>
           }
           bottomCard={

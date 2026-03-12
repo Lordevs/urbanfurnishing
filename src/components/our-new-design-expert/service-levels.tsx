@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
+import { ActionButton } from "../shared/action-button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -181,9 +182,11 @@ export default function ServiceLevels() {
                 ))}
               </ul>
 
-              <Button className="w-full h-[52px] bg-[#422C20] hover:bg-[#3D261C] text-white rounded-[12px] text-[14px] font-medium shadow-sm transition-all focus:ring-0">
-                {plan.buttonText}
-              </Button>
+              <ActionButton
+                label={plan.buttonText}
+                className="w-full h-[52px] bg-[#422C20] hover:bg-[#3D261C] text-white rounded-[12px] text-[14px] font-medium shadow-sm transition-all focus:ring-0"
+                showArrow={false}
+              />
             </div>
           ))}
         </div>
@@ -313,13 +316,14 @@ export default function ServiceLevels() {
                 </div>
 
                 {/* Action Button */}
-                <Button
+                <ActionButton
+                  label={plan.buttonText}
                   className={cn(
-                    "w-full h-[52px] sm:h-[56px] rounded-[10px] sm:rounded-[12px] text-[15px] font-normal transition-all shadow-none hover:-translate-y-0.5 hover:shadow-lg",
+                    "w-full h-[52px] sm:h-[56px] rounded-[10px] sm:rounded-[12px] text-[15px] font-normal transition-all shadow-none hover:shadow-lg",
                     plan.buttonClass,
-                  )}>
-                  {plan.buttonText}
-                </Button>
+                  )}
+                  showArrow={false}
+                />
               </motion.div>
             ))}
           </div>
