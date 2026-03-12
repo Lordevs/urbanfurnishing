@@ -6,7 +6,6 @@ export const ROUTES = {
   SINGLE_PRODUCT_DETAIL: (id: string) => `/single-products/${id}`,
   OUR_NEW_DESIGN_EXPERT: "/our-new-design-expert",
   BOOK_CONSULTATION: "/book-consultation",
-  TRACK_ORDER: "/track-order",
   CART: "/cart",
   CHECKOUT_SUCCESS: "/checkout/success",
   PRIVACY_POLICY: "/privacy-policy",
