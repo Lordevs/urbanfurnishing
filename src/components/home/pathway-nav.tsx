@@ -3,9 +3,9 @@
 import { ArrowUp } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-import { cn } from "@/lib/utils";
 import { usePackages } from "@/hooks/queries/use-packages";
 import { useProducts } from "@/hooks/queries/use-products";
+import { cn } from "@/lib/utils";
 
 const SECTIONS = [
   { id: "packages", label: "Select Packages" },

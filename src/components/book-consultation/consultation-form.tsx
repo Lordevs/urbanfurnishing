@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { Clock, Loader2, Lock, Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import { type DefaultValues, useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,6 @@ import {
   contactSchema,
   type ContactFormValues,
 } from "@/schemas/contact.schema";
-import Image from "next/image";
 
 // Label → backend enum value maps
 const PACKAGE_OPTIONS = [
@@ -87,7 +87,9 @@ export default function ConsultationForm() {
     } as DefaultValues<ContactFormValues>,
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const selectedPropertyType = watch("property_type");
+  // eslint-disable-next-line react-hooks/incompatible-library
   const selectedContactMethod = watch("preferred_contact");
 
   const onSubmit = (data: ContactFormValues) => {
