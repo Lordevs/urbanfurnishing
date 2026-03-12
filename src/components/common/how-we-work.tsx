@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -82,8 +81,7 @@ export default function HowWeWork() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full aspect-[1.57] rounded-[16px] overflow-hidden mb-6"
-          >
+            className="relative w-full aspect-[1.57] rounded-[16px] overflow-hidden mb-6">
             <Image
               src={
                 isMobileHome
@@ -104,8 +102,7 @@ export default function HowWeWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex items-start gap-4 p-5 rounded-[16px] bg-[#FAFAFA] border border-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.01)]"
-              >
+                className="flex items-start gap-4 p-5 rounded-[16px] bg-[#FAFAFA] border border-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
                 <div className="shrink-0 flex items-center justify-center w-[46px] h-[46px] rounded-full bg-[#C9A76A] text-white font-bold text-[18px]">
                   {step.number}
                 </div>
@@ -133,9 +130,17 @@ export default function HowWeWork() {
 
               <Link href={ROUTES.BOOK_CONSULTATION}>
                 <Button className="group rounded-full bg-[#412A1F] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-1.5 pl-6 h-12 text-[14.5px] font-medium transition-all duration-300 shadow-none border-none cursor-pointer">
-                  Get In Touch
-                  <div className="bg-[#FDF4E7] rounded-full p-2 text-[#412A1F] transition-transform duration-300 group-hover:scale-95">
-                    <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
+                  <span className="hidden sm:inline text-white">
+                    Get in Touch
+                  </span>
+                  <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
+                    <Image
+                      src="/common/arrow-up.svg"
+                      alt="Arrow Up"
+                      width={12}
+                      height={12}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </div>
                 </Button>
               </Link>
@@ -155,8 +160,7 @@ export default function HowWeWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative z-20 pt-15 rounded-[16px] overflow-hidden w-full"
-              >
+                className="relative z-20 pt-15 rounded-[16px] overflow-hidden w-full">
                 <div className="aspect-[1.5] relative w-full">
                   <Image
                     src="/landing/home/how-we-work/work-img.webp"
@@ -179,8 +183,7 @@ export default function HowWeWork() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="py-10 first:pt-0 last:pb-0 flex items-start gap-8 group"
-                >
+                  className="py-10 first:pt-0 last:pb-0 flex items-start gap-8 group">
                   <div className="relative shrink-0 mt-0.5">
                     <div className="w-[60px] h-[60px] rounded-full bg-[#F5EFE9] flex items-center justify-center">
                       <Image

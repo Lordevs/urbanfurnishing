@@ -110,8 +110,14 @@ export default function CTA() {
                 <Link href={ROUTES.BOOK_CONSULTATION}>
                   <Button className="rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center gap-6 pr-1.5 pl-6 h-12 text-[13px] font-normal transition-all shadow-none border-none group">
                     Book Now
-                    <div className="bg-white rounded-full p-1.5 text-[#412A1F] transition-transform group-hover:scale-105">
-                      <ArrowUpRight className="h-4 w-4" />
+                    <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
+                      <Image
+                        src="/common/arrow-up.svg"
+                        alt="Arrow Up"
+                        width={12}
+                        height={12}
+                        className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
                     </div>
                   </Button>
                 </Link>

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  ArrowUpRight,
-  MapPin,
-  Mail,
-  Phone,
-  ArrowDownRight,
-} from "lucide-react";
+import { MapPin, Mail, Phone, ArrowDownRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -47,9 +41,12 @@ export default function Footer() {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    subscribe({ email }, {
-      onSuccess: () => setEmail(""),
-    });
+    subscribe(
+      { email },
+      {
+        onSuccess: () => setEmail(""),
+      },
+    );
   };
 
   return (
@@ -57,21 +54,23 @@ export default function Footer() {
       {/* Mobile Newsletter Section */}
       <div className="lg:hidden bg-card py-16 px-5 border-b border-[#F0EBE6] w-full">
         <div className="flex flex-col items-start w-full">
-          <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-white rounded-full px-4 py-[6px] mb-6 shadow-sm">
-            <span className="text-[10px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
+          <div className="inline-flex items-center justify-center border border-[#F0EBE6] bg-white rounded-full px-6 py-2 mb-6 shadow-sm">
+            <span className="text-[11px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
               Newsletter
             </span>
           </div>
-          <h2 className="text-[28px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
+          <h2 className="text-[32px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
             Get Design{" "}
             <span className="text-[#C9A76A] font-serif">Inspiration</span>
           </h2>
-          <p className="text-[#8F877C] text-[14px] leading-relaxed tracking-wide font-light mb-8 max-w-[95%]">
+          <p className="text-[#8F877C] text-[15px] leading-relaxed tracking-wide font-light mb-8">
             Join our community for curated interior tips, new collection
             launches, and exclusive promotions.
           </p>
 
-          <form onSubmit={handleSubscribe} className="w-full flex flex-col items-center">
+          <form
+            onSubmit={handleSubscribe}
+            className="w-full flex flex-col items-center">
             <div className="flex flex-row items-center gap-2 w-full">
               <Input
                 type="email"
@@ -81,11 +80,10 @@ export default function Footer() {
                 required
                 className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-5 h-[48px] flex-1 text-[13px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light min-w-0"
               />
-              <Button 
+              <Button
                 type="submit"
                 disabled={isPending}
-                className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-2 py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 cursor-pointer"
-              >
+                className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-2 py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 cursor-pointer">
                 {isPending ? "Subscribing..." : "Subscribe"}
                 {!isPending && (
                   <div className="bg-[#FDF4E7] rounded-full p-[5px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
@@ -94,7 +92,7 @@ export default function Footer() {
                 )}
               </Button>
             </div>
-            <p className="text-[#B0B0B0] text-[11px] mt-5 font-light tracking-wide text-center">
+            <p className="text-[#B0B0B0] text-[12px] mt-4 font-light tracking-wide text-center">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </form>
@@ -120,7 +118,9 @@ export default function Footer() {
             </p>
           </div>
 
-          <form onSubmit={handleSubscribe} className="w-full flex flex-col items-end">
+          <form
+            onSubmit={handleSubscribe}
+            className="w-full flex flex-col items-end">
             <div className="w-[80%] max-w-[500px]">
               <div className="flex flex-row items-center gap-3">
                 <Input
@@ -131,15 +131,20 @@ export default function Footer() {
                   required
                   className="rounded-full border border-[#EAEADF] shadow-sm focus-visible:ring-1 focus-visible:ring-[#C9A76A]/30 px-6 h-[50px] flex-1 text-[13.5px] text-[#302B27] placeholder:text-[#B0B0B0] bg-white font-light w-full"
                 />
-                <Button 
+                <Button
                   type="submit"
                   disabled={isPending}
-                  className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer"
-                >
+                  className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer">
                   {isPending ? "Connecting..." : "Subscribe"}
                   {!isPending && (
-                    <div className="bg-[#FDF4E7] rounded-full p-[7px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                      <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
+                    <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
+                      <Image
+                        src="/common/arrow-up.svg"
+                        alt="Arrow Up"
+                        width={12}
+                        height={12}
+                        className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
                     </div>
                   )}
                 </Button>
@@ -179,7 +184,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-3 w-full">
                   <Mail className="w-4 h-4 text-[#C9A76A]" strokeWidth={1.5} />
-                  <span className="tracking-wide">hello@urbanheights.ae</span>
+                  <span className="tracking-wide">info@uhfurnishing.ae</span>
                 </div>
                 <div className="flex items-center gap-3 w-full">
                   <MapPin
@@ -202,8 +207,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={ROUTES.SINGLE_PRODUCTS}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -220,8 +224,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={ROUTES.PACKAGES}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -238,8 +241,7 @@ export default function Footer() {
                     <li key={item.title}>
                       <Link
                         href={item.href}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {item.title}
                       </Link>
                     </li>
@@ -256,8 +258,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={`${ROUTES.HOME}#services`}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -276,20 +277,17 @@ export default function Footer() {
             <div className="flex items-center flex-wrap justify-center gap-6 sm:gap-8">
               <Link
                 href={ROUTES.PRIVACY_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Privacy
               </Link>
               <Link
                 href={ROUTES.TERMS_AND_CONDITION}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Terms
               </Link>
               <Link
                 href={ROUTES.COOKIES_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Cookies
               </Link>
               {/* <Link

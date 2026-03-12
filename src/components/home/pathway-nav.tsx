@@ -3,6 +3,8 @@
 import { ArrowUp } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
+import { usePackages } from "@/hooks/queries/use-packages";
+import { useProducts } from "@/hooks/queries/use-products";
 import { cn } from "@/lib/utils";
 
 const SECTIONS = [
@@ -12,7 +14,28 @@ const SECTIONS = [
 ];
 
 export default function PathwayNav() {
-  const [activeSection, setActiveSection] = useState<string>("packages");
+  const { data: packagesData } = usePackages({
+    is_featured: true,
+    page_size: 4,
+  });
+  const { data: productsData } = useProducts({
+    is_featured: true,
+    page_size: 4,
+  });
+
+  const hasPackages = (packagesData?.results?.length ?? 0) > 0;
+  const hasProducts = (productsData?.results?.length ?? 0) > 0;
+
+  const visibleSections = SECTIONS.filter((section) => {
+    if (section.id === "packages") return hasPackages;
+    if (section.id === "single-items") return hasProducts;
+    return true;
+  });
+
+  const [activeSection, setActiveSection] = useState<string>(
+    visibleSections[0]?.id || "packages",
+  );
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,14 +55,16 @@ export default function PathwayNav() {
       },
     );
 
-    SECTIONS.forEach((section) => {
+    visibleSections.forEach((section) => {
       const el = document.getElementById(section.id);
       if (el) observer.observe(el);
     });
 
     const handleScroll = () => {
       if (document.documentElement.scrollTop < 300) {
-        setActiveSection("packages");
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].id);
+        }
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -48,7 +73,7 @@ export default function PathwayNav() {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [visibleSections]);
 
   // Update horizontally scrolled pill container when active section changes
   useEffect(() => {
@@ -96,7 +121,7 @@ export default function PathwayNav() {
           title="Scroll to Top">
           <ArrowUp className="w-4 h-4 text-gray-500" />
         </button>
-        {SECTIONS.map((section) => {
+        {visibleSections.map((section) => {
           const isActive = activeSection === section.id;
           return (
             <button

@@ -24,7 +24,7 @@ const Navbar = () => {
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
-    () => false
+    () => false,
   );
   const { items } = useCart();
 
@@ -43,15 +43,13 @@ const Navbar = () => {
     <nav
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
-      }`}
-    >
+      }`}>
       <div className="w-full px-4 sm:px-10 lg:px-16">
         <div className="flex h-20 items-center justify-between">
           {/* Logo Section */}
           <Link
             href={ROUTES.HOME}
-            className="flex items-center gap-2 group shrink-0"
-          >
+            className="flex items-center gap-2 group shrink-0">
             <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/common/logo.svg"
@@ -78,8 +76,7 @@ const Navbar = () => {
                     isActive
                       ? "bg-[#412A1F]/90 text-white"
                       : "text-foreground hover:text-primary"
-                  }`}
-                >
+                  }`}>
                   {item.title}
                 </Link>
               );
@@ -90,8 +87,7 @@ const Navbar = () => {
             {/* Cart Icon - Both Mobile (visible) and Desktop */}
             <Link
               href={ROUTES.CART}
-              className="relative p-2.5 rounded-full hover:bg-primary/5 transition-colors group"
-            >
+              className="relative p-2.5 rounded-full hover:bg-primary/5 transition-colors group">
               <ShoppingCart className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
               {mounted && totalQuantity > 0 && (
                 <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#C9A76A] text-[10px] font-bold text-white shadow-sm ring-2 ring-white animate-in zoom-in-50 duration-300">
@@ -104,9 +100,17 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center">
               <Link href={ROUTES.BOOK_CONSULTATION}>
                 <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-3 pr-2 pl-7 h-12 text-sm font-medium transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
-                  Get in Touch
-                  <div className="bg-[#FFF8F0] rounded-full p-1.5 text-primary flex items-center justify-center">
-                    <ArrowUpRight className="h-4 w-4" />
+                  <span className="hidden sm:inline text-white">
+                    Get in Touch
+                  </span>
+                  <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
+                    <Image
+                      src="/common/arrow-up.svg"
+                      alt="Arrow Up"
+                      width={12}
+                      height={12}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </div>
                 </Button>
               </Link>
@@ -120,8 +124,7 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     aria-label="Open navigation menu"
-                    className="text-primary hover:bg-primary/5 h-11 w-11"
-                  >
+                    className="text-primary hover:bg-primary/5 h-11 w-11">
                     <Menu className="h-7 w-7" />
                   </Button>
                 </SheetTrigger>
@@ -134,8 +137,7 @@ const Navbar = () => {
                       <Link
                         href={ROUTES.HOME}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-2 group"
-                      >
+                        className="flex items-center gap-2 group">
                         <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
                           <Image
                             src="/common/logo.svg"
@@ -163,8 +165,7 @@ const Navbar = () => {
                               isActive
                                 ? "text-primary bg-primary/5 border-l-4 border-primary"
                                 : "text-muted-foreground hover:bg-gray-50"
-                            }`}
-                          >
+                            }`}>
                             <item.icon
                               className={`h-5 w-5 ${isActive ? "text-primary" : "text-muted-foreground"}`}
                             />
@@ -177,8 +178,7 @@ const Navbar = () => {
                     <div className="p-8 border-t bg-gray-50/50">
                       <Link
                         href={ROUTES.BOOK_CONSULTATION}
-                        onClick={() => setIsOpen(false)}
-                      >
+                        onClick={() => setIsOpen(false)}>
                         <Button className="w-full rounded-full bg-[#412A1F] hover:bg-primary/90 text-white flex items-center justify-between px-8 h-14 text-md font-medium shadow-lg transition-transform active:scale-95">
                           Get in Touch
                           <div className="bg-white rounded-full p-2 text-[#412A1F]">

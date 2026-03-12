@@ -23,6 +23,8 @@ export default function SingleItems() {
     ? []
     : (data?.results ?? []).map(toCarouselItem);
 
+  if (!isLoading && items.length === 0) return null;
+
   return (
     <div className="w-full">
       <ItemCarousel
