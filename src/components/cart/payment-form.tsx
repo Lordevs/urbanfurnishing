@@ -19,6 +19,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 import { useConfirmPayment } from "@/hooks/mutations/use-confirm-payment";
 import { useCreateOrder } from "@/hooks/mutations/use-create-order";
@@ -156,9 +157,7 @@ export function PaymentForm({
 
   const currencySymbol = "AED ";
 
-  const shipping = items.length > 0 ? 200 : 0;
-  const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax - discount;
+  const total = subtotal - discount;
 
   const handleSubmit = () => {
     if (!addressData) {
@@ -195,7 +194,7 @@ export function PaymentForm({
           toast.success("Order created! Proceeding to payment.");
         } else {
           clearCart();
-          router.push(`/checkout/success?order=${data.order_number}`);
+          router.push(ROUTES.CHECKOUT_SUCCESS + `?order=${data.order_number}`);
           toast.success("Order placed successfully!");
         }
       },
@@ -326,7 +325,9 @@ export function PaymentForm({
                         orderNumber={orderNumber || ""}
                         onSuccess={() => {
                           clearCart();
-                          router.push(`/checkout/success?order=${orderNumber}`);
+                          router.push(
+                            ROUTES.CHECKOUT_SUCCESS + `?order=${orderNumber}`,
+                          );
                         }}
                       />
                     </Elements>
@@ -349,16 +350,6 @@ export function PaymentForm({
                   <span className="text-[#333333]">Subtotal</span>
                   <span className="font-semibold text-[#1A1A1A]">
                     {formatPrice(subtotal)}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center text-[14px]">
-                  <span className="text-[#333333]">Shipping</span>
-                  <span className="font-semibold text-[#1A1A1A]">Free</span>
-                </div>
-                <div className="flex justify-between items-center text-[14px]">
-                  <span className="text-[#333333]">Tax (5%)</span>
-                  <span className="font-semibold text-[#1A1A1A]">
-                    {formatPrice(tax)}
                   </span>
                 </div>
               </div>
@@ -484,7 +475,9 @@ export function PaymentForm({
                         orderNumber={orderNumber || ""}
                         onSuccess={() => {
                           clearCart();
-                          router.push(`/checkout/success?order=${orderNumber}`);
+                          router.push(
+                            ROUTES.CHECKOUT_SUCCESS + `?order=${orderNumber}`,
+                          );
                         }}
                       />
                     </Elements>

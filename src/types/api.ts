@@ -12,8 +12,6 @@ const parseJsonArray = (val: unknown) => {
   return val;
 };
 
-
-
 // ─── Pagination ──────────────────────────────────────────────────────────────
 
 export const PaginatedResponseSchema = <T extends z.ZodTypeAny>(
@@ -82,11 +80,29 @@ export const ProductListItemSchema = z.object({
 
 export const ProductDetailSchema = ProductListItemSchema.extend({
   description: z.string().optional().nullable(),
-  overview: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  specifications: z.preprocess(parseJsonArray, z.array(z.object({ key: z.string(), value: z.string() }))).optional().default([]),
-  key_benefits: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  benefits: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  whats_included: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
+  overview: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  specifications: z
+    .preprocess(
+      parseJsonArray,
+      z.array(z.object({ key: z.string(), value: z.string() })),
+    )
+    .optional()
+    .default([]),
+  key_benefits: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  benefits: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  whats_included: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
   images: z.array(ProductImageSchema).optional().default([]),
   stock: z.number().int().optional().nullable(),
 });
@@ -120,13 +136,37 @@ export const PackageListItemSchema = z.object({
 
 export const PackageDetailSchema = PackageListItemSchema.extend({
   description: z.string().optional().nullable(),
-  overview: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  features: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  features_and_benefits: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  key_benefits: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  benefits: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  whats_included: z.preprocess(parseJsonArray, z.array(z.string())).optional().default([]),
-  specifications: z.preprocess(parseJsonArray, z.array(z.object({ key: z.string(), value: z.string() }))).optional().default([]),
+  overview: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  features: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  features_and_benefits: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  key_benefits: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  benefits: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  whats_included: z
+    .preprocess(parseJsonArray, z.array(z.string()))
+    .optional()
+    .default([]),
+  specifications: z
+    .preprocess(
+      parseJsonArray,
+      z.array(z.object({ key: z.string(), value: z.string() })),
+    )
+    .optional()
+    .default([]),
   images: z.array(ProductImageSchema).optional().default([]),
 });
 
@@ -183,6 +223,71 @@ export const OrderResponseSchema = z.object({
 
 export type OrderPayload = z.infer<typeof OrderPayloadSchema>;
 export type OrderResponse = z.infer<typeof OrderResponseSchema>;
+
+// ─── Order Tracking ──────────────────────────────────────────────────────────
+
+export const OrderStatusEnum = z.enum([
+  "PENDING",
+  "CONFIRMED",
+  "PROCESSING",
+  "SHIPPED",
+  "DELIVERED",
+  "CANCELLED",
+  "REFUNDED",
+]);
+
+export type OrderStatus = z.infer<typeof OrderStatusEnum>;
+
+export const OrderDetailItemSchema = z.object({
+  id: z.string().uuid(),
+  item_type: z.enum(["PRODUCT", "PACKAGE"]),
+  item_name: z.string(),
+  unit_price: z.string(),
+  unit_discounted_price: z.string(),
+  quantity: z.number().int(),
+  line_total: z.string(),
+  image: z.string().optional().nullable(),
+});
+
+export const OrderDetailSchema = z.object({
+  order_number: z.string(),
+  status: OrderStatusEnum,
+  payment_method: z.enum(["CARD", "CASH_ON_DELIVERY"]).optional().nullable(),
+  payment_status: z.string().optional().nullable(),
+  total_amount: z.string(),
+  created_at: z.string(),
+  updated_at: z.string().optional().nullable(),
+  // Keeping other fields as optional for potential future re-inclusion
+  subtotal: z.string().optional().nullable(),
+  discount_amount: z.string().optional().nullable(),
+  shipping_amount: z.string().optional().nullable(),
+  tax_amount: z.string().optional().nullable(),
+  customer_email: z.string().optional().nullable(),
+  customer_phone: z.string().optional().nullable(),
+  shipping_first_name: z.string().optional().nullable(),
+  shipping_last_name: z.string().optional().nullable(),
+  shipping_street_address: z.string().optional().nullable(),
+  shipping_apartment_suite: z.string().optional().nullable(),
+  shipping_city: z.string().optional().nullable(),
+  shipping_state: z.string().optional().nullable(),
+  shipping_postal_code: z.string().optional().nullable(),
+  shipping_country: z.string().optional().nullable(),
+  items: z.array(OrderDetailItemSchema).optional().default([]),
+  payment: z
+    .object({
+      method: z.enum(["CARD", "CASH_ON_DELIVERY"]),
+      status: z.string(),
+      amount: z.string(),
+      currency: z.string(),
+      paid_at: z.string().optional().nullable(),
+    })
+    .optional()
+    .nullable(),
+  notes: z.string().optional().nullable(),
+});
+
+export type OrderDetail = z.infer<typeof OrderDetailSchema>;
+export type OrderDetailItem = z.infer<typeof OrderDetailItemSchema>;
 
 // ─── Promo Codes ─────────────────────────────────────────────────────────────
 

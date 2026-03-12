@@ -31,8 +31,7 @@ export default function CartContent() {
     return acc + (item.price || 0) * item.quantity;
   }, 0);
 
-  const tax = subtotal * 0.05; // 5% matching screenshot
-  const total = subtotal + tax;
+  const total = subtotal;
 
   const formatPrice = (value: number) => {
     return `AED ${value.toLocaleString("en-US", {
@@ -168,20 +167,6 @@ export default function CartContent() {
                       </span>
                       <span className="font-bold text-[#1a1a1a]">
                         {formatPrice(subtotal)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center text-[14px]">
-                      <span className="text-[#888888] font-medium">
-                        Shipping
-                      </span>
-                      <span className="font-bold text-[#10B981]">Free</span>
-                    </div>
-                    <div className="flex justify-between items-center text-[14px]">
-                      <span className="text-[#888888] font-medium">
-                        Tax (5%)
-                      </span>
-                      <span className="font-bold text-[#1a1a1a]">
-                        {formatPrice(tax)}
                       </span>
                     </div>
                   </div>

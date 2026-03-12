@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Menu, ShoppingCart } from "lucide-react";
+import { ArrowUpRight, Menu, ShoppingCart, Package } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -87,6 +87,23 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4">
+            {/* Track Order Icon */}
+            <Link
+              href={ROUTES.TRACK_ORDER}
+              title="Track Order"
+              className={`p-2.5 rounded-full hover:bg-primary/5 transition-colors group ${
+                pathname === ROUTES.TRACK_ORDER ? "bg-primary/5" : ""
+              }`}
+            >
+              <Package
+                className={`h-6 w-6 transition-colors ${
+                  pathname === ROUTES.TRACK_ORDER
+                    ? "text-primary"
+                    : "text-foreground group-hover:text-primary"
+                }`}
+              />
+            </Link>
+
             {/* Cart Icon - Both Mobile (visible) and Desktop */}
             <Link
               href={ROUTES.CART}

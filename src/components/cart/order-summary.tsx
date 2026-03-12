@@ -42,9 +42,7 @@ export function OrderSummary({
   // Assuming a consistent currency, or pass it down. "AED" matches existing UI code.
   const currencySymbol = "AED ";
 
-  const shipping = items.length > 0 ? 200 : 0;
-  const tax = subtotal * 0.08; // 8% dynamic tax
-  const total = subtotal + shipping + tax - discount;
+  const total = subtotal - discount;
 
   const handleApplyPromo = () => {
     if (!promoCode.trim()) return;
@@ -78,18 +76,6 @@ export function OrderSummary({
           <span className="text-[#333333]">Subtotal</span>
           <span className="font-semibold text-[#1A1A1A]">
             {formatPrice(subtotal)}
-          </span>
-        </div>
-        <div className="flex justify-between items-center text-[14px]">
-          <span className="text-[#333333]">Shipping</span>
-          <span className="font-semibold text-[#1A1A1A]">
-            {formatPrice(shipping)}
-          </span>
-        </div>
-        <div className="flex justify-between items-center text-[14px]">
-          <span className="text-[#333333]">Tax</span>
-          <span className="font-semibold text-[#1A1A1A]">
-            {formatPrice(tax)}
           </span>
         </div>
         {discount > 0 && (
