@@ -20,7 +20,7 @@ export default function OurDesignExpertHero() {
   return (
     <>
       {/* Mobile View */}
-      <div className="md:hidden relative w-full h-[85dvh] flex flex-col pt-[100px] bg-[#3D261C] overflow-hidden sm:rounded-none">
+      <div className="md:hidden relative w-full h-[85dvh] pb-15 sm:pb-0 flex flex-col pt-[100px] bg-[#3D261C] overflow-hidden sm:rounded-none">
         <div className="absolute inset-0 z-0">
           <Image
             src="/landing/our-new-design-expert/our-design-expert.webp"
@@ -38,8 +38,7 @@ export default function OurDesignExpertHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
-            >
+              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
               Your Personal <br />
               <span className="text-[#C9A76A] font-serif">Design Expert</span>
             </motion.h1>
@@ -47,8 +46,7 @@ export default function OurDesignExpertHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4"
-            >
+              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4">
               Transform your space with professional interior design guidance.
               From concept to completion, we bring your vision to life with
               personalized service.
@@ -57,8 +55,7 @@ export default function OurDesignExpertHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4"
-            >
+              className="flex flex-col gap-4">
               <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
                 <Button className="w-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center gap-3 border shadow-none border-transparent">
                   Get in Touch
@@ -79,15 +76,13 @@ export default function OurDesignExpertHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="w-full bottom-card-wrapper mt-auto"
-          >
+            className="w-full bottom-card-wrapper mt-auto">
             <div
               className="rounded-[24px] p-6 shadow-xl w-full flex flex-col gap-5 border border-white/20"
               style={{
                 background:
                   "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-              }}
-            >
+              }}>
               <h3 className="text-[#FFFFFF] text-[18px] font-serif font-medium text-center mb-1">
                 Why Book With Us?
               </h3>
@@ -135,8 +130,7 @@ export default function OurDesignExpertHero() {
               <Link href={ROUTES.PACKAGES}>
                 <Button
                   variant="outline"
-                  className="rounded-full bg-white/20 cursor-pointer backdrop-blur-md text-white hover:bg-white/30 h-[52px] px-8 text-[15px] font-normal transition-all duration-300 border border-white/20 hover:border-white/40 shadow-lg hover:-translate-y-0.5"
-                >
+                  className="rounded-full bg-white/20 cursor-pointer backdrop-blur-md text-white hover:bg-white/30 h-[52px] px-8 text-[15px] font-normal transition-all duration-300 border border-white/20 hover:border-white/40 shadow-lg hover:-translate-y-0.5">
                   Our Design Services
                 </Button>
               </Link>
@@ -147,15 +141,13 @@ export default function OurDesignExpertHero() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-              className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20"
-            >
+              className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20">
               <div
                 className="px-8 sm:px-16 py-10 sm:py-8 rounded-[24px] sm:rounded-[28px]  shadow-lg flex flex-col gap-7 min-w-[320px] sm:min-w-[480px]"
                 style={{
                   background:
                     "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-                }}
-              >
+                }}>
                 <h3 className="text-white text-[17px] font-serif sm:text-[18px] font-medium text-center mb-1">
                   Why Book With Us?
                 </h3>

@@ -82,12 +82,11 @@ export default function HowWeWork() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full aspect-[1.57] rounded-[16px] overflow-hidden mb-6"
-          >
+            className="relative w-full aspect-[1.57] rounded-[16px] overflow-hidden mb-6">
             <Image
               src={
                 isMobileHome
-                  ? "/landing/home/how-we-work/how-we-work.webp"
+                  ? "/landing/home/how-we-work/we-work.webp"
                   : "/landing/home/how-we-work/work-img.webp"
               }
               alt="How We Work"
@@ -104,8 +103,7 @@ export default function HowWeWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex items-start gap-4 p-5 rounded-[16px] bg-[#FAFAFA] border border-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.01)]"
-              >
+                className="flex items-start gap-4 p-5 rounded-[16px] bg-[#FAFAFA] border border-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
                 <div className="shrink-0 flex items-center justify-center w-[46px] h-[46px] rounded-full bg-[#C9A76A] text-white font-bold text-[18px]">
                   {step.number}
                 </div>
@@ -155,8 +153,7 @@ export default function HowWeWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative z-20 pt-15 rounded-[16px] overflow-hidden w-full"
-              >
+                className="relative z-20 pt-15 rounded-[16px] overflow-hidden w-full">
                 <div className="aspect-[1.5] relative w-full">
                   <Image
                     src="/landing/home/how-we-work/work-img.webp"
@@ -179,8 +176,7 @@ export default function HowWeWork() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="py-10 first:pt-0 last:pb-0 flex items-start gap-8 group"
-                >
+                  className="py-10 first:pt-0 last:pb-0 flex items-start gap-8 group">
                   <div className="relative shrink-0 mt-0.5">
                     <div className="w-[60px] h-[60px] rounded-full bg-[#F5EFE9] flex items-center justify-center">
                       <Image

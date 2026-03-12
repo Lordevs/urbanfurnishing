@@ -19,7 +19,7 @@ export default function HomeHero() {
     <HeroSection
       imageSrc="/landing/home/hero-section.webp"
       imageAlt="Modern Architecture"
-      heightClass="h-[60dvh] sm:h-screen"
+      heightClass="h-[75dvh] min-[430px]:h-[62dvh] sm:h-screen"
       title={
         <>
           Design Your Space. <br />
@@ -48,8 +48,7 @@ export default function HomeHero() {
           <Link href={ROUTES.PACKAGES} className="w-full sm:w-auto">
             <Button
               variant="outline"
-              className="w-full sm:w-auto rounded-xl sm:rounded-full bg-transparent sm:bg-white/70 border border-white/50 sm:border-none backdrop-blur-md text-white sm:text-[#412A1F] hover:bg-white/10 sm:hover:bg-white/90 h-[48px] sm:h-[60px] px-8 text-base font-medium sm:font-semibold transition-all duration-300 shadow-lg shadow-black/5 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10"
-            >
+              className="w-full sm:w-auto rounded-xl sm:rounded-full bg-transparent sm:bg-white/70 border border-white/50 sm:border-none backdrop-blur-md text-white sm:text-[#412A1F] hover:bg-white/10 sm:hover:bg-white/90 h-[48px] sm:h-[60px] px-8 text-base font-medium sm:font-semibold transition-all duration-300 shadow-lg shadow-black/5 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
               <span className="sm:hidden">View Portfolio</span>
               <span className="hidden sm:inline">Explore Packages</span>
             </Button>
@@ -61,13 +60,11 @@ export default function HomeHero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="absolute bottom-4 right-4 sm:bottom-0 sm:right-0 bg-[#F9F9F9] sm:bg-white px-5 sm:px-6 rounded-[24px] sm:rounded-tl-[32px] sm:rounded-br-[24px] sm:rounded-bl-none sm:rounded-tr-none py-6 sm:py-12 lg:py-22 flex justify-between sm:justify-start items-center gap-6 sm:gap-14 z-20 shadow-xl sm:shadow-none w-[300px] sm:w-auto"
-        >
+          className="absolute bottom-4 right-4  sm:bottom-0 sm:right-0 bg-[#F9F9F9] sm:bg-white px-5 sm:px-6 rounded-[24px] sm:rounded-tl-[32px] sm:rounded-br-[24px] sm:rounded-bl-none sm:rounded-tr-none py-6 sm:py-12 lg:py-22 flex justify-between sm:justify-start items-center gap-6 sm:gap-14 z-20 shadow-xl sm:shadow-none w-[300px] sm:w-auto">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="flex flex-col gap-1 sm:gap-2 items-center text-center"
-            >
+              className="flex flex-col gap-1 sm:gap-2 items-center text-center">
               <span className="text-[28px] sm:text-4xl lg:text-[44px] leading-none font-bold sm:font-medium text-[#412A1F]">
                 {stat.value}
               </span>
