@@ -3,11 +3,9 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check, ArrowDownRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { ActionButton } from "@/components/shared/action-button";
 import { HeroSection } from "@/components/shared/hero-section";
-import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
 const benefits = [
@@ -120,7 +118,6 @@ export default function SingleProductHero() {
                 href={ROUTES.BOOK_CONSULTATION}
                 label="Get in Touch"
                 className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] border border-white/10 hover:border-white/25 pr-2.5 pl-7 h-[52px] text-[15px] font-normal"
-                icon={<ArrowUpRight className="h-[25px] w-[25px] stroke-[1.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
                 iconContainerClassName="w-[36px] h-[36px] flex"
               />
 

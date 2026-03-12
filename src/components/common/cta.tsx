@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ActionButton } from "@/components/shared/action-button";
-import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
 const stats = [

@@ -1,5 +1,6 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -14,11 +15,13 @@ interface ActionButtonProps {
   className?: string;
   containerClassName?: string;
   showArrow?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "outline";
   icon?: React.ReactNode;
   iconContainerClassName?: string;
+  disabled?: boolean;
+  loading?: boolean;
 }
 
 export function ActionButton({
@@ -33,6 +36,8 @@ export function ActionButton({
   variant = "primary",
   icon,
   iconContainerClassName,
+  disabled,
+  loading,
 }: ActionButtonProps) {
   const isPrimary = variant === "primary";
   const isOutline = variant === "outline";
@@ -41,6 +46,7 @@ export function ActionButton({
     <Button
       type={type}
       onClick={onClick}
+      disabled={disabled || loading}
       className={cn(
         "group transition-all duration-300 shadow-lg cursor-pointer",
         isPrimary &&
@@ -51,6 +57,7 @@ export function ActionButton({
       )}>
       <span className="sm:hidden">{mobileLabel || label}</span>
       <span className="hidden sm:inline">{label}</span>
+      {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
 
       {(showArrow || icon) && isPrimary && (
         <div

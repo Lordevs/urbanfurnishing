@@ -5,6 +5,7 @@ import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import * as z from "zod";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -496,23 +497,20 @@ export function AddressForm({ onNext, onBack }: AddressFormProps) {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-5 mt-4 pt-6 border-t border-[#F2F2F2]/60 pb-10">
-          <Button
+          <ActionButton
             type="button"
             onClick={onBack}
             variant="outline"
-            className="w-full sm:w-auto h-[48px] px-8 rounded-[8px] border border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F9F9F9] font-medium text-[14.5px] shadow-sm cursor-pointer transition-transform"
-          >
-            Back to Cart
-          </Button>
-          <Button
+            label="Back to Cart"
+            className="w-full sm:w-auto h-[48px] px-8 rounded-[8px] border border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F9F9F9] font-medium text-[14.5px] shadow-sm transition-transform"
+            showArrow={false}
+          />
+          <ActionButton
             type="submit"
-            className="w-full sm:w-auto h-[48px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[8px] text-[14.5px] font-medium flex items-center justify-between sm:justify-center gap-4 px-2.5 sm:pl-6 sm:pr-2.5 pl-6 transition-all shadow-md cursor-pointer hover:shadow-lg"
-          >
-            Continue to Payment
-            <div className="w-[32px] h-[32px] bg-white rounded-full flex items-center justify-center text-[#412A1F] shrink-0">
-              <ArrowUpRight className="w-4 h-4 stroke-2" />
-            </div>
-          </Button>
+            label="Continue to Payment"
+            className="w-full sm:w-auto h-[48px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[8px] text-[14.5px] font-medium px-2.5 sm:pl-6 sm:pr-2.5 pl-6"
+            iconContainerClassName="w-[32px] h-[32px] flex"
+          />
         </div>
       </div>
 
@@ -749,12 +747,12 @@ export function AddressForm({ onNext, onBack }: AddressFormProps) {
 
         {/* Mobile Action Buttons */}
         <div className="flex flex-col gap-4 mt-4 pb-10">
-          <Button
+          <ActionButton
             type="submit"
+            label="Continue to Payment"
             className="w-full h-[56px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[14px] text-[16px] font-bold shadow-lg"
-          >
-            Continue to Payment
-          </Button>
+            showArrow={false}
+          />
           <button
             type="button"
             onClick={onBack}

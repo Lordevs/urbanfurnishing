@@ -17,11 +17,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { ActionButton } from "@/components/shared/action-button";
+
 import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 import { useProductDetail } from "@/hooks/queries/use-product-detail";
-import { formatAED } from "@/lib/utils";
+import { cn, formatAED } from "@/lib/utils";
 
 const benefits = [
   { icon: Truck, text: "Free Delivery" },
@@ -295,39 +296,29 @@ export default function SingleProductDetails({
 
           {/* Actions */}
           <div className="flex flex-col gap-3 mb-10">
-            <Button
+            <ActionButton
               onClick={handleAddToCart}
               disabled={data.stock === 0 || data.is_in_stock === false}
-              className={`w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-black/5 group ${
-                data.stock !== 0 && data.is_in_stock !== false
-                  ? "bg-[#412A1F]/90 hover:bg-[#412A1F] text-white hover:scale-[1.01] cursor-pointer"
-                  : "bg-gray-200 text-gray-500 cursor-not-allowed"
-              }`}
-            >
-              {data.stock !== 0 && data.is_in_stock !== false ? (
-                <>
-                  Add to Cart
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
-                  </div>
-                </>
-              ) : (
-                "Out of Stock"
+              label={data.stock !== 0 && data.is_in_stock !== false ? "Add to Cart" : "Out of Stock"}
+              className={cn(
+                "w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-medium shadow-black/5",
+                (data.stock === 0 || data.is_in_stock === false) && "bg-gray-200 text-gray-500 cursor-not-allowed shadow-none"
               )}
-            </Button>
-            <Button
+              iconContainerClassName="w-6 h-6 flex bg-white/10 group-hover:bg-white/20"
+              showArrow={data.stock !== 0 && data.is_in_stock !== false}
+            />
+            <ActionButton
               onClick={handleBuyNow}
               disabled={data.stock === 0 || data.is_in_stock === false}
-              className={`w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-bold flex items-center justify-center transition-all duration-300 shadow-sm ${
+              variant="outline"
+              label={data.stock !== 0 && data.is_in_stock !== false ? "Buy Now" : "Out of Stock"}
+              className={cn(
+                "w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-bold shadow-sm sm:bg-white/70",
                 data.stock !== 0 && data.is_in_stock !== false
-                  ? "bg-white border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-white text-[#1A1A1A] cursor-pointer hover:-translate-y-0.5"
-                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
-              }`}
-            >
-              {data.stock !== 0 && data.is_in_stock !== false
-                ? "Buy Now"
-                : "Out of Stock"}
-            </Button>
+                  ? "border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-[#412A1F] text-[#1A1A1A] sm:hover:bg-white/90"
+                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed shadow-none"
+              )}
+            />
           </div>
 
           {/* Key Benefits */}

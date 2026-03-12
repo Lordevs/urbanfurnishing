@@ -13,7 +13,9 @@ import {
 } from "lucide-react";
 import { type DefaultValues, useForm } from "react-hook-form";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useContact } from "@/hooks/mutations/use-contact";
@@ -427,22 +429,13 @@ export default function ConsultationForm() {
                   </div>
 
                   {/* Submit */}
-                  <Button
+                  <ActionButton
                     type="submit"
-                    disabled={isPending}
-                    className="group w-full rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-4 py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4 disabled:opacity-70"
-                  >
-                    <span className="flex-1 text-center pr-4">
-                      {isPending ? "Submitting..." : "Book Free Consultation"}
-                    </span>
-                    <div className="bg-[#FDF4E7] rounded-full p-2.5 text-[#3D261C] transition-transform duration-300 group-hover:scale-95 shrink-0">
-                      {isPending ? (
-                        <Loader2 className="h-[18px] w-[18px] animate-spin" />
-                      ) : (
-                        <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
-                      )}
-                    </div>
-                  </Button>
+                    loading={isPending}
+                    label="Book Free Consultation"
+                    className="w-full rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4"
+                    iconContainerClassName="bg-[#FDF4E7] p-2.5 text-[#3D261C] flex"
+                  />
 
                   <div className="flex items-center justify-center gap-2 mt-2">
                     <Lock className="w-3 h-3 text-[#C9A76A]" />

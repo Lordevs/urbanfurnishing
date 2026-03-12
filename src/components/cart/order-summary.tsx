@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Loader2, Tag, X } from "lucide-react";
 import { useState } from "react";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
+
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/context/cart-context";
 import { useValidatePromo } from "@/hooks/mutations/use-validate-promo";
@@ -125,30 +127,23 @@ export function OrderSummary({
                 {error?.message ?? "Invalid promo code."}
               </p>
             )}
-            <Button
+            <ActionButton
               onClick={handleApplyPromo}
-              disabled={isPending || !promoCode.trim() || items.length === 0}
+              disabled={!promoCode.trim() || items.length === 0}
+              loading={isPending}
               variant="outline"
-              className="w-full h-[48px] rounded-[8px] border border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F9F9F9] font-medium text-[14px] shadow-sm cursor-pointer hover:-translate-y-0.5 transition-transform"
-            >
-              {isPending ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                "Apply Code"
-              )}
-            </Button>
+              label="Apply Code"
+              className="w-full h-[48px] rounded-[8px] border border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F9F9F9] font-medium text-[14px]"
+            />
           </>
         )}
-        <Button
+        <ActionButton
           onClick={onProceed}
           disabled={items.length === 0}
-          className="w-full h-[52px] mt-2 bg-[#412A1F] hover:bg-[#2C1A11] disabled:bg-[#412A1F]/50 disabled:cursor-not-allowed text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5"
-        >
-          Proceed to Checkout
-          <div className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[#412A1F] shrink-0">
-            <ArrowUpRight className="w-4 h-4 stroke-2" />
-          </div>
-        </Button>
+          label="Proceed to Checkout"
+          className="w-full h-[52px] mt-2 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium"
+          iconContainerClassName="w-[30px] h-[30px] flex"
+        />
       </div>
     </motion.div>
   );

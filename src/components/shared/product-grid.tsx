@@ -12,8 +12,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { ActionButton } from "./action-button";
 import { useCart } from "@/context/cart-context";
+import { cn } from "@/lib/utils";
 
 export interface GridItemProps {
   id: string;
@@ -264,24 +265,19 @@ export function ProductGrid({
                         </div>
                       </div>
 
-                      <Button
+                      <ActionButton
                         onClick={(e) => handleAddToCart(e, pkg)}
                         disabled={!pkg.isInStock}
-                        className={`rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 cursor-pointer shrink-0 ${
+                        label={pkg.isInStock ? "Add" : "Out of Stock"}
+                        icon={pkg.isInStock ? <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" /> : undefined}
+                        className={cn(
+                          "rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] shadow-none",
                           pkg.isInStock
                             ? "bg-[#412A1F]/90 hover:bg-[#412A1F] text-white hover:scale-105"
                             : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                        }`}
-                      >
-                        {pkg.isInStock ? (
-                          <>
-                            <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
-                            Add
-                          </>
-                        ) : (
-                          "Out of Stock"
                         )}
-                      </Button>
+                        showArrow={false}
+                      />
                     </div>
                   </div>
                 </motion.div>

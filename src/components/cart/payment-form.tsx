@@ -14,10 +14,10 @@ import {
   ShieldCheck,
   Loader2,
 } from "lucide-react";
+import { ActionButton } from "@/components/shared/action-button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
@@ -99,23 +99,13 @@ function StripeSection({
         </span>
       </div>
 
-      <Button
+      <ActionButton
         onClick={handleConfirm}
-        disabled={!stripe || isProcessing}
-        className="w-full h-[52px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-center gap-3 transition-all shadow-md active:scale-95 disabled:opacity-50"
-      >
-        {isProcessing ? (
-          <>
-            <Loader2 className="w-5 h-5 animate-spin" />
-            Processing...
-          </>
-        ) : (
-          <>
-            Complete Payment
-            <ArrowUpRight className="w-5 h-5" />
-          </>
-        )}
-      </Button>
+        disabled={!stripe}
+        loading={isProcessing}
+        label="Complete Payment"
+        className="w-full h-[52px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium"
+      />
     </div>
   );
 }
@@ -373,22 +363,14 @@ export function PaymentForm({
                   </span>
                 </div>
 
-                <Button
+                <ActionButton
                   onClick={handleSubmit}
-                  disabled={
-                    isPending || (paymentMethod === "card" && !!clientSecret)
-                  }
-                  className="w-full h-[52px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50"
-                >
-                  {isPending
-                    ? "Processing..."
-                    : clientSecret
-                      ? "Payment Active"
-                      : "Place Order"}
-                  <div className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[#412A1F] shrink-0">
-                    <ArrowUpRight className="w-4 h-4 stroke-2" />
-                  </div>
-                </Button>
+                  disabled={paymentMethod === "card" && !!clientSecret}
+                  loading={isPending}
+                  label={clientSecret ? "Payment Active" : "Place Order"}
+                  className="w-full h-[52px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium"
+                  iconContainerClassName="w-[30px] h-[30px] flex"
+                />
               </div>
             </div>
           </div>
@@ -396,13 +378,13 @@ export function PaymentForm({
 
         {/* Bottom Actions */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-5 mt-4 pt-6 border-t border-[#F2F2F2]/60 pb-10">
-          <Button
+          <ActionButton
             onClick={onBack}
             variant="outline"
+            label="Back to Address"
             className="w-full sm:w-auto h-[48px] px-8 rounded-[24px] border border-[#EBEBEB] text-[#1A1A1A] hover:bg-[#F9F9F9] font-medium text-[14.5px] shadow-sm cursor-pointer transition-transform"
-          >
-            Back to Address
-          </Button>
+            showArrow={false}
+          />
         </div>
       </div>
 
@@ -490,17 +472,14 @@ export function PaymentForm({
 
         {/* Action Buttons */}
         <div className="flex flex-col gap-4 mt-6 pb-10">
-          <Button
+          <ActionButton
             onClick={handleSubmit}
-            disabled={isPending || (paymentMethod === "card" && !!clientSecret)}
-            className="w-full h-[56px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[14px] text-[16px] font-bold shadow-lg disabled:opacity-50"
-          >
-            {isPending
-              ? "Processing..."
-              : clientSecret
-                ? "Payment Active"
-                : "Place Order"}
-          </Button>
+            disabled={paymentMethod === "card" && !!clientSecret}
+            loading={isPending}
+            label={clientSecret ? "Payment Active" : "Place Order"}
+            className="w-full h-[56px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[14px] text-[16px] font-bold shadow-lg"
+            showArrow={false}
+          />
           <button
             onClick={onBack}
             className="w-full py-2 text-[15px] font-medium text-[#888888] hover:text-[#1a1a1a] transition-colors"

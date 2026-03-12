@@ -15,11 +15,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
+
 import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 import { usePackageDetail } from "@/hooks/queries/use-package-detail";
-import { formatAED } from "@/lib/utils";
+import { cn, formatAED } from "@/lib/utils";
 
 const includedFeatures = [
   {
@@ -298,37 +300,34 @@ export function PackageDetail({ slug }: PackageDetailProps) {
                 </div>
               </div>
 
-              <Button
+              <ActionButton
                 onClick={handleAddToCart}
                 disabled={!data.is_in_stock}
-                className={`flex-1 h-[52px] rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md border-none ${
-                   data.is_in_stock 
-                    ? "bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white cursor-pointer" 
-                    : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                }`}
-              >
-                {data.is_in_stock ? (
-                  <>
-                    <ShoppingCart className="w-[18px] h-[18px]" />
-                    Add to Cart
-                  </>
-                ) : (
-                  "Out of Stock"
+                label={data.is_in_stock ? "Add to Cart" : "Out of Stock"}
+                className={cn(
+                  "flex-1 h-[52px] rounded-[8px] text-[15px] font-normal tracking-wide shadow-md border-none",
+                  data.is_in_stock 
+                    ? "bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white" 
+                    : "bg-gray-200 text-gray-500"
                 )}
-              </Button>
+                icon={data.is_in_stock ? <ShoppingCart className="w-[18px] h-[18px]" /> : undefined}
+                showArrow={false}
+              />
             </div>
 
-            <Button
+            <ActionButton
               onClick={handleBuyNow}
               disabled={!data.is_in_stock}
-              className={`w-full h-[52px] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center transition-all shadow-sm mt-1 ${
+              variant="outline"
+              label={data.is_in_stock ? "Buy Now - Fast Checkout" : "Out of Stock"}
+              className={cn(
+                "w-full h-[52px] rounded-[8px] text-[14px] font-medium tracking-wide shadow-sm mt-1",
                 data.is_in_stock
-                  ? "border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] hover:text-white bg-[#FCFBF9] cursor-pointer"
-                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
-              }`}
-            >
-              {data.is_in_stock ? "Buy Now - Fast Checkout" : "Out of Stock"}
-            </Button>
+                  ? "border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] hover:text-[#412A1F] bg-[#FCFBF9] sm:bg-[#FCFBF9]/70 sm:hover:bg-[#FCFBF9]/90"
+                  : "bg-gray-100 text-gray-400 border border-gray-200"
+              )}
+              showArrow={false}
+            />
           </div>
 
           {/* What's Included label grid */}
@@ -564,37 +563,37 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               </div>
             </div>
 
-            <Button
+            <ActionButton
               onClick={handleAddToCart}
               disabled={!data.is_in_stock}
-              className={`w-full bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-xl h-[48px] text-[14px] font-medium flex items-center justify-center gap-2 mt-2 ${
-                !data.is_in_stock ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              {data.is_in_stock ? (
-                <>
-                  <ShoppingCart className="w-[16px] h-[16px]" />
-                  Add to Cart
-                </>
-              ) : (
-                "Out of Stock"
+              label={data.is_in_stock ? "Add to Cart" : "Out of Stock"}
+              className={cn(
+                "w-full bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-xl h-[48px] text-[14px] font-medium mt-2",
+                !data.is_in_stock && "opacity-50"
               )}
-            </Button>
+              icon={data.is_in_stock ? <ShoppingCart className="w-[16px] h-[16px]" /> : undefined}
+              showArrow={false}
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-3 mb-10">
-            <Button
+            <ActionButton
               onClick={handleAddToCart}
               disabled={!data.is_in_stock}
-              className={`w-full border border-[#412A1F] text-[#412A1F] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none ${
-                !data.is_in_stock ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400" : ""
-              }`}
-            >
-              {data.is_in_stock ? "Buy Now" : "Out of Stock"}
-            </Button>
-            <Button className="w-full border border-[#EBEBEB] text-[#1A1A1A] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none">
-              Add to Wishlist
-            </Button>
+              variant="outline"
+              label={data.is_in_stock ? "Buy Now" : "Out of Stock"}
+              className={cn(
+                "w-full border border-[#412A1F] text-[#412A1F] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none",
+                !data.is_in_stock && "opacity-50 border-gray-300 text-gray-400"
+              )}
+              showArrow={false}
+            />
+            <ActionButton
+              variant="outline"
+              label="Add to Wishlist"
+              className="w-full border border-[#EBEBEB] text-[#1A1A1A] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none"
+              showArrow={false}
+            />
           </div>
         </div>
 

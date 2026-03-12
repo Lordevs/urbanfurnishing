@@ -73,11 +73,6 @@ export default function Footer() {
                 icon={<ArrowDownRight className="h-[14px] w-[14px] stroke-2" />}
                 iconContainerClassName="bg-[#FFF8F0] w-[26px] h-[26px] flex"
               />
-              <ActionButton
-                label="Subscribe"
-                className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 rounded-full h-[52px] text-[15px] border border-white/20"
-                showArrow={false}
-              />
             </div>
             <p className="text-[#B0B0B0] text-[11px] mt-5 font-light tracking-wide text-center">
               We respect your privacy. Unsubscribe at any time.
@@ -106,7 +101,7 @@ export default function Footer() {
           </div>
 
           <div className="w-full flex flex-col items-end">
-            <div className="w-[80%] max-w-[500px]">
+            <div className="w-[80%] max-w-[900px]">
               <div className="flex flex-row items-center gap-3">
                 <Input
                   type="email"
@@ -116,9 +111,6 @@ export default function Footer() {
                 <ActionButton
                   label="Subscribe"
                   className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium w-[155px]"
-                  icon={
-                    <ArrowUpRight className="h-[16px] w-[16px] transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px stroke-[1.5]" />
-                  }
                   iconContainerClassName="bg-[#FDF4E7] p-[7px] text-[#3D261C] flex"
                 />
               </div>

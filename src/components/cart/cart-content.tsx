@@ -16,7 +16,9 @@ import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 import type { PromoValidateResponse } from "@/types/api";
 
+import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "../ui/button";
+
 
 export default function CartContent() {
   const router = useRouter();
@@ -88,12 +90,12 @@ export default function CartContent() {
                 <p className="text-[#888888] text-[14px] mb-8 text-center max-w-[280px]">
                   Looks like you haven&apos;t added anything to your cart yet.
                 </p>
-                <Button
+                <ActionButton
                   onClick={() => router.push(ROUTES.PACKAGES)}
-                  className="h-[46px] px-8 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5"
-                >
-                  Start Shopping
-                </Button>
+                  label="Start Shopping"
+                  className="h-[46px] px-8 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium"
+                  showArrow={false}
+                />
               </motion.div>
             ) : (
               <>
@@ -182,14 +184,15 @@ export default function CartContent() {
                     </span>
                   </div>
 
-                  <Button
+                  <ActionButton
                     onClick={() => setCurrentStep(2)}
                     disabled={items.length === 0}
-                    className="w-full h-[64px] bg-[#3B2820] hover:bg-[#2C1A11] text-white rounded-[18px] text-[16px] font-bold flex items-center justify-center gap-3 transition-all shadow-md active:scale-95"
-                  >
-                    <Lock className="w-5 h-5" />
-                    Proceed to Checkout
-                  </Button>
+                    label="Proceed to Checkout"
+                    className="w-full h-[64px] bg-[#3B2820] hover:bg-[#2C1A11] text-white rounded-[18px] text-[16px] font-bold"
+                    icon={<Lock className="w-5 h-5" />}
+                    iconContainerClassName="bg-transparent text-white flex"
+                    showArrow={false}
+                  />
                 </div>
               </>
             )}
