@@ -5,7 +5,6 @@ import { ArrowUpRight, Check, ArrowDownRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ActionButton } from "@/components/shared/action-button";
 import { HeroSection } from "@/components/shared/hero-section";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
@@ -57,19 +56,19 @@ export default function OurDesignExpertHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="flex flex-col gap-4">
-              <ActionButton
-                href={ROUTES.BOOK_CONSULTATION}
-                label="Get in Touch"
-                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px]"
-                icon={<ArrowDownRight className="h-[14px] w-[14px] stroke-2" />}
-                iconContainerClassName="bg-[#FFF8F0] w-[26px] h-[26px] flex"
-              />
-              <ActionButton
-                href={ROUTES.PACKAGES}
-                label="Our Design Services"
-                className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 rounded-full h-[52px] text-[15px] border border-white/20"
-                showArrow={false}
-              />
+              <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
+                <Button className="w-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center gap-3 border shadow-none border-transparent">
+                  Get in Touch
+                  <div className="bg-[#FFF8F0] rounded-full w-[26px] h-[26px] flex items-center justify-center text-[#412A1F]">
+                    <ArrowDownRight className="h-[14px] w-[14px] stroke-2" />
+                  </div>
+                </Button>
+              </Link>
+              <Link href={ROUTES.PACKAGES} className="w-full">
+                <Button className="w-full bg-white/20 backdrop-blur-md text-white hover:bg-white/30 rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center px-8 border border-white/20 shadow-none">
+                  Our Design Services
+                </Button>
+              </Link>
             </motion.div>
           </div>
 
@@ -119,19 +118,22 @@ export default function OurDesignExpertHero() {
           description="Transform your space with professional interior design guidance. From concept to completion, we bring your vision to life with personalized service."
           buttons={
             <>
-              <ActionButton
-                href={ROUTES.BOOK_CONSULTATION}
-                label="Get in Touch"
-                className="bg-[#3D261C] hover:bg-[#2C1A11] text-white border border-white/10 hover:border-white/25 pr-2.5 pl-7 h-[52px] text-[15px] font-normal"
-                iconContainerClassName="w-[36px] h-[36px] flex"
-              />
+              <Link href={ROUTES.BOOK_CONSULTATION}>
+                <Button className="group rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-white flex items-center justify-between gap-5 py-2 pr-2.5 pl-7 h-[52px] text-[15px] font-normal transition-all duration-300 shadow-lg border border-white/10 hover:border-white/25">
+                  Get in Touch
+                  <div className="bg-[#FFF8F0] rounded-full w-[36px] h-[36px] flex items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0">
+                    <ArrowUpRight className="h-[18px] w-[18px] stroke-[1.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                </Button>
+              </Link>
 
-              <ActionButton
-                href={ROUTES.PACKAGES}
-                label="Our Design Services"
-                className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 h-[52px] px-8 text-[15px] font-normal border border-white/20 hover:border-white/40 shadow-lg hover:-translate-y-0.5"
-                showArrow={false}
-              />
+              <Link href={ROUTES.PACKAGES}>
+                <Button
+                  variant="outline"
+                  className="rounded-full bg-white/20 cursor-pointer backdrop-blur-md text-white hover:bg-white/30 h-[52px] px-8 text-[15px] font-normal transition-all duration-300 border border-white/20 hover:border-white/40 shadow-lg hover:-translate-y-0.5">
+                  Our Design Services
+                </Button>
+              </Link>
             </>
           }
           bottomCard={

@@ -52,10 +52,12 @@ export default function Footer() {
             </span>
           </div>
           <h2 className="text-[32px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
-            Get Design <span className="text-[#C9A76A] font-serif">Inspiration</span>
+            Get Design{" "}
+            <span className="text-[#C9A76A] font-serif">Inspiration</span>
           </h2>
           <p className="text-[#8F877C] text-[15px] leading-relaxed tracking-wide font-light mb-8">
-            Join our community for curated interior tips, new collection launches, and exclusive promotions.
+            Join our community for curated interior tips, new collection
+            launches, and exclusive promotions.
           </p>
 
           <div className="w-full flex flex-col items-center">
@@ -67,14 +69,7 @@ export default function Footer() {
               />
               <ActionButton
                 label="Subscribe"
-                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[54px] text-[15px] w-auto flex-1 px-5"
-                icon={<ArrowDownRight className="h-[14px] w-[14px] stroke-2" />}
-                iconContainerClassName="bg-white w-[26px] h-[26px] flex text-[#3D261C] ml-2"
-                showArrow={false}
-              />
-              <ActionButton
-                label="Subscribe"
-                className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 rounded-full h-[52px] text-[15px] border border-white/20"
+                className="bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium"
                 showArrow={false}
               />
             </div>
