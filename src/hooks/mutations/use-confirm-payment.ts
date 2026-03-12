@@ -10,15 +10,19 @@ import {
 
 interface ConfirmPaymentInput {
   orderNumber: string;
-  payment_method: "CARD" | "UPI";
+  gateway_payment_id: string;
+  gateway_order_id?: string;
 }
 
 export function useConfirmPayment() {
   return useMutation<PaymentConfirmResponse, Error, ConfirmPaymentInput>({
-    mutationFn: async ({ orderNumber, payment_method }) => {
+    mutationFn: async ({ orderNumber, gateway_payment_id, gateway_order_id }) => {
       const raw = await apiClient.post<unknown>(
         API_ROUTES.PAYMENT_CONFIRM(orderNumber),
-        { payment_method },
+        { 
+          gateway_payment_id,
+          gateway_order_id
+        },
       );
       return PaymentConfirmResponseSchema.parse(raw);
     },

@@ -169,7 +169,7 @@ export const OrderPayloadSchema = z.object({
   shipping_address: AddressSchema,
   billing_address: AddressSchema,
   promo_code: z.string().optional(),
-  payment_method: z.enum(["CARD", "UPI"]),
+  payment_method: z.enum(["CARD", "CASH_ON_DELIVERY"]),
   notes: z.string().optional(),
 });
 
@@ -178,6 +178,7 @@ export const OrderResponseSchema = z.object({
   total_amount: z.string(),
   status: z.string(),
   message: z.string(),
+  client_secret: z.string().optional().nullable(),
 });
 
 export type OrderPayload = z.infer<typeof OrderPayloadSchema>;

@@ -27,7 +27,7 @@ function toFeaturedItem(prod: ProductListItem): FeaturedItem {
     : undefined;
 
   return {
-    id: prod.slug,
+    id: prod.id,
     slug: prod.slug,
     category: prod.category_name?.toUpperCase() ?? "",
     title: prod.name,
@@ -44,6 +44,7 @@ function toFeaturedItem(prod: ProductListItem): FeaturedItem {
       : undefined,
     image: prod.thumbnail ?? "/landing/single-products/bestselling-img-1.webp",
     itemType: "PRODUCT",
+    isInStock: prod.is_in_stock ?? true,
   };
 }
 

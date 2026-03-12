@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+
 import { LegalContent } from "@/components/common/legal-content";
 
 export default async function CookiesPolicyPage() {

@@ -152,6 +152,13 @@ export function PackageDetail({ slug }: PackageDetailProps) {
                 </span>
               </div>
             ) : null}
+            {!data.is_in_stock && (
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20">
+                <span className="bg-red-600 text-white text-[11px] sm:text-[12px] font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-sm">
+                  OUT OF STOCK
+                </span>
+              </div>
+            )}
 
             <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6">
               <span className="bg-[#1A1A1A]/80 backdrop-blur-md text-white text-[11px] sm:text-[12px] font-medium px-4 py-1.5 rounded-full shadow-sm">
@@ -293,18 +300,34 @@ export function PackageDetail({ slug }: PackageDetailProps) {
 
               <Button
                 onClick={handleAddToCart}
-                className="flex-1 h-[52px] bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer border-none"
+                disabled={!data.is_in_stock}
+                className={`flex-1 h-[52px] rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md border-none ${
+                   data.is_in_stock 
+                    ? "bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white cursor-pointer" 
+                    : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                }`}
               >
-                <ShoppingCart className="w-[18px] h-[18px]" />
-                Add to Cart
+                {data.is_in_stock ? (
+                  <>
+                    <ShoppingCart className="w-[18px] h-[18px]" />
+                    Add to Cart
+                  </>
+                ) : (
+                  "Out of Stock"
+                )}
               </Button>
             </div>
 
             <Button
               onClick={handleBuyNow}
-              className="w-full h-[52px] border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center hover:text-white transition-all bg-[#FCFBF9] shadow-sm cursor-pointer mt-1"
+              disabled={!data.is_in_stock}
+              className={`w-full h-[52px] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center transition-all shadow-sm mt-1 ${
+                data.is_in_stock
+                  ? "border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] hover:text-white bg-[#FCFBF9] cursor-pointer"
+                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
+              }`}
             >
-              Buy Now - Fast Checkout
+              {data.is_in_stock ? "Buy Now - Fast Checkout" : "Out of Stock"}
             </Button>
           </div>
 
@@ -435,6 +458,13 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               SAVE 27%
             </span>
           </div>
+          {!data.is_in_stock && (
+            <div className="absolute top-4 left-4 z-20">
+              <span className="bg-red-600 text-white text-[10px] font-bold px-3 py-[5px] rounded-lg tracking-wider">
+                OUT OF STOCK
+              </span>
+            </div>
+          )}
 
           <div className="absolute bottom-4 right-4 bg-[#1A1A1A]/95 text-white text-[11px] font-medium px-4 py-1.5 rounded-lg shadow-sm">
             {activeImage + 1} / {images.length}
@@ -536,19 +566,31 @@ export function PackageDetail({ slug }: PackageDetailProps) {
 
             <Button
               onClick={handleAddToCart}
-              className="w-full bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-xl h-[48px] text-[14px] font-medium flex items-center justify-center gap-2 mt-2"
+              disabled={!data.is_in_stock}
+              className={`w-full bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-xl h-[48px] text-[14px] font-medium flex items-center justify-center gap-2 mt-2 ${
+                !data.is_in_stock ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
-              <ShoppingCart className="w-[16px] h-[16px]" />
-              Add to Cart
+              {data.is_in_stock ? (
+                <>
+                  <ShoppingCart className="w-[16px] h-[16px]" />
+                  Add to Cart
+                </>
+              ) : (
+                "Out of Stock"
+              )}
             </Button>
           </div>
 
           <div className="grid grid-cols-2 gap-3 mb-10">
             <Button
               onClick={handleAddToCart}
-              className="w-full border border-[#412A1F] text-[#412A1F] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none"
+              disabled={!data.is_in_stock}
+              className={`w-full border border-[#412A1F] text-[#412A1F] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none ${
+                !data.is_in_stock ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400" : ""
+              }`}
             >
-              Buy Now
+              {data.is_in_stock ? "Buy Now" : "Out of Stock"}
             </Button>
             <Button className="w-full border border-[#EBEBEB] text-[#1A1A1A] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none">
               Add to Wishlist

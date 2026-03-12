@@ -33,7 +33,7 @@ function toFeaturedItem(pkg: PackageListItem): FeaturedItem {
     : undefined;
 
   return {
-    id: pkg.slug,
+    id: pkg.id,
     slug: pkg.slug,
     category: pkg.category_name?.toUpperCase() ?? "",
     title: pkg.name,
@@ -50,6 +50,7 @@ function toFeaturedItem(pkg: PackageListItem): FeaturedItem {
       : undefined,
     image: pkg.thumbnail ?? "/landing/packages/feature-image-1.webp",
     itemType: "PACKAGE",
+    isInStock: pkg.is_in_stock ?? true,
   };
 }
 
@@ -131,7 +132,7 @@ export function FeaturedCollections() {
             <div
               key={item.id}
               onClick={() =>
-                router.push(ROUTES.PACKAGES_DETAIL(item.id.toString()))
+                router.push(ROUTES.PACKAGES_DETAIL(item.slug))
               }
               className="bg-white rounded-[16px] shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-[#F0EBE6] overflow-hidden flex flex-col cursor-pointer"
             >
@@ -154,6 +155,11 @@ export function FeaturedCollections() {
                   {item.badge2 && (
                     <span className="bg-[#1A1A1A] text-white text-[10px] font-bold tracking-wider px-3 py-1.5 rounded-[6px] w-max">
                       {item.badge2}
+                    </span>
+                  )}
+                  {!item.isInStock && (
+                    <span className="bg-red-600 text-white text-[10px] font-bold tracking-wider px-3 py-1.5 rounded-[6px] w-max">
+                      OUT OF STOCK
                     </span>
                   )}
                 </div>
@@ -253,11 +259,22 @@ export function FeaturedCollections() {
 
                 {/* Add To Cart Button */}
                 <button
-                  onClick={(e) => handleAddToCart(e, item)}
-                  className="w-full bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[12px] h-[48px] flex items-center justify-center gap-2 text-[14px] font-medium transition-colors"
+                  onClick={(e) => item.isInStock && handleAddToCart(e, item)}
+                  disabled={!item.isInStock}
+                  className={`w-full rounded-[12px] h-[48px] flex items-center justify-center gap-2 text-[14px] font-medium transition-colors ${
+                    item.isInStock
+                      ? "bg-[#412A1F] hover:bg-[#2C1A11] text-white"
+                      : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  }`}
                 >
-                  <ShoppingCart className="w-[18px] h-[18px]" />
-                  Add to Cart
+                  {item.isInStock ? (
+                    <>
+                      <ShoppingCart className="w-[18px] h-[18px]" />
+                      Add to Cart
+                    </>
+                  ) : (
+                    "Out of Stock"
+                  )}
                 </button>
               </div>
             </div>

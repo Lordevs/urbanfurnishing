@@ -30,6 +30,7 @@ export interface FeaturedItem {
   badge2?: string;
   image: string;
   itemType: "PRODUCT" | "PACKAGE";
+  isInStock: boolean;
 }
 
 interface FeaturedCarouselProps {
@@ -98,7 +99,7 @@ export function FeaturedCarousel({
               >
                 <div
                   onClick={() =>
-                    detailRoute && router.push(detailRoute(item.id))
+                    detailRoute && router.push(detailRoute(item.slug))
                   }
                   className="flex flex-col sm:flex-row bg-white rounded-[24px] overflow-hidden border border-[#F0F0F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full min-h-[460px] cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all"
                 >
@@ -125,6 +126,11 @@ export function FeaturedCarousel({
                       {item.badge2 && (
                         <span className="px-3.5 py-1.5 rounded-md bg-[#1A1A1A] text-white text-[10.5px] font-semibold tracking-wider uppercase text-center w-max">
                           {item.badge2}
+                        </span>
+                      )}
+                      {!item.isInStock && (
+                        <span className="px-3.5 py-1.5 rounded-md bg-red-600 text-white text-[10.5px] font-semibold tracking-wider uppercase text-center w-max">
+                          OUT OF STOCK
                         </span>
                       )}
                     </div>
@@ -210,15 +216,30 @@ export function FeaturedCarousel({
                         </div>
 
                         <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                          whileHover={item.isInStock ? { scale: 1.05 } : {}}
+                          whileTap={item.isInStock ? { scale: 0.95 } : {}}
                           onClick={(e: React.MouseEvent) =>
-                            handleAddToCart(e, item)
+                            item.isInStock && handleAddToCart(e, item)
                           }
-                          className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none cursor-pointer shrink-0 ml-auto"
+                          disabled={!item.isInStock}
+                          className={`rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[42px] lg:h-[46px] flex items-center justify-center gap-2 transition-all shadow-none shrink-0 ml-auto ${
+                            item.isInStock
+                              ? "bg-[#412A1F]/90 hover:bg-[#412A1F] text-white cursor-pointer"
+                              : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                          }`}
                         >
-                          <ShoppingCart className="w-[16px] h-[16px]" />
-                          <span className="whitespace-nowrap">Add to Cart</span>
+                          {item.isInStock ? (
+                            <>
+                              <ShoppingCart className="w-[16px] h-[16px]" />
+                              <span className="whitespace-nowrap">
+                                Add to Cart
+                              </span>
+                            </>
+                          ) : (
+                            <span className="whitespace-nowrap">
+                              Out of Stock
+                            </span>
+                          )}
                         </motion.button>
                       </div>
                     </div>

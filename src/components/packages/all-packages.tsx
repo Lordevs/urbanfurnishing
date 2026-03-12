@@ -42,7 +42,7 @@ function toGridItem(pkg: PackageListItem): GridItemProps {
   }
 
   return {
-    id: pkg.slug,
+    id: pkg.id,
     slug: pkg.slug,
     category: pkg.category_name?.toUpperCase() ?? "",
     title: pkg.name,
@@ -54,6 +54,7 @@ function toGridItem(pkg: PackageListItem): GridItemProps {
     badges,
     image: pkg.thumbnail ?? "/landing/packages/packages-product-img-1.webp",
     itemType: "PACKAGE",
+    isInStock: pkg.is_in_stock ?? true,
   };
 }
 

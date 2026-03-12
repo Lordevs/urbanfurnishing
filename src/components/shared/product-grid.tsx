@@ -28,6 +28,7 @@ export interface GridItemProps {
   badges: { text: string; color: string }[];
   image: string;
   itemType: "PRODUCT" | "PACKAGE";
+  isInStock: boolean;
 }
 
 interface ProductGridProps {
@@ -171,7 +172,7 @@ export function ProductGrid({
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
                   onClick={() =>
-                    detailRoute && router.push(detailRoute(pkg.id))
+                    detailRoute && router.push(detailRoute(pkg.slug))
                   }
                   className="bg-white rounded-[20px] sm:rounded-[24px] overflow-hidden flex flex-col h-full border border-[#F2F2F2] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-pointer"
                 >
@@ -185,15 +186,20 @@ export function ProductGrid({
                     />
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex flex-col gap-1.5">
-                      {pkg.badges.map((badge, idx) => (
-                        <span
-                          key={idx}
-                          className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}
-                        >
-                          {badge.text}
-                        </span>
-                      ))}
-                    </div>
+                        {pkg.badges.map((badge, idx) => (
+                          <span
+                            key={idx}
+                            className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}
+                          >
+                            {badge.text}
+                          </span>
+                        ))}
+                        {!pkg.isInStock && (
+                          <span className="px-2.5 py-1 bg-red-600 text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max">
+                            OUT OF STOCK
+                          </span>
+                        )}
+                      </div>
 
                     {/* Heart Button */}
                     <button
@@ -260,10 +266,21 @@ export function ProductGrid({
 
                       <Button
                         onClick={(e) => handleAddToCart(e, pkg)}
-                        className="bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 hover:scale-105 cursor-pointer shrink-0"
+                        disabled={!pkg.isInStock}
+                        className={`rounded-[10px] lg:rounded-[12px] text-[13px] lg:text-[14px] font-medium px-5 lg:px-6 h-[40px] lg:h-[44px] flex items-center justify-center gap-2 transition-all shadow-none duration-300 cursor-pointer shrink-0 ${
+                          pkg.isInStock
+                            ? "bg-[#412A1F]/90 hover:bg-[#412A1F] text-white hover:scale-105"
+                            : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                        }`}
                       >
-                        <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
-                        Add
+                        {pkg.isInStock ? (
+                          <>
+                            <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
+                            Add
+                          </>
+                        ) : (
+                          "Out of Stock"
+                        )}
                       </Button>
                     </div>
                   </div>

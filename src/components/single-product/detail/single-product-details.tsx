@@ -157,6 +157,11 @@ export default function SingleProductDetails({
                 {data.tag.replace("_", " ")}
               </span>
             )}
+            {(data.stock === 0 || data.is_in_stock === false) && (
+              <span className="absolute top-5 left-5 px-3 py-1.5 bg-red-600 text-white text-[11px] font-bold tracking-widest uppercase rounded-[6px] z-10">
+                OUT OF STOCK
+              </span>
+            )}
             {/* Arrows */}
             <button
               onClick={prevImage}
@@ -292,18 +297,36 @@ export default function SingleProductDetails({
           <div className="flex flex-col gap-3 mb-10">
             <Button
               onClick={handleAddToCart}
-              className="w-full h-[54px] lg:h-[60px] bg-[#412A1F]/90 hover:bg-[#412A1F] text-white rounded-[14px] text-[15px] font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-black/5 hover:scale-[1.01] cursor-pointer group"
+              disabled={data.stock === 0 || data.is_in_stock === false}
+              className={`w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-black/5 group ${
+                data.stock !== 0 && data.is_in_stock !== false
+                  ? "bg-[#412A1F]/90 hover:bg-[#412A1F] text-white hover:scale-[1.01] cursor-pointer"
+                  : "bg-gray-200 text-gray-500 cursor-not-allowed"
+              }`}
             >
-              Add to Cart
-              <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
-              </div>
+              {data.stock !== 0 && data.is_in_stock !== false ? (
+                <>
+                  Add to Cart
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                  </div>
+                </>
+              ) : (
+                "Out of Stock"
+              )}
             </Button>
             <Button
               onClick={handleBuyNow}
-              className="w-full h-[54px] lg:h-[60px] bg-white border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-white  text-[#1A1A1A] rounded-[14px] text-[15px] font-bold flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer hover:-translate-y-0.5"
+              disabled={data.stock === 0 || data.is_in_stock === false}
+              className={`w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-bold flex items-center justify-center transition-all duration-300 shadow-sm ${
+                data.stock !== 0 && data.is_in_stock !== false
+                  ? "bg-white border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-white text-[#1A1A1A] cursor-pointer hover:-translate-y-0.5"
+                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
+              }`}
             >
-              Buy Now
+              {data.stock !== 0 && data.is_in_stock !== false
+                ? "Buy Now"
+                : "Out of Stock"}
             </Button>
           </div>
 

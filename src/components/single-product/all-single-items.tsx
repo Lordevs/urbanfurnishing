@@ -44,7 +44,7 @@ function toGridItem(prod: ProductListItem): GridItemProps {
   }
 
   return {
-    id: prod.slug,
+    id: prod.id,
     slug: prod.slug,
     category: prod.category_name?.toUpperCase() ?? "",
     title: prod.name,
@@ -56,6 +56,7 @@ function toGridItem(prod: ProductListItem): GridItemProps {
     badges,
     image: prod.thumbnail ?? "/landing/single-products/single-item-img-1.webp",
     itemType: "PRODUCT",
+    isInStock: prod.is_in_stock ?? true,
   };
 }
 

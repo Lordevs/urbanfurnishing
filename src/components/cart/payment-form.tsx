@@ -1,22 +1,123 @@
-"use client";
-
-import { motion } from "framer-motion";
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   Lock,
   CreditCard,
   Smartphone,
   ShieldCheck,
+  Loader2,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useCart } from "@/context/cart-context";
+import { useConfirmPayment } from "@/hooks/mutations/use-confirm-payment";
 import { useCreateOrder } from "@/hooks/mutations/use-create-order";
 import type { PromoValidateResponse, OrderPayload } from "@/types/api";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
+);
+
+/**
+ * Stripe Payment Component
+ * Handles the actual confirmation of the payment intent
+ */
+function StripeSection({
+  orderNumber,
+  onSuccess,
+}: {
+  clientSecret: string;
+  orderNumber: string;
+  onSuccess: () => void;
+}) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const { mutate: confirmOnBackend } = useConfirmPayment();
+
+  const handleConfirm = async () => {
+    if (!stripe || !elements) return;
+
+    setIsProcessing(true);
+
+    // 1. Confirm with Stripe
+    const { error, paymentIntent } = await stripe.confirmPayment({
+      elements,
+      redirect: "if_required",
+    });
+
+    if (error) {
+      toast.error(error.message || "Payment failed");
+      setIsProcessing(false);
+      return;
+    }
+
+    if (paymentIntent && paymentIntent.status === "succeeded") {
+      // 2. Notify backend to finalize order
+      confirmOnBackend(
+        {
+          orderNumber,
+          gateway_payment_id: paymentIntent.id,
+        },
+        {
+          onSuccess: () => {
+            onSuccess();
+          },
+          onError: (err) => {
+            toast.error(err.message || "Order finalization failed");
+            setIsProcessing(false);
+          },
+        },
+      );
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="p-4 border border-[#EBEBEB] rounded-[16px] bg-white">
+        <PaymentElement options={{ layout: "tabs" }} />
+      </div>
+
+      <div className="flex items-center gap-2">
+        <ShieldCheck
+          className="w-[18px] h-[18px] text-[#888888]"
+          strokeWidth={1.5}
+        />
+        <span className="text-[13px] text-[#888888]">
+          Your payment information is encrypted and secure
+        </span>
+      </div>
+
+      <Button
+        onClick={handleConfirm}
+        disabled={!stripe || isProcessing}
+        className="w-full h-[52px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-center gap-3 transition-all shadow-md active:scale-95 disabled:opacity-50"
+      >
+        {isProcessing ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" />
+            Processing...
+          </>
+        ) : (
+          <>
+            Complete Payment
+            <ArrowUpRight className="w-5 h-5" />
+          </>
+        )}
+      </Button>
+    </div>
+  );
+}
 
 export interface AddressData {
   customer_email: string;
@@ -37,8 +138,11 @@ export function PaymentForm({
   appliedPromo,
 }: PaymentFormProps) {
   const [paymentMethod, setPaymentMethod] = useState("card");
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [orderNumber, setOrderNumber] = useState<string | null>(null);
+
   const router = useRouter();
-  const { mutate: createOrder } = useCreateOrder();
+  const { mutate: createOrder, isPending } = useCreateOrder();
   const { items, clearCart } = useCart();
 
   const subtotal = items.reduce((acc, item) => {
@@ -62,16 +166,19 @@ export function PaymentForm({
       return;
     }
 
-    const payload: Omit<OrderPayload, "payment_method"> & {
-      payment_method: "CARD" | "UPI";
-    } = {
+    if (clientSecret) {
+      // Logic is handled by StripeSection if secret exists
+      return;
+    }
+
+    const payload: OrderPayload = {
       customer_email: addressData.customer_email,
       customer_phone: addressData.customer_phone,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       shipping_address: addressData.shipping as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       billing_address: addressData.billing as any,
-      payment_method: paymentMethod.toUpperCase() as "CARD" | "UPI",
+      payment_method: paymentMethod === "card" ? "CARD" : "CASH_ON_DELIVERY",
       items: items.map((i) => ({
         id: i.id, // The UUID of package/product
         item_type: i.itemType, // "PRODUCT" | "PACKAGE"
@@ -82,8 +189,15 @@ export function PaymentForm({
 
     createOrder(payload, {
       onSuccess: (data) => {
-        clearCart();
-        router.push(`/checkout/success?order=${data.order_number}`);
+        if (paymentMethod === "card" && data.client_secret) {
+          setClientSecret(data.client_secret);
+          setOrderNumber(data.order_number);
+          toast.success("Order created! Proceeding to payment.");
+        } else {
+          clearCart();
+          router.push(`/checkout/success?order=${data.order_number}`);
+          toast.success("Order placed successfully!");
+        }
       },
     });
   };
@@ -181,69 +295,45 @@ export function PaymentForm({
               </div>
             </div>
 
-            {/* Card Details */}
-            <div
-              className={`border border-[#EBEBEB] rounded-[16px] p-6 lg:p-8 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.01)] transition-all ${paymentMethod !== "card" ? "opacity-50 pointer-events-none" : ""}`}
-            >
-              <h3 className="text-[16px] font-medium text-[#1A1A1A] mb-6">
-                Card Details
-              </h3>
+            {/* Card Details / Stripe Section */}
+            <AnimatePresence mode="wait">
+              {paymentMethod === "card" && (
+                <motion.div
+                  key="card-details"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="border border-[#EBEBEB] rounded-[16px] p-6 lg:p-8 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.01)]"
+                >
+                  <h3 className="text-[16px] font-medium text-[#1A1A1A] mb-6">
+                    Card Details
+                  </h3>
 
-              <div className="flex flex-col gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-[#1A1A1A]">
-                    Card Number
-                  </label>
-                  <Input
-                    placeholder="1234 5678 9012 3456"
-                    className="h-[46px] bg-[#F9FAFB] border-none rounded-[10px] px-3.5 text-[14px] text-[#1A1A1A] placeholder:text-[#888888]/80 focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-[#1A1A1A]">
-                    Cardholder Name
-                  </label>
-                  <Input
-                    placeholder="John Doe"
-                    className="h-[46px] bg-[#F9FAFB] border-none rounded-[10px] px-3.5 text-[14px] text-[#1A1A1A] placeholder:text-[#888888]/80 focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                  />
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-5">
-                  <div className="flex-1 flex flex-col gap-1.5">
-                    <label className="text-[13px] font-medium text-[#1A1A1A]">
-                      Expiry Date
-                    </label>
-                    <Input
-                      placeholder="MM/YY"
-                      className="h-[46px] bg-[#F9FAFB] border-none rounded-[10px] px-3.5 text-[14px] text-[#1A1A1A] placeholder:text-[#888888]/80 focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col gap-1.5">
-                    <label className="text-[13px] font-medium text-[#1A1A1A]">
-                      CVV
-                    </label>
-                    <Input
-                      placeholder="123"
-                      type="password"
-                      maxLength={4}
-                      className="h-[46px] bg-[#F9FAFB] border-none rounded-[10px] px-3.5 text-[14px] text-[#1A1A1A] placeholder:text-[#888888]/80 focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 mt-2">
-                  <ShieldCheck
-                    className="w-[18px] h-[18px] text-[#888888]"
-                    strokeWidth={1.5}
-                  />
-                  <span className="text-[13px] text-[#888888]">
-                    Your payment information is encrypted and secure
-                  </span>
-                </div>
-              </div>
-            </div>
+                  {!clientSecret ? (
+                    <div className="flex flex-col gap-6 opacity-60">
+                      <div className="flex items-center gap-3 p-4 bg-[#F9FAFB] rounded-[12px] border border-dashed border-[#EBEBEB]">
+                        <Lock className="w-5 h-5 text-[#888888]" />
+                        <p className="text-[13.5px] text-[#888888]">
+                          Card input will be active after you click &rdquo;Place
+                          Order&ldquo; below.
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <Elements stripe={stripePromise} options={{ clientSecret }}>
+                      <StripeSection
+                        clientSecret={clientSecret}
+                        orderNumber={orderNumber || ""}
+                        onSuccess={() => {
+                          clearCart();
+                          router.push(`/checkout/success?order=${orderNumber}`);
+                        }}
+                      />
+                    </Elements>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Right Column / Sidebar */}
@@ -294,9 +384,16 @@ export function PaymentForm({
 
                 <Button
                   onClick={handleSubmit}
-                  className="w-full h-[52px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5"
+                  disabled={
+                    isPending || (paymentMethod === "card" && !!clientSecret)
+                  }
+                  className="w-full h-[52px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium flex items-center justify-between px-6 transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50"
                 >
-                  Place Order
+                  {isPending
+                    ? "Processing..."
+                    : clientSecret
+                      ? "Payment Active"
+                      : "Place Order"}
                   <div className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center text-[#412A1F] shrink-0">
                     <ArrowUpRight className="w-4 h-4 stroke-2" />
                   </div>
@@ -365,54 +462,36 @@ export function PaymentForm({
           </button>
 
           {paymentMethod === "card" && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              className="flex flex-col gap-5 mt-4"
-            >
-              <div className="flex flex-col gap-2">
-                <label className="text-[13px] text-[#888888] font-medium">
-                  Card Number
-                </label>
-                <Input
-                  placeholder="1234 5678 9012 3456"
-                  className="h-[52px] bg-[#F9FAFB] border-none rounded-[12px] px-4 text-[15px] focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-[13px] text-[#888888] font-medium">
-                  Cardholder Name
-                </label>
-                <Input
-                  placeholder="John Doe"
-                  className="h-[52px] bg-[#F9FAFB] border-none rounded-[12px] px-4 text-[15px] focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                />
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex-1 flex flex-col gap-2">
-                  <label className="text-[13px] text-[#888888] font-medium">
-                    Expiry Date
-                  </label>
-                  <Input
-                    placeholder="MM/YY"
-                    className="h-[52px] bg-[#F9FAFB] border-none rounded-[12px] px-4 text-[15px] focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                  />
-                </div>
-                <div className="flex-1 flex flex-col gap-2">
-                  <label className="text-[13px] text-[#888888] font-medium">
-                    CVV
-                  </label>
-                  <Input
-                    placeholder="123"
-                    type="password"
-                    maxLength={4}
-                    className="h-[52px] bg-[#F9FAFB] border-none rounded-[12px] px-4 text-[15px] focus-visible:ring-1 focus-visible:ring-[#C9A76A]"
-                  />
-                </div>
-              </div>
-            </motion.div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key="mobile-card-details"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="flex flex-col gap-4 mt-2"
+              >
+                {!clientSecret ? (
+                  <div className="p-4 bg-white rounded-[14px] border border-dashed border-[#EBEBEB] shadow-sm">
+                    <p className="text-[13px] text-[#888888] text-center">
+                      Card Details will appear after placing order.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="bg-white rounded-[18px] p-5 shadow-sm border border-[#F2F2F2]">
+                    <Elements stripe={stripePromise} options={{ clientSecret }}>
+                      <StripeSection
+                        clientSecret={clientSecret}
+                        orderNumber={orderNumber || ""}
+                        onSuccess={() => {
+                          clearCart();
+                          router.push(`/checkout/success?order=${orderNumber}`);
+                        }}
+                      />
+                    </Elements>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
           )}
         </div>
 
@@ -420,9 +499,14 @@ export function PaymentForm({
         <div className="flex flex-col gap-4 mt-6 pb-10">
           <Button
             onClick={handleSubmit}
-            className="w-full h-[56px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[14px] text-[16px] font-bold shadow-lg"
+            disabled={isPending || (paymentMethod === "card" && !!clientSecret)}
+            className="w-full h-[56px] bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[14px] text-[16px] font-bold shadow-lg disabled:opacity-50"
           >
-            Place Order
+            {isPending
+              ? "Processing..."
+              : clientSecret
+                ? "Payment Active"
+                : "Place Order"}
           </Button>
           <button
             onClick={onBack}
