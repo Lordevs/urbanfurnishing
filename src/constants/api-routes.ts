@@ -34,4 +34,7 @@ export const API_ROUTES = {
   // ─── Payments ───────────────────────────────────────────────
   PAYMENT_CONFIRM: (orderNumber: string) =>
     `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/payments/${orderNumber}/confirm/`,
+
+  // ─── Newsletter ─────────────────────────────────────────────
+  NEWSLETTER_SUBSCRIBE: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/newsletter/subscribe/`,
 } as const;

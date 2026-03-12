@@ -334,3 +334,16 @@ export type PackageFilters = {
   page?: number;
   page_size?: number;
 };
+
+// ─── Newsletter ──────────────────────────────────────────────────────────────
+
+export const NewsletterPayloadSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
+
+export const NewsletterResponseSchema = z.object({
+  message: z.string(),
+});
+
+export type NewsletterPayload = z.infer<typeof NewsletterPayloadSchema>;
+export type NewsletterResponse = z.infer<typeof NewsletterResponseSchema>;
