@@ -5,9 +5,7 @@ import { Trash2, Minus, Plus, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
-
 import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 
@@ -48,12 +46,12 @@ export function CartItems() {
           <p className="text-[#888888] text-[14px] mb-8 text-center max-w-[280px]">
             Looks like you haven&apos;t added anything to your cart yet.
           </p>
-          <ActionButton
+          <Button
             onClick={() => router.push(ROUTES.PACKAGES)}
-            label="Start Shopping"
-            className="h-[46px] px-8 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium"
-            showArrow={false}
-          />
+            className="h-[46px] px-8 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-[10px] text-[14.5px] font-medium transition-all shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-0.5"
+          >
+            Start Shopping
+          </Button>
         </motion.div>
       ) : (
         items.map((item, index) => (

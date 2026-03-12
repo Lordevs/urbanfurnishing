@@ -3,8 +3,7 @@
 import { Search, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-import { ActionButton } from "./action-button";
-
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 interface TrackOrderFormProps {
@@ -41,14 +40,17 @@ export function TrackOrderForm({
           <Search className="w-5 h-5" />
         </div>
         <div className="absolute right-2 top-1/2 -translate-y-1/2">
-          <ActionButton
+          <Button
             type="submit"
-            disabled={!orderNumber.trim()}
-            loading={isLoading}
-            label="Track Now"
-            className="h-[46px] bg-[#31231e] hover:bg-[#3D261C] text-white rounded-[12px] px-6 text-[14px] font-bold"
-            showArrow={false}
-          />
+            disabled={isLoading || !orderNumber.trim()}
+            className="h-[46px] bg-primary hover:bg-primary/90 text-primary-foreground rounded-[12px] px-6 text-[14px] font-bold transition-all disabled:opacity-70"
+          >
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              "Track Now"
+            )}
+          </Button>
         </div>
       </div>
       <p className="mt-4 text-center text-muted-foreground text-[13px] font-medium">

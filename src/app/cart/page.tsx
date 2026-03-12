@@ -1,4 +1,4 @@
-import CartHeroSection from "@/components/cart/cart-hero-section";
+import CartHeroSection from "@/components/cart/card-hero-section";
 import CartContent from "@/components/cart/cart-content";
 import Testimonial from "@/components/common/testimonial";
 

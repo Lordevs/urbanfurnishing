@@ -6,7 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useSyncExternalStore } from "react";
 
-import { ActionButton } from "@/components/shared/action-button";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -25,7 +24,7 @@ const Navbar = () => {
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
-    () => false,
+    () => false
   );
   const { items } = useCart();
 
@@ -44,13 +43,15 @@ const Navbar = () => {
     <nav
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
-      }`}>
+      }`}
+    >
       <div className="w-full px-4 sm:px-10 lg:px-16">
         <div className="flex h-20 items-center justify-between">
           {/* Logo Section */}
           <Link
             href={ROUTES.HOME}
-            className="flex items-center gap-2 group shrink-0">
+            className="flex items-center gap-2 group shrink-0"
+          >
             <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/common/logo.svg"
@@ -77,7 +78,8 @@ const Navbar = () => {
                     isActive
                       ? "bg-[#412A1F]/90 text-white"
                       : "text-foreground hover:text-primary"
-                  }`}>
+                  }`}
+                >
                   {item.title}
                 </Link>
               );
@@ -91,7 +93,8 @@ const Navbar = () => {
               title="Track Order"
               className={`p-2.5 rounded-full hover:bg-primary/5 transition-colors group ${
                 pathname === ROUTES.TRACK_ORDER ? "bg-primary/5" : ""
-              }`}>
+              }`}
+            >
               <Package
                 className={`h-6 w-6 transition-colors ${
                   pathname === ROUTES.TRACK_ORDER
@@ -104,7 +107,8 @@ const Navbar = () => {
             {/* Cart Icon - Both Mobile (visible) and Desktop */}
             <Link
               href={ROUTES.CART}
-              className="relative p-2.5 rounded-full hover:bg-primary/5 transition-colors group">
+              className="relative p-2.5 rounded-full hover:bg-primary/5 transition-colors group"
+            >
               <ShoppingCart className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
               {mounted && totalQuantity > 0 && (
                 <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#C9A76A] text-[10px] font-bold text-white shadow-sm ring-2 ring-white animate-in zoom-in-50 duration-300">
@@ -115,12 +119,14 @@ const Navbar = () => {
 
             {/* Desktop CTA Button */}
             <div className="hidden lg:flex items-center">
-              <ActionButton
-                href={ROUTES.BOOK_CONSULTATION}
-                label="Get in Touch"
-                className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground pr-2 pl-7 h-5 text-sm font-medium"
-                iconContainerClassName="bg-[#FFF8F0] p-1.5 text-primary flex"
-              />
+              <Link href={ROUTES.BOOK_CONSULTATION}>
+                <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-3 pr-2 pl-7 h-12 text-sm font-medium transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
+                  Get in Touch
+                  <div className="bg-[#FFF8F0] rounded-full p-1.5 text-primary flex items-center justify-center">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </div>
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -131,7 +137,8 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     aria-label="Open navigation menu"
-                    className="text-primary hover:bg-primary/5 h-11 w-11">
+                    className="text-primary hover:bg-primary/5 h-11 w-11"
+                  >
                     <Menu className="h-7 w-7" />
                   </Button>
                 </SheetTrigger>
@@ -154,7 +161,8 @@ const Navbar = () => {
                               isActive
                                 ? "text-primary bg-primary/5 border-l-4 border-primary"
                                 : "text-muted-foreground hover:bg-gray-50"
-                            }`}>
+                            }`}
+                          >
                             <item.icon
                               className={`h-5 w-5 ${isActive ? "text-primary" : "text-muted-foreground"}`}
                             />
@@ -165,13 +173,17 @@ const Navbar = () => {
                     </div>
 
                     <div className="p-8 border-t bg-gray-50/50">
-                      <ActionButton
+                      <Link
                         href={ROUTES.BOOK_CONSULTATION}
                         onClick={() => setIsOpen(false)}
-                        label="Get in Touch"
-                        className="w-full rounded-full bg-[#412A1F] hover:bg-primary/90 text-white px-8 h-14 text-md font-medium shadow-lg"
-                        iconContainerClassName="bg-white p-2 text-[#412A1F] flex"
-                      />
+                      >
+                        <Button className="w-full rounded-full bg-[#412A1F] hover:bg-primary/90 text-white flex items-center justify-between px-8 h-14 text-md font-medium shadow-lg transition-transform active:scale-95">
+                          Get in Touch
+                          <div className="bg-white rounded-full p-2 text-[#412A1F]">
+                            <ArrowUpRight className="h-5 w-5" />
+                          </div>
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </SheetContent>
