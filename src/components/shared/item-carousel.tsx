@@ -39,6 +39,10 @@ export function ItemCarousel({
   className,
   id,
 }: ItemCarouselProps) {
+  if (items.length === 0) {
+    return null;
+  }
+
   return (
     <section
       id={id}
