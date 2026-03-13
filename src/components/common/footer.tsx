@@ -88,8 +88,14 @@ export default function Footer() {
               >
                 {isPending ? "Subscribing..." : "Subscribe"}
                 {!isPending && (
-                  <div className="bg-[#FDF4E7] rounded-full p-[5px] text-[#3D261C] transition-transform duration-300 group-hover:scale-95">
-                    <ArrowDownRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover:translate-x-px group-hover:translate-y-px stroke-[1.5]" />
+                  <div className="flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0">
+                    <Image
+                      src="/common/arrow-up.svg"
+                      alt="Arrow Up"
+                      width={12}
+                      height={12}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </div>
                 )}
               </Button>
