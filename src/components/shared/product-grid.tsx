@@ -1,13 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Search,
-  Heart,
-  ShoppingCart,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Search, ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -205,14 +199,6 @@ export function ProductGrid({
                         </span>
                       )}
                     </div>
-
-                    {/* Heart Button */}
-                    <button
-                      onClick={(e) => e.stopPropagation()}
-                      className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-105 transition-transform text-[#1A1A1A]"
-                    >
-                      <Heart className="w-[14px] h-[14px]" />
-                    </button>
                   </div>
 
                   {/* Content */}

@@ -560,23 +560,6 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               )}
             </Button>
           </div>
-
-          <div className="grid grid-cols-2 gap-3 mb-10">
-            <Button
-              onClick={handleAddToCart}
-              disabled={!data.is_in_stock}
-              className={`w-full border border-[#412A1F] text-[#412A1F] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none ${
-                !data.is_in_stock
-                  ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400"
-                  : ""
-              }`}
-            >
-              {data.is_in_stock ? "Buy Now" : "Out of Stock"}
-            </Button>
-            <Button className="w-full border border-[#EBEBEB] text-[#1A1A1A] bg-white hover:bg-gray-50 rounded-xl h-[46px] text-[13px] font-medium shadow-none">
-              Add to Wishlist
-            </Button>
-          </div>
         </div>
 
         <div className="bg-[#FAFAFA] px-4 py-8 grid grid-cols-1 gap-10 border-t border-[#F2F2F2]">

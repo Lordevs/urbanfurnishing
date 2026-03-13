@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, ShoppingCart, Star } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -160,14 +160,6 @@ export function FeaturedCollections() {
                     </span>
                   )}
                 </div>
-
-                {/* Heart Action */}
-                <button
-                  onClick={(e) => e.stopPropagation()}
-                  className="absolute top-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md"
-                >
-                  <Heart className="w-[18px] h-[18px] text-[#1A1A1A]" />
-                </button>
               </div>
 
               {/* Content Section */}
@@ -177,13 +169,6 @@ export function FeaturedCollections() {
                   <h4 className="text-[#C9A76A] text-[10px] font-bold tracking-widest uppercase">
                     {item.category}
                   </h4>
-                  <div className="flex items-center gap-1 bg-[#F7F7F7] px-2 py-1 rounded-[6px]">
-                    <Star className="w-3 h-3 fill-[#C9A76A] text-[#C9A76A]" />
-                    <span className="text-[10px] font-bold text-[#1A1A1A]">
-                      4.8
-                    </span>
-                    <span className="text-[10px] text-[#888888]">(124)</span>
-                  </div>
                 </div>
 
                 <h3 className="text-[18px] font-serif font-bold text-[#1A1A1A] leading-tight mb-2">

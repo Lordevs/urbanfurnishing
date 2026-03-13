@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -133,14 +133,6 @@ export function FeaturedCarousel({
                         </span>
                       )}
                     </div>
-
-                    {/* Heart Button */}
-                    <button
-                      onClick={(e) => e.stopPropagation()}
-                      className="absolute top-5 right-5 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform"
-                    >
-                      <Heart className="w-4 h-4 text-[#1A1A1A]" />
-                    </button>
                   </div>
 
                   {/* Right: Content */}
