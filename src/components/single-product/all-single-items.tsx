@@ -93,12 +93,14 @@ export function AllSingleItems({
   const pathname = usePathname();
 
   const selectedCategorySlug = searchParams.get("category");
+  const searchQuery = searchParams.get("search") || "";
   const currentPage = Number(searchParams.get("page")) || 1;
   const PAGE_SIZE = 9;
 
   const { data: categoryData } = useProductCategories();
   const { data, isLoading } = useProducts({
     ...(selectedCategorySlug ? { category__slug: selectedCategorySlug } : {}),
+    ...(searchQuery ? { search: searchQuery } : {}),
     page: currentPage,
     page_size: PAGE_SIZE,
   });
@@ -151,6 +153,17 @@ export function AllSingleItems({
     router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
   };
 
+  const handleSearchChange = (query: string) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (query) {
+      newParams.set("search", query);
+    } else {
+      newParams.delete("search");
+    }
+    newParams.delete("page");
+    router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
+  };
+
   const handlePageChange = (page: number) => {
     const newParams = new URLSearchParams(searchParams.toString());
     if (page > 1) {
@@ -173,6 +186,8 @@ export function AllSingleItems({
       limit={limit}
       hidePagination={hidePagination}
       onCategoryChange={handleCategoryChange}
+      searchQuery={searchQuery}
+      onSearchChange={handleSearchChange}
       currentPage={currentPage}
       totalPages={totalPages}
       onPageChange={handlePageChange}

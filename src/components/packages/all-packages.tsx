@@ -86,12 +86,14 @@ export function AllPackages() {
   const pathname = usePathname();
 
   const selectedCategorySlug = searchParams.get("category");
+  const searchQuery = searchParams.get("search") || "";
   const currentPage = Number(searchParams.get("page")) || 1;
   const PAGE_SIZE = 6;
 
   const { data: categoryData } = usePackageCategories();
   const { data, isLoading } = usePackages({
     ...(selectedCategorySlug ? { category__slug: selectedCategorySlug } : {}),
+    ...(searchQuery ? { search: searchQuery } : {}),
     page: currentPage,
     page_size: PAGE_SIZE,
   });
@@ -145,6 +147,17 @@ export function AllPackages() {
     router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
   };
 
+  const handleSearchChange = (query: string) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (query) {
+      newParams.set("search", query);
+    } else {
+      newParams.delete("search");
+    }
+    newParams.delete("page");
+    router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
+  };
+
   const handlePageChange = (page: number) => {
     const newParams = new URLSearchParams(searchParams.toString());
     if (page > 1) {
@@ -165,6 +178,8 @@ export function AllPackages() {
       activeCategory={activeCategoryName}
       detailRoute={(id) => ROUTES.PACKAGES_DETAIL(id)}
       onCategoryChange={handleCategoryChange}
+      searchQuery={searchQuery}
+      onSearchChange={handleSearchChange}
       currentPage={currentPage}
       totalPages={totalPages}
       onPageChange={handlePageChange}

@@ -4,10 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cart-context";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export interface GridItemProps {
   id: string;
@@ -35,8 +36,11 @@ interface ProductGridProps {
   currentPage?: number;
   totalPages?: number;
   onPageChange?: (page: number) => void;
-  /** Called with the selected category label when the user changes tabs. Optional — if omitted, filtering is handled client-side. */
   onCategoryChange?: (category: string) => void;
+  /** Search query from parent */
+  searchQuery?: string;
+  /** Called when the search input value changes */
+  onSearchChange?: (query: string) => void;
 }
 
 function getPaginationItems(current: number, total: number) {
@@ -59,12 +63,30 @@ export function ProductGrid({
   totalPages = 1,
   onPageChange,
   onCategoryChange,
+  searchQuery,
+  onSearchChange,
 }: ProductGridProps) {
   const router = useRouter();
   const { addItem } = useCart();
   const [internalActiveCategory, setInternalActiveCategory] = useState("All");
   const currentCategory = activeCategory ?? internalActiveCategory;
-  const [searchQuery, setSearchQuery] = useState("");
+  
+  const [inputValue, setInputValue] = useState(searchQuery ?? "");
+  const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
+  const debouncedValue = useDebounce(inputValue, 500);
+
+  if (searchQuery !== prevSearchQuery) {
+    setInputValue(searchQuery ?? "");
+    setPrevSearchQuery(searchQuery);
+  }
+
+  useEffect(() => {
+    if (debouncedValue !== (searchQuery ?? "")) {
+      onSearchChange?.(debouncedValue);
+    }
+  }, [debouncedValue, onSearchChange, searchQuery]);
+
+  const currentSearchQuery = searchQuery !== undefined ? inputValue : debouncedValue;
 
   const handleAddToCart = (e: React.MouseEvent, item: GridItemProps) => {
     e.stopPropagation();
@@ -86,8 +108,10 @@ export function ProductGrid({
           currentCategory === "All" ||
           pkg.category.toLowerCase() === currentCategory.toLowerCase();
         const matchesSearch =
-          pkg.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          pkg.description.toLowerCase().includes(searchQuery.toLowerCase());
+          pkg.title.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
+          pkg.description
+            .toLowerCase()
+            .includes(currentSearchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
       });
 
@@ -119,8 +143,8 @@ export function ProductGrid({
               </div>
               <input
                 type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Search..."
                 className="bg-[#F5F5F5] text-[#1A1A1A] placeholder:text-[#AAAAAA] text-[14px] rounded-[12px] pl-10 pr-4 h-11 w-full sm:w-[260px] focus:outline-none focus:ring-1 focus:ring-[#E0E0E0] transition-shadow"
               />
