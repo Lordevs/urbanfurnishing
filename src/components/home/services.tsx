@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { Check, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ROUTES } from "@/constants/route";
 
 const servicesData = [
   {
@@ -14,6 +16,7 @@ const servicesData = [
     title: "Select Packages",
     desc: "Browse our curated collections designed for every room. Complete furniture sets that work together perfectly.",
     img: "/landing/home/services/services-img-1.webp",
+    href: ROUTES.PACKAGES,
     features: [
       "Complete room solutions",
       "Pre-matched furniture sets",
@@ -25,6 +28,7 @@ const servicesData = [
     title: "Shop Individually",
     desc: "Pick and choose exactly what you need. Build your own style with our extensive single product collection.",
     img: "/landing/home/services/services-img-2.webp",
+    href: ROUTES.SINGLE_PRODUCTS,
     features: [
       "1000+ unique pieces",
       "Mix and match styles",
@@ -36,6 +40,7 @@ const servicesData = [
     title: "Use Our Design Expert",
     desc: "Work with professional interior designers who bring your vision to life with personalized service.",
     img: "/landing/home/services/services-img-3.webp",
+    href: ROUTES.BOOK_CONSULTATION,
     features: [
       "1-on-1 consultation",
       "Custom design plans",
@@ -50,6 +55,7 @@ const mobileServicesData = [
     title: "Select Packages",
     desc: "Pre-designed room packages with curated furniture and decor",
     img: "/landing/home/services/services-img-1.webp",
+    href: ROUTES.PACKAGES,
     features: [
       "Complete room sets",
       "Professional styling",
@@ -62,6 +68,7 @@ const mobileServicesData = [
     title: "Shop Individually",
     desc: "Curate your unique space piece by piece from our premium collection",
     img: "/landing/home/services/services-img-2.webp",
+    href: ROUTES.SINGLE_PRODUCTS,
     features: [
       "1000+ unique pieces",
       "Mix and match styles",
@@ -74,6 +81,7 @@ const mobileServicesData = [
     title: "Design Expert",
     desc: "Collaborate with professional designers for a fully customized interior",
     img: "/landing/home/services/services-img-3.webp",
+    href: ROUTES.BOOK_CONSULTATION,
     features: [
       "1-on-1 consultation",
       "Custom 3D planning",
@@ -105,18 +113,20 @@ export default function Services() {
               <div
                 key={service.id}
                 className="bg-white rounded-[16px] border border-[#EAEADF] shadow-sm overflow-hidden flex flex-col">
-                <div className="relative w-full aspect-[1.4] overflow-hidden">
+                <Link href={service.href} className="block relative w-full aspect-[1.4] overflow-hidden">
                   <Image
                     src={service.img}
                     alt={service.title}
                     fill
                     className="object-cover"
                   />
-                </div>
+                </Link>
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-[20px] font-bold font-serif text-[#412A1F] mb-3">
-                    {service.title}
-                  </h3>
+                  <Link href={service.href} className="block">
+                    <h3 className="text-[20px] font-bold font-serif text-[#412A1F] mb-3">
+                      {service.title}
+                    </h3>
+                  </Link>
                   <p className="text-[13px] text-[#8F877C] mb-6 leading-relaxed">
                     {service.desc}
                   </p>
@@ -132,9 +142,11 @@ export default function Services() {
                     ))}
                   </ul>
 
-                  <Button className="w-full mt-auto bg-[#5D4E3C] hover:bg-[#412A1F] text-[#F3EFE7] rounded-[8px] h-[46px] text-[13px] font-medium shadow-none border-none">
-                    Learn More
-                  </Button>
+                  <Link href={service.href} className="w-full mt-auto">
+                    <Button className="w-full bg-[#5D4E3C] hover:bg-[#412A1F] text-[#F3EFE7] rounded-[8px] h-[46px] text-[13px] font-medium shadow-none border-none">
+                      Learn More
+                    </Button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -168,110 +180,111 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}>
-                  <div
-                    className={`absolute inset-0 rounded-[24px] transition-opacity duration-300 z-0 pointer-events-none ${
-                      isActive ? "opacity-100" : "opacity-0"
-                    }`}
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #72727D 2%, #C9A76A 4%, #C9A76A 48%, transparent 50%)",
-                    }}
-                  />
-
-                  <Card
-                    className={`relative flex flex-col h-full rounded-[23px] overflow-hidden transition-all duration-300 z-10 m-px border bg-[#FDFCF9] ${
-                      isActive
-                        ? "text-white border-transparent"
-                        : "text-black border-[#E5E0DA]"
-                    }`}
-                    style={{
-                      boxShadow: isActive
-                        ? "0 20px 40px rgba(0,0,0,0.15)"
-                        : "0 4px 6px rgba(0,0,0,0.02)",
-                    }}>
-                    {/* Expanding dark background from bottom right */}
+                  <Link href={service.href} className="block h-full">
                     <div
-                      className="absolute inset-0 bg-[#251814] transition-all duration-500 ease-out z-0 pointer-events-none"
+                      className={`absolute inset-0 rounded-[24px] transition-opacity duration-300 z-0 pointer-events-none ${
+                        isActive ? "opacity-100" : "opacity-0"
+                      }`}
                       style={{
-                        clipPath: isActive
-                          ? "circle(150% at 100% 100%)"
-                          : "circle(0% at 100% 100%)",
+                        background:
+                          "linear-gradient(135deg, #72727D 2%, #C9A76A 4%, #C9A76A 48%, transparent 50%)",
                       }}
                     />
 
-                    {/* Background SVG for all states */}
-                    <div className="absolute inset-0 w-full h-full z-1 pointer-events-none opacity-100 transition-opacity duration-300">
-                      <Image
-                        src="/landing/home/services/services.svg"
-                        alt="bg effect"
-                        fill
-                        className="object-cover"
+                    <Card
+                      className={`relative flex flex-col h-full rounded-[23px] overflow-hidden transition-all duration-300 z-10 m-px border bg-[#FDFCF9] ${
+                        isActive
+                          ? "text-white border-transparent"
+                          : "text-black border-[#E5E0DA]"
+                      }`}
+                      style={{
+                        boxShadow: isActive
+                          ? "0 20px 40px rgba(0,0,0,0.15)"
+                          : "0 4px 6px rgba(0,0,0,0.02)",
+                      }}>
+                      {/* Expanding dark background from bottom right */}
+                      <div
+                        className="absolute inset-0 bg-[#251814] transition-all duration-500 ease-out z-0 pointer-events-none"
+                        style={{
+                          clipPath: isActive
+                            ? "circle(150% at 100% 100%)"
+                            : "circle(0% at 100% 100%)",
+                        }}
                       />
-                    </div>
 
-                    {/* Card Content - relative to be above background */}
-                    <CardContent className="relative z-10 p-3 sm:p-4 flex flex-col h-full">
-                      <div className="relative w-full aspect-4/3 sm:aspect-4/3 rounded-[16px] overflow-hidden mb-6 filter drop-shadow-sm">
-                        {/* The images shown in the screenshot might have varying heights, but we enforce standard aspect ratio */}
+                      {/* Background SVG for all states */}
+                      <div className="absolute inset-0 w-full h-full z-1 pointer-events-none opacity-100 transition-opacity duration-300">
                         <Image
-                          src={service.img}
-                          alt={service.title}
+                          src="/landing/home/services/services.svg"
+                          alt="bg effect"
                           fill
                           className="object-cover"
                         />
                       </div>
 
-                      <div className="px-2 pb-6 flex flex-col flex-1">
-                        <h3
-                          className={`text-xl sm:text-2xl font-semibold font-serif mb-3 transition-colors duration-300 ${
-                            isActive ? "text-white" : "text-black"
-                          }`}>
-                          {service.title}
-                        </h3>
-                        <p
-                          className={`text-[15px] mb-2 leading-relaxed transition-colors duration-300 ${
-                            isActive ? "text-white/80" : "text-black"
-                          }`}>
-                          {service.desc}
-                        </p>
+                      {/* Card Content - relative to be above background */}
+                      <CardContent className="relative z-10 p-3 sm:p-4 flex flex-col h-full">
+                        <div className="relative w-full aspect-4/3 sm:aspect-4/3 rounded-[16px] overflow-hidden mb-6 filter drop-shadow-sm">
+                          <Image
+                            src={service.img}
+                            alt={service.title}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
 
-                        <ul className="space-y-4 mb-2 mt-auto">
-                          {service.features.map((feature, index) => (
-                            <li key={index} className="flex items-center gap-3">
-                              <div
-                                className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 transition-colors duration-300 ${
-                                  isActive
-                                    ? "bg-[#C9A76A] text-white"
-                                    : "bg-[#544641] text-white"
-                                }`}>
-                                <Check className="w-3 h-3 stroke-3" />
-                              </div>
-                              <span
-                                className={`text-sm font-medium transition-colors duration-300 ${
-                                  isActive ? "text-white/90" : "text-black"
-                                }`}>
-                                {feature}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
+                        <div className="px-2 pb-6 flex flex-col flex-1">
+                          <h3
+                            className={`text-xl sm:text-2xl font-semibold font-serif mb-3 transition-colors duration-300 ${
+                              isActive ? "text-white" : "text-black"
+                            }`}>
+                            {service.title}
+                          </h3>
+                          <p
+                            className={`text-[15px] mb-2 leading-relaxed transition-colors duration-300 ${
+                              isActive ? "text-white/80" : "text-black"
+                            }`}>
+                            {service.desc}
+                          </p>
 
-                  {/* Floating Arrow Button - Rendered always, visually toggled for smooth CSS transition */}
-                  <div
-                    className={`absolute -bottom-4 -right-4 z-20 transition-all duration-300 ease-out origin-top-left ${
-                      isActive
-                        ? "opacity-100 scale-100 pointer-events-auto"
-                        : "opacity-0 scale-75 pointer-events-none"
-                    }`}>
-                    <div className="bg-[#F7F7F7] p-2 rounded-full">
-                      <div className="w-12 h-12 bg-[#412A1F] text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-[#2b1b16] transition-colors">
-                        <ArrowUpRight className="w-6 h-6" />
+                          <ul className="space-y-4 mb-2 mt-auto">
+                            {service.features.map((feature, index) => (
+                              <li key={index} className="flex items-center gap-3">
+                                <div
+                                  className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 transition-colors duration-300 ${
+                                    isActive
+                                      ? "bg-[#C9A76A] text-white"
+                                      : "bg-[#544641] text-white"
+                                  }`}>
+                                  <Check className="w-3 h-3 stroke-3" />
+                                </div>
+                                <span
+                                  className={`text-sm font-medium transition-colors duration-300 ${
+                                    isActive ? "text-white/90" : "text-black"
+                                  }`}>
+                                  {feature}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Floating Arrow Button */}
+                    <div
+                      className={`absolute -bottom-4 -right-4 z-20 transition-all duration-300 ease-out origin-top-left ${
+                        isActive
+                          ? "opacity-100 scale-100 pointer-events-auto"
+                          : "opacity-0 scale-75 pointer-events-none"
+                      }`}>
+                      <div className="bg-[#F7F7F7] p-2 rounded-full">
+                        <div className="w-12 h-12 bg-[#412A1F] text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-[#2b1b16] transition-colors">
+                          <ArrowUpRight className="w-6 h-6" />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               );
             })}

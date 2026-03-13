@@ -4,6 +4,7 @@ import {
   ItemCarousel,
   CarouselItemData,
 } from "@/components/shared/item-carousel";
+import { ROUTES } from "@/constants/route";
 import { usePackages } from "@/hooks/queries/use-packages";
 import type { PackageListItem } from "@/types/api";
 
@@ -11,6 +12,7 @@ function toCarouselItem(pkg: PackageListItem): CarouselItemData {
   return {
     id: pkg.id,
     title: pkg.name,
+    href: ROUTES.PACKAGES_DETAIL(pkg.slug),
     img: pkg.thumbnail ?? "/landing/home/packages/packages-img-1.webp",
     fields: [
       {

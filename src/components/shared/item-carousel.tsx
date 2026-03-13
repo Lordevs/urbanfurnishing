@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import {
   Carousel,
@@ -15,6 +16,7 @@ export interface CarouselItemData {
   id: string | number;
   title: string;
   img: string;
+  href?: string;
   fields?: { label?: string; value: string }[];
   description?: string;
   buttonText?: string;
@@ -72,7 +74,12 @@ export function ItemCarousel({
               <CarouselItem
                 key={item.id}
                 className="pl-3 sm:pl-5 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="relative group rounded-[24px] overflow-hidden w-full aspect-3/4 sm:aspect-4/5 md:aspect-3/4 cursor-pointer border border-[#F5E6E0]">
+                <Link
+                  href={item.href || "#"}
+                  className={cn(
+                    "relative group rounded-[24px] overflow-hidden w-full aspect-3/4 sm:aspect-4/5 md:aspect-3/4 flex cursor-pointer border border-[#F5E6E0]",
+                    !item.href && "pointer-events-none",
+                  )}>
                   {/* Image Background */}
                   <Image
                     src={item.img}
@@ -125,7 +132,7 @@ export function ItemCarousel({
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
