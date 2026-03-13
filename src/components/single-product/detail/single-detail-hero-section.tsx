@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, ArrowDownRight } from "lucide-react";
+import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { PrimaryButton } from "@/components/common/primary-button";
+import { SecondaryButton } from "@/components/common/secondary-button";
 import { HeroSection } from "@/components/shared/hero-section";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
@@ -38,7 +40,8 @@ export default function SingleProductDetailHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
+              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
+            >
               Expertly Curated <br />
               Room Collections
             </motion.h1>
@@ -46,7 +49,8 @@ export default function SingleProductDetailHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4">
+              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4"
+            >
               Designer-selected furniture packages that bring harmony to your
               space. Each collection is thoughtfully coordinated to save you
               time, money, and design guesswork
@@ -55,18 +59,16 @@ export default function SingleProductDetailHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4">
-              <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
-                <Button className="w-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center gap-3 border shadow-none border-transparent">
-                  Get in Touch
-                  <div className="bg-[#FFF8F0] rounded-full w-[26px] h-[26px] flex items-center justify-center text-[#412A1F]">
-                    <ArrowDownRight className="h-[14px] w-[14px] stroke-2" />
-                  </div>
-                </Button>
-              </Link>
-              <Link href={ROUTES.PACKAGES} className="w-full">
+              className="flex flex-col gap-4"
+            >
+              <PrimaryButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get in Touch"
+                mbLabel="Get in Touch"
+              />
+              <Link href={ROUTES.SINGLE_PRODUCTS} className="w-full">
                 <Button className="w-full bg-white/70 backdrop-blur-md text-[#412A1F] hover:bg-white/80 rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center px-8 border-none shadow-none">
-                  Explore Packages
+                  Explore Products
                 </Button>
               </Link>
             </motion.div>
@@ -76,7 +78,8 @@ export default function SingleProductDetailHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="w-full bottom-card-wrapper mt-auto">
+            className="w-full bottom-card-wrapper mt-auto"
+          >
             <div className="bg-[#F5EFEA] rounded-[24px] p-6 shadow-xl w-full flex flex-col gap-5 border border-white/40">
               <h3 className="text-[#412A1F] text-[18px] font-sans font-semibold text-center mb-1">
                 Why Book With Us?
@@ -125,13 +128,10 @@ export default function SingleProductDetailHero() {
                 </Button>
               </Link>
 
-              <Link href={ROUTES.PACKAGES}>
-                <Button
-                  variant="outline"
-                  className="rounded-full bg-white/70 cursor-pointer backdrop-blur-md text-[#412A1F] hover:bg-white/90 h-[56px] px-8 text-[14px] font-semibold transition-all duration-300 border-none shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
-                  Explore Packages
-                </Button>
-              </Link>
+              <SecondaryButton
+                label="Explore Products"
+                href={ROUTES.SINGLE_PRODUCTS}
+              />
             </>
           }
           bottomCard={
@@ -139,7 +139,8 @@ export default function SingleProductDetailHero() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-              className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20">
+              className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20"
+            >
               <div className="px-2 sm:px-16 py-2 sm:py-7 rounded-[24px] sm:rounded-[28px] shadow-lg flex flex-col gap-7 min-w-[300px] sm:min-w-[480px] bg-[#FFF8F0]/70 backdrop-blur-sm border border-[#F0E9DD]">
                 <h3 className="text-[#412A1F] text-[18px] font-serif sm:text-[20px] font-medium text-center mb-2">
                   Why Book With Us?

@@ -17,6 +17,8 @@ import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 import { navItems } from "@/lib/nav-items";
 
+import { PrimaryButton } from "./primary-button";
+
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -102,22 +104,11 @@ const Navbar = () => {
 
             {/* Desktop CTA Button */}
             <div className="hidden lg:flex items-center">
-              <Link href={ROUTES.BOOK_CONSULTATION}>
-                <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-3 pr-2 pl-7 h-12 text-sm font-medium transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
-                  <span className="hidden sm:inline text-white">
-                    Get in Touch
-                  </span>
-                  <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
-                    <Image
-                      src="/common/arrow-up.svg"
-                      alt="Arrow Up"
-                      width={12}
-                      height={12}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </div>
-                </Button>
-              </Link>
+              <PrimaryButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get in Touch"
+                mbLabel="Get in Touch"
+              />
             </div>
 
             {/* Mobile Menu Trigger */}

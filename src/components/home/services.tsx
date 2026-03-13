@@ -40,7 +40,7 @@ const servicesData = [
     title: "Use Our Design Expert",
     desc: "Work with professional interior designers who bring your vision to life with personalized service.",
     img: "/landing/home/services/services-img-3.webp",
-    href: ROUTES.BOOK_CONSULTATION,
+    href: ROUTES.OUR_NEW_DESIGN_EXPERT,
     features: [
       "1-on-1 consultation",
       "Custom design plans",
@@ -112,8 +112,12 @@ export default function Services() {
             {mobileServicesData.map((service) => (
               <div
                 key={service.id}
-                className="bg-white rounded-[16px] border border-[#EAEADF] shadow-sm overflow-hidden flex flex-col">
-                <Link href={service.href} className="block relative w-full aspect-[1.4] overflow-hidden">
+                className="bg-white rounded-[16px] border border-[#EAEADF] shadow-sm overflow-hidden flex flex-col"
+              >
+                <Link
+                  href={service.href}
+                  className="block relative w-full aspect-[1.4] overflow-hidden"
+                >
                   <Image
                     src={service.img}
                     alt={service.title}
@@ -179,7 +183,8 @@ export default function Services() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}>
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                >
                   <Link href={service.href} className="block h-full">
                     <div
                       className={`absolute inset-0 rounded-[24px] transition-opacity duration-300 z-0 pointer-events-none ${
@@ -201,7 +206,8 @@ export default function Services() {
                         boxShadow: isActive
                           ? "0 20px 40px rgba(0,0,0,0.15)"
                           : "0 4px 6px rgba(0,0,0,0.02)",
-                      }}>
+                      }}
+                    >
                       {/* Expanding dark background from bottom right */}
                       <div
                         className="absolute inset-0 bg-[#251814] transition-all duration-500 ease-out z-0 pointer-events-none"
@@ -237,31 +243,38 @@ export default function Services() {
                           <h3
                             className={`text-xl sm:text-2xl font-semibold font-serif mb-3 transition-colors duration-300 ${
                               isActive ? "text-white" : "text-black"
-                            }`}>
+                            }`}
+                          >
                             {service.title}
                           </h3>
                           <p
                             className={`text-[15px] mb-2 leading-relaxed transition-colors duration-300 ${
                               isActive ? "text-white/80" : "text-black"
-                            }`}>
+                            }`}
+                          >
                             {service.desc}
                           </p>
 
                           <ul className="space-y-4 mb-2 mt-auto">
                             {service.features.map((feature, index) => (
-                              <li key={index} className="flex items-center gap-3">
+                              <li
+                                key={index}
+                                className="flex items-center gap-3"
+                              >
                                 <div
                                   className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 transition-colors duration-300 ${
                                     isActive
                                       ? "bg-[#C9A76A] text-white"
                                       : "bg-[#544641] text-white"
-                                  }`}>
+                                  }`}
+                                >
                                   <Check className="w-3 h-3 stroke-3" />
                                 </div>
                                 <span
                                   className={`text-sm font-medium transition-colors duration-300 ${
                                     isActive ? "text-white/90" : "text-black"
-                                  }`}>
+                                  }`}
+                                >
                                   {feature}
                                 </span>
                               </li>
@@ -277,7 +290,8 @@ export default function Services() {
                         isActive
                           ? "opacity-100 scale-100 pointer-events-auto"
                           : "opacity-0 scale-75 pointer-events-none"
-                      }`}>
+                      }`}
+                    >
                       <div className="bg-[#F7F7F7] p-2 rounded-full">
                         <div className="w-12 h-12 bg-[#412A1F] text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-[#2b1b16] transition-colors">
                           <ArrowUpRight className="w-6 h-6" />

@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
+import { PrimaryButton } from "../common/primary-button";
+import { SecondaryButton } from "../common/secondary-button";
 import { HeroSection } from "../shared/hero-section";
 
 const benefits = [
@@ -39,7 +39,8 @@ export default function BookConsultationHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
+              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
+            >
               Redefining <br />
               <span className="text-[#C9A76A] font-serif">Furnishing</span>{" "}
               Excellence
@@ -48,7 +49,8 @@ export default function BookConsultationHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4">
+              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4"
+            >
               Transforming properties with clarity, speed, and unwavering
               accountability
             </motion.p>
@@ -56,20 +58,17 @@ export default function BookConsultationHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4">
-              <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
-                <Button className="w-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center gap-3 border shadow-none border-transparent">
-                  Get in Touch
-                  <div className="bg-[#FFF8F0] rounded-full w-[26px] h-[26px] flex items-center justify-center text-[#412A1F]">
-                    <ArrowDownRight className="h-[14px] w-[14px] stroke-2" />
-                  </div>
-                </Button>
-              </Link>
-              <Link href={ROUTES.PACKAGES} className="w-full">
-                <Button className="w-full bg-white/70 backdrop-blur-md text-[#412A1F] hover:bg-white/80 rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center px-8 border-none shadow-none">
-                  Our Design Services
-                </Button>
-              </Link>
+              className="flex flex-col gap-4"
+            >
+              <PrimaryButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get in Touch"
+                mbLabel="Get in Touch"
+              />
+              <SecondaryButton
+                href={ROUTES.OUR_NEW_DESIGN_EXPERT}
+                label="Our Design Services"
+              />
             </motion.div>
           </div>
 
@@ -77,13 +76,15 @@ export default function BookConsultationHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="w-full bottom-card-wrapper mt-auto">
+            className="w-full bottom-card-wrapper mt-auto"
+          >
             <div
               className="rounded-[24px] p-6 shadow-xl w-full flex flex-col gap-5 border border-white/20"
               style={{
                 background:
                   "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-              }}>
+              }}
+            >
               <h3 className="text-[#FFFFFF] text-[18px] font-serif font-medium text-center mb-1">
                 Why Book With Us?
               </h3>
@@ -120,30 +121,16 @@ export default function BookConsultationHero() {
           description="Transforming properties with clarity, speed, and unwavering accountability"
           buttons={
             <>
-              <Link href={ROUTES.BOOK_CONSULTATION}>
-                <Button className="group rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-5 py-2 pr-2.5 pl-7 h-[52px] text-[15px] font-normal transition-all duration-300 shadow-lg border border-white/10 hover:border-white/25">
-                  <span className="hidden sm:inline text-white">
-                    Get in Touch
-                  </span>
-                  <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
-                    <Image
-                      src="/common/arrow-up.svg"
-                      alt="Arrow Up"
-                      width={12}
-                      height={12}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </div>
-                </Button>
-              </Link>
+              <PrimaryButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get in Touch"
+                mbLabel="Get in Touch"
+              />
 
-              <Link href={ROUTES.PACKAGES}>
-                <Button
-                  variant="outline"
-                  className="rounded-full bg-white/70 cursor-pointer backdrop-blur-md text-[#412A1F] hover:bg-white/90 h-[56px] px-8 text-[14px] font-semibold transition-all duration-300 border-none shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
-                  Our Design Services
-                </Button>
-              </Link>
+              <SecondaryButton
+                href={ROUTES.OUR_NEW_DESIGN_EXPERT}
+                label="Our Design Services"
+              />
             </>
           }
           bottomCard={
@@ -151,13 +138,15 @@ export default function BookConsultationHero() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-              className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20">
+              className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20"
+            >
               <div
                 className="px-2 sm:px-16 py-10 sm:py-8 rounded-[24px] sm:rounded-[28px] shadow-lg flex flex-col gap-7 min-w-[300px] sm:min-w-[480px]"
                 style={{
                   background:
                     "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-                }}>
+                }}
+              >
                 <h3 className="text-white text-[18px] font-serif sm:text-[20px] font-medium text-center mb-2">
                   Why Book With Us?
                 </h3>
