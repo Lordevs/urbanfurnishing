@@ -98,6 +98,12 @@ export function ProductGrid({
         return matchesCategory && matchesSearch;
       });
 
+  const isPackages = title.toLowerCase().includes("package");
+  const dynamicTitle =
+    currentCategory === "All"
+      ? title
+      : `${currentCategory} ${isPackages ? "Packages" : "Items"}`;
+
   return (
     <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto sm:pb-24">
       {/* Filter Header */}
@@ -105,7 +111,7 @@ export function ProductGrid({
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <h2 className="text-[20px] lg:text-[22px] font-bold text-[#1A1A1A] tracking-tight">
-              {title}
+              {dynamicTitle}
             </h2>
             <span className="bg-[#F5F5F5] text-[#888888] text-[12px] font-medium px-3 py-1 rounded-full">
               {filteredItems.length} results
@@ -138,7 +144,7 @@ export function ProductGrid({
         {/* Categories */}
         <div className="flex overflow-x-auto sm:flex-wrap items-center gap-2 lg:gap-3 mt-6 pb-2 sm:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {categories.map((cat) => (
-            <button
+            <Button
               key={cat}
               onClick={() => {
                 if (activeCategory === undefined) {
@@ -153,7 +159,7 @@ export function ProductGrid({
               }`}
             >
               {cat}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -186,20 +192,20 @@ export function ProductGrid({
                     />
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex flex-col gap-1.5">
-                        {pkg.badges.map((badge, idx) => (
-                          <span
-                            key={idx}
-                            className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}
-                          >
-                            {badge.text}
-                          </span>
-                        ))}
-                        {!pkg.isInStock && (
-                          <span className="px-2.5 py-1 bg-red-600 text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max">
-                            OUT OF STOCK
-                          </span>
-                        )}
-                      </div>
+                      {pkg.badges.map((badge, idx) => (
+                        <span
+                          key={idx}
+                          className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}
+                        >
+                          {badge.text}
+                        </span>
+                      ))}
+                      {!pkg.isInStock && (
+                        <span className="px-2.5 py-1 bg-red-600 text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max">
+                          OUT OF STOCK
+                        </span>
+                      )}
+                    </div>
 
                     {/* Heart Button */}
                     <button
