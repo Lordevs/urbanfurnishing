@@ -20,28 +20,20 @@ import { useCart } from "@/context/cart-context";
 import { usePackageDetail } from "@/hooks/queries/use-package-detail";
 import { formatAED } from "@/lib/utils";
 
-const includedFeatures = [
-  {
-    image: "/landing/detail-page/free-delivery.svg",
-    title: "Free Delivery",
-    subtitle: "On all packages",
-  },
-  {
-    image: "/landing/detail-page/warranty.svg",
-    title: "10 Year Warranty",
-    subtitle: "Full coverage",
-  },
-  {
-    image: "/landing/detail-page/fast-delivery.svg",
-    title: "Fast Delivery",
-    subtitle: "2-3 weeks",
-  },
-  {
-    image: "/landing/detail-page/expert-assembly.svg",
-    title: "Expert Assembly",
-    subtitle: "Professional setup",
-  },
-];
+const benefitIconMap: Record<string, string> = {
+  "free delivery": "/landing/detail-page/free-delivery.svg",
+  warranty: "/landing/detail-page/warranty.svg",
+  delivery: "/landing/detail-page/fast-delivery.svg",
+  assembly: "/landing/detail-page/expert-assembly.svg",
+};
+
+const getBenefitIcon = (benefit: string) => {
+  const lower = benefit.toLowerCase();
+  for (const [key, icon] of Object.entries(benefitIconMap)) {
+    if (lower.includes(key)) return icon;
+  }
+  return "/landing/detail-page/free-delivery.svg";
+};
 
 interface PackageDetailProps {
   slug: string;
@@ -262,15 +254,15 @@ export function PackageDetail({ slug }: PackageDetailProps) {
 
           {/* Quantity & Actions */}
           <div className="flex flex-col gap-4 mb-10 w-full max-w-8xl mx-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex items-center justify-between border border-[#EBEBEB] rounded-[12px] h-[52px] sm:w-[190px] pl-2 shrink-0 bg-white">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex items-center justify-between border border-[#0000001A] rounded-[12px] h-[52px] sm:w-[190px] px-2 shrink-0 bg-white shadow-xs">
                 <span className="text-[14px] text-[#5D4E3C]/80 font-medium">
                   Quantity
                 </span>
                 <div className="flex items-center gap-3.5">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
+                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#C9A76A33] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
                   >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
@@ -279,7 +271,7 @@ export function PackageDetail({ slug }: PackageDetailProps) {
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#EBE0D3] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
+                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#C9A76A33] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
                   >
                     <Plus className="w-3.5 h-3.5" />
                   </button>
@@ -325,15 +317,23 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               What&apos;s Included
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {includedFeatures.map((feat, idx) => (
+              {(data.key_benefits?.length
+                ? data.key_benefits
+                : [
+                    "Free Delivery",
+                    "10 Year Warranty",
+                    "2-3 Weeks Delivery",
+                    "Professional Assembly",
+                  ]
+              ).map((benefit, idx) => (
                 <div
                   key={idx}
                   className="flex items-center gap-4 bg-white border border-[#F2F2F2] rounded-[16px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
                 >
                   <div className="w-12 h-12 bg-[#FDFBF7] border border-[#F0EBE0] rounded-[12px] flex items-center justify-center shrink-0">
                     <Image
-                      src={feat.image}
-                      alt={feat.title}
+                      src={getBenefitIcon(benefit)}
+                      alt={benefit}
                       width={20}
                       height={20}
                       className="object-contain"
@@ -341,10 +341,12 @@ export function PackageDetail({ slug }: PackageDetailProps) {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[13px] font-bold text-[#333333] mb-0.5">
-                      {feat.title}
+                      {benefit}
                     </span>
                     <span className="text-[11px] text-[#888888] font-medium">
-                      {feat.subtitle}
+                      {benefit.toLowerCase().includes("delivery")
+                        ? "Fast & Reliable"
+                        : "Professional Service"}
                     </span>
                   </div>
                 </div>
@@ -353,16 +355,16 @@ export function PackageDetail({ slug }: PackageDetailProps) {
           </div>
 
           {/* Tabs */}
-          <div className="bg-[#FCFBFA] p-1.5 rounded-[12px] flex items-center justify-between mb-8 max-w-[500px] mx-auto w-full border border-[#F2F2F2]">
+          <div className="bg-[#FAFAFA] p-1.5 rounded-[12px] flex items-center justify-between mb-8 max-w-[500px] mx-auto w-full">
             {["Features & Benefits", "Specifications", "What's Included"].map(
               (tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex-1 py-2.5 px-2 text-[12px] font-bold rounded-[8px] transition-all cursor-pointer whitespace-nowrap ${
+                  className={`flex-1 py-2.5 px-2 text-[12px] font-normal rounded-[8px] transition-all cursor-pointer whitespace-nowrap ${
                     activeTab === tab
                       ? "bg-linear-to-r from-[#C9A76A] to-[#B3905A] text-white shadow-md shadow-[#C9A76A]/20"
-                      : "text-[#888888] hover:text-[#1A1A1A]"
+                      : "text-[#5D4E3C99] hover:text-[#5d4e3cd1]"
                   }`}
                 >
                   {tab}
@@ -380,7 +382,7 @@ export function PackageDetail({ slug }: PackageDetailProps) {
                     key={idx}
                     className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
                   >
-                    <div className="w-6 h-6 rounded-full bg-linear-to-r from-[#C9A76A] to-[#B3905A] flex items-center justify-center shrink-0 shadow-sm shadow-[#C9A76A]/20">
+                    <div className="w-6 h-6 rounded-md bg-linear-to-r from-[#C9A76A] to-[#B3905A] flex items-center justify-center shrink-0 shadow-sm shadow-[#C9A76A]/20">
                       <Check className="w-3 h-3 text-white stroke-3" />
                     </div>
                     <span className="text-[12px] text-[#555555] font-semibold leading-tight pr-2">
@@ -410,20 +412,30 @@ export function PackageDetail({ slug }: PackageDetailProps) {
             )}
 
             {activeTab === "What's Included" && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {currentWhatsIncluded.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-[#FCF9F3] border border-[#F2EAD9] flex items-center justify-center shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-[#C9A76A]" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {currentWhatsIncluded.map((item, idx) => {
+                  const quantity = parseInt(item.value) || 1;
+                  return (
+                    <div
+                      key={idx}
+                      className="bg-white border border-[#F2F2F2] p-5 rounded-[20px] flex items-center gap-4 shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] transition-all"
+                    >
+                      <div className="w-12 h-12 bg-[#B3905A] rounded-[13px] flex items-center justify-center shrink-0 shadow-[0_4px_12px_rgba(179,144,90,0.25)]">
+                        <span className="text-white text-[18px] font-bold">
+                          {quantity}
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[14px] font-bold text-[#1A1A1A] mb-0.5">
+                          {item.key}
+                        </span>
+                        <span className="text-[12px] text-[#888888] font-medium">
+                          {quantity} {quantity === 1 ? "piece" : "pieces"}
+                        </span>
+                      </div>
                     </div>
-                    <span className="text-[12px] text-[#555555] font-semibold leading-tight pr-2">
-                      {item}
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
@@ -496,27 +508,28 @@ export function PackageDetail({ slug }: PackageDetailProps) {
         {/* Info Box */}
         <div className="px-4 flex flex-col mb-8">
           <h1 className="text-[26px] font-serif font-bold text-[#1A1A1A] leading-[1.2] mb-4">
-            Modern Living Essentials
+            {data.name}
           </h1>
 
           <p className="text-[#666666] text-[13px] leading-relaxed mb-6">
-            Discover cozy living with this 450 Sq ft Contemporary Collection,
-            all. Ready to install, curated furniture across different features
-            to ensure that there is nothing missing design wise to bring home
-            that cozy feeling on arriving home.
+            {data.short_description ||
+              data.description ||
+              "Discover premium comfort and style with this curated collection, designed to elevate your living space."}
           </p>
 
           <div className="bg-[#FAFAFA] rounded-2xl p-5 mb-6 flex flex-col gap-4">
             <div className="flex items-baseline gap-2">
               <span className="text-[28px] font-serif font-bold text-[#1A1A1A]">
-                AED 2,399
+                {formatAED(price)}
               </span>
-              <span className="text-[15px] font-serif font-medium text-[#B3B3B3] line-through">
-                AED 3,299
-              </span>
+              {originalPrice && (
+                <span className="text-[15px] font-serif font-medium text-[#B3B3B3] line-through">
+                  {formatAED(originalPrice)}
+                </span>
+              )}
             </div>
             <p className="text-[#666666] text-[11px]">
-              Or 3 interest-free payments of AED 799 with{" "}
+              Or 3 interest-free payments of {formatAED(price / 3)} with{" "}
               <span className="font-bold text-[#1A1A1A]">Tabby</span>
             </p>
 
@@ -569,24 +582,34 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               What&apos;s Included
             </h2>
             <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:mb-0 px-1">
-              {includedFeatures.map((feat, idx) => (
+              {(data.key_benefits?.length
+                ? data.key_benefits
+                : [
+                    "Free Delivery",
+                    "10 Year Warranty",
+                    "2-3 Weeks Delivery",
+                    "Professional Assembly",
+                  ]
+              ).map((benefit, idx) => (
                 <div
                   key={idx}
                   className="bg-white p-4 sm:p-5 rounded-[16px] flex flex-col items-center justify-center gap-3 text-center border border-[#F2F2F2]"
                 >
                   <Image
-                    src={feat.image}
+                    src={getBenefitIcon(benefit)}
                     width={32}
                     height={32}
-                    alt={feat.title}
+                    alt={benefit}
                     className="mb-1"
                   />
                   <div className="flex flex-col">
                     <span className="text-[12px] font-bold text-[#1A1A1A]">
-                      {feat.title}
+                      {benefit}
                     </span>
                     <span className="text-[10px] text-[#888888]">
-                      {feat.subtitle}
+                      {benefit.toLowerCase().includes("delivery")
+                        ? "Fast & Reliable"
+                        : "Full Coverage"}
                     </span>
                   </div>
                 </div>
@@ -612,31 +635,34 @@ export function PackageDetail({ slug }: PackageDetailProps) {
               ))}
             </div>
 
-            {/* Mobile Guarantees Boxes */}
-            <div className="flex flex-col gap-3">
-              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
-                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
-                <span className="text-[12px] font-medium text-[#444444]">
-                  100% money-back guarantee for returning unused
-                </span>
-              </div>
-              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
-                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
-                <span className="text-[12px] font-medium text-[#444444]">
-                  Cash on Delivery available for all orders
-                </span>
-              </div>
-              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
-                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
-                <span className="text-[12px] font-medium text-[#444444]">
-                  Comprehensive 5yr warranty and 7day return
-                </span>
-              </div>
-              <div className="bg-white px-5 py-4 rounded-[16px] flex items-center gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F2F2F2]/50">
-                <div className="w-5 h-5 rounded-full border-[1.5px] border-[#C9A76A] shrink-0" />
-                <span className="text-[12px] font-medium text-[#444444]">
-                  7 days trial and 100% money return if not satisfied
-                </span>
+            <div>
+              <h2 className="text-[18px] font-serif font-bold text-[#1A1A1A] mb-5">
+                Items in this Pack
+              </h2>
+              <div className="grid grid-cols-1 gap-3 px-1">
+                {currentWhatsIncluded.map((item, idx) => {
+                  const quantity = parseInt(item.value) || 1;
+                  return (
+                    <div
+                      key={idx}
+                      className="bg-white p-4 rounded-[16px] flex items-center gap-4 border border-[#F2F2F2] shadow-sm"
+                    >
+                      <div className="w-10 h-10 bg-[#B3905A] rounded-[10px] flex items-center justify-center shrink-0 shadow-[0_2px_8px_rgba(179,144,90,0.2)]">
+                        <span className="text-white text-[16px] font-bold">
+                          {quantity}
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[13px] font-bold text-[#1A1A1A]">
+                          {item.key}
+                        </span>
+                        <span className="text-[11px] text-[#888888]">
+                          {quantity} {quantity === 1 ? "piece" : "pieces"}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

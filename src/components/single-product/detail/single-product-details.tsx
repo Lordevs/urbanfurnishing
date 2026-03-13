@@ -8,7 +8,6 @@ import {
   ShieldCheck,
   Clock,
   Wrench,
-  Check,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -248,23 +247,23 @@ export default function SingleProductDetails({
 
           {/* Quantity */}
           <div className="mb-8">
-            <span className="block text-[14px] font-medium text-[#1A1A1A] mb-3">
+            <span className="block text-[14px] font-medium text-[#1A1A1A] mb-4">
               Quantity
             </span>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center bg-white border border-[#EBEBEB] rounded-[12px] h-[48px] w-max">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-6">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-[48px] h-full flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] transition-colors cursor-pointer"
+                  className="w-[44px] h-[44px] flex items-center justify-center border border-[#EBEBEB] rounded-[8px] text-[#1A1A1A] transition-all hover:border-[#412A1F] cursor-pointer"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <div className="w-[48px] h-full flex items-center justify-center text-[16px] font-semibold text-[#1A1A1A]">
+                <div className="text-[16px] font-semibold text-[#1A1A1A] min-w-[20px] text-center">
                   {quantity}
                 </div>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-[48px] h-full flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] transition-colors cursor-pointer"
+                  className="w-[44px] h-[44px] flex items-center justify-center border border-[#EBEBEB] rounded-[8px] text-[#1A1A1A] transition-all hover:border-[#412A1F] cursor-pointer"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -277,17 +276,23 @@ export default function SingleProductDetails({
             <Button
               onClick={handleAddToCart}
               disabled={data.stock === 0 || data.is_in_stock === false}
-              className={`w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-black/5 group ${
+              className={`w-full h-[58px] rounded-full text-[16px] font-medium flex items-center justify-center transition-all duration-300 relative group px-4 ${
                 data.stock !== 0 && data.is_in_stock !== false
-                  ? "bg-[#412A1F]/90 hover:bg-[#412A1F] text-white hover:scale-[1.01] cursor-pointer"
+                  ? "bg-primary hover:bg-primary/90 text-white cursor-pointer"
                   : "bg-gray-200 text-gray-500 cursor-not-allowed"
               }`}
             >
               {data.stock !== 0 && data.is_in_stock !== false ? (
                 <>
-                  Add to Cart
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <span className="flex-1 text-center">Add to Cart</span>
+                  <div className="flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-primary transition-transform duration-300 group-hover:scale-95 shrink-0">
+                    <Image
+                      src="/common/arrow-up.svg"
+                      alt="Arrow Up"
+                      width={12}
+                      height={12}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </div>
                 </>
               ) : (
@@ -297,10 +302,10 @@ export default function SingleProductDetails({
             <Button
               onClick={handleBuyNow}
               disabled={data.stock === 0 || data.is_in_stock === false}
-              className={`w-full h-[54px] lg:h-[60px] rounded-[14px] text-[15px] font-bold flex items-center justify-center transition-all duration-300 shadow-sm ${
+              className={`w-full h-[58px] rounded-md text-[16px] font-medium flex items-center justify-center transition-all duration-300 border border-[#0000001A] ${
                 data.stock !== 0 && data.is_in_stock !== false
-                  ? "bg-white border-2 border-[#EBEBEB] hover:border-[#412A1F] hover:text-white text-[#1A1A1A] cursor-pointer hover:-translate-y-0.5"
-                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
+                  ? "bg-white text-[#1A1A1A] hover:bg-gray-50 cursor-pointer"
+                  : "bg-gray-100 text-gray-400 cursor-not-allowed"
               }`}
             >
               {data.stock !== 0 && data.is_in_stock !== false
@@ -384,24 +389,39 @@ export default function SingleProductDetails({
               </div>
             )}
 
-            {activeTab === "What's Included" &&
-              (data.whats_included && data.whats_included.length > 0 ? (
-                data.whats_included.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-4 bg-[#FAFAFA] px-5 py-3.5 rounded-[12px]"
-                  >
-                    <Check className="w-[18px] h-[18px] text-[#412A1F] stroke-[2.5] shrink-0" />
-                    <span className="text-[14px] text-[#444444] font-medium">
-                      {item}
-                    </span>
-                  </div>
-                ))
-              ) : (
-                <p className="text-[#888] text-[14px]">
-                  Included items not specified.
-                </p>
-              ))}
+            {activeTab === "What's Included" && (
+              <div className="flex flex-col gap-3.5">
+                {data.whats_included && data.whats_included.length > 0 ? (
+                  data.whats_included.map((item, idx) => {
+                    const quantity = parseInt(item.value) || 1;
+                    return (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-5 bg-[#FAFAFA] px-6 py-4 rounded-[12px] group hover:bg-[#F5F5F5] transition-colors"
+                      >
+                        <div className="w-10 h-10 bg-[#412A1F] rounded-[8px] flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                          <span className="text-white text-[16px] font-bold">
+                            {quantity}
+                          </span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[15px] font-bold text-[#1A1A1A]">
+                            {item.key}
+                          </span>
+                          <span className="text-[12px] text-[#888888] font-medium">
+                            {quantity} {quantity === 1 ? "piece" : "pieces"}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p className="text-[#888] text-[14px]">
+                    Included items not specified.
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -100,7 +100,10 @@ export const ProductDetailSchema = ProductListItemSchema.extend({
     .optional()
     .default([]),
   whats_included: z
-    .preprocess(parseJsonArray, z.array(z.string()))
+    .preprocess(
+      parseJsonArray,
+      z.array(z.object({ id: z.number().optional(), key: z.string(), value: z.string() })),
+    )
     .optional()
     .default([]),
   images: z.array(ProductImageSchema).optional().default([]),
@@ -156,7 +159,10 @@ export const PackageDetailSchema = PackageListItemSchema.extend({
     .optional()
     .default([]),
   whats_included: z
-    .preprocess(parseJsonArray, z.array(z.string()))
+    .preprocess(
+      parseJsonArray,
+      z.array(z.object({ id: z.number().optional(), key: z.string(), value: z.string() })),
+    )
     .optional()
     .default([]),
   specifications: z
