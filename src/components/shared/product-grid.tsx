@@ -21,7 +21,6 @@ export interface GridItemProps {
   category: string;
   title: string;
   description: string;
-  pieces: number;
   price: number;
   originalPrice?: number;
   saveText?: string;
@@ -227,26 +226,6 @@ export function ProductGrid({
                     <p className="text-[#888888] text-[13px] leading-relaxed mb-6 line-clamp-2">
                       {pkg.description}
                     </p>
-
-                    {/* Pieces Badge */}
-                    <div className="flex items-center gap-2.5 bg-[#FAFAFA] border border-[#F2F2F2] px-4 py-3 rounded-[12px] mb-6 w-full mt-auto">
-                      <svg
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="#C9A76A"
-                        className="w-[16px] h-[16px] shrink-0"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-                        />
-                      </svg>
-                      <span className="text-[13px] font-medium text-[#1A1A1A]">
-                        {pkg.pieces} Premium Pieces
-                      </span>
-                    </div>
 
                     {/* Footer Price Block */}
                     <div className="mt-auto flex items-end justify-between border-t border-[#F0F0F0] pt-5 lg:pt-6">

@@ -33,7 +33,6 @@ function toFeaturedItem(prod: ProductListItem): FeaturedItem {
     title: prod.name,
     description: prod.short_description ?? "",
     features: [],
-    pieces: 0,
     price,
     originalPrice,
     saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,

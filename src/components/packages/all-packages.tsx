@@ -21,11 +21,13 @@ function toGridItem(pkg: PackageListItem): GridItemProps {
   const discountedPrice = pkg.discounted_price
     ? parseFloat(pkg.discounted_price)
     : undefined;
-    
+
   const price = discountedPrice ?? actualPrice;
   const originalPrice = discountedPrice ? actualPrice : undefined;
-  
-  const saving = pkg.money_saved ? Math.round(parseFloat(pkg.money_saved)) : undefined;
+
+  const saving = pkg.money_saved
+    ? Math.round(parseFloat(pkg.money_saved))
+    : undefined;
 
   const badges: GridItemProps["badges"] = [];
   if (pkg.tag) {
@@ -47,7 +49,6 @@ function toGridItem(pkg: PackageListItem): GridItemProps {
     category: pkg.category_name?.toUpperCase() ?? "",
     title: pkg.name,
     description: pkg.short_description ?? "",
-    pieces: pkg.pieces_count ?? 0,
     price,
     originalPrice,
     saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,
@@ -95,9 +96,15 @@ export function AllPackages() {
     page_size: PAGE_SIZE,
   });
 
-  const categoryLabels = ["All", ...(categoryData ?? []).map((c: { name: string }) => c.name)];
+  const categoryLabels = [
+    "All",
+    ...(categoryData ?? []).map((c: { name: string }) => c.name),
+  ];
   const categoryMap = Object.fromEntries(
-    (categoryData ?? []).map((c: { name: string; slug: string }) => [c.name, c.slug]),
+    (categoryData ?? []).map((c: { name: string; slug: string }) => [
+      c.name,
+      c.slug,
+    ]),
   );
 
   const items = (data?.results ?? []).map(toGridItem);
@@ -119,7 +126,10 @@ export function AllPackages() {
 
   const activeCategoryName =
     selectedCategorySlug && categoryData
-      ? categoryData.find((c: { slug: string; name: string }) => c.slug === selectedCategorySlug)?.name ?? "All"
+      ? (categoryData.find(
+          (c: { slug: string; name: string }) =>
+            c.slug === selectedCategorySlug,
+        )?.name ?? "All")
       : "All";
 
   const handleCategoryChange = (cat: string) => {

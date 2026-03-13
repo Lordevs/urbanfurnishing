@@ -49,7 +49,6 @@ function toGridItem(prod: ProductListItem): GridItemProps {
     category: prod.category_name?.toUpperCase() ?? "",
     title: prod.name,
     description: prod.short_description ?? "",
-    pieces: 0,
     price,
     originalPrice,
     saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,

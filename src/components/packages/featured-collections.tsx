@@ -39,7 +39,6 @@ function toFeaturedItem(pkg: PackageListItem): FeaturedItem {
     title: pkg.name,
     description: pkg.short_description ?? "",
     features: [],
-    pieces: pkg.pieces_count ?? 0,
     price,
     originalPrice,
     saveText: saving ? `Save AED ${saving.toLocaleString()}` : undefined,
@@ -131,9 +130,7 @@ export function FeaturedCollections() {
           {items.map((item) => (
             <div
               key={item.id}
-              onClick={() =>
-                router.push(ROUTES.PACKAGES_DETAIL(item.slug))
-              }
+              onClick={() => router.push(ROUTES.PACKAGES_DETAIL(item.slug))}
               className="bg-white rounded-[16px] shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-[#F0EBE6] overflow-hidden flex flex-col cursor-pointer"
             >
               {/* Image Section */}
@@ -210,26 +207,6 @@ export function FeaturedCollections() {
                       </span>
                     </div>
                   ))}
-                </div>
-
-                {/* Pieces Count */}
-                <div className="flex items-center gap-2 mb-5">
-                  <svg
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#C9A76A"
-                    className="w-[18px] h-[18px] shrink-0"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-                    />
-                  </svg>
-                  <span className="text-[12px] text-[#1A1A1A] font-medium">
-                    {item.pieces} Premium Pieces
-                  </span>
                 </div>
 
                 {/* Separator */}

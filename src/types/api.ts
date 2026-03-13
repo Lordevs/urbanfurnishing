@@ -130,7 +130,6 @@ export const PackageListItemSchema = z.object({
   is_featured: z.boolean().optional(),
   is_in_stock: z.boolean().optional(),
   thumbnail: z.string().optional().nullable(),
-  pieces_count: z.number().int().optional().nullable(),
   badges: z.array(ProductBadgeSchema).optional().default([]),
 });
 
