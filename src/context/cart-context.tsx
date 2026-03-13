@@ -7,7 +7,6 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { toast } from "sonner";
 
 export interface CartItem {
   id: string; // UUID from backend
@@ -59,8 +58,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // No useEffect needed — no cascading renders.
   const [isLoaded] = useState<boolean>(() => typeof window !== "undefined");
 
-
-
   useEffect(() => {
     if (isLoaded) {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
@@ -90,7 +87,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { ...newItem, quantity }];
     });
-    toast.success(`${newItem.name} added to cart`);
   };
 
   const removeItem = (id: string) =>
