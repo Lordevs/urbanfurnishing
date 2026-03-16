@@ -47,6 +47,16 @@ const Navbar = () => {
         isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
+      {/* Promo Banner */}
+      <Link
+        href={ROUTES.PACKAGES}
+        className={`flex h-10 w-full items-center justify-center px-4 transition-all duration-300 border-b text-[#412A1F]`}
+      >
+        <p className="text-[10px] sm:text-[11px] font-medium tracking-widest text-center">
+          15% OFF BULK ORDERS — VISIT OUR PACKAGES STORE →
+        </p>
+      </Link>
+
       <div className="w-full px-4 sm:px-10 lg:px-16">
         <div className="flex h-20 items-center justify-between">
           {/* Logo Section */}
