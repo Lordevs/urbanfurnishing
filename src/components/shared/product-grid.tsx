@@ -70,7 +70,7 @@ export function ProductGrid({
   const { addItem } = useCart();
   const [internalActiveCategory, setInternalActiveCategory] = useState("All");
   const currentCategory = activeCategory ?? internalActiveCategory;
-  
+
   const [inputValue, setInputValue] = useState(searchQuery ?? "");
   const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
   const debouncedValue = useDebounce(inputValue, 500);
@@ -86,7 +86,8 @@ export function ProductGrid({
     }
   }, [debouncedValue, onSearchChange, searchQuery]);
 
-  const currentSearchQuery = searchQuery !== undefined ? inputValue : debouncedValue;
+  const currentSearchQuery =
+    searchQuery !== undefined ? inputValue : debouncedValue;
 
   const handleAddToCart = (e: React.MouseEvent, item: GridItemProps) => {
     e.stopPropagation();
@@ -122,7 +123,7 @@ export function ProductGrid({
       : `${currentCategory} ${isPackages ? "Packages" : "Items"}`;
 
   return (
-    <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto sm:pb-24">
+    <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto sm:pt-24">
       {/* Filter Header */}
       <div className="bg-white border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">

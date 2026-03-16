@@ -120,7 +120,7 @@ export function AllSingleItems({
 
   if (isLoading) {
     return (
-      <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto pb-24">
+      <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto pt-24">
         <div className="bg-white border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 animate-pulse">
           <div className="flex gap-2">
             {[...Array(5)].map((_, i) => (

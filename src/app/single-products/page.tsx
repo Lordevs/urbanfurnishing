@@ -9,10 +9,10 @@ export default function SingleProducts() {
   return (
     <div className="min-h-screen">
       <SingleProductHero />
-      <BestsellingProducts />
       <Suspense fallback={null}>
         <AllSingleItems />
       </Suspense>
+      <BestsellingProducts />
       <Testimonial />
     </div>
   );
