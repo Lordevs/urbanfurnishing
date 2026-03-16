@@ -19,7 +19,7 @@ export default function HomeHero() {
     <HeroSection
       imageSrc="/landing/home/hero-section.webp"
       imageAlt="Modern Architecture"
-      heightClass="h-[50dvh] gap-10"
+      heightClass="h-auto md:h-[50dvh] gap-10 pt-20"
       title="Design Your Space. Define Your Comfort."
       description="Explore curated room packages and premium furnishing essentials crafted to transform your home into a modern, functional, and beautifully styled living space all in one place."
       buttons={
@@ -44,7 +44,7 @@ export default function HomeHero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="md:absolute bottom-4 right-4 sm:bottom-0 sm:right-0 z-0 bg-[#F9F9F9] sm:bg-white px-5 sm:px-6 rounded-[24px] sm:rounded-tl-[32px] sm:rounded-br-[24px] sm:rounded-bl-none sm:rounded-tr-none py-6 sm:py-12 2xl:py-14 flex justify-between sm:justify-start items-center gap-6 sm:gap-14 shadow-xl sm:shadow-none w-[250px] sm:w-auto ml-auto mb-5 sm:mb-0"
+          className="md:absolute bottom-4 right-4 sm:bottom-0 sm:right-0 z-0 bg-[#F9F9F9] sm:bg-white px-5 sm:px-6 rounded-[24px] sm:rounded-tl-[32px] sm:rounded-br-[24px] sm:rounded-bl-none sm:rounded-tr-none py-6 sm:py-12 2xl:py-14 flex justify-evenly sm:justify-start items-center gap-6 sm:gap-14 shadow-xl sm:shadow-none w-full sm:w-auto mx-auto mb-5 sm:mb-0"
         >
           {stats.map((stat, index) => (
             <div
