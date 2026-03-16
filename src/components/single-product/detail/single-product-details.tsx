@@ -3,7 +3,6 @@
 import {
   Minus,
   Plus,
-  ArrowUpRight,
   Truck,
   ShieldCheck,
   Clock,

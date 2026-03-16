@@ -128,7 +128,7 @@ export function PackageDetail({ slug }: PackageDetailProps) {
         {/* Top: Images */}
         <div className="w-full flex flex-col gap-4">
           {/* Main Image */}
-          <div className="relative aspect-video sm:aspect-2/1 w-full rounded-[24px] overflow-hidden group">
+          <div className="relative sm:h-[50vh] w-full rounded-[24px] overflow-hidden group">
             <Image
               src={images[activeImage]}
               alt="Package Detail"

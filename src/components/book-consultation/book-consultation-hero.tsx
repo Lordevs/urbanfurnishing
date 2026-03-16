@@ -117,6 +117,7 @@ export default function BookConsultationHero() {
               Excellence
             </>
           }
+          titleClassName="max-w-3xl"
           overlayGradient="bg-[#170D0D]/40"
           description="Transforming properties with clarity, speed, and unwavering accountability"
           buttons={
@@ -141,7 +142,7 @@ export default function BookConsultationHero() {
               className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20"
             >
               <div
-                className="px-2 sm:px-16 py-10 sm:py-8 rounded-[24px] sm:rounded-[28px] shadow-lg flex flex-col gap-7 min-w-[300px] sm:min-w-[480px]"
+                className="p-2 sm:p-5 rounded-[24px] sm:rounded-[28px] shadow-lg flex flex-col gap-2 min-w-[250px] sm:min-w-[400px]"
                 style={{
                   background:
                     "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
@@ -150,9 +151,9 @@ export default function BookConsultationHero() {
                 <h3 className="text-white text-[18px] font-serif sm:text-[20px] font-medium text-center mb-2">
                   Why Book With Us?
                 </h3>
-                <ul className="flex flex-col gap-5">
+                <ul className="flex flex-col gap-3">
                   {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-center gap-5">
+                    <li key={index} className="flex items-center gap-3">
                       <div className="w-[22px] h-[22px] sm:w-[24px] sm:h-[24px] rounded-full bg-[#C9A76A] flex items-center justify-center shrink-0">
                         <Check className="w-4 h-4 text-white stroke-3" />
                       </div>
