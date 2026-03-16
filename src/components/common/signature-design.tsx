@@ -18,7 +18,7 @@ export default function SignatureDesign() {
     >
       {/* Mobile View */}
       <div className="block lg:hidden py-10">
-        <h2 className="text-[28px] sm:text-[32px] font-serif font-bold tracking-tight mb-4 leading-[1.2]">
+        <h2 className="text-3xl sm:text-[32px] font-serif font-semibold tracking-tight mb-4 leading-[1.2]">
           <span className="text-[#3D261C] font-serif">Our </span>
           <span className="text-[#C9A76A] font-serif">Signature Design</span>
           <br />

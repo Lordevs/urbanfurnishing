@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Mail, Phone, ArrowDownRight } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -59,11 +59,11 @@ export default function Footer() {
               Newsletter
             </span>
           </div>
-          <h2 className="text-[32px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
+          <h2 className="text-3xl md:text-[32px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
             Get Design{" "}
             <span className="text-[#C9A76A] font-serif">Inspiration</span>
           </h2>
-          <p className="text-[#8F877C] text-[15px] leading-relaxed tracking-wide font-light mb-8">
+          <p className="text-[#8F877C] text-sm md:text-[15px] leading-relaxed tracking-wide font-light mb-8">
             Join our community for curated interior tips, new collection
             launches, and exclusive promotions.
           </p>
@@ -100,7 +100,7 @@ export default function Footer() {
                 )}
               </Button>
             </div>
-            <p className="text-[#B0B0B0] text-[12px] mt-4 font-light tracking-wide text-center">
+            <p className="text-[#B0B0B0] text-[10px] md:text-xs mt-4 font-light tracking-wide text-center">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </form>

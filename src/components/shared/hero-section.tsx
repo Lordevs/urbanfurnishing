@@ -50,7 +50,7 @@ export function HeroSection({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className={cn(
-              "text-[40px] leading-[1.1] sm:text-5xl md:text-[50px] font-serif font-semibold tracking-tight text-white mb-2 max-w-2xl",
+              "text-[32px] leading-[1.1] sm:text-5xl md:text-[50px] font-serif font-semibold tracking-tight text-white mb-2 max-w-2xl",
               titleClassName,
             )}
           >
@@ -61,7 +61,7 @@ export function HeroSection({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-base sm:text-xl text-white/90 leading-relaxed mb-6 sm:mb-10 max-w-2xl font-light"
+            className="text-sm sm:text-xl text-white/90 leading-relaxed mb-6 sm:mb-10 max-w-2xl font-light"
           >
             {description}
           </motion.p>

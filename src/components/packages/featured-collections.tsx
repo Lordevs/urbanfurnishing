@@ -118,10 +118,10 @@ export function FeaturedCollections() {
       {/* Mobile View */}
       <div className="md:hidden flex flex-col px-4">
         <div className="mb-6 text-left">
-          <h2 className="text-[26px] font-sans font-bold text-[#1A1A1A] tracking-tight mb-2">
+          <h2 className="text-2xl font-sans font-bold text-[#1A1A1A] tracking-tight mb-2">
             Featured Collections
           </h2>
-          <p className="text-[#666666] text-[13px] font-light">
+          <p className="text-[#666666] text-xs font-light">
             Our most loved packages, handpicked for you
           </p>
         </div>
@@ -178,21 +178,6 @@ export function FeaturedCollections() {
                 <p className="text-[#666666] text-[13px] leading-relaxed mb-5">
                   {item.description}
                 </p>
-
-                {/* Features Pills */}
-                <div className="grid grid-cols-2 gap-2.5 mb-5">
-                  {item.features.map((feature, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-[#FAFAFA] border border-[#F2F2F2] rounded-[8px] py-2 px-3 flex items-center gap-2"
-                    >
-                      <div className="w-[4px] h-[4px] rounded-full bg-[#D1B072] shrink-0" />
-                      <span className="text-[11px] text-[#1A1A1A] font-medium truncate">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
-                </div>
 
                 {/* Separator */}
                 <div className="w-full h-px bg-[#F0F0F0] mb-4" />

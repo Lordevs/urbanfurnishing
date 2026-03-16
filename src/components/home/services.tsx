@@ -100,7 +100,7 @@ export default function Services() {
         {/* Mobile View */}
         <div className="flex flex-col md:hidden">
           <div className="text-center mb-10">
-            <h2 className="text-[28px] font-serif font-semibold text-[#302B27] mb-3">
+            <h2 className="text-3xl font-serif font-semibold text-[#302B27] mb-3">
               Three <span className="text-[#C9A76A]">Pathway</span> Services
             </h2>
             <p className="text-[#8F877C] text-[13px] leading-relaxed max-w-[90%] mx-auto">

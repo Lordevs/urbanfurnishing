@@ -11,7 +11,7 @@ export default function DesignDirection() {
       {/* Mobile View */}
       <div className="md:hidden flex flex-col py-12 px-4 bg-white">
         <div className="text-center mb-8">
-          <h2 className="text-[25px] font-bold font-serif text-[#1A1A1A] mb-3 tracking-tight">
+          <h2 className="text-2xl font-bold font-serif text-[#1A1A1A] mb-3 tracking-tight">
             Design Direction
           </h2>
           <p className="text-[#666666] text-[13.5px] font-medium leading-[1.6] max-w-[280px] mx-auto">
@@ -27,7 +27,8 @@ export default function DesignDirection() {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
               <Image
                 src={`${BASE}/design-direction-1.webp`}
                 alt="Design 1"
@@ -40,7 +41,8 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
               <Image
                 src={`${BASE}/design-direction-2.webp`}
                 alt="Design 2"
@@ -57,7 +59,8 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
               <Image
                 src={`${BASE}/design-direction-3.webp`}
                 alt="Design 3"
@@ -70,7 +73,8 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
               <Image
                 src={`${BASE}/design-direction-4.webp`}
                 alt="Design 4"
@@ -83,7 +87,8 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
               <Image
                 src={`${BASE}/design-direction-5.webp`}
                 alt="Design 5"
@@ -100,7 +105,8 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
               <Image
                 src={`${BASE}/design-direction-6.webp`}
                 alt="Design 6"
@@ -113,7 +119,8 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
               <Image
                 src={`${BASE}/design-direction-7.webp`}
                 alt="Design 7"
@@ -148,7 +155,8 @@ export default function DesignDirection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="w-full lg:w-[42%] relative rounded-[20px] sm:rounded-[24px] overflow-hidden min-h-[350px] sm:min-h-[450px] lg:min-h-0">
+              className="w-full lg:w-[42%] relative rounded-[20px] sm:rounded-[24px] overflow-hidden min-h-[350px] sm:min-h-[450px] lg:min-h-0"
+            >
               <Image
                 src={`${BASE}/design-direction-1.webp`}
                 alt="Design Direction 1"
@@ -166,7 +174,8 @@ export default function DesignDirection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.43] w-full">
+                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.43] w-full"
+                >
                   <Image
                     src={`${BASE}/design-direction-2.webp`}
                     alt="Design Direction 2"
@@ -179,7 +188,8 @@ export default function DesignDirection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.57] w-full">
+                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.57] w-full"
+                >
                   <Image
                     src={`${BASE}/design-direction-4.webp`}
                     alt="Design Direction 4"
@@ -196,7 +206,8 @@ export default function DesignDirection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.15 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.57] w-full">
+                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.57] w-full"
+                >
                   <Image
                     src={`${BASE}/design-direction-3.webp`}
                     alt="Design Direction 3"
@@ -209,7 +220,8 @@ export default function DesignDirection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.25 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.43] w-full">
+                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.43] w-full"
+                >
                   <Image
                     src={`${BASE}/design-direction-5.webp`}
                     alt="Design Direction 5"
@@ -246,7 +258,8 @@ export default function DesignDirection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: img.delay }}
-                className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden w-full h-[240px] sm:h-[240px] lg:h-[300px]">
+                className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden w-full h-[240px] sm:h-[240px] lg:h-[300px]"
+              >
                 <Image
                   src={img.src}
                   alt={img.alt}

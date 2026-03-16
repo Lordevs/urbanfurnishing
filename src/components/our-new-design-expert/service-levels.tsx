@@ -137,7 +137,7 @@ export default function ServiceLevels() {
       {/* Mobile View */}
       <section className="md:hidden flex flex-col py-6 sm:py-12 px-4 bg-white relative">
         <div className="text-center mb-8">
-          <h2 className="text-[25px] font-serif font-bold text-[#1A1A1A] mb-3 tracking-tight">
+          <h2 className="text-2xl font-serif font-bold text-[#1A1A1A] mb-3 tracking-tight">
             Service Levels
           </h2>
           <p className="text-[#666666] text-[13px] font-medium leading-[1.6] max-w-[300px] mx-auto">
@@ -149,7 +149,8 @@ export default function ServiceLevels() {
           {mobilePlans.map((plan, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-[16px] border border-[#F0F0F0] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+              className="bg-white rounded-[16px] border border-[#F0F0F0] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+            >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-[18px] font-serif font-bold text-[#1A1A1A]">
                   {plan.name}
@@ -158,7 +159,8 @@ export default function ServiceLevels() {
                   className={cn(
                     "text-[10px] font-bold px-3 py-1 rounded-[6px] tracking-wide uppercase",
                     plan.badgeColor,
-                  )}>
+                  )}
+                >
                   {plan.badge}
                 </span>
               </div>
@@ -219,7 +221,8 @@ export default function ServiceLevels() {
                 className={cn(
                   "relative flex flex-col bg-white rounded-[24px] sm:rounded-[32px] p-8 sm:px-10 sm:py-12 transition-all duration-300",
                   plan.cardClass,
-                )}>
+                )}
+              >
                 {/* Top Badge */}
                 {plan.badge && (
                   <div className="absolute top-6 sm:top-8 right-6 sm:right-8">
@@ -227,7 +230,8 @@ export default function ServiceLevels() {
                       className={cn(
                         "text-[10px] sm:text-[11px] font-medium px-4 py-1.5 rounded-[8px] sm:rounded-[10px] capitalize tracking-wide",
                         plan.badge.color,
-                      )}>
+                      )}
+                    >
                       {plan.badge.text}
                     </span>
                   </div>
@@ -260,7 +264,8 @@ export default function ServiceLevels() {
                             viewBox="0 0 24 24"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            className="w-[20px] h-[20px]">
+                            className="w-[20px] h-[20px]"
+                          >
                             <path
                               d="M11.999 2.053C11.999 2.053 8.653 6.014 8.653 9.475C8.653 11.238 10.152 12.668 12 12.668C13.848 12.668 15.347 11.238 15.347 9.475C15.347 6.014 11.999 2.053 11.999 2.053Z"
                               fill="currentColor"
@@ -277,7 +282,8 @@ export default function ServiceLevels() {
                               x="50%"
                               y="22"
                               className="text-[6px] font-bold fill-current tracking-widest"
-                              textAnchor="middle">
+                              textAnchor="middle"
+                            >
                               DEMO
                             </text>
                           </svg>
@@ -322,7 +328,8 @@ export default function ServiceLevels() {
                     className={cn(
                       "w-full h-[52px] sm:h-[56px] rounded-[10px] sm:rounded-[12px] text-[15px] font-normal transition-all shadow-none hover:-translate-y-0.5 hover:shadow-lg",
                       plan.buttonClass,
-                    )}>
+                    )}
+                  >
                     {plan.buttonText}
                   </Button>
                 </Link>

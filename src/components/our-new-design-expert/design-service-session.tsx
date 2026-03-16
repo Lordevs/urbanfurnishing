@@ -70,11 +70,11 @@ export default function DesignServiceSession() {
       {/* Section Header */}
       <div className="mb-16">
         <div className="text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#1A1A1A] mb-4">
+          <h2 className="text-2xl md:text-5xl lg:text-6xl font-serif font-bold text-[#1A1A1A] mb-3 md:mb-4">
             Design Service by <br />
             <span className="text-[#C4A36B]">Elena</span>
           </h2>
-          <p className="text-[#666666] text-lg max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-sm text-[#666666] md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
             A fully personalised interior design experience — guided by our
             Italian Creative Director from first call to final setup.
           </p>
@@ -85,14 +85,14 @@ export default function DesignServiceSession() {
         {/* Left Side: How it works & Profile */}
         <div className="flex flex-col gap-12">
           <div>
-            <span className="text-[#C4A36B] text-xs font-bold tracking-widest uppercase mb-4 block">
+            <span className="text-[#C4A36B] text-[10px] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 block">
               How it works
             </span>
-            <h3 className="text-3xl font-serif font-semibold text-[#1A1A1A] mb-4">
+            <h3 className="text-xl font-serif font-semibold text-[#1A1A1A] mb-4">
               Your home, designed <br />
               <span className="text-[#C4A36B]">around you.</span>
             </h3>
-            <p className="text-[#666666] mb-10 leading-relaxed font-light">
+            <p className="text-[#666666] mb-10 leading-relaxed font-light text-xs md:text-base ">
               No templates. No guesswork. Elena works with you one-on-one to
               understand your space, lifestyle, and taste — then delivers a
               complete interior plan.
@@ -106,16 +106,16 @@ export default function DesignServiceSession() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex gap-6 items-start"
+                  className="flex gap-4 md:gap-6 items-start"
                 >
-                  <div className="w-12 h-12 rounded-lg border border-[#E8E1D9] flex items-center justify-center shrink-0 text-[#C4A36B] font-serif font-bold">
+                  <div className="w-10 h-10 md:w-12 md:h-12 text-sm md:text-base rounded-lg border border-[#E8E1D9] flex items-center justify-center shrink-0 text-[#C4A36B] font-serif font-bold">
                     {step.number}
                   </div>
                   <div>
-                    <h4 className="text-lg font-serif font-bold text-[#1A1A1A] mb-1">
+                    <h4 className="text-base md:text-lg font-serif font-bold text-[#1A1A1A] mb-1">
                       {step.title}
                     </h4>
-                    <p className="text-[#666666] text-sm leading-relaxed font-light">
+                    <p className="text-[#666666] text-xs md:text-sm leading-relaxed font-light">
                       {step.description}
                     </p>
                   </div>

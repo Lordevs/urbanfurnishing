@@ -71,7 +71,7 @@ export default function HowWeWork() {
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         {/* Mobile View */}
         <div className="flex flex-col lg:hidden py-4">
-          <h2 className="text-[22px] font-bold text-[#1a1a1a] mb-5 tracking-tight px-1">
+          <h2 className="text-2xl font-bold text-[#1a1a1a] mb-5 tracking-tight px-1">
             How We <span className="text-[#C9A76A]">Work</span>
           </h2>
 
@@ -104,7 +104,7 @@ export default function HowWeWork() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex items-start gap-4 p-5 rounded-[16px] bg-[#FAFAFA] border border-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.01)]"
               >
-                <div className="shrink-0 flex items-center justify-center w-[46px] h-[46px] rounded-full bg-[#C9A76A] text-white font-bold text-[18px]">
+                <div className="shrink-0 flex items-center justify-center w-[32px] h-[32px] md:w-[46px] md:h-[46px] rounded-full bg-[#C9A76A] text-white font-bold text-base md:text-lg">
                   {step.number}
                 </div>
                 <div className="flex flex-col pt-0.5">

@@ -21,7 +21,7 @@ export default function SingleProductHero() {
   return (
     <>
       {/* Mobile View */}
-      <div className="md:hidden relative w-full h-auto flex flex-col pt-20 bg-[#3D261C] overflow-hidden sm:rounded-none">
+      <div className="md:hidden relative w-full h-auto flex flex-col pt-20 bg-[#3D261C] overflow-hidden sm:rounded-none mb-20">
         <div className="absolute inset-0 z-0">
           <Image
             src="/landing/single-products/single-products.webp"
@@ -39,7 +39,7 @@ export default function SingleProductHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
+              className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
             >
               Expertly Curated <br />
               <span className="text-[#C9A76A] font-serif">Room Products.</span>
@@ -48,7 +48,7 @@ export default function SingleProductHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4"
+              className="text-sm leading-[1.6] text-white/95 mb-8 font-light pr-4"
             >
               Designer-selected furniture packages that bring harmony to your
               space. Each collection is thoughtfully coordinated to save you
