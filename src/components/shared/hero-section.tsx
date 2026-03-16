@@ -21,7 +21,7 @@ export function HeroSection({
   imageSrc,
   imageAlt = "Hero Background",
   overlayGradient = "bg-linear-to-b from-[#170D0D]/70 via-[#170D0D]/40 to-transparent",
-  heightClass = "h-[50dvh]",
+  heightClass = "h-[80dvh]",
   title,
   description,
   buttons,
@@ -29,9 +29,9 @@ export function HeroSection({
   titleClassName,
 }: HeroSectionProps) {
   return (
-    <section className="px-0 sm:px-10 lg:px-16 max-w-8xl mx-auto">
+    <section className="">
       <div
-        className={`relative w-full ${heightClass} overflow-hidden sm:rounded-[24px] flex flex-col justify-center px-4 sm:px-16 lg:px-24`}
+        className={`relative w-full overflow-hidden flex flex-col justify-center px-4 sm:px-16 lg:px-24 pt-40px ${heightClass}`}
       >
         {/* Background & Overlay */}
         <Image
@@ -50,7 +50,7 @@ export function HeroSection({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className={cn(
-              "text-[32px] leading-[1.1] sm:text-5xl md:text-[50px] font-serif font-semibold tracking-tight text-white mb-2 max-w-2xl",
+              "text-[32px] leading-[1.1] sm:text-5xl md:text-[50px] font-serif font-semibold tracking-tight text-white mb-2 max-w-2xl text-center mx-auto",
               titleClassName,
             )}
           >
@@ -61,7 +61,7 @@ export function HeroSection({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-sm sm:text-xl text-white/90 leading-relaxed mb-6 sm:mb-10 max-w-2xl font-light"
+            className="text-sm sm:text-xl text-white/90 leading-relaxed mb-6 sm:mb-10 max-w-4xl font-light text-center mx-auto"
           >
             {description}
           </motion.p>
@@ -70,7 +70,7 @@ export function HeroSection({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-5 w-full sm:w-auto mt-2 sm:mt-0"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-center gap-2.5 sm:gap-5 w-full sm:w-auto mt-2 sm:mt-0"
           >
             {buttons}
           </motion.div>

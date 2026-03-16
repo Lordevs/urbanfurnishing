@@ -43,14 +43,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
       {/* Promo Banner */}
       <Link
         href={ROUTES.PACKAGES}
-        className={`flex h-10 w-full items-center justify-center px-4 transition-all duration-300 border-b text-[#412A1F]`}
+        className={`flex h-10 w-full items-center justify-center px-4 transition-all duration-300 bg-primary text-white`}
       >
         <p className="text-[10px] sm:text-[11px] font-medium tracking-widest text-center">
           15% OFF BULK ORDERS — VISIT OUR PACKAGES STORE →
@@ -58,7 +58,7 @@ const Navbar = () => {
       </Link>
 
       <div className="w-full px-4 sm:px-10 lg:px-16">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-18 items-center justify-between">
           {/* Logo Section */}
           <Link
             href={ROUTES.HOME}
@@ -89,7 +89,9 @@ const Navbar = () => {
                   className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                     isActive
                       ? "bg-[#412A1F]/90 text-white"
-                      : "text-foreground hover:text-primary"
+                      : isScrolled
+                        ? "text-[#412A1F] hover:text-primary"
+                        : "text-white hover:text-white/80"
                   }`}
                 >
                   {item.title}
@@ -102,9 +104,13 @@ const Navbar = () => {
             {/* Cart Icon - Both Mobile (visible) and Desktop */}
             <Link
               href={ROUTES.CART}
-              className="relative p-2.5 rounded-full hover:bg-primary/5 transition-colors group"
+              className="relative p-2.5 rounded-full hover:bg-white/10 transition-colors group"
             >
-              <ShoppingCart className="h-6 w-6 text-foreground group-hover:text-primary transition-colors" />
+              <ShoppingCart
+                className={`h-6 w-6 transition-colors ${
+                  isScrolled ? "text-[#412A1F]" : "text-white"
+                } group-hover:text-primary`}
+              />
               {mounted && totalQuantity > 0 && (
                 <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#C9A76A] text-[10px] font-bold text-white shadow-sm ring-2 ring-white animate-in zoom-in-50 duration-300">
                   {totalQuantity}
@@ -113,7 +119,7 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop CTA Button */}
-            <div className="hidden lg:flex items-center">
+            <div className="hidden lg:flex items-center gap-4">
               <PrimaryButton
                 href={ROUTES.BOOK_CONSULTATION}
                 label="Get in Touch"
@@ -129,7 +135,9 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     aria-label="Open navigation menu"
-                    className="text-primary hover:bg-primary/5 h-11 w-11"
+                    className={`h-11 w-11 ${
+                      isScrolled ? "text-[#412A1F]" : "text-white"
+                    } hover:bg-white/10`}
                   >
                     <Menu className="h-7 w-7" />
                   </Button>

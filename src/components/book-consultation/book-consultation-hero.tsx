@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
 import Image from "next/image";
 
 import { ROUTES } from "@/constants/route";
@@ -9,13 +8,6 @@ import { ROUTES } from "@/constants/route";
 import { PrimaryButton } from "../common/primary-button";
 import { SecondaryButton } from "../common/secondary-button";
 import { HeroSection } from "../shared/hero-section";
-
-const benefits = [
-  "Free 30-minute consultation",
-  "Expert guidance on package selection",
-  "Transparent pricing estimate",
-  "No pressure or commitment",
-];
 
 export default function BookConsultationHero() {
   return (
@@ -71,37 +63,6 @@ export default function BookConsultationHero() {
               />
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="w-full bottom-card-wrapper mt-auto"
-          >
-            <div
-              className="rounded-[24px] p-6 shadow-xl w-full flex flex-col gap-5 border border-white/20"
-              style={{
-                background:
-                  "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-              }}
-            >
-              <h3 className="text-[#FFFFFF] text-[18px] font-serif font-medium text-center mb-1">
-                Why Book With Us?
-              </h3>
-              <ul className="flex flex-col gap-3.5">
-                {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-center gap-4">
-                    <div className="w-[18px] h-[18px] rounded-full bg-[#C9A76A] flex items-center justify-center shrink-0">
-                      <Check className="w-[12px] h-[12px] text-white stroke-3" />
-                    </div>
-                    <span className="text-[#FFFFFF]/90 text-[13px] font-light tracking-wide">
-                      {benefit}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
         </div>
       </div>
 
@@ -133,38 +94,6 @@ export default function BookConsultationHero() {
                 label="Our Design Services"
               />
             </>
-          }
-          bottomCard={
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-              className="absolute bottom-0 right-0 bg-white p-3 sm:p-4 pb-0 pr-0 rounded-tl-[36px] rounded-br-[24px] z-20"
-            >
-              <div
-                className="p-2 sm:p-5 rounded-[24px] sm:rounded-[28px] shadow-lg flex flex-col gap-2 min-w-[250px] sm:min-w-[400px]"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-                }}
-              >
-                <h3 className="text-white text-[18px] font-serif sm:text-[20px] font-medium text-center mb-2">
-                  Why Book With Us?
-                </h3>
-                <ul className="flex flex-col gap-3">
-                  {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <div className="w-[22px] h-[22px] sm:w-[24px] sm:h-[24px] rounded-full bg-[#C9A76A] flex items-center justify-center shrink-0">
-                        <Check className="w-4 h-4 text-white stroke-3" />
-                      </div>
-                      <span className="text-white text-[13px] sm:text-[14.5px] font-light tracking-wide">
-                        {benefit}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
           }
         />
       </div>

@@ -6,11 +6,13 @@ import Packages from "@/components/home/packages";
 import PathwayNav from "@/components/home/pathway-nav";
 import Services from "@/components/home/services";
 import SingleItems from "@/components/home/single-items";
+import Stats from "@/components/home/stats";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <HomeHero />
+      <Stats />
       <Services />
       <PathwayNav />
       <Packages />
