@@ -7,10 +7,11 @@ interface Props {
 
 export default async function PackageDetailPage({ params }: Props) {
   const { id } = await params;
+
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <PackageDetail slug={id} />
       <Testimonial />
-    </div>
+    </main>
   );
 }

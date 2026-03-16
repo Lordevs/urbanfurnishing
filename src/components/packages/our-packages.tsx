@@ -5,10 +5,11 @@ import { PackageCard } from "./package-card";
 const PACKAGES_DATA = [
   {
     title: "Investor Turnkey Package",
-    description: "Designed for rental properties and investment apartments. Fully furnished, rental-ready homes delivered quickly and professionally.",
+    description:
+      "Designed for rental properties and investment apartments. Fully furnished, rental-ready homes delivered quickly and professionally.",
     image: "/landing/packages/packages-product-img-1.webp",
     badge: "AED 24,900",
-    href: "/packages?category=investor-turnkey",
+    href: "/packages/investor-turnkey",
     options: [
       { label: "Studio", price: "AED 24,900" },
       { label: "1 Bedroom", price: "AED 34,900" },
@@ -18,10 +19,11 @@ const PACKAGES_DATA = [
   },
   {
     title: "End-User Signature Package",
-    description: "A refined furnishing solution for homeowners who want their property to feel personal, layered and thoughtfully styled.",
+    description:
+      "A refined furnishing solution for homeowners who want their property to feel personal, layered and thoughtfully styled.",
     image: "/landing/packages/packages-product-img-2.webp",
     badge: "AED 49,000",
-    href: "/packages?category=end-user-signature",
+    href: "/packages/end-user-signature",
     options: [
       { label: "1 Bedroom", price: "AED 49,000" },
       { label: "2 Bedroom", price: "AED 69,000" },
@@ -31,10 +33,11 @@ const PACKAGES_DATA = [
   },
   {
     title: "Developer Solutions",
-    description: "Furnishing solutions for show apartments and villas. Spaces styled for sales and viewings that impress buyers.",
+    description:
+      "Furnishing solutions for show apartments and villas. Spaces styled for sales and viewings that impress buyers.",
     image: "/landing/packages/packages-product-img-3.webp",
     badge: "AED 39,000",
-    href: "/packages?category=developer-solutions",
+    href: "/packages/developer-solutions",
     options: [
       { label: "Studio show unit", price: "AED 39,000" },
       { label: "1 Bedroom show unit", price: "AED 55,000" },
@@ -43,13 +46,12 @@ const PACKAGES_DATA = [
   },
   {
     title: "Custom Projects",
-    description: "Bespoke furnishing solutions for villas, penthouses, luxury residences and hospitality spaces requiring a curated design approach.",
+    description:
+      "Bespoke furnishing solutions for villas, penthouses, luxury residences and hospitality spaces requiring a curated design approach.",
     image: "/landing/packages/packages-product-img-4.webp",
     badge: "AED 150,000",
-    href: "/packages?category=custom-projects",
-    options: [
-      { label: "Custom projects", price: "AED 150,000" },
-    ],
+    href: "/packages/custom-projects",
+    options: [{ label: "Custom projects", price: "AED 150,000" }],
   },
 ];
 

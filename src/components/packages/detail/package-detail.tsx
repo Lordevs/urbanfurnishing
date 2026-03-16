@@ -1,673 +1,442 @@
 "use client";
 
-import {
-  Minus,
-  Plus,
-  ShoppingCart,
-  Clock,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  AlertCircle,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Minus, Check } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
-import { useCart } from "@/context/cart-context";
-import { usePackageDetail } from "@/hooks/queries/use-package-detail";
-import { formatAED } from "@/lib/utils";
 
-const benefitIconMap: Record<string, string> = {
-  "free delivery": "/landing/detail-page/free-delivery.svg",
-  warranty: "/landing/detail-page/warranty.svg",
-  delivery: "/landing/detail-page/fast-delivery.svg",
-  assembly: "/landing/detail-page/expert-assembly.svg",
-};
-
-const getBenefitIcon = (benefit: string) => {
-  const lower = benefit.toLowerCase();
-  for (const [key, icon] of Object.entries(benefitIconMap)) {
-    if (lower.includes(key)) return icon;
-  }
-  return "/landing/detail-page/free-delivery.svg";
-};
-
-interface PackageDetailProps {
-  slug: string;
+interface PropertyType {
+  id: string;
+  label: string;
+  price: number;
+  description: string;
+  features: string[];
+  additionalInformation: { label: string; value: string }[];
+  items: {
+    category: string;
+    name: string;
+    image: string;
+  }[];
 }
 
-export function PackageDetail({ slug }: PackageDetailProps) {
-  const [activeImage, setActiveImage] = useState(0);
-  const [quantity, setQuantity] = useState(1);
-  const [activeTab, setActiveTab] = useState("Features & Benefits");
+interface PackageData {
+  id: string;
+  name: string;
+  images: string[];
+  propertyTypes: PropertyType[];
+}
 
-  const { addItem } = useCart();
-  const router = useRouter();
+const DUMMY_PACKAGE: PackageData = {
+  id: "investor-turnkey",
+  name: "Investor Turnkey Package",
+  images: [
+    "/landing/packages/packages-product-img-1.webp",
+    "/landing/packages/packages-product-img-2.webp",
+    "/landing/packages/packages-product-img-3.webp",
+    "/landing/packages/packages-product-img-4.webp",
+    "/landing/packages/packages-product-img-5.webp",
+    "/landing/packages/packages-product-img-1.webp", // Repeat for thumbnails
+  ],
+  propertyTypes: [
+    {
+      id: "studio",
+      label: "Studio",
+      price: 24900,
+      description:
+        "Designed for rental properties and investment apartments. Ideal for investors who want a fully furnished, rental-ready home delivered quickly and professionally. Perfect for landlords looking to maximize rental income with minimal hassle.",
+      features: [
+        "Complete furniture package",
+        "Rental-ready setup",
+        "Durable & practical furnishings",
+        "Fast delivery timeline",
+        "Professional installation",
+        "Designed for ROI",
+        "Easy maintenance materials",
+        "Neutral color palette",
+      ],
+      additionalInformation: [
+        { label: "Delivery Time", value: "2-4 weeks" },
+        { label: "Installation", value: "Included" },
+        { label: "Warranty", value: "1 year" },
+        { label: "Customization", value: "Available" },
+      ],
+      items: [
+        {
+          category: "LIVING ROOM",
+          name: "Show Home Sofa",
+          image: "/landing/packages/packages-product-img-1.webp",
+        },
+        {
+          category: "LIVING ROOM",
+          name: "Statement Coffee Table",
+          image: "/landing/packages/packages-product-img-2.webp",
+        },
+        {
+          category: "LIVING ROOM",
+          name: "Designer TV Console",
+          image: "/landing/packages/packages-product-img-3.webp",
+        },
+        {
+          category: "LIVING ROOM",
+          name: "Premium Rug",
+          image: "/landing/packages/packages-product-img-4.webp",
+        },
+        {
+          category: "DINING",
+          name: "Show Home Dining Set",
+          image: "/landing/packages/packages-product-img-5.webp",
+        },
+        {
+          category: "DINING",
+          name: "Premium Dining Chairs",
+          image: "/landing/packages/packages-product-img-1.webp",
+        },
+        {
+          category: "BEDROOM",
+          name: "Luxury Bed",
+          image: "/landing/packages/packages-product-img-2.webp",
+        },
+        {
+          category: "BEDROOM",
+          name: "Bedside Tables",
+          image: "/landing/packages/packages-product-img-3.webp",
+        },
+        {
+          category: "BEDROOM",
+          name: "Wardrobe System",
+          image: "/landing/packages/packages-product-img-4.webp",
+        },
+        {
+          category: "LIGHTING",
+          name: "Accent Floor Lamp",
+          image: "/landing/packages/packages-product-img-5.webp",
+        },
+        {
+          category: "LIGHTING",
+          name: "Designer Table Lamp",
+          image: "/landing/packages/packages-product-img-1.webp",
+        },
+        {
+          category: "DECOR",
+          name: "Decorative Mirror",
+          image: "/landing/packages/packages-product-img-2.webp",
+        },
+      ],
+    },
+    {
+      id: "1br",
+      label: "1 Bedroom",
+      price: 34900,
+      description:
+        "Comprehensive furnishing solution for 1-bedroom apartments. Carefully selected pieces that balance space, style, and functionality for urban living.",
+      features: [
+        "Customized for 1-bedroom layouts",
+        "High-quality materials",
+        "Professional interior styling",
+        "Zero-stress setup",
+      ],
+      additionalInformation: [
+        { label: "Delivery Time", value: "2-4 weeks" },
+        { label: "Installation", value: "Included" },
+      ],
+      items: [
+        {
+          category: "LIVING ROOM",
+          name: "Sectional Sofa",
+          image: "/landing/packages/packages-product-img-1.webp",
+        },
+        {
+          category: "LIVING ROOM",
+          name: "Marble Coffee Table",
+          image: "/landing/packages/packages-product-img-2.webp",
+        },
+        {
+          category: "DINING",
+          name: "4-Seater Dining Set",
+          image: "/landing/packages/packages-product-img-5.webp",
+        },
+      ],
+    },
+    {
+      id: "2br",
+      label: "2 Bedroom",
+      price: 49900,
+      description:
+        "Elevated design package for 2-bedroom homes. Offers a cohesive look throughout the entire space with premium furniture and decor.",
+      features: [
+        "Full sets for two bedrooms",
+        "Spacious living & dining furniture",
+        "Curated accent pieces",
+        "Durable for high-traffic rentals",
+      ],
+      additionalInformation: [
+        { label: "Delivery Time", value: "3-5 weeks" },
+        { label: "Installation", value: "Included" },
+      ],
+      items: [
+        {
+          category: "LIVING ROOM",
+          name: "Premium Sectional",
+          image: "/landing/packages/packages-product-img-1.webp",
+        },
+      ],
+    },
+    {
+      id: "3br",
+      label: "3 Bedroom",
+      price: 69900,
+      description:
+        "The ultimate investor package for large 3-bedroom residences. High-end furnishing that increases property value and attracts premium tenants.",
+      features: [
+        "Luxury furniture for all rooms",
+        "Statement lighting included",
+        "Comprehensive decor package",
+        "Priority delivery & setup",
+      ],
+      additionalInformation: [
+        { label: "Delivery Time", value: "4-6 weeks" },
+        { label: "Installation", value: "Included" },
+      ],
+      items: [
+        {
+          category: "LIVING ROOM",
+          name: "Signature Sofa Suite",
+          image: "/landing/packages/packages-product-img-1.webp",
+        },
+      ],
+    },
+  ],
+};
 
-  const { data, isLoading, isError } = usePackageDetail(slug);
-
-  if (isLoading) {
-    return (
-      <section className="py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto min-h-[60vh] flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-[#C9A76A] border-t-transparent rounded-full animate-spin" />
-      </section>
-    );
-  }
-
-  if (isError || !data) {
-    return (
-      <section className="py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto min-h-[60vh] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <AlertCircle className="w-12 h-12 text-red-500" />
-          <h2 className="text-xl font-bold text-[#1A1A1A]">
-            Package not found
-          </h2>
+const Accordion = ({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  return (
+    <div className="border-b border-gray-100">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-5 flex items-center justify-between text-left group"
+      >
+        <span className="text-xs font-bold text-[#412A1F] uppercase tracking-wider">
+          {title}
+        </span>
+        {isOpen ? (
+          <Minus className="w-3.5 h-3.5 text-gray-800" />
+        ) : (
+          <Plus className="w-3.5 h-3.5 text-gray-800" />
+        )}
+      </button>
+      {isOpen && (
+        <div className="pb-6 animate-in fade-in slide-in-from-top-1">
+          {children}
         </div>
-      </section>
-    );
-  }
+      )}
+    </div>
+  );
+};
 
-  const images =
-    data.images.length > 0
-      ? [
-          ...data.images
-            .filter((i) => i.is_primary || i.order === 0)
-            .map((i) => i.image),
-          ...data.images
-            .filter((i) => !i.is_primary && i.order !== 0)
-            .map((i) => i.image),
-        ]
-      : ["/landing/detail-page/detail-image-1.webp"];
+export function PackageDetail({ slug }: { slug: string }) {
+  const [activeImage, setActiveImage] = useState(0);
+  const [selectedTypeIndex, setSelectedTypeIndex] = useState(0);
 
-  const actualPrice = parseFloat(data.actual_price);
-  const effectivePrice = data.effective_price
-    ? parseFloat(data.effective_price)
-    : data.discounted_price
-      ? parseFloat(data.discounted_price)
-      : null;
-  const price = effectivePrice ?? actualPrice;
-  const originalPrice = effectivePrice ? actualPrice : null;
-  const savingAmount = data.money_saved ? parseFloat(data.money_saved) : null;
+  const selectedType = DUMMY_PACKAGE.propertyTypes[selectedTypeIndex];
 
-  const currentFeatures = data.features_and_benefits?.length
-    ? data.features_and_benefits
-    : data.key_benefits?.length
-      ? data.key_benefits
-      : (data.features ?? []);
-
-  const currentSpecs = data.specifications ?? [];
-  const currentWhatsIncluded = data.whats_included ?? [];
-
-  const handleAddToCart = () => {
-    addItem({
-      id: data.id,
-      slug: data.slug,
-      name: data.name,
-      price: price || 0,
-      quantity: quantity,
-      image: images[0],
-      itemType: "PACKAGE",
-    });
-  };
-
-  const handleBuyNow = () => {
-    handleAddToCart();
-    router.push(ROUTES.CART);
-  };
-
-  const nextImage = () => setActiveImage((prev) => (prev + 1) % images.length);
+  const nextImage = () =>
+    setActiveImage((prev) => (prev + 1) % DUMMY_PACKAGE.images.length);
   const prevImage = () =>
-    setActiveImage((prev) => (prev - 1 + images.length) % images.length);
+    setActiveImage(
+      (prev) =>
+        (prev - 1 + DUMMY_PACKAGE.images.length) % DUMMY_PACKAGE.images.length,
+    );
 
   return (
-    <section className="sm:py-12 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-x-hidden md:overflow-x-visible">
-      <div className="w-full flex-col gap-10 hidden md:flex">
-        {/* Top: Images */}
-        <div className="w-full flex flex-col gap-4">
-          {/* Main Image */}
-          <div className="relative sm:h-[50vh] w-full rounded-[24px] overflow-hidden group">
-            <Image
-              src={images[activeImage]}
-              alt="Package Detail"
-              fill
-              className="object-cover transition-transform duration-500"
-            />
-            {/* Badges */}
-            {data.discount_percentage ? (
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                <span className="bg-[#C9A76A] text-white text-[11px] sm:text-[12px] font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-sm">
-                  Save {data.discount_percentage}%
-                </span>
-              </div>
-            ) : null}
-            {!data.is_in_stock && (
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20">
-                <span className="bg-red-600 text-white text-[11px] sm:text-[12px] font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-sm">
-                  OUT OF STOCK
-                </span>
-              </div>
-            )}
-
-            <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6">
-              <span className="bg-[#1A1A1A]/80 backdrop-blur-md text-white text-[11px] sm:text-[12px] font-medium px-4 py-1.5 rounded-full shadow-sm">
-                {activeImage + 1} / {images.length}
-              </span>
-            </div>
-
-            {/* Nav Arrows */}
-            <button
-              onClick={prevImage}
-              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 rounded-[14px] sm:rounded-[16px] flex items-center justify-center shadow-lg hover:bg-white transition-colors cursor-pointer"
-            >
-              <ChevronLeft className="w-5 h-5 text-[#1A1A1A]" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 rounded-[14px] sm:rounded-[16px] flex items-center justify-center shadow-lg hover:bg-white transition-colors cursor-pointer"
-            >
-              <ChevronRight className="w-5 h-5 text-[#1A1A1A]" />
-            </button>
-          </div>
-
-          {/* Thumbnails */}
-          <div className="grid grid-cols-4 gap-3 sm:gap-4">
-            {images.map((img, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveImage(idx)}
-                className={`relative aspect-16/10 sm:aspect-4/3 w-full rounded-[16px] overflow-hidden border-2 transition-all cursor-pointer ${
-                  activeImage === idx
-                    ? "border-[#412A1F] shadow-sm scale-100"
-                    : "border-transparent hover:border-[#EBEBEB] scale-[0.98]"
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt={`Thumbnail ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Content Section */}
-        <div className="w-full flex flex-col max-w-8xl mx-auto">
-          {/* Metadata */}
-          <div className="flex flex-col gap-4 mb-8">
-            <div className="flex items-center gap-2">
-              <div className="bg-[#FCF9F3] text-[#C9A76A] px-3.5 py-1.5 rounded-full flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase border border-[#F2EAD9]">
-                <div className="w-[5px] h-[5px] rounded-full bg-[#C9A76A] drop-shadow-[0_0_2px_rgba(201,167,106,0.3)]" />
-                {data.category_name || "Package"} &bull;{" "}
-                {data.package_type_display || data.package_type || "Standard"}
-              </div>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#453127] leading-tight">
-              {data.name}
-            </h1>
-
-            <p className="text-[#5D4E3C]/80 text-[14px] sm:text-[15px] leading-relaxed mt-1">
-              {data.short_description ||
-                data.description ||
-                "No description provided."}
-            </p>
-          </div>
-
-          {/* Price Box */}
-          <div className="bg-linear-to-r from-white via-[#FFF8F0] to-white border border-[#F2EFE9] rounded-[20px] p-6 lg:p-8 mb-8 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
-            <div className="flex items-end gap-3 mb-4">
-              <span className="text-4xl lg:text-[46px] font-bold text-[#412A1F] leading-none tracking-tight">
-                {formatAED(price)}
-              </span>
-              {originalPrice && (
-                <span className="text-[#5D4E3C]/30 text-[16px] lg:text-[20px] font-medium tracking-tight line-through mb-1.5">
-                  {formatAED(originalPrice)}
-                </span>
-              )}
-            </div>
-            {savingAmount && (
-              <div className="flex flex-col gap-3">
-                <div className="bg-[#F0FDF4] text-[#008236] w-max px-3 py-1 rounded-full flex items-center gap-1.5 text-[11px] font-bold tracking-wide">
-                  <Check className="w-3.5 h-3.5 stroke-3" />
-                  Save {formatAED(savingAmount)}
-                </div>
-                <div className="flex items-center gap-1.5 text[#5D4E3C]/80 text-[11px] font-medium">
-                  <Clock className="w-3.5 h-3.5" />
-                  Fast delivery and professional assembly
-                </div>
-              </div>
-            )}
-            {!savingAmount && (
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-1.5 text[#5D4E3C]/80 text-[11px] font-medium">
-                  <Clock className="w-3.5 h-3.5" />
-                  Fast delivery and professional assembly
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Quantity & Actions */}
-          <div className="flex flex-col gap-4 mb-10 w-full max-w-8xl mx-auto">
-            <div className="flex flex-col sm:flex-row gap-2">
-              <div className="flex items-center justify-between border border-[#0000001A] rounded-[12px] h-[52px] sm:w-[190px] px-2 shrink-0 bg-white shadow-xs">
-                <span className="text-[14px] text-[#5D4E3C]/80 font-medium">
-                  Quantity
-                </span>
-                <div className="flex items-center gap-3.5">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#C9A76A33] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
-                  >
-                    <Minus className="w-3.5 h-3.5" />
-                  </button>
-                  <span className="text-[15px] font-medium text-[#412A1F] min-w-[12px] text-center">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-8 h-8 sm:w-[34px] sm:h-[32px] rounded-[8px] border border-[#C9A76A33] flex items-center justify-center text-[#412A1F] hover:bg-[#FDFBF7] transition-colors cursor-pointer shrink-0"
-                  >
-                    <Plus className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-
-              <Button
-                onClick={handleAddToCart}
-                disabled={!data.is_in_stock}
-                className={`flex-1 h-[52px] rounded-[8px] text-[15px] font-normal tracking-wide flex items-center justify-center gap-2.5 transition-all shadow-md border-none ${
-                  data.is_in_stock
-                    ? "bg-linear-to-r from-[#412A1F] to-[#5D4E3C] hover:opacity-90 text-white cursor-pointer"
-                    : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                }`}
-              >
-                {data.is_in_stock ? (
-                  <>
-                    <ShoppingCart className="w-[18px] h-[18px]" />
-                    Add to Cart
-                  </>
-                ) : (
-                  "Out of Stock"
-                )}
-              </Button>
-            </div>
-
-            <Button
-              onClick={handleBuyNow}
-              disabled={!data.is_in_stock}
-              className={`w-full h-[52px] rounded-[8px] text-[14px] font-medium tracking-wide flex items-center justify-center transition-all shadow-sm mt-1 ${
-                data.is_in_stock
-                  ? "border border-[#C9A76A]/40 hover:border-[#C9A76A] text-[#412A1F] hover:text-white bg-[#FCFBF9] cursor-pointer"
-                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
-              }`}
-            >
-              {data.is_in_stock ? "Buy Now - Fast Checkout" : "Out of Stock"}
-            </Button>
-          </div>
-
-          {/* What's Included label grid */}
-          <div className="mb-12">
-            <h4 className="text-[16px] font-bold text-[#1A1A1A] mb-5">
-              What&apos;s Included
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {(data.key_benefits?.length
-                ? data.key_benefits
-                : [
-                    "Free Delivery",
-                    "10 Year Warranty",
-                    "2-3 Weeks Delivery",
-                    "Professional Assembly",
-                  ]
-              ).map((benefit, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-4 bg-white border border-[#F2F2F2] rounded-[16px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
-                >
-                  <div className="w-12 h-12 bg-[#FDFBF7] border border-[#F0EBE0] rounded-[12px] flex items-center justify-center shrink-0">
-                    <Image
-                      src={getBenefitIcon(benefit)}
-                      alt={benefit}
-                      width={20}
-                      height={20}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[13px] font-bold text-[#333333] mb-0.5">
-                      {benefit}
-                    </span>
-                    <span className="text-[11px] text-[#888888] font-medium">
-                      {benefit.toLowerCase().includes("delivery")
-                        ? "Fast & Reliable"
-                        : "Professional Service"}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Tabs */}
-          <div className="bg-[#FAFAFA] p-1.5 rounded-[12px] flex items-center justify-between mb-8 max-w-[500px] mx-auto w-full">
-            {["Features & Benefits", "Specifications", "What's Included"].map(
-              (tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`flex-1 py-2.5 px-2 text-[12px] font-normal rounded-[8px] transition-all cursor-pointer whitespace-nowrap ${
-                    activeTab === tab
-                      ? "bg-linear-to-r from-[#C9A76A] to-[#B3905A] text-white shadow-md shadow-[#C9A76A]/20"
-                      : "text-[#5D4E3C99] hover:text-[#5d4e3cd1]"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ),
-            )}
-          </div>
-
-          {/* Dynamic Details Area */}
-          <div className="mb-10 min-h-[160px]">
-            {activeTab === "Features & Benefits" && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {currentFeatures.map((feature, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
-                  >
-                    <div className="w-6 h-6 rounded-md bg-linear-to-r from-[#C9A76A] to-[#B3905A] flex items-center justify-center shrink-0 shadow-sm shadow-[#C9A76A]/20">
-                      <Check className="w-3 h-3 text-white stroke-3" />
-                    </div>
-                    <span className="text-[12px] text-[#555555] font-semibold leading-tight pr-2">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {activeTab === "Specifications" && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {currentSpecs.map((spec, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white border border-[#F2F2F2] p-4 rounded-[14px] flex items-center justify-between gap-3 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
-                  >
-                    <span className="text-[12px] text-[#888888] font-medium shrink-0">
-                      {spec.key}
-                    </span>
-                    <span className="text-[12px] text-[#1A1A1A] font-semibold text-right leading-tight wrap-break-word">
-                      {spec.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {activeTab === "What's Included" && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {currentWhatsIncluded.map((item, idx) => {
-                  const quantity = parseInt(item.value) || 1;
-                  return (
-                    <div
-                      key={idx}
-                      className="bg-white border border-[#F2F2F2] p-5 rounded-[20px] flex items-center gap-4 shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] transition-all"
-                    >
-                      <div className="w-12 h-12 bg-[#B3905A] rounded-[13px] flex items-center justify-center shrink-0 shadow-[0_4px_12px_rgba(179,144,90,0.25)]">
-                        <span className="text-white text-[18px] font-bold">
-                          {quantity}
-                        </span>
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-[14px] font-bold text-[#1A1A1A] mb-0.5">
-                          {item.key}
-                        </span>
-                        <span className="text-[12px] text-[#888888] font-medium">
-                          {quantity} {quantity === 1 ? "piece" : "pieces"}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile exact match layout */}
-      <div className="flex flex-col md:hidden -mx-4 mt-2 mb-10">
-        {/* Mobile Images */}
-        <div className="relative aspect-4/3 w-full group mb-3">
-          <Image
-            src={images[activeImage]}
-            alt="Package Detail"
-            fill
-            className="object-cover transition-transform duration-500"
-          />
-          {/* Badges */}
-          <div className="absolute top-4 left-4">
-            <span className="bg-[#C9A76A] text-white text-[10px] font-bold px-3 py-[5px] rounded-lg tracking-wider">
-              SAVE 27%
-            </span>
-          </div>
-          {!data.is_in_stock && (
-            <div className="absolute top-4 left-4 z-20">
-              <span className="bg-red-600 text-white text-[10px] font-bold px-3 py-[5px] rounded-lg tracking-wider">
-                OUT OF STOCK
-              </span>
-            </div>
-          )}
-
-          <div className="absolute bottom-4 right-4 bg-[#1A1A1A]/95 text-white text-[11px] font-medium px-4 py-1.5 rounded-lg shadow-sm">
-            {activeImage + 1} / {images.length}
-          </div>
-
-          {/* Nav Arrows */}
-          <button
-            onClick={prevImage}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md"
-          >
-            <ChevronLeft className="w-5 h-5 text-[#1A1A1A]" />
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md"
-          >
-            <ChevronRight className="w-5 h-5 text-[#1A1A1A]" />
-          </button>
-        </div>
-
-        {/* Mobile Thumbnails */}
-        <div className="grid grid-cols-4 gap-2.5 px-4 mb-8">
-          {images.map((img, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveImage(idx)}
-              className={`relative aspect-square w-full rounded-xl overflow-hidden cursor-pointer ${
-                activeImage === idx ? "opacity-100" : "opacity-60"
-              }`}
-            >
+    <div className="bg-white" data-package-slug={slug}>
+      <section className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 pt-32 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Left: Gallery */}
+          <div className="space-y-4">
+            <div className="relative aspect-4/3 w-full rounded-2xl overflow-hidden group">
               <Image
-                src={img}
-                alt={`Thumbnail ${idx + 1}`}
+                src={DUMMY_PACKAGE.images[activeImage]}
+                alt={DUMMY_PACKAGE.name}
                 fill
                 className="object-cover"
               />
-            </button>
-          ))}
-        </div>
-
-        {/* Info Box */}
-        <div className="px-4 flex flex-col mb-8">
-          <h1 className="text-[26px] font-serif font-bold text-[#1A1A1A] leading-[1.2] mb-4">
-            {data.name}
-          </h1>
-
-          <p className="text-[#666666] text-[13px] leading-relaxed mb-6">
-            {data.short_description ||
-              data.description ||
-              "Discover premium comfort and style with this curated collection, designed to elevate your living space."}
-          </p>
-
-          <div className="bg-[#FAFAFA] rounded-2xl p-5 mb-6 flex flex-col gap-4">
-            <div className="flex items-baseline gap-2">
-              <span className="text-[28px] font-serif font-bold text-[#1A1A1A]">
-                {formatAED(price)}
-              </span>
-              {originalPrice && (
-                <span className="text-[15px] font-serif font-medium text-[#B3B3B3] line-through">
-                  {formatAED(originalPrice)}
-                </span>
-              )}
-            </div>
-            <p className="text-[#666666] text-[11px]">
-              Or 3 interest-free payments of {formatAED(price / 3)} with{" "}
-              <span className="font-bold text-[#1A1A1A]">Tabby</span>
-            </p>
-
-            <div className="flex items-center gap-4 mt-2">
-              <span className="text-[13px] text-[#412A1F] font-medium min-w-[60px]">
-                Quantity
-              </span>
-              <div className="flex items-center bg-white border border-[#EBEBEB] rounded-[24px] px-2 py-1 flex-1 max-w-[120px] justify-between h-[42px]">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-8 h-8 flex items-center justify-center text-[#1A1A1A] hover:bg-gray-50 rounded-full"
-                >
-                  <Minus className="w-3.5 h-3.5" />
-                </button>
-                <span className="text-[14px] font-bold text-[#1A1A1A]">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-8 h-8 flex items-center justify-center text-[#1A1A1A] hover:bg-gray-50 rounded-full"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                </button>
-              </div>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <ChevronLeft className="w-5 h-5 text-[#412A1F]" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <ChevronRight className="w-5 h-5 text-[#412A1F]" />
+              </button>
             </div>
 
-            <Button
-              onClick={handleAddToCart}
-              disabled={!data.is_in_stock}
-              className={`w-full bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-xl h-[48px] text-[14px] font-medium flex items-center justify-center gap-2 mt-2 ${
-                !data.is_in_stock ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              {data.is_in_stock ? (
-                <>
-                  <ShoppingCart className="w-[16px] h-[16px]" />
-                  Add to Cart
-                </>
-              ) : (
-                "Out of Stock"
-              )}
-            </Button>
-          </div>
-        </div>
-
-        <div className="bg-[#FAFAFA] px-4 py-8 grid grid-cols-1 gap-10 border-t border-[#F2F2F2]">
-          {/* Mobile What's Included */}
-          <div>
-            <h2 className="text-[18px] font-serif font-bold text-[#1A1A1A] mb-5">
-              What&apos;s Included
-            </h2>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:mb-0 px-1">
-              {(data.key_benefits?.length
-                ? data.key_benefits
-                : [
-                    "Free Delivery",
-                    "10 Year Warranty",
-                    "2-3 Weeks Delivery",
-                    "Professional Assembly",
-                  ]
-              ).map((benefit, idx) => (
-                <div
+            <div className="grid grid-cols-5 gap-3">
+              {DUMMY_PACKAGE.images.slice(0, 5).map((img, idx) => (
+                <button
                   key={idx}
-                  className="bg-white p-4 sm:p-5 rounded-[16px] flex flex-col items-center justify-center gap-3 text-center border border-[#F2F2F2]"
+                  onClick={() => setActiveImage(idx)}
+                  className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
+                    activeImage === idx
+                      ? "border-[#412A1F]"
+                      : "border-transparent"
+                  }`}
                 >
                   <Image
-                    src={getBenefitIcon(benefit)}
-                    width={32}
-                    height={32}
-                    alt={benefit}
-                    className="mb-1"
+                    src={img}
+                    alt="thumbnail"
+                    fill
+                    className="object-cover"
                   />
-                  <div className="flex flex-col">
-                    <span className="text-[12px] font-bold text-[#1A1A1A]">
-                      {benefit}
-                    </span>
-                    <span className="text-[10px] text-[#888888]">
-                      {benefit.toLowerCase().includes("delivery")
-                        ? "Fast & Reliable"
-                        : "Full Coverage"}
-                    </span>
-                  </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
 
-          {/* Mobile Product Features */}
-          <div>
-            <h2 className="text-[18px] font-serif font-bold text-[#1A1A1A] mb-5">
-              Product Features
-            </h2>
-            <div className="flex flex-col gap-4 mb-8">
-              {currentFeatures.slice(0, 5).map((feature, i) => (
-                <div key={i} className="flex gap-3 items-start">
-                  <div className="w-[18px] h-[18px] shrink-0 border-[1.5px] border-[#C9A76A] rounded-[4px] flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-[#C9A76A] stroke-3" />
-                  </div>
-                  <span className="text-[12px] text-[#444444] leading-snug">
-                    {feature}
-                  </span>
-                </div>
-              ))}
+          {/* Right: Detailed Info */}
+          <div className="flex flex-col">
+            <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#412A1F] mb-4">
+              {DUMMY_PACKAGE.name}
+            </h1>
+            <p className="text-2xl font-bold text-[#412A1F] mb-8">
+              AED {selectedType.price.toLocaleString()}
+            </p>
+
+            <div className="mb-10">
+              <p className="text-[11px] text-[#412A1F]/60 font-medium mb-4">
+                Select Property Type
+              </p>
+              <div className="flex flex-col gap-2">
+                {DUMMY_PACKAGE.propertyTypes.map((type, idx) => (
+                  <button
+                    key={type.id}
+                    onClick={() => setSelectedTypeIndex(idx)}
+                    className={`w-full px-5 h-[52px] flex items-center justify-between border rounded-lg transition-all ${
+                      selectedTypeIndex === idx
+                        ? "bg-[#412A1F] border-[#412A1F] text-white"
+                        : "bg-white border-gray-100 text-[#412A1F] hover:border-[#412A1F]/20"
+                    }`}
+                  >
+                    <span className="text-sm">{type.label}</span>
+                    <span
+                      className={`text-sm font-bold ${selectedTypeIndex === idx ? "text-white" : "text-[#412A1F]/60"}`}
+                    >
+                      AED {type.price.toLocaleString()}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div>
-              <h2 className="text-[18px] font-serif font-bold text-[#1A1A1A] mb-5">
-                Items in this Pack
-              </h2>
-              <div className="grid grid-cols-1 gap-3 px-1">
-                {currentWhatsIncluded.map((item, idx) => {
-                  const quantity = parseInt(item.value) || 1;
-                  return (
-                    <div
-                      key={idx}
-                      className="bg-white p-4 rounded-[16px] flex items-center gap-4 border border-[#F2F2F2] shadow-sm"
-                    >
-                      <div className="w-10 h-10 bg-[#B3905A] rounded-[10px] flex items-center justify-center shrink-0 shadow-[0_2px_8px_rgba(179,144,90,0.2)]">
-                        <span className="text-white text-[16px] font-bold">
-                          {quantity}
-                        </span>
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-[13px] font-bold text-[#1A1A1A]">
-                          {item.key}
-                        </span>
-                        <span className="text-[11px] text-[#888888]">
-                          {quantity} {quantity === 1 ? "piece" : "pieces"}
-                        </span>
-                      </div>
+            <div className="flex flex-col gap-3 mb-10">
+              <Button className="w-full h-14 bg-[#412A1F] hover:bg-[#2C1A11] text-white rounded-lg text-xs font-bold uppercase tracking-widest transition-transform active:scale-[0.98]">
+                Add to Cart
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="w-full h-14 border border-[#412A1F] text-[#412A1F] hover:bg-gray-50 rounded-lg text-xs font-bold uppercase tracking-widest"
+              >
+                <Link href={ROUTES.BOOK_CONSULTATION}>
+                  Schedule Consultation
+                </Link>
+              </Button>
+            </div>
+
+            {/* Accordions */}
+            <div className="space-y-0.5">
+              <Accordion title="Description" defaultOpen={true}>
+                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[90%]">
+                  {selectedType.description}
+                </p>
+              </Accordion>
+              <Accordion title="Package Features">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
+                  {selectedType.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <Check className="w-3.5 h-3.5 text-[#412A1F] shrink-0" />
+                      <span className="text-[13px] text-gray-500 leading-tight">
+                        {feature}
+                      </span>
                     </div>
-                  );
-                })}
-              </div>
+                  ))}
+                </div>
+              </Accordion>
+              <Accordion title="Additional Information">
+                <div className="space-y-4">
+                  {selectedType.additionalInformation.map((info, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between pb-3 border-b border-gray-50 last:border-0 last:pb-0"
+                    >
+                      <span className="text-[13px] text-gray-400 font-medium">
+                        {info.label}
+                      </span>
+                      <span className="text-[13px] text-[#412A1F] font-semibold">
+                        {info.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </Accordion>
+            </div>
+
+            <div className="mt-10">
+              <p className="text-sm text-gray-500">
+                Need help deciding?{" "}
+                <button className="text-[#412A1F] font-bold underline underline-offset-4 decoration-[#412A1F]/30 hover:decoration-[#412A1F]">
+                  Contact our team
+                </button>{" "}
+                for a personalized consultation
+              </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Items Section */}
+      <section className="bg-[#FAFAFA] py-24">
+        <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
+          <h2 className="text-3xl font-serif font-bold text-[#412A1F] mb-12">
+            Items in this Package
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {selectedType.items.map((item, idx) => (
+              <div key={idx} className="group cursor-pointer">
+                <div className="relative aspect-square rounded-2xl overflow-hidden mb-4">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">
+                  {item.category}
+                </p>
+                <h3 className="text-sm font-bold text-[#412A1F] group-hover:text-[#C9A76A] transition-colors line-clamp-1">
+                  {item.name}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

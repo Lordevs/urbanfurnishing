@@ -41,10 +41,28 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Pages that feature a dark hero section and need a transparent navbar with white text at the top
+  const pagesWithHero = [
+    ROUTES.HOME,
+    ROUTES.PACKAGES,
+    ROUTES.OUR_NEW_DESIGN_EXPERT,
+    ROUTES.BOOK_CONSULTATION,
+    ROUTES.CART,
+    ROUTES.SINGLE_PRODUCTS,
+  ];
+
+  // Specific check: /packages/[id] NO hero, but /single-products/[id] DOES have a hero
+  const hasHero =
+    pagesWithHero.includes(pathname) ||
+    pathname.startsWith(ROUTES.SINGLE_PRODUCTS);
+
+  // Use scrolled style if scrolled OR if the page doesn't have a hero
+  const isNavOpaque = isScrolled || !hasHero;
+
   return (
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        isNavOpaque ? "bg-white/90 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       {/* Promo Banner */}
@@ -89,7 +107,7 @@ const Navbar = () => {
                   className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                     isActive
                       ? "bg-[#412A1F]/90 text-white"
-                      : isScrolled
+                      : isNavOpaque
                         ? "text-[#412A1F] hover:text-primary"
                         : "text-white hover:text-white/80"
                   }`}
@@ -108,7 +126,7 @@ const Navbar = () => {
             >
               <ShoppingCart
                 className={`h-6 w-6 transition-colors ${
-                  isScrolled ? "text-[#412A1F]" : "text-white"
+                  isNavOpaque ? "text-[#412A1F]" : "text-white"
                 } group-hover:text-primary`}
               />
               {mounted && totalQuantity > 0 && (
@@ -136,7 +154,7 @@ const Navbar = () => {
                     size="icon"
                     aria-label="Open navigation menu"
                     className={`h-11 w-11 ${
-                      isScrolled ? "text-[#412A1F]" : "text-white"
+                      isNavOpaque ? "text-[#412A1F]" : "text-white"
                     } hover:bg-white/10`}
                   >
                     <Menu className="h-7 w-7" />
