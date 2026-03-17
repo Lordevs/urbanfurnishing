@@ -1,8 +1,10 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +17,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useDesignCall } from "@/hooks/queries/use-design-call";
+import {
+  designCallSchema,
+  type DesignCallFormValues,
+} from "@/schemas/design-call.schema";
 
 const steps = [
   {
@@ -57,16 +64,51 @@ const INPUT_CLASS =
 const LABEL_CLASS = "text-[12px] text-[#412A1F] font-medium tracking-wide";
 
 export default function DesignServiceSession() {
-  const [selectedRooms, setSelectedRooms] = useState<string[]>([]);
+  const { mutate: bookCall, isPending } = useDesignCall();
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<DesignCallFormValues>({
+    resolver: zodResolver(designCallSchema),
+    defaultValues: {
+      rooms_to_furnish: [],
+    },
+  });
+
+  // eslint-disable-next-line react-hooks/incompatible-library
+  const selectedRooms = watch("rooms_to_furnish");
 
   const toggleRoom = (room: string) => {
-    setSelectedRooms((prev) =>
-      prev.includes(room) ? prev.filter((r) => r !== room) : [...prev, room],
-    );
+    const current = selectedRooms || [];
+    const next = current.includes(room)
+      ? current.filter((r) => r !== room)
+      : [...current, room];
+    setValue("rooms_to_furnish", next, { shouldValidate: true });
+  };
+
+  const onSubmit = (data: DesignCallFormValues) => {
+    bookCall(data, {
+      onSuccess: () => {
+        toast.success("Design call requested successfully!");
+        reset();
+      },
+      onError: (error) => {
+        toast.error(error.message || "Failed to request design call");
+      },
+    });
   };
 
   return (
-    <section id="design-call" className="py-20 px-4 sm:px-10 lg:px-16 mx-auto bg-[#FDFBF9]">
+    <section
+      id="design-call"
+      className="py-20 px-4 sm:px-10 lg:px-16 mx-auto bg-[#FDFBF9]"
+    >
       {/* Section Header */}
       <div className="mb-16">
         <div className="text-center">
@@ -173,28 +215,40 @@ export default function DesignServiceSession() {
 
             <form
               className="flex flex-col gap-6"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="firstName" className={LABEL_CLASS}>
+                  <Label htmlFor="first_name" className={LABEL_CLASS}>
                     First Name <span className="text-[#C9A76A]">*</span>
                   </Label>
                   <Input
-                    id="firstName"
+                    id="first_name"
                     placeholder="Sarah"
-                    className={INPUT_CLASS}
+                    className={`${INPUT_CLASS} ${errors.first_name ? "border-red-400 focus-visible:ring-red-400/20" : ""}`}
+                    {...register("first_name")}
                   />
+                  {errors.first_name && (
+                    <span className="text-[11px] text-red-500 font-light ml-1">
+                      {errors.first_name.message}
+                    </span>
+                  )}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="lastName" className={LABEL_CLASS}>
+                  <Label htmlFor="last_name" className={LABEL_CLASS}>
                     Last Name <span className="text-[#C9A76A]">*</span>
                   </Label>
                   <Input
-                    id="lastName"
+                    id="last_name"
                     placeholder="Al Mansouri"
-                    className={INPUT_CLASS}
+                    className={`${INPUT_CLASS} ${errors.last_name ? "border-red-400 focus-visible:ring-red-400/20" : ""}`}
+                    {...register("last_name")}
                   />
+                  {errors.last_name && (
+                    <span className="text-[11px] text-red-500 font-light ml-1">
+                      {errors.last_name.message}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -206,56 +260,90 @@ export default function DesignServiceSession() {
                   id="email"
                   type="email"
                   placeholder="sarah@email.com"
-                  className={INPUT_CLASS}
+                  className={`${INPUT_CLASS} ${errors.email ? "border-red-400 focus-visible:ring-red-400/20" : ""}`}
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <span className="text-[11px] text-red-500 font-light ml-1">
+                    {errors.email.message}
+                  </span>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="phone" className={LABEL_CLASS}>
+                <Label htmlFor="phone_number" className={LABEL_CLASS}>
                   Phone / WhatsApp <span className="text-[#C9A76A]">*</span>
                 </Label>
                 <Input
-                  id="phone"
+                  id="phone_number"
                   placeholder="+971 50 000 0000"
-                  className={INPUT_CLASS}
+                  className={`${INPUT_CLASS} ${errors.phone_number ? "border-red-400 focus-visible:ring-red-400/20" : ""}`}
+                  {...register("phone_number")}
                 />
+                {errors.phone_number && (
+                  <span className="text-[11px] text-red-500 font-light ml-1">
+                    {errors.phone_number.message}
+                  </span>
+                )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <Label className={LABEL_CLASS}>Home Size</Label>
-                  <Select>
-                    <SelectTrigger className={INPUT_CLASS}>
-                      <SelectValue placeholder="Select size" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="studio">Studio</SelectItem>
-                      <SelectItem value="1br">1 Bedroom</SelectItem>
-                      <SelectItem value="2br">2 Bedrooms</SelectItem>
-                      <SelectItem value="3br+">3+ Bedrooms</SelectItem>
-                      <SelectItem value="villa">Villa</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name="home_size"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        value={field.value || ""}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className={INPUT_CLASS}>
+                          <SelectValue placeholder="Select size" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Studio">Studio</SelectItem>
+                          <SelectItem value="1 Bedroom">1 Bedroom</SelectItem>
+                          <SelectItem value="2 Bedrooms">2 Bedrooms</SelectItem>
+                          <SelectItem value="3+ Bedrooms">
+                            3+ Bedrooms
+                          </SelectItem>
+                          <SelectItem value="Villa">Villa</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <Label className={LABEL_CLASS}>Budget Range</Label>
-                  <Select>
-                    <SelectTrigger className={INPUT_CLASS}>
-                      <SelectValue placeholder="Select range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="budget1">
-                        AED 5,000 - 15,000
-                      </SelectItem>
-                      <SelectItem value="budget2">
-                        AED 15,000 - 30,000
-                      </SelectItem>
-                      <SelectItem value="budget3">
-                        AED 30,000 - 50,000
-                      </SelectItem>
-                      <SelectItem value="budget4">AED 50,000+</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name="budget_range"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        value={field.value || ""}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className={INPUT_CLASS}>
+                          <SelectValue placeholder="Select range" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="AED 5,000 - 15,000">
+                            AED 5,000 - 15,000
+                          </SelectItem>
+                          <SelectItem value="AED 15,000 - 30,000">
+                            AED 15,000 - 30,000
+                          </SelectItem>
+                          <SelectItem value="AED 30,000 - 50,000">
+                            AED 30,000 - 50,000
+                          </SelectItem>
+                          <SelectItem value="AED 50,000+">
+                            AED 50,000+
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                 </div>
               </div>
 
@@ -268,7 +356,7 @@ export default function DesignServiceSession() {
                       type="button"
                       onClick={() => toggleRoom(room)}
                       className={`px-4 py-2 rounded-[8px] text-[12px] font-medium transition-all cursor-pointer ${
-                        selectedRooms.includes(room)
+                        selectedRooms?.includes(room)
                           ? "bg-[#C4A36B]/5 border border-[#C4A36B] text-[#412A1F]"
                           : "bg-[#FFF8F0] border border-[#E8E1DA] text-[#8F877C] hover:border-[#C4A36B]/50"
                       }`}
@@ -280,22 +368,24 @@ export default function DesignServiceSession() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label htmlFor="extra" className={LABEL_CLASS}>
+                <Label htmlFor="anything_else" className={LABEL_CLASS}>
                   Anything else?
                 </Label>
                 <Textarea
-                  id="extra"
+                  id="anything_else"
                   placeholder="Style preferences, move-in date, specific requests..."
                   className="bg-[#FFF8F0] border-[#E8E1DA] focus-visible:ring-[#C4A36B]/30 min-h-[120px] text-[13px] font-light rounded-[8px] resize-y p-4 placeholder:text-[#8F877C]/70 transition-all"
+                  {...register("anything_else")}
                 />
               </div>
 
               <Button
                 type="submit"
-                className="group w-full rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-4 py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4"
+                disabled={isPending}
+                className="group w-full rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-4 py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 <span className="flex-1 text-center pr-4">
-                  Request My Design Call
+                  {isPending ? "Submitting..." : "Request My Design Call"}
                 </span>
                 <div className="bg-[#FDF4E7] rounded-full p-2.5 text-[#3D261C] transition-transform duration-300 group-hover:scale-95 shrink-0">
                   <Image

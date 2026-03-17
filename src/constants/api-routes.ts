@@ -35,4 +35,7 @@ export const API_ROUTES = {
 
   // ─── Newsletter ─────────────────────────────────────────────
   NEWSLETTER_SUBSCRIBE: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/newsletter/subscribe/`,
+
+  // ─── Design Calls ───────────────────────────────────────────
+  DESIGN_CALLS: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/design-calls/`,
 } as const;
