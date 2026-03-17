@@ -19,7 +19,7 @@ function toCarouselItem(prod: ProductListItem): CarouselItemData {
 }
 
 export default function SingleItems() {
-  const { data, isLoading } = useProducts({ is_featured: true, page_size: 4 });
+  const { data, isLoading } = useProducts({ is_featured: true });
 
   const items: CarouselItemData[] = isLoading
     ? []

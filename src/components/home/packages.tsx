@@ -24,7 +24,7 @@ function toCarouselItem(pkg: PackageListItem): CarouselItemData {
 }
 
 export default function Packages() {
-  const { data, isLoading } = usePackages({ is_featured: true, page_size: 4 });
+  const { data, isLoading } = usePackages({ is_featured: true });
 
   const items: CarouselItemData[] = isLoading
     ? []
