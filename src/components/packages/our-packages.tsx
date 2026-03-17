@@ -37,8 +37,8 @@ export function OurPackages() {
           <div className="h-12 w-64 bg-[#F0EBE4] rounded mx-auto mb-4 animate-pulse" />
           <div className="h-4 w-96 bg-[#F0EBE4] rounded mx-auto animate-pulse" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {[...Array(4)].map((_, i) => (
               <PackageSkeleton key={i} />
             ))}
@@ -63,8 +63,8 @@ export function OurPackages() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {data.results.map((pkg) => (
             <PackageCard
               key={pkg.id}
