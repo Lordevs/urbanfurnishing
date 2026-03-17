@@ -2,10 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
-import { ROUTES } from "@/constants/route";
 import { cn } from "@/lib/utils";
 
 const plans = [
