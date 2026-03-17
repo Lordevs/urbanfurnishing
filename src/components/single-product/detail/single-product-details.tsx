@@ -70,8 +70,7 @@ export default function SingleProductDetails({
             className="w-6 h-6 text-[#C9A76A]"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
+            stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -163,14 +162,12 @@ export default function SingleProductDetails({
             {/* Arrows */}
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
-            >
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors opacity-0 group-hover:opacity-100 cursor-pointer">
               <ChevronLeft className="w-5 h-5 text-[#1A1A1A]" />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
-            >
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors opacity-0 group-hover:opacity-100 cursor-pointer">
               <ChevronRight className="w-5 h-5 text-[#1A1A1A]" />
             </button>
           </div>
@@ -186,8 +183,7 @@ export default function SingleProductDetails({
                     activeImage === idx
                       ? "border-[#412A1F] shadow-sm scale-100"
                       : "border-transparent hover:border-[#EBEBEB] scale-[0.98]"
-                  }`}
-                >
+                  }`}>
                   <Image
                     src={img}
                     alt={`${data.name} Thumbnail ${idx + 1}`}
@@ -254,8 +250,7 @@ export default function SingleProductDetails({
               <div className="flex items-center gap-6">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-[44px] h-[44px] flex items-center justify-center border border-[#EBEBEB] rounded-[8px] text-[#1A1A1A] transition-all hover:border-[#412A1F] cursor-pointer"
-                >
+                  className="w-[44px] h-[44px] flex items-center justify-center border border-[#EBEBEB] rounded-[8px] text-[#1A1A1A] transition-all hover:border-[#412A1F] cursor-pointer">
                   <Minus className="w-4 h-4" />
                 </button>
                 <div className="text-[16px] font-semibold text-[#1A1A1A] min-w-[20px] text-center">
@@ -263,8 +258,7 @@ export default function SingleProductDetails({
                 </div>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-[44px] h-[44px] flex items-center justify-center border border-[#EBEBEB] rounded-[8px] text-[#1A1A1A] transition-all hover:border-[#412A1F] cursor-pointer"
-                >
+                  className="w-[44px] h-[44px] flex items-center justify-center border border-[#EBEBEB] rounded-[8px] text-[#1A1A1A] transition-all hover:border-[#412A1F] cursor-pointer">
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
@@ -280,8 +274,7 @@ export default function SingleProductDetails({
                 data.stock !== 0 && data.is_in_stock !== false
                   ? "bg-primary hover:bg-primary/90 text-white cursor-pointer"
                   : "bg-gray-200 text-gray-500 cursor-not-allowed"
-              }`}
-            >
+              }`}>
               {data.stock !== 0 && data.is_in_stock !== false ? (
                 <>
                   <span className="flex-1 text-center">Add to Cart</span>
@@ -306,8 +299,7 @@ export default function SingleProductDetails({
                 data.stock !== 0 && data.is_in_stock !== false
                   ? "bg-white text-[#1A1A1A] hover:bg-gray-50 cursor-pointer"
                   : "bg-gray-100 text-gray-400 cursor-not-allowed"
-              }`}
-            >
+              }`}>
               {data.stock !== 0 && data.is_in_stock !== false
                 ? "Buy Now"
                 : "Out of Stock"}
@@ -342,8 +334,7 @@ export default function SingleProductDetails({
                     activeTab === tab
                       ? "text-[#1A1A1A]"
                       : "text-[#888888] hover:text-[#1A1A1A]"
-                  }`}
-                >
+                  }`}>
                   {tab}
                   {activeTab === tab && (
                     <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#412A1F]" />
@@ -371,8 +362,7 @@ export default function SingleProductDetails({
                   data.specifications.map((spec, idx) => (
                     <div
                       key={idx}
-                      className="flex justify-between items-center bg-[#FAFAFA] px-5 py-3.5 rounded-[12px]"
-                    >
+                      className="flex justify-between items-center bg-[#FAFAFA] px-5 py-3.5 rounded-[12px]">
                       <span className="text-[#888888] text-[14px] font-medium">
                         {spec.key}
                       </span>
@@ -397,8 +387,7 @@ export default function SingleProductDetails({
                     return (
                       <div
                         key={idx}
-                        className="flex items-center gap-5 bg-[#FAFAFA] px-6 py-4 rounded-[12px] group hover:bg-[#F5F5F5] transition-colors"
-                      >
+                        className="flex items-center gap-5 bg-[#FAFAFA] px-6 py-4 rounded-[12px] group hover:bg-[#F5F5F5] transition-colors">
                         <div className="w-10 h-10 bg-[#412A1F] rounded-[8px] flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
                           <span className="text-white text-[16px] font-bold">
                             {quantity}
