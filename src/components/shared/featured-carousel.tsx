@@ -5,6 +5,8 @@ import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import { ROUTES } from "@/constants/route";
+
 import {
   Carousel,
   CarouselContent,
@@ -59,6 +61,7 @@ export function FeaturedCarousel({
       image: item.image,
       itemType: item.itemType,
     });
+    router.push(ROUTES.CART);
   };
   return (
     <section className="py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">

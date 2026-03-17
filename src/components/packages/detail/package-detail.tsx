@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight, Plus, Minus, Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,7 @@ const Accordion = ({
 };
 
 export function PackageDetail({ slug }: { slug: string }) {
+  const router = useRouter();
   const { data: pkg, isLoading, error } = usePackageDetail(slug);
   const [activeImage, setActiveImage] = useState(0);
   const [selectedTypeIndex, setSelectedTypeIndex] = useState(0);
@@ -72,6 +74,7 @@ export function PackageDetail({ slug }: { slug: string }) {
       selectedAddOnIds: [],
       selectedAddOns: [],
     });
+    router.push(ROUTES.CART);
   };
 
   if (isLoading) {

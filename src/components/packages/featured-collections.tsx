@@ -91,6 +91,7 @@ export function FeaturedCollections() {
       color: item.category,
       itemType: item.itemType || "PACKAGE",
     });
+    router.push(ROUTES.CART);
   };
 
   const getPageNumbers = () => {

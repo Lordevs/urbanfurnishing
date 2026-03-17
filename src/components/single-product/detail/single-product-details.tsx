@@ -122,6 +122,7 @@ export default function SingleProductDetails({
       itemType: "PRODUCT",
       slug: slug,
     });
+    router.push(ROUTES.CART);
   };
 
   const handleBuyNow = () => {
