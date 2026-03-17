@@ -16,7 +16,7 @@ export default function SignatureDesign() {
       id="design-expert"
       className="w-full lg:py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden">
       {/* Mobile View */}
-      <div className="block lg:hidden">
+      <div className="block lg:hidden py-10 lg:py-0">
         <h2 className="text-3xl sm:text-[32px] font-serif font-semibold tracking-tight mb-4 leading-[1.2]">
           <span className="text-[#3D261C] font-serif">Our </span>
           <span className="text-[#C9A76A] font-serif">Signature Design</span>
