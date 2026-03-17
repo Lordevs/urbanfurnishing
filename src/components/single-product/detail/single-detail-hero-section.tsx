@@ -2,23 +2,21 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 
 import { PrimaryButton } from "@/components/common/primary-button";
 import { SecondaryButton } from "@/components/common/secondary-button";
 import { HeroSection } from "@/components/shared/hero-section";
-import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
 export default function SingleProductDetailHero() {
   return (
     <>
       {/* Mobile View */}
-      <div className="md:hidden relative w-full h-[85dvh] pb-15 sm:pb-0 flex flex-col pt-[100px] bg-[#3D261C] overflow-hidden sm:rounded-none">
+      <div className="md:hidden relative w-full h-auto flex flex-col pt-30 bg-[#3D261C] overflow-hidden sm:rounded-none mb-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/landing/packages/packages-hero-section.webp"
-            alt="Single Detail Hero"
+            src="/landing/single-products/single-products.webp"
+            alt="Single Products Hero"
             fill
             className="object-cover w-full h-full opacity-60 mix-blend-overlay"
             priority
@@ -32,16 +30,16 @@ export default function SingleProductDetailHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
+              className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
             >
               Expertly Curated <br />
-              Room Collections
+              <span className="text-[#C9A76A] font-serif">Room Products.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4"
+              className="text-sm leading-[1.6] text-white/95 mb-8 font-light pr-4"
             >
               Designer-selected furniture packages that bring harmony to your
               space. Each collection is thoughtfully coordinated to save you
@@ -58,11 +56,11 @@ export default function SingleProductDetailHero() {
                 label="Get in Touch"
                 mbLabel="Get in Touch"
               />
-              <Link href={ROUTES.SINGLE_PRODUCTS} className="w-full">
-                <Button className="w-full bg-white/70 backdrop-blur-md text-[#412A1F] hover:bg-white/80 rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center px-8 border-none shadow-none">
-                  Explore Products
-                </Button>
-              </Link>
+
+              <SecondaryButton
+                label="Explore Products"
+                href={ROUTES.SINGLE_PRODUCTS}
+              />
             </motion.div>
           </div>
         </div>

@@ -30,14 +30,16 @@ export function OurPackages() {
         </p>
       </div>
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {data.results.map((pkg) => (
             <PackageCard
               key={pkg.id}
               title={pkg.name}
               description={pkg.description || ""}
-              image={pkg.thumbnail || "/landing/packages/packages-product-img-1.webp"}
+              image={
+                pkg.thumbnail || "/landing/packages/packages-product-img-1.webp"
+              }
               badge={`AED ${pkg.starting_price?.toLocaleString() || "0"}`}
               href={`/packages/${pkg.slug}`}
               options={pkg.properties_info.map((prop) => ({

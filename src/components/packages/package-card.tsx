@@ -27,9 +27,12 @@ export function PackageCard({
   href,
 }: PackageCardProps) {
   return (
-    <div className="group bg-white rounded-3xl overflow-hidden border border-gray-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow duration-300">
+    <Link
+      href={href}
+      className="group bg-white rounded-3xl overflow-hidden border border-gray-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+    >
       {/* Image Section */}
-      <div className="relative h-[280px] w-full overflow-hidden">
+      <div className="relative h-[320px] w-full overflow-hidden">
         <Image
           src={image}
           alt={title}
@@ -50,12 +53,12 @@ export function PackageCard({
           <div className="p-2 rounded-lg bg-gray-50">
             <Home className="w-5 h-5 text-[#412A1F]" />
           </div>
-          <h3 className="text-xl font-serif font-semibold text-[#412A1F]">
+          <h3 className="text-lg sm:text-xl font-semibold font-serif text-[#1A1A1A]">
             {title}
           </h3>
         </div>
 
-        <p className="text-sm text-gray-500 leading-relaxed mb-6 line-clamp-3">
+        <p className="text-sm text-[#4A5565] leading-relaxed mb-6 line-clamp-3">
           {description}
         </p>
 
@@ -64,25 +67,20 @@ export function PackageCard({
           {options.map((option, idx) => (
             <div
               key={idx}
-              className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0"
+              className="flex items-center justify-between py-2 border-b border-[#F3F4F6] last:border-0 text-[#4A5565] text-sm"
             >
-              <span className="text-sm text-[#412A1F]/80">{option.label}</span>
-              <span className="text-sm font-semibold text-[#412A1F]">
-                from {option.price}
-              </span>
+              <span className="text-sm">{option.label}</span>
+              <span>from {option.price}</span>
             </div>
           ))}
         </div>
 
         {/* View Details Button */}
-        <Link
-          href={href}
-          className="mt-auto flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-[#412A1F] text-white text-sm font-medium hover:bg-[#2C1A11] transition-colors group/btn"
-        >
+        <div className="mt-auto flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-[#412A1F] text-white text-sm font-medium hover:bg-[#2C1A11] transition-colors group/btn">
           View Details
           <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

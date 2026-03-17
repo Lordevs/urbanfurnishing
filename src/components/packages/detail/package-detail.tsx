@@ -167,10 +167,10 @@ export function PackageDetail({ slug }: { slug: string }) {
 
           {/* Right: Detailed Info */}
           <div className="flex flex-col">
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#412A1F] mb-4">
+            <h1 className="text-4xl sm:text-5xl font-serif font-medium text-[#412A1F] mb-4">
               {pkg.name}
             </h1>
-            <p className="text-2xl font-bold text-[#412A1F] mb-8">
+            <p className="text-2xl font-regular text-[#412A1F] mb-8">
               AED{" "}
               {Number(
                 selectedType?.price || pkg.starting_price || 0,
@@ -179,7 +179,7 @@ export function PackageDetail({ slug }: { slug: string }) {
 
             {pkg.properties.length > 0 && (
               <div className="mb-10">
-                <p className="text-[11px] text-[#412A1F]/60 font-medium mb-4">
+                <p className="text-xs text-[#4A5565] font-medium mb-4">
                   Select Property Type
                 </p>
                 <div className="flex flex-col gap-2">
@@ -190,12 +190,12 @@ export function PackageDetail({ slug }: { slug: string }) {
                       className={`w-full px-5 h-[52px] flex items-center justify-between border rounded-lg transition-all ${
                         selectedTypeIndex === idx
                           ? "bg-[#412A1F] border-[#412A1F] text-white"
-                          : "bg-white border-gray-100 text-[#412A1F] hover:border-[#412A1F]/20"
+                          : "bg-white border-[#D1D5DC] text-[#412A1F] hover:border-[#412A1F]/20"
                       }`}
                     >
                       <span className="text-sm">{type.name}</span>
                       <span
-                        className={`text-sm font-bold ${selectedTypeIndex === idx ? "text-white" : "text-[#412A1F]/60"}`}
+                        className={`text-sm ${selectedTypeIndex === idx ? "text-white" : "text-[#412A1F]"}`}
                       >
                         AED {Number(type.price).toLocaleString()}
                       </span>
@@ -278,12 +278,15 @@ export function PackageDetail({ slug }: { slug: string }) {
               )}
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 space-y-1">
+              <p className="text-sm text-gray-500">Need help deciding?</p>
               <p className="text-sm text-gray-500">
-                Need help deciding?{" "}
-                <button className="text-[#412A1F] font-bold underline underline-offset-4 decoration-[#412A1F]/30 hover:decoration-[#412A1F]">
+                <Link
+                  href={ROUTES.BOOK_CONSULTATION}
+                  className="text-[#412A1F] font-bold underline underline-offset-4 decoration-[#412A1F]/30 hover:decoration-[#412A1F]"
+                >
                   Contact our team
-                </button>{" "}
+                </Link>{" "}
                 for a personalized consultation
               </p>
             </div>

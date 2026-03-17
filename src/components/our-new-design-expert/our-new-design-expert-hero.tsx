@@ -13,7 +13,7 @@ export default function OurDesignExpertHero() {
   return (
     <>
       {/* Mobile View */}
-      <div className="md:hidden relative w-full h-auto flex flex-col pt-20 bg-[#3D261C] overflow-hidden sm:rounded-none">
+      <div className="md:hidden relative w-full h-auto flex flex-col pt-30 bg-[#3D261C] overflow-hidden sm:rounded-none">
         <div className="absolute inset-0 z-0">
           <Image
             src="/landing/our-new-design-expert/our-design-expert.webp"
