@@ -31,8 +31,7 @@ export default function OurDesignExpertHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
-            >
+              className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
               Your Personal <br />
               <span className="text-[#C9A76A] font-serif">Design Expert</span>
             </motion.h1>
@@ -40,8 +39,7 @@ export default function OurDesignExpertHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-sm leading-[1.6] text-white/95 mb-8 font-light pr-4"
-            >
+              className="text-sm leading-[1.6] text-white/95 mb-8 font-light pr-4">
               Transform your space with professional interior design guidance.
               From concept to completion, we bring your vision to life with
               personalized service.
@@ -50,8 +48,7 @@ export default function OurDesignExpertHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4"
-            >
+              className="flex flex-col gap-4">
               <PrimaryButton
                 href={ROUTES.BOOK_CONSULTATION}
                 label="Get in Touch"
