@@ -62,12 +62,16 @@ export function PackageDetail({ slug }: { slug: string }) {
     if (!pkg || !selectedType) return;
 
     addItem({
-      id: selectedType.id,
+      id: pkg.id,
       slug: pkg.slug,
       name: `${pkg.name} - ${selectedType.name}`,
+      packageBaseName: pkg.name,
       price: Number(selectedType.price),
       image: images[0]?.image || "",
       itemType: "PACKAGE",
+      selectedPropertyId: selectedType.id,
+      selectedAddOnIds: [],
+      selectedAddOns: [],
     });
   };
 

@@ -178,11 +178,22 @@ export function PaymentForm({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       billing_address: addressData.billing as any,
       payment_method: paymentMethod === "card" ? "CARD" : "CASH_ON_DELIVERY",
-      items: items.map((i) => ({
-        id: i.id, // The UUID of package/product
-        item_type: i.itemType, // "PRODUCT" | "PACKAGE"
-        quantity: i.quantity,
-      })),
+      items: items.map((i) => {
+        if (i.itemType === "PACKAGE") {
+          return {
+            id: i.id,
+            item_type: "PACKAGE",
+            quantity: 1,
+            property_id: i.selectedPropertyId || i.id,
+            addon_ids: i.selectedAddOnIds || [],
+          };
+        }
+        return {
+          id: i.id,
+          item_type: "PRODUCT",
+          quantity: i.quantity,
+        };
+      }),
       ...(appliedPromo?.valid && { promo_code: appliedPromo.code }),
     };
 

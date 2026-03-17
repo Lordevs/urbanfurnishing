@@ -16,6 +16,7 @@ import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 import type { PromoValidateResponse } from "@/types/api";
 
+import { PackageCartItem } from "./package-cart-item";
 import { Button } from "../ui/button";
 
 export default function CartContent() {
@@ -98,58 +99,58 @@ export default function CartContent() {
             ) : (
               <>
                 <div className="flex flex-col gap-4">
-                  {items.map((item) => (
-                    <div
-                      key={item.id}
-                      className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F5F5F5]"
-                    >
-                      <div className="flex gap-4 mb-5">
-                        <div className="w-[84px] h-[84px] bg-[#F8F9FB] rounded-[16px] overflow-hidden relative shrink-0">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div className="flex flex-col justify-center gap-1">
-                          <h3 className="text-[15px] font-bold text-[#1a1a1a] leading-tight">
-                            {item.name}
-                          </h3>
-                          <p className="text-[13px] text-[#888888] font-medium italic">
-                            Living Room Package
-                          </p>
-                          <span className="text-[17px] font-bold text-[#1a1a1a] mt-1">
-                            {formatPrice(item.price)}
-                          </span>
-                        </div>
-                      </div>
+                  {items.map((item, index) => (
+                    <div key={item.id}>
+                      {item.itemType === "PACKAGE" ? (
+                        <PackageCartItem item={item} index={index} />
+                      ) : (
+                        <div className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#F5F5F5]">
+                          <div className="flex gap-4 mb-5">
+                            <div className="w-[84px] h-[84px] bg-[#F8F9FB] rounded-[16px] overflow-hidden relative shrink-0">
+                              <Image
+                                src={item.image}
+                                alt={item.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="flex flex-col justify-center gap-1">
+                              <h3 className="text-[15px] font-bold text-[#1a1a1a] leading-tight">
+                                {item.name}
+                              </h3>
+                              <span className="text-[17px] font-bold text-[#1a1a1a] mt-1">
+                                {formatPrice(item.price)}
+                              </span>
+                            </div>
+                          </div>
 
-                      <div className="flex justify-between items-center pt-1">
-                        <div className="flex items-center bg-[#F8F9FB] rounded-full px-4 h-10 w-32 justify-between">
-                          <button
-                            onClick={() => decrement(item.id)}
-                            className="text-[#1a1a1a] text-[18px] font-medium p-1 cursor-pointer"
-                          >
-                            −
-                          </button>
-                          <span className="text-[15px] font-bold text-[#1a1a1a]">
-                            {item.quantity}
-                          </span>
-                          <button
-                            onClick={() => increment(item.id)}
-                            className="text-[#1a1a1a] text-[18px] font-medium p-1 cursor-pointer"
-                          >
-                            +
-                          </button>
+                          <div className="flex justify-between items-center pt-1">
+                            <div className="flex items-center bg-[#F8F9FB] rounded-full px-4 h-10 w-32 justify-between">
+                              <button
+                                onClick={() => decrement(item.id)}
+                                className="text-[#1a1a1a] text-[18px] font-medium p-1 cursor-pointer"
+                              >
+                                −
+                              </button>
+                              <span className="text-[15px] font-bold text-[#1a1a1a]">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() => increment(item.id)}
+                                className="text-[#1a1a1a] text-[18px] font-medium p-1 cursor-pointer"
+                              >
+                                +
+                              </button>
+                            </div>
+                            <button
+                              onClick={() => removeItem(item.id)}
+                              className="text-[13px] font-semibold text-[#FF4D4D] cursor-pointer hover:opacity-80 transition-opacity"
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </div>
-                        <button
-                          onClick={() => removeItem(item.id)}
-                          className="text-[13px] font-semibold text-[#FF4D4D] cursor-pointer hover:opacity-80 transition-opacity"
-                        >
-                          Remove
-                        </button>
-                      </div>
+                      )}
                     </div>
                   ))}
                 </div>

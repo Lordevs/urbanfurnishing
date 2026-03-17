@@ -9,15 +9,20 @@ import React, {
 } from "react";
 
 export interface CartItem {
-  id: string; // UUID from backend
+  id: string; // Product ID or Root Package ID (expected by backend)
   slug: string; // needed at order time
   name: string;
-  price: number; // number — not string, no more regex parsing
+  price: number;
   image: string;
   quantity: number;
   itemType: "PRODUCT" | "PACKAGE";
   size?: string;
   color?: string;
+  // Package-specific fields
+  selectedPropertyId?: string;
+  selectedAddOnIds?: string[];
+  selectedAddOns?: Array<{ id: string; title: string; price: number }>;
+  packageBaseName?: string;
 }
 
 interface CartContextType {
@@ -26,6 +31,7 @@ interface CartContextType {
   cartCount: number;
   isLoaded: boolean;
   addItem: (item: Omit<CartItem, "quantity"> & { quantity?: number }) => void;
+  updateItem: (id: string, updates: Partial<CartItem>) => void;
   removeItem: (id: string) => void;
   increment: (id: string) => void;
   decrement: (id: string) => void;
@@ -37,12 +43,6 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 const CART_STORAGE_KEY = "uf_cart";
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  /**
-   * Initialize items directly from localStorage via the useState lazy initializer.
-   * This pattern avoids calling setState inside a useEffect body (which the React
-   * Compiler flags as a cascading-render risk). The lazy initializer runs once on
-   * mount, server-side it simply returns [] since window is undefined.
-   */
   const [items, setItems] = useState<CartItem[]>(() => {
     if (typeof window === "undefined") return [];
     try {
@@ -53,9 +53,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  // isLoaded uses the same lazy-initializer pattern as items:
-  // returns true immediately on the client, false on the server (SSR).
-  // No useEffect needed — no cascading renders.
   const [isLoaded] = useState<boolean>(() => typeof window !== "undefined");
 
   useEffect(() => {
@@ -79,14 +76,34 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   ) => {
     const quantity = newItem.quantity ?? 1;
     setItems((prev) => {
-      const existing = prev.find((i) => i.id === newItem.id);
-      if (existing) {
-        return prev.map((i) =>
-          i.id === newItem.id ? { ...i, quantity: i.quantity + quantity } : i,
-        );
+      const existingIndex = prev.findIndex((i) => i.id === newItem.id);
+
+      if (existingIndex > -1) {
+        return prev.map((item, index) => {
+          if (index === existingIndex) {
+            if (item.itemType === "PACKAGE") {
+              // Replace existing package with new selection (new property/addons)
+              return { ...newItem, quantity: 1 } as CartItem;
+            }
+            // Increment product quantity
+            return {
+              ...item,
+              quantity: item.quantity + quantity,
+            };
+          }
+          return item;
+        });
       }
-      return [...prev, { ...newItem, quantity }];
+
+      // Add new item
+      return [...prev, { ...newItem, quantity: newItem.itemType === "PACKAGE" ? 1 : quantity } as CartItem];
     });
+  };
+
+  const updateItem = (id: string, updates: Partial<CartItem>) => {
+    setItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, ...updates } : item)),
+    );
   };
 
   const removeItem = (id: string) =>
@@ -94,18 +111,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const increment = (id: string) =>
     setItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-      ),
+      prev.map((item) => {
+        if (item.id === id) {
+          // Don't increment quantity for packages
+          if (item.itemType === "PACKAGE") return item;
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      }),
     );
 
   const decrement = (id: string) =>
     setItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item,
-      ),
+      prev.map((item) => {
+        if (item.id === id) {
+          // Don't decrement quantity for packages below 1 (handled by parent logic usually)
+          if (item.itemType === "PACKAGE") return item;
+          return { ...item, quantity: Math.max(1, item.quantity - 1) };
+        }
+        return item;
+      }),
     );
 
   const clearCart = () => setItems([]);
@@ -118,6 +143,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         cartCount,
         isLoaded,
         addItem,
+        updateItem,
         removeItem,
         increment,
         decrement,

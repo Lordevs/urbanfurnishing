@@ -217,6 +217,8 @@ export const OrderItemSchema = z.object({
   item_type: z.enum(["PRODUCT", "PACKAGE"]),
   id: z.string().uuid(),
   quantity: z.number().int().min(1),
+  property_id: z.string().uuid().optional(),
+  addon_ids: z.array(z.string().uuid()).optional(),
 });
 
 export const OrderPayloadSchema = z.object({
