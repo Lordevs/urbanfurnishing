@@ -48,7 +48,7 @@ export default function SignatureDesign() {
           ))}
         </ul>
 
-        <Link href={ROUTES.BOOK_CONSULTATION}>
+        <Link href={`${ROUTES.OUR_NEW_DESIGN_EXPERT}#design-call`}>
           <button className="bg-[#3D261C] text-white text-[12px] px-6 py-3.5 rounded-[6px] font-medium mb-10 tracking-wide hover:bg-[#2C1A11] transition-colors cursor-pointer">
             Book Consultation
           </button>
@@ -151,7 +151,7 @@ export default function SignatureDesign() {
           {/* Buttons */}
           <div className="flex flex-wrap items-center gap-4 mt-2">
             <PrimaryButton
-              href={ROUTES.BOOK_CONSULTATION}
+              href={`${ROUTES.OUR_NEW_DESIGN_EXPERT}#design-call`}
               label="Meet the Team"
               mbLabel="Meet the Team"
               className="h-auto shadow-none"

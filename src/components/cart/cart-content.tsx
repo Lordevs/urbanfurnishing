@@ -42,7 +42,7 @@ export default function CartContent() {
   };
 
   return (
-    <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 py-12 lg:py-20 w-full min-h-[60vh] bg-[#F8F9FB] lg:bg-transparent">
+    <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 py-12 lg:pb-20 w-full min-h-[60vh] bg-[#F8F9FB] lg:bg-transparent">
       <div className="hidden lg:block w-full">
         <CheckoutSteps currentStep={currentStep} />
       </div>

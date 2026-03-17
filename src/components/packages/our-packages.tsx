@@ -4,14 +4,47 @@ import { usePackages } from "@/hooks/queries/use-packages";
 
 import { PackageCard } from "./package-card";
 
+function PackageSkeleton() {
+  return (
+    <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 flex flex-col h-full animate-pulse">
+      <div className="h-[320px] w-full bg-[#F0EBE4]" />
+      <div className="p-8 flex flex-col flex-1 gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-[#F0EBE4]" />
+          <div className="h-6 w-32 bg-[#F0EBE4] rounded" />
+        </div>
+        <div className="space-y-2">
+          <div className="h-4 w-full bg-[#F0EBE4] rounded" />
+          <div className="h-4 w-5/6 bg-[#F0EBE4] rounded" />
+        </div>
+        <div className="space-y-3 mt-4">
+          <div className="h-8 w-full bg-[#F0EBE4] rounded" />
+          <div className="h-8 w-full bg-[#F0EBE4] rounded" />
+        </div>
+        <div className="mt-auto h-12 w-full bg-[#F0EBE4] rounded-xl" />
+      </div>
+    </div>
+  );
+}
+
 export function OurPackages() {
   const { data, isLoading, error } = usePackages();
 
   if (isLoading) {
     return (
-      <div className="py-24 flex justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#412A1F]"></div>
-      </div>
+      <section className="pb-24 pt-12 bg-[#FAFAFA]">
+        <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
+          <div className="h-12 w-64 bg-[#F0EBE4] rounded mx-auto mb-4 animate-pulse" />
+          <div className="h-4 w-96 bg-[#F0EBE4] rounded mx-auto animate-pulse" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            {[...Array(4)].map((_, i) => (
+              <PackageSkeleton key={i} />
+            ))}
+          </div>
+        </div>
+      </section>
     );
   }
 
@@ -20,7 +53,7 @@ export function OurPackages() {
   }
 
   return (
-    <section className="py-24 bg-[#FAFAFA]">
+    <section className="pb-24 pt-12 bg-[#FAFAFA]">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
         <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-[#412A1F] mb-4">
           Our Packages

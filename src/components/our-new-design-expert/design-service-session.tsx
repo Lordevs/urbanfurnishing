@@ -66,7 +66,7 @@ export default function DesignServiceSession() {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-10 lg:px-16 mx-auto bg-[#FDFBF9]">
+    <section id="design-call" className="py-20 px-4 sm:px-10 lg:px-16 mx-auto bg-[#FDFBF9]">
       {/* Section Header */}
       <div className="mb-16">
         <div className="text-center">
