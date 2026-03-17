@@ -183,10 +183,12 @@ export default function ServiceLevels() {
                 ))}
               </ul>
 
-              <Button 
+              <Button
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("design-call")?.scrollIntoView({ behavior: "smooth" });
+                  document
+                    .getElementById("design-call")
+                    ?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className="w-full h-[52px] bg-[#422C20] hover:bg-[#3D261C] text-white rounded-[12px] text-[14px] font-medium shadow-sm transition-all focus:ring-0 cursor-pointer">
                 {plan.buttonText}
@@ -323,7 +325,9 @@ export default function ServiceLevels() {
                 <Button
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById("design-call")?.scrollIntoView({ behavior: "smooth" });
+                    document
+                      .getElementById("design-call")
+                      ?.scrollIntoView({ behavior: "smooth" });
                   }}
                   className={cn(
                     "w-full h-[52px] sm:h-[56px] rounded-[10px] sm:rounded-[12px] text-[15px] font-normal transition-all shadow-none hover:-translate-y-0.5 hover:shadow-lg cursor-pointer",
