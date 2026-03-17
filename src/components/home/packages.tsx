@@ -17,9 +17,8 @@ function toCarouselItem(pkg: PackageListItem): CarouselItemData {
     fields: [
       {
         label: "Package",
-        value: pkg.package_type_display ?? pkg.package_type ?? "",
+        value: pkg.tag ?? "",
       },
-      { label: "Category", value: pkg.category_name ?? "" },
     ],
   };
 }
