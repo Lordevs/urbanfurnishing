@@ -12,7 +12,6 @@ import {
 
 function buildUrl(base: string, filters: PackageFilters): string {
   const params = new URLSearchParams();
-  if (filters.package_type) params.set("package_type", filters.package_type);
   if (filters.category__slug)
     params.set("category__slug", filters.category__slug);
   if (filters.tag) params.set("tag", filters.tag);

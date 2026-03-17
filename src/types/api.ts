@@ -115,64 +115,76 @@ export type ProductDetail = z.infer<typeof ProductDetailSchema>;
 
 // ─── Packages ────────────────────────────────────────────────────────────────
 
+export const PackagePropertiesInfoSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  price: z.number(),
+});
+
 export const PackageListItemSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
   slug: z.string(),
-  short_description: z.string().optional().nullable(),
-  package_type: z.enum(["STUDIO", "APARTMENT", "ROOM"]).optional().nullable(),
-  package_type_display: z.string().optional().nullable(),
-  category: z.string().uuid().or(CategorySchema).optional().nullable(),
-  category_name: z.string().optional().nullable(),
-  actual_price: z.string(),
-  discounted_price: z.string().optional().nullable(),
-  effective_price: z.string().optional().nullable(),
-  money_saved: z.string().optional().nullable(),
-  discount_percentage: z.number().optional().nullable(),
   tag: z.string().optional().nullable(),
+  description: z.string().optional().nullable(),
   is_featured: z.boolean().optional(),
-  is_in_stock: z.boolean().optional(),
+  starting_price: z.number().nullable(),
+  property_count: z.number().optional(),
+  properties_info: z.array(PackagePropertiesInfoSchema).optional().default([]),
   thumbnail: z.string().optional().nullable(),
-  badges: z.array(ProductBadgeSchema).optional().default([]),
 });
 
-export const PackageDetailSchema = PackageListItemSchema.extend({
+export const PackageItemSchema = z.object({
+  id: z.string().uuid(),
+  product_id: z.string().uuid(),
+  product_name: z.string(),
+  product_slug: z.string(),
+  product_thumbnail: z.string().nullable(),
+  quantity: z.number(),
+  display_order: z.number(),
+});
+
+export const PackagePropertySchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  price: z.string(),
+  features: z.preprocess(parseJsonArray, z.array(z.string())),
+  additional_info: z.preprocess(
+    parseJsonArray,
+    z.array(z.object({ key: z.string(), value: z.string() })),
+  ),
+  display_order: z.number(),
+  items: z.array(PackageItemSchema).optional().default([]),
+});
+
+export const PackageAddOnSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string(),
   description: z.string().optional().nullable(),
-  overview: z
-    .preprocess(parseJsonArray, z.array(z.string()))
-    .optional()
-    .default([]),
-  features: z
-    .preprocess(parseJsonArray, z.array(z.string()))
-    .optional()
-    .default([]),
-  features_and_benefits: z
-    .preprocess(parseJsonArray, z.array(z.string()))
-    .optional()
-    .default([]),
-  key_benefits: z
-    .preprocess(parseJsonArray, z.array(z.string()))
-    .optional()
-    .default([]),
-  benefits: z
-    .preprocess(parseJsonArray, z.array(z.string()))
-    .optional()
-    .default([]),
-  whats_included: z
-    .preprocess(
-      parseJsonArray,
-      z.array(z.object({ id: z.number().optional(), key: z.string(), value: z.string() })),
-    )
-    .optional()
-    .default([]),
-  specifications: z
-    .preprocess(
-      parseJsonArray,
-      z.array(z.object({ key: z.string(), value: z.string() })),
-    )
-    .optional()
-    .default([]),
-  images: z.array(ProductImageSchema).optional().default([]),
+  price: z.string(),
+  display_order: z.number(),
+});
+
+export const PackageImageSchema = z.object({
+  id: z.string().uuid(),
+  image: z.string(),
+  alt_text: z.string().optional().nullable(),
+  order: z.number(),
+});
+
+export const PackageDetailSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  slug: z.string(),
+  tag: z.string().optional().nullable(),
+  description: z.string().optional().nullable(),
+  is_featured: z.boolean().optional(),
+  starting_price: z.number().nullable(),
+  images: z.array(PackageImageSchema).optional().default([]),
+  properties: z.array(PackagePropertySchema).optional().default([]),
+  add_ons: z.array(PackageAddOnSchema).optional().default([]),
+  created_at: z.string().optional(),
+  updated_at: z.string().optional(),
 });
 
 export type PackageListItem = z.infer<typeof PackageListItemSchema>;
@@ -264,12 +276,11 @@ export type ProductFilters = {
 };
 
 export type PackageFilters = {
-  package_type?: "STUDIO" | "APARTMENT" | "ROOM";
   category__slug?: string;
-  tag?: "BEST_SELLER" | "VALUE_PACK" | "PREMIUM" | "NEW";
+  tag?: string;
   is_featured?: boolean;
   search?: string;
-  ordering?: "actual_price" | "-actual_price" | "created_at" | "-created_at";
+  ordering?: string;
   page?: number;
   page_size?: number;
 };
