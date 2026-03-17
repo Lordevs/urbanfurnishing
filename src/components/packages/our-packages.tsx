@@ -1,6 +1,7 @@
 "use client";
 
 import { usePackages } from "@/hooks/queries/use-packages";
+import type { PaginatedResponse, PackageListItem } from "@/types/api";
 
 import { PackageCard } from "./package-card";
 
@@ -28,7 +29,11 @@ function PackageSkeleton() {
 }
 
 export function OurPackages() {
-  const { data, isLoading, error } = usePackages();
+  const { data, isLoading, error } = usePackages() as {
+    data: PaginatedResponse<PackageListItem> | undefined;
+    isLoading: boolean;
+    error: Error | null;
+  };
 
   if (isLoading) {
     return (
@@ -65,7 +70,7 @@ export function OurPackages() {
 
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {data.results.map((pkg) => (
+          {data.results.map((pkg: PackageListItem) => (
             <PackageCard
               key={pkg.id}
               title={pkg.name}
@@ -75,7 +80,7 @@ export function OurPackages() {
               }
               badge={`AED ${pkg.starting_price?.toLocaleString() || "0"}`}
               href={`/packages/${pkg.slug}`}
-              options={pkg.properties_info.map((prop) => ({
+              options={pkg.properties_info.map((prop: { name: string; price: number }) => ({
                 label: prop.name,
                 price: `AED ${prop.price.toLocaleString()}`,
               }))}
