@@ -32,12 +32,12 @@ function Counter({
   direction?: "up" | "down";
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px 0px" });
 
   const spring = useSpring(direction === "up" ? 0 : value, {
     mass: 1,
-    stiffness: 100,
-    damping: 30,
+    stiffness: 250,
+    damping: 20,
   });
 
   const display = useTransform(spring, (current) =>
@@ -55,7 +55,7 @@ function Counter({
 
 export default function Stats() {
   return (
-    <section className="bg-white py-10">
+    <section className="bg-white pt-2 lg:py-10">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="grid grid-cols-3 gap-4 sm:gap-14 lg:gap-24 items-center justify-items-center">
           {stats.map((stat, index) => (
@@ -65,8 +65,7 @@ export default function Stats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col gap-1.5 sm:gap-3 items-center text-center group"
-            >
+              className="flex flex-col gap-1.5 sm:gap-3 items-center text-center group">
               <span className="text-3xl sm:text-5xl leading-none font-serif font-bold text-[#412A1F] tracking-tight group-hover:text-[#C9A76A] transition-colors duration-300">
                 <Counter value={stat.value} />
                 {stat.suffix}

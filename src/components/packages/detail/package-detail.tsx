@@ -24,8 +24,7 @@ const Accordion = ({
     <div className="border-b border-gray-100">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-5 flex items-center justify-between text-left group"
-      >
+        className="w-full py-5 flex items-center justify-between text-left group">
         <span className="text-xs font-bold text-[#412A1F] uppercase tracking-wider">
           {title}
         </span>
@@ -127,14 +126,12 @@ export function PackageDetail({ slug }: { slug: string }) {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     <ChevronLeft className="w-5 h-5 text-[#412A1F]" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     <ChevronRight className="w-5 h-5 text-[#412A1F]" />
                   </button>
                 </>
@@ -151,8 +148,7 @@ export function PackageDetail({ slug }: { slug: string }) {
                       activeImage === idx
                         ? "border-[#412A1F]"
                         : "border-transparent"
-                    }`}
-                  >
+                    }`}>
                     <Image
                       src={img.image}
                       alt="thumbnail"
@@ -191,12 +187,10 @@ export function PackageDetail({ slug }: { slug: string }) {
                         selectedTypeIndex === idx
                           ? "bg-[#412A1F] border-[#412A1F] text-white"
                           : "bg-white border-[#D1D5DC] text-[#412A1F] hover:border-[#412A1F]/20"
-                      }`}
-                    >
+                      }`}>
                       <span className="text-sm">{type.name}</span>
                       <span
-                        className={`text-sm ${selectedTypeIndex === idx ? "text-white" : "text-[#412A1F]"}`}
-                      >
+                        className={`text-sm ${selectedTypeIndex === idx ? "text-white" : "text-[#412A1F]"}`}>
                         AED {Number(type.price).toLocaleString()}
                       </span>
                     </button>
@@ -208,8 +202,7 @@ export function PackageDetail({ slug }: { slug: string }) {
             <div className="flex flex-col gap-3 mb-10">
               <Button
                 onClick={handleAddToCart}
-                className="w-full h-[58px] rounded-full text-[16px] font-medium flex items-center justify-center transition-all duration-300 relative group px-4 bg-[#412A1F] hover:bg-[#2C1A11] text-white cursor-pointer"
-              >
+                className="w-full h-[58px] rounded-full text-[16px] font-medium flex items-center justify-center transition-all duration-300 relative group px-4 bg-[#412A1F] hover:bg-[#2C1A11] text-white cursor-pointer">
                 <span className="flex-1 text-center">Add to Cart</span>
                 <div className="flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0">
                   <Image
@@ -224,8 +217,7 @@ export function PackageDetail({ slug }: { slug: string }) {
               <Button
                 asChild
                 variant="outline"
-                className="w-full h-14 border border-[#412A1F] text-[#412A1F] hover:bg-gray-50 rounded-lg text-xs font-bold uppercase tracking-widest"
-              >
+                className="w-full h-14 border border-[#412A1F] text-[#412A1F] hover:bg-gray-50 rounded-lg text-xs font-bold uppercase tracking-widest">
                 <Link href={ROUTES.BOOK_CONSULTATION}>
                   Schedule Consultation
                 </Link>
@@ -261,8 +253,7 @@ export function PackageDetail({ slug }: { slug: string }) {
                         {selectedType.additional_info.map((info, i) => (
                           <div
                             key={i}
-                            className="flex items-center justify-between pb-3 border-b border-gray-50 last:border-0 last:pb-0"
-                          >
+                            className="flex items-center justify-between pb-3 border-b border-gray-50 last:border-0 last:pb-0">
                             <span className="text-[13px] text-gray-400 font-medium">
                               {info.key}
                             </span>
@@ -283,8 +274,7 @@ export function PackageDetail({ slug }: { slug: string }) {
               <p className="text-sm text-gray-500">
                 <Link
                   href={ROUTES.BOOK_CONSULTATION}
-                  className="text-[#412A1F] font-bold underline underline-offset-4 decoration-[#412A1F]/30 hover:decoration-[#412A1F]"
-                >
+                  className="text-[#412A1F] font-bold underline underline-offset-4 decoration-[#412A1F]/30 hover:decoration-[#412A1F]">
                   Contact our team
                 </Link>{" "}
                 for a personalized consultation
@@ -306,8 +296,7 @@ export function PackageDetail({ slug }: { slug: string }) {
                 <Link
                   key={item.id}
                   href={ROUTES.SINGLE_PRODUCT_DETAIL(item.product_slug)}
-                  className="group cursor-pointer"
-                >
+                  className="group cursor-pointer">
                   <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 bg-white">
                     {item.product_thumbnail ? (
                       <Image
