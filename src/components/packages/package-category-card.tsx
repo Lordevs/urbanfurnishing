@@ -10,8 +10,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  // CarouselNext,
+  // CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { ROUTES } from "@/constants/route";
@@ -142,12 +142,12 @@ export function PackageCategoryCard({ category }: Props) {
                 </div>
               </div>
 
-              {slides.length > 1 && (
+              {/* {slides.length > 1 && (
                 <div onClick={(e) => e.stopPropagation()}>
                   <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 hover:bg-white z-40" />
                   <CarouselNext className="right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 hover:bg-white z-40" />
                 </div>
-              )}
+              )} */}
             </Carousel>
 
             {slides.length > 1 && (
@@ -170,7 +170,6 @@ export function PackageCategoryCard({ category }: Props) {
             No images available
           </div>
         )}
-
       </div>
 
       <div className="p-8 flex flex-col flex-1">
