@@ -26,7 +26,11 @@ export default function CartContent() {
   const [appliedPromo, setAppliedPromo] =
     useState<PromoValidateResponse | null>(null);
 
-  const { items, increment, decrement, removeItem } = useCart();
+  const { items, increment, decrement, removeItem, isLoaded } = useCart();
+
+  if (!isLoaded) {
+    return <div className="min-h-[60vh] bg-[#F8F9FB] lg:bg-transparent" />;
+  }
 
   const subtotal = items.reduce((acc, item) => {
     return acc + (item.price || 0) * item.quantity;

@@ -65,8 +65,8 @@ export function OurPackages({ categorySlug }: { categorySlug?: string } = {}) {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {data.results.map((pkg) => (
             <PackageCard
               key={pkg.id}

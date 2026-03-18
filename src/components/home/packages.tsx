@@ -17,15 +17,14 @@ function toCarouselItem(pkg: PackageListItem): CarouselItemData {
     fields: [
       {
         label: "Package",
-        value: pkg.package_type_display ?? pkg.package_type ?? "",
+        value: pkg.tag ?? "",
       },
-      { label: "Category", value: pkg.category_name ?? "" },
     ],
   };
 }
 
 export default function Packages() {
-  const { data, isLoading } = usePackages({ is_featured: true, page_size: 4 });
+  const { data, isLoading } = usePackages({ is_featured: true });
 
   const items: CarouselItemData[] = isLoading
     ? []

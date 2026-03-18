@@ -34,8 +34,7 @@ export default function CartHeroSection() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
-            >
+              className="text-[36px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
               Expertly Curated <br />
               <span className="text-[#C9A76A] font-serif">Room Products.</span>
             </motion.h1>
@@ -43,8 +42,7 @@ export default function CartHeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4"
-            >
+              className="text-[15px] leading-[1.6] text-white/95 mb-8 font-light pr-4">
               Designer-selected furniture packages that bring harmony to your
               space. Each collection is thoughtfully coordinated to save you
               time, money, and design guesswork
@@ -53,21 +51,16 @@ export default function CartHeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4"
-            >
-              <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
-                <Button className="w-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center gap-3 border shadow-none border-transparent">
-                  Get in Touch
-                  <div className="bg-[#FFF8F0] rounded-full w-[26px] h-[26px] flex items-center justify-center text-[#412A1F]">
-                    <ArrowDownRight className="h-[14px] w-[14px] stroke-2" />
-                  </div>
-                </Button>
-              </Link>
-              <Link href={ROUTES.SINGLE_PRODUCTS} className="w-full">
-                <Button className="w-full bg-white/70 backdrop-blur-md text-[#412A1F] hover:bg-white/80 rounded-full h-[52px] text-[15px] font-medium flex items-center justify-center px-8 border-none shadow-none">
-                  Explore Products
-                </Button>
-              </Link>
+              className="flex flex-col gap-4">
+              <PrimaryButton
+                href={ROUTES.BOOK_CONSULTATION}
+                label="Get in Touch"
+                mbLabel="Get in Touch"
+              />
+              <SecondaryButton
+                label="Explore Products"
+                href={ROUTES.SINGLE_PRODUCTS}
+              />
             </motion.div>
           </div>
         </div>

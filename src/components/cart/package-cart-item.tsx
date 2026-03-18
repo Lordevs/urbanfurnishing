@@ -17,7 +17,7 @@ interface PackageCartItemProps {
 export function PackageCartItem({ item, index }: PackageCartItemProps) {
   const { removeItem, updateItem } = useCart();
   const { data: pkg, isLoading } = usePackageDetail(item.slug);
-  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+  const [isOptionsOpen, setIsOptionsOpen] = useState(true);
 
   const formatPrice = (value: number) => {
     return `AED ${value.toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
@@ -29,7 +29,10 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
     if (!property) return;
 
     // Calculate new total price with existing add-ons
-    const addOnsTotal = (item.selectedAddOns || []).reduce((sum, addon) => sum + addon.price, 0);
+    const addOnsTotal = (item.selectedAddOns || []).reduce(
+      (sum, addon) => sum + addon.price,
+      0,
+    );
 
     updateItem(item.id, {
       name: `${pkg.name} - ${property.name}`,
@@ -52,18 +55,23 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
       newAddOns = newAddOns.filter((a) => a.id !== addonId);
     } else {
       newAddOnIds = [...newAddOnIds, addonId];
-      newAddOns = [...newAddOns, { id: addon.id, title: addon.title, price: Number(addon.price) }];
+      newAddOns = [
+        ...newAddOns,
+        { id: addon.id, title: addon.title, price: Number(addon.price) },
+      ];
     }
 
     // Get current property price
-    const currentProperty = pkg.properties.find(p => p.id === item.selectedPropertyId);
+    const currentProperty = pkg.properties.find(
+      (p) => p.id === item.selectedPropertyId,
+    );
     const basePrice = Number(currentProperty?.price || item.price);
     const addonsTotal = newAddOns.reduce((sum, a) => sum + a.price, 0);
 
     updateItem(item.id, {
       selectedAddOnIds: newAddOnIds,
       selectedAddOns: newAddOns,
-      price: basePrice + addonsTotal
+      price: basePrice + addonsTotal,
     });
   };
 
@@ -72,9 +80,8 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="flex flex-col border border-[#F2F2F2] rounded-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] bg-white overflow-hidden"
-    >
-      <div className="flex flex-col sm:flex-row items-center justify-between p-4 sm:p-6">
+      className="flex flex-col border border-[#F2F2F2] rounded-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] bg-white overflow-hidden">
+      <div className="flex flex-col sm:flex-row justify-between p-4 sm:p-6 items-stretch">
         <div className="flex items-center gap-6 w-full sm:w-auto">
           <div className="w-[110px] h-[110px] rounded-[18px] bg-[#F9F9F9] overflow-hidden relative shrink-0 border border-gray-50 shadow-sm">
             <Image
@@ -84,17 +91,17 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
               className="object-cover"
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col flex-1 h-full py-1">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-[10px] font-bold text-[#C9A76A] bg-[#C9A76A]/5 px-2 py-0.5 rounded-full uppercase tracking-wider">
                 Furnishing Package
               </span>
             </div>
             <h3 className="text-[17px] font-bold text-[#1A1A1A] mb-1">
-              {item.packageBaseName || item.name.split(' - ')[0]}
+              {item.packageBaseName || item.name.split(" - ")[0]}
             </h3>
-            <p className="text-[14px] text-[#888888] font-medium mb-2">
-              {item.name.split(' - ')[1] || "Default Property"}
+            <p className="text-[14px] text-[#888888] font-medium mb-auto">
+              {item.name.split(" - ")[1] || "Default Property"}
             </p>
             <span className="text-[18px] font-bold text-[#1A1A1A]">
               {formatPrice(item.price)}
@@ -102,20 +109,20 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
           </div>
         </div>
 
-        <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-4 mt-6 sm:mt-0 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0">
-          <button
-            onClick={() => setIsOptionsOpen(!isOptionsOpen)}
-            className="flex items-center gap-2 text-[13px] font-bold text-[#412A1F] hover:text-[#C9A76A] transition-colors"
-          >
-            Customize Options
-            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOptionsOpen ? 'rotate-180' : ''}`} />
-          </button>
+        <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between mt-6 sm:mt-0 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0 py-1">
           <button
             onClick={() => removeItem(item.id)}
-            className="text-[#ef4444] hover:text-[#dc2626] transition-colors cursor-pointer flex items-center gap-2 text-[13px] font-semibold"
-          >
+            className="text-[#ef4444] hover:text-[#dc2626] transition-colors cursor-pointer flex items-center gap-2 text-[13px] font-semibold sm:mt-[22px]">
             <Trash2 className="w-[16px] h-[16px]" strokeWidth={2} />
             <span className="sm:hidden">Remove</span>
+          </button>
+          <button
+            onClick={() => setIsOptionsOpen(!isOptionsOpen)}
+            className="flex items-center gap-2 text-[15px] font-bold text-[#412A1F] hover:text-[#C9A76A] transition-colors">
+            Customize Options
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-300 ${isOptionsOpen ? "rotate-180" : ""}`}
+            />
           </button>
         </div>
       </div>
@@ -137,10 +144,12 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
                       item.selectedPropertyId === prop.id
                         ? "bg-[#412A1F] border-[#412A1F] text-white shadow-md"
                         : "bg-white border-[#EEEEEE] text-[#1A1A1A] hover:border-[#412A1F]/30"
-                    }`}
-                  >
-                    <span className="text-[13px] font-semibold">{prop.name}</span>
-                    <span className={`text-[13px] font-bold ${item.selectedPropertyId === prop.id ? 'text-white/80' : 'text-[#888888]'}`}>
+                    }`}>
+                    <span className="text-[13px] font-semibold">
+                      {prop.name}
+                    </span>
+                    <span
+                      className={`text-[13px] font-bold ${item.selectedPropertyId === prop.id ? "text-white/80" : "text-[#888888]"}`}>
                       AED {Number(prop.price).toLocaleString()}
                     </span>
                   </button>
@@ -156,7 +165,9 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
                 </p>
                 <div className="flex flex-col gap-2">
                   {pkg.add_ons.map((addon) => {
-                    const isSelected = item.selectedAddOnIds?.includes(addon.id);
+                    const isSelected = item.selectedAddOnIds?.includes(
+                      addon.id,
+                    );
                     return (
                       <button
                         key={addon.id}
@@ -165,18 +176,26 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
                           isSelected
                             ? "bg-white border-[#412A1F] text-[#412A1F] ring-1 ring-[#412A1F]"
                             : "bg-white border-[#EEEEEE] text-[#1A1A1A] hover:border-[#412A1F]/30"
-                        }`}
-                      >
+                        }`}>
                         <div className="flex items-center gap-3">
-                          <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
-                            isSelected ? "bg-[#412A1F] border-[#412A1F]" : "bg-white border-[#DDDDDD]"
-                          }`}>
-                            {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                          <div
+                            className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
+                              isSelected
+                                ? "bg-[#412A1F] border-[#412A1F]"
+                                : "bg-white border-[#DDDDDD]"
+                            }`}>
+                            {isSelected && (
+                              <Check className="w-3.5 h-3.5 text-white" />
+                            )}
                           </div>
                           <div className="flex flex-col items-start">
-                            <span className="text-[13px] font-semibold">{addon.title}</span>
+                            <span className="text-[13px] font-semibold">
+                              {addon.title}
+                            </span>
                             {addon.description && (
-                              <span className="text-[11px] text-[#888888] line-clamp-1">{addon.description}</span>
+                              <span className="text-[11px] text-[#888888] line-clamp-1">
+                                {addon.description}
+                              </span>
                             )}
                           </div>
                         </div>
@@ -195,7 +214,7 @@ export function PackageCartItem({ item, index }: PackageCartItemProps) {
 
       {isLoading && isOptionsOpen && (
         <div className="p-10 flex justify-center bg-[#FAFAFA] border-t border-[#F5F5F5]">
-           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#412A1F]"></div>
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#412A1F]"></div>
         </div>
       )}
     </motion.div>

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 import { useDebounce } from "@/hooks/use-debounce";
 
@@ -100,6 +101,7 @@ export function ProductGrid({
       image: item.image,
       itemType: item.itemType,
     });
+    router.push(ROUTES.CART);
   };
 
   const filteredItems = onCategoryChange

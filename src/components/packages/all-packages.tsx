@@ -17,7 +17,7 @@ const TAG_COLOR: Record<string, string> = {
 };
 
 function toGridItem(pkg: PackageListItem): GridItemProps {
-  const actualPrice = parseFloat(pkg.actual_price);
+  const actualPrice = parseFloat(pkg.actual_price ?? "0");
   const discountedPrice = pkg.discounted_price
     ? parseFloat(pkg.discounted_price)
     : undefined;
@@ -129,9 +129,9 @@ export function AllPackages() {
   const activeCategoryName =
     selectedCategorySlug && categoryData
       ? (categoryData.find(
-          (c: { slug: string; name: string }) =>
-            c.slug === selectedCategorySlug,
-        )?.name ?? "All")
+        (c: { slug: string; name: string }) =>
+          c.slug === selectedCategorySlug,
+      )?.name ?? "All")
       : "All";
 
   const handleCategoryChange = (cat: string) => {

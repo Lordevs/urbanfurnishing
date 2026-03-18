@@ -49,10 +49,9 @@ export function ItemCarousel({
     <section
       id={id}
       className={cn(
-        "w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto py-20",
+        "w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto py-2 lg:py-20",
         className,
-      )}
-    >
+      )}>
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-6">
         <h2 className="text-3xl sm:text-6xl  font-semibold tracking-tight">
           <span className="text-[#1a1a1a] font-serif ">{titlePrefix} </span>
@@ -69,21 +68,18 @@ export function ItemCarousel({
             align: "start",
             loop: true,
           }}
-          className="w-full"
-        >
+          className="w-full">
           <CarouselContent className="-ml-3 sm:-ml-5">
             {items.map((item) => (
               <CarouselItem
                 key={item.id}
-                className="pl-3 sm:pl-5 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-              >
+                className="pl-3 sm:pl-5 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <Link
                   href={item.href || "#"}
                   className={cn(
                     "relative group rounded-[24px] overflow-hidden w-full aspect-3/4 sm:aspect-4/5 md:aspect-3/4 flex cursor-pointer border border-[#F5E6E0]",
                     !item.href && "pointer-events-none",
-                  )}
-                >
+                  )}>
                   {/* Image Background */}
                   <Image
                     src={item.img}
@@ -98,8 +94,7 @@ export function ItemCarousel({
                     style={{
                       background:
                         "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 50%, #000000 100%)",
-                    }}
-                  >
+                    }}>
                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10 w-full">
                       <h3 className="text-white font-serif text-2xl font-semibold mb-2 drop-shadow-md">
                         {item.title}
@@ -145,7 +140,7 @@ export function ItemCarousel({
           {/* Nav arrows customized to match image */}
           {items.length >= 4 && (
             <div className="hidden sm:block z-10 pointer-events-none">
-              <CarouselPrevious className="absolute lg:-left-7 -left-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100">
+              <CarouselPrevious className="absolute lg:-left-7 -left-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto z-20 disabled:pointer-events-auto disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100">
                 <Image
                   src="/common/arrow-left.svg"
                   alt="Previous"
@@ -153,7 +148,7 @@ export function ItemCarousel({
                   height={24}
                 />
               </CarouselPrevious>
-              <CarouselNext className="absolute lg:-right-7 -right-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto z-20 disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100">
+              <CarouselNext className="absolute lg:-right-7 -right-5 top-1/2 -translate-y-1/2 w-[56px] h-[56px] bg-[#FFEDD9] border-none shadow-none hover:bg-[#FFEDD9] hover:brightness-95 hover:scale-105 transition-all text-[#2B1B12] pointer-events-auto z-20 disabled:pointer-events-auto disabled:opacity-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100">
                 <Image
                   src="/common/arrow-right.svg"
                   alt="Next"
