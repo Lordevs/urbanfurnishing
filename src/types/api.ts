@@ -182,6 +182,9 @@ export const PackagePropertySchema = z.object({
   items: z.array(PackageItemSchema).optional().default([]),
 });
 
+export type PackageProperty = z.infer<typeof PackagePropertySchema>;
+export type PackageItem = z.infer<typeof PackageItemSchema>;
+
 export const PackageAddOnSchema = z.object({
   id: z.string().uuid(),
   title: z.string(),
@@ -196,6 +199,8 @@ export const PackageImageSchema = z.object({
   alt_text: z.string().optional().nullable(),
   order: z.number(),
 });
+
+export type PackageImage = z.infer<typeof PackageImageSchema>;
 
 export const PackageDetailSchema = z.object({
   id: z.string().uuid(),
