@@ -44,6 +44,21 @@ export const CategorySchema = z.object({
 
 export type Category = z.infer<typeof CategorySchema>;
 
+export const CategoryPackageItemSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  slug: z.string(),
+  thumbnail: z.string().url().optional().nullable(),
+});
+
+export type CategoryPackageItem = z.infer<typeof CategoryPackageItemSchema>;
+
+export const PackageCategoryExtendedSchema = CategorySchema.extend({
+  packages: z.array(CategoryPackageItemSchema).optional().default([]),
+});
+
+export type PackageCategoryExtended = z.infer<typeof PackageCategoryExtendedSchema>;
+
 // ─── Products ────────────────────────────────────────────────────────────────
 
 export const ProductBadgeSchema = z.object({

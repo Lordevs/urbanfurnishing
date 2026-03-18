@@ -1,7 +1,8 @@
 export const ROUTES = {
   HOME: "/",
   PACKAGES: "/packages",
-  PACKAGES_DETAIL: (id: string) => `/packages/${id}`,
+  PACKAGES_CATEGORY: (slug: string) => `/packages/${slug}`,
+  PACKAGES_DETAIL: (slug: string, categorySlug?: string) => `/packages/${categorySlug || "collection"}/${slug}`,
   SINGLE_PRODUCTS: "/single-products",
   SINGLE_PRODUCT_DETAIL: (id: string) => `/single-products/${id}`,
   OUR_NEW_DESIGN_EXPERT: "/our-new-design-expert",

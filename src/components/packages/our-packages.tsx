@@ -27,8 +27,10 @@ function PackageSkeleton() {
   );
 }
 
-export function OurPackages() {
-  const { data, isLoading, error } = usePackages();
+export function OurPackages({ categorySlug }: { categorySlug?: string } = {}) {
+  const { data, isLoading, error } = usePackages(
+    categorySlug ? { category__slug: categorySlug } : {}
+  );
 
   if (isLoading) {
     return (
@@ -74,7 +76,7 @@ export function OurPackages() {
                 pkg.thumbnail || "/landing/packages/packages-product-img-1.webp"
               }
               badge={`AED ${pkg.starting_price?.toLocaleString() || "0"}`}
-              href={`/packages/${pkg.slug}`}
+              href={`/packages/${categorySlug || 'collection'}/${pkg.slug}`}
               options={pkg.properties_info.map((prop) => ({
                 label: prop.name,
                 price: `AED ${prop.price.toLocaleString()}`,
