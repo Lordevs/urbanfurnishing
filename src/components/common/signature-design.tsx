@@ -15,7 +15,7 @@ export default function SignatureDesign() {
     <section
       id="design-expert"
       className="w-full lg:py-20 px-4 py-10` sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden">
-      {/* Mobile View */}
+
       <div className="block lg:hidden">
         <h2 className="text-3xl sm:text-[32px] font-serif font-semibold tracking-tight mb-4 leading-[1.2]">
           <span className="text-[#3D261C] font-serif">Our </span>
