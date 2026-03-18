@@ -17,7 +17,9 @@ export function useProductCategories() {
   return useQuery<Category[]>({
     queryKey: ["categories", "products"],
     queryFn: async () => {
-      const raw = await apiClient.get<unknown>(API_ROUTES.PRODUCT_CATEGORIES);
+      const raw = await apiClient.get<unknown>(
+        API_ROUTES.PRODUCT_CATEGORIES + "?page_size=100",
+      );
       const parsed = CategoryPaginatedSchema.parse(raw);
       return parsed.results;
     },
@@ -29,7 +31,9 @@ export function usePackageCategories() {
   return useQuery<PackageCategoryExtended[]>({
     queryKey: ["categories", "packages"],
     queryFn: async () => {
-      const raw = await apiClient.get<unknown>(API_ROUTES.PACKAGE_CATEGORIES);
+      const raw = await apiClient.get<unknown>(
+        API_ROUTES.PACKAGE_CATEGORIES + "?page_size=100",
+      );
       const parsed = PackageCategoryExtendedPaginatedSchema.parse(raw);
       return parsed.results;
     },
