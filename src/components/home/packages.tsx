@@ -5,30 +5,30 @@ import {
   CarouselItemData,
 } from "@/components/shared/item-carousel";
 import { ROUTES } from "@/constants/route";
-import { usePackages } from "@/hooks/queries/use-packages";
-import type { PackageListItem } from "@/types/api";
+import { usePackageCategories } from "@/hooks/queries/use-categories";
+import type { PackageCategoryExtended } from "@/types/api";
 
-function toCarouselItem(pkg: PackageListItem): CarouselItemData {
+function toCarouselItem(category: PackageCategoryExtended): CarouselItemData {
   return {
-    id: pkg.id,
-    title: pkg.name,
-    href: ROUTES.PACKAGES_DETAIL(pkg.slug),
-    img: pkg.thumbnail ?? "/landing/home/packages/packages-img-1.webp",
+    id: category.id,
+    title: category.name,
+    href: ROUTES.PACKAGES_CATEGORY(category.slug),
+    img: category.image ?? "/landing/home/packages/packages-img-1.webp",
     fields: [
       {
-        label: "Package",
-        value: pkg.tag ?? "",
+        label: "Type",
+        value: "Curated Collection",
       },
     ],
   };
 }
 
 export default function Packages() {
-  const { data, isLoading } = usePackages({ is_featured: true });
+  const { data, isLoading } = usePackageCategories();
 
   const items: CarouselItemData[] = isLoading
     ? []
-    : (data?.results ?? []).map(toCarouselItem);
+    : (data ?? []).map(toCarouselItem);
 
   if (!isLoading && items.length === 0) return null;
 
@@ -36,10 +36,10 @@ export default function Packages() {
     <div className="w-full">
       <ItemCarousel
         titlePrefix="Our"
-        titleHighlight="Packages"
-        description="Choose from our curated packages designed to meet different needs. From fast rental-ready properties to personalized luxury interiors and scalable developer solutions."
+        titleHighlight="Collections"
+        description="Experience luxury living with our curated furniture collections. Each piece is hand-selected to create cohesive, stunning environments for any living space."
         items={items}
-        defaultButtonText="Package Details"
+        defaultButtonText="View Collection"
         className="py-10"
         id="packages"
       />
