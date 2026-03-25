@@ -28,17 +28,15 @@ function PackageSkeleton() {
   );
 }
 
-export function OurPackages() {
-  const { data, isLoading, error } = usePackages() as {
-    data: PaginatedResponse<PackageListItem> | undefined;
-    isLoading: boolean;
-    error: Error | null;
-  };
+export function OurPackages({ categorySlug }: { categorySlug?: string } = {}) {
+  const { data, isLoading, error } = usePackages(
+    categorySlug ? { category__slug: categorySlug } : {},
+  );
 
   if (isLoading) {
     return (
       <section className="pb-24 pt-12 bg-[#FAFAFA]">
-        <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
           <div className="h-12 w-64 bg-[#F0EBE4] rounded mx-auto mb-4 animate-pulse" />
           <div className="h-4 w-96 bg-[#F0EBE4] rounded mx-auto animate-pulse" />
         </div>
@@ -59,7 +57,7 @@ export function OurPackages() {
 
   return (
     <section className="pb-24 pt-12 bg-[#FAFAFA]">
-      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
         <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-[#412A1F] mb-4">
           Our Packages
         </h2>
@@ -68,9 +66,9 @@ export function OurPackages() {
         </p>
       </div>
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {data.results.map((pkg: PackageListItem) => (
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {data.results.map((pkg) => (
             <PackageCard
               key={pkg.id}
               title={pkg.name}
@@ -79,8 +77,8 @@ export function OurPackages() {
                 pkg.thumbnail || "/landing/packages/packages-product-img-1.webp"
               }
               badge={`AED ${pkg.starting_price?.toLocaleString() || "0"}`}
-              href={`/packages/${pkg.slug}`}
-              options={pkg.properties_info.map((prop: { name: string; price: number }) => ({
+              href={`/packages/${categorySlug || "collection"}/${pkg.slug}`}
+              options={pkg.properties_info.map((prop) => ({
                 label: prop.name,
                 price: `AED ${prop.price.toLocaleString()}`,
               }))}
