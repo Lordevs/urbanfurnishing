@@ -1,11 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/route";
 
 import { PrimaryButton } from "../common/primary-button";

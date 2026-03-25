@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+
 import { Marquee } from "@/components/ui/marquee";
 
 const clients = Array.from({ length: 12 }, (_, i) => ({

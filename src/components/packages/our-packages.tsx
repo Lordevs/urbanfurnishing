@@ -1,7 +1,6 @@
 "use client";
 
 import { usePackages } from "@/hooks/queries/use-packages";
-import type { PaginatedResponse, PackageListItem } from "@/types/api";
 
 import { PackageCard } from "./package-card";
 

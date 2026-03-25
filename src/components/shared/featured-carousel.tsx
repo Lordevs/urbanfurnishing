@@ -5,8 +5,6 @@ import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { ROUTES } from "@/constants/route";
-
 import {
   Carousel,
   CarouselContent,
@@ -14,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ROUTES } from "@/constants/route";
 import { useCart } from "@/context/cart-context";
 
 export interface FeaturedItem {
