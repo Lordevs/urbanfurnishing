@@ -11,7 +11,7 @@ export default function DesignDirection() {
       {/* Mobile View */}
       <div className="md:hidden flex flex-col py-12 px-4 bg-white">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold font-serif text-[#1A1A1A] mb-3 tracking-tight">
+          <h2 className="text-4xl md:text-[56px] font-serif font-medium text-[#1A1A1A] tracking-tight leading-[1.1] mb-6 text-center">
             Design Direction
           </h2>
           <p className="text-[#666666] text-[13.5px] font-medium leading-[1.6] max-w-[280px] mx-auto">

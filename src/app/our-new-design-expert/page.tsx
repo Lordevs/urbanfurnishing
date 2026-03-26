@@ -2,11 +2,12 @@ import CTA from "@/components/common/cta";
 // import HowWeWork from "@/components/common/how-we-work";
 import SignatureDesign from "@/components/common/signature-design";
 import Testimonial from "@/components/common/testimonial";
-// import DesignDirection from "@/components/our-new-design-expert/design-direction";
+import DesignDirection from "@/components/our-new-design-expert/design-direction";
 // import DesignServiceSession from "@/components/our-new-design-expert/design-service-session";
 import HowItWorksSteps from "@/components/our-new-design-expert/how-it-works-steps";
 import IntroSection from "@/components/our-new-design-expert/intro-section";
 import OurDesignExpertHero from "@/components/our-new-design-expert/our-new-design-expert-hero";
+import { PartnersMarquee } from "@/components/our-new-design-expert/partners-marquee";
 // import ServiceLevels from "@/components/our-new-design-expert/service-levels";
 import TheDifference from "@/components/our-new-design-expert/the-difference";
 import WhatIsIncluded from "@/components/our-new-design-expert/what-is-included";
@@ -19,13 +20,14 @@ export default function OurDesignExpertPage() {
       <OurDesignExpertHero />
       <IntroSection />
       <SignatureDesign />
+      <PartnersMarquee />
       {/* <HowWeWork /> */}
       <WhoIsItFor />
       <WhatIsIncluded />
+      <DesignDirection />
       <TheDifference />
       <HowItWorksSteps />
       <WhenToChoose />
-      {/* <DesignDirection /> */}
       {/* <ServiceLevels /> */}
       {/* <DesignServiceSession /> */}
       <Testimonial />
