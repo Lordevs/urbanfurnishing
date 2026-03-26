@@ -14,8 +14,8 @@ export default function SignatureDesign() {
   return (
     <section
       id="design-expert"
-      className="w-full lg:py-20 px-4 py-10` sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden">
-
+      className="w-full lg:py-20 px-4 py-10` sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden"
+    >
       <div className="block lg:hidden">
         <h2 className="text-3xl sm:text-[32px] font-serif font-semibold tracking-tight mb-4 leading-[1.2]">
           <span className="text-[#3D261C] font-serif">Our </span>
@@ -53,7 +53,7 @@ export default function SignatureDesign() {
           </button>
         </Link>
 
-        <div className="relative w-full aspect-3/4 overflow-hidden rounded-[16px]">
+        <div className="relative w-full aspect-2/3 overflow-hidden rounded-[16px]">
           <Image
             src="/common/signature-design-img.webp"
             alt="Signature Design Service"
@@ -65,17 +65,37 @@ export default function SignatureDesign() {
 
       {/* Desktop View */}
       <div className="hidden lg:flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+        {/* Right Content / Image Formatted As Perfect Rectangle With Rounded Edges */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="lg:w-[45%] w-full flex justify-end"
+        >
+          <div className="relative w-full h-[75vh] overflow-hidden">
+            <Image
+              src="/common/signature-design-img.webp"
+              alt="Elena Falconer, Founder & CEO"
+              fill
+              className="object-cover rounded-[16px]"
+            />
+          </div>
+        </motion.div>
+
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:w-[55%] flex flex-col justify-center">
+          className="lg:w-[55%] flex flex-col justify-center"
+        >
           <h2 className="text-[32px] sm:text-[42px] font-medium tracking-tight font-serif text-[#5D4E3C] mb-8">
-            Our{" "}
-            <span className="text-[#C9A76A] font-serif">Signature Design</span>{" "}
-            Service
+            Led by{" "}
+            <span className="text-[#C9A76A] font-serif">
+              Elena Falconer
+            </span>{" "}
           </h2>
 
           {/* Quote Block */}
@@ -88,7 +108,8 @@ export default function SignatureDesign() {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-[#D3C3A8]">
+                className="text-[#D3C3A8]"
+              >
                 <path
                   d="M9 11C9 12.6569 7.65685 14 6 14H4C4 16.2091 5.79086 18 8 18V20C4.68629 20 2 17.3137 2 14V11V9V7C2 5.89543 2.89543 5 4 5H6C7.65685 5 9 6.34315 9 8V11ZM19 11C19 12.6569 17.6569 14 16 14H14C14 16.2091 15.7909 18 18 18V20C14.6863 20 12 17.3137 12 14V11V9V7C12 5.89543 12.8954 5 14 5H16C17.6569 5 19 6.34315 19 8V11Z"
                   stroke="currentColor"
@@ -109,16 +130,23 @@ export default function SignatureDesign() {
             </p>
           </div>
 
+          <p className="text-[#5D4E3C]/60 text-[13px] sm:text-sm leading-[1.8] tracking-wide mb-2 max-w-[95%] font-light">
+            Elena Falconer brings a luxury-trained eye and a commercially
+            grounded approach to every project.
+          </p>
+          <p className="text-[#5D4E3C]/60 text-[13px] sm:text-sm leading-[1.8] tracking-wide mb-2 max-w-[95%] font-light">
+            Her work sits at the intersection of design, client experience and
+            property value. Each space is considered not only for how it looks,
+            but how it feels, functions and performs.
+          </p>
           <p className="text-[#5D4E3C]/60 text-[13px] sm:text-[13px] leading-[1.8] tracking-wide mb-12 max-w-[95%] font-light">
-            With over 15 years of experience in luxury property development and
-            interior design, Elena founded Urban Finishing to bridge the gap
-            between vision and reality. Her commitment to excellence and client
-            satisfaction has made Urban Finishing the preferred choice for
-            discerning property owners across the UAE.
+            Within UH Furnishing, Elena leads the projects that require a
+            stronger design direction, a more refined result and a higher level
+            of personal involvement.
           </p>
 
           {/* Stats */}
-          <div className="flex flex-wrap items-center gap-14 sm:gap-24 mb-10">
+          {/* <div className="flex flex-wrap items-center gap-14 sm:gap-24 mb-10">
             <div className="flex flex-col gap-1.5 items-center sm:items-start text-center sm:text-left">
               <span className="text-2xl sm:text-[28px] font-medium text-[#8D7366]">
                 15+
@@ -143,7 +171,7 @@ export default function SignatureDesign() {
                 Success Rate
               </span>
             </div>
-          </div>
+          </div> */}
 
           {/* Buttons */}
           <div className="flex flex-wrap items-center gap-4 mt-2">
@@ -157,26 +185,10 @@ export default function SignatureDesign() {
             <Button
               asChild
               variant="outline"
-              className="rounded-full border border-[#DED4C6] bg-transparent text-[#5D4E3C] hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer">
+              className="rounded-full border border-[#DED4C6] bg-transparent text-[#5D4E3C] hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer"
+            >
               <Link href={ROUTES.OUR_NEW_DESIGN_EXPERT}>Our Story</Link>
             </Button>
-          </div>
-        </motion.div>
-
-        {/* Right Content / Image Formatted As Perfect Rectangle With Rounded Edges */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:w-[45%] w-full flex justify-end">
-          <div className="relative w-full h-[85vh]  overflow-hidden">
-            <Image
-              src="/common/signature-design-img.webp"
-              alt="Elena Falconer, Founder & CEO"
-              fill
-              className="object-cover rounded-[16px]"
-            />
           </div>
         </motion.div>
       </div>

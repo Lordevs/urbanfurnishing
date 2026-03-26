@@ -7,7 +7,7 @@ import { HeroSection } from "@/components/shared/hero-section";
 import { ROUTES } from "@/constants/route";
 
 import { PrimaryButton } from "../common/primary-button";
-import { SecondaryButton } from "../common/secondary-button";
+// import { SecondaryButton } from "../common/secondary-button";
 
 export default function OurDesignExpertHero() {
   return (
@@ -33,8 +33,8 @@ export default function OurDesignExpertHero() {
               animate={{ opacity: 1, y: 0 }}
               className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
             >
-              Your Personal <br />
-              <span className="text-[#C9A76A] font-serif">Design Expert</span>
+              Design Signature by <br />
+              <span className="text-[#C9A76A] font-serif">Elena Falconer</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -42,9 +42,8 @@ export default function OurDesignExpertHero() {
               transition={{ delay: 0.1 }}
               className="text-sm leading-[1.6] text-white/95 mb-8 font-light pr-4"
             >
-              Transform your space with professional interior design guidance.
-              From concept to completion, we bring your vision to life with
-              personalized service.
+              A tailored interior design service for clients who want more than
+              a standard furnishing package.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -54,13 +53,13 @@ export default function OurDesignExpertHero() {
             >
               <PrimaryButton
                 href={ROUTES.BOOK_CONSULTATION}
-                label="Get in Touch"
-                mbLabel="Get in Touch"
+                label="Book a Design Call"
+                mbLabel="Book a Design Call"
               />
-              <SecondaryButton
+              {/* <SecondaryButton
                 href={ROUTES.OUR_NEW_DESIGN_EXPERT}
                 label="Our Design Services"
-              />
+              /> */}
             </motion.div>
           </div>
         </div>
@@ -74,23 +73,23 @@ export default function OurDesignExpertHero() {
           overlayGradient="bg-[#170D0D]/50"
           title={
             <>
-              Your Personal{" "}
-              <span className="text-[#C9A76A] font-serif">Design Expert</span>
+              Design Signature by <br />
+              <span className="text-[#C9A76A] font-serif">Elena Falconer</span>
             </>
           }
-          description="Transform your space with professional interior design guidance. From concept to completion, we bring your vision to life with personalized service."
+          description="A tailored interior design service for clients who want more than a standard furnishing package."
           buttons={
             <>
               <PrimaryButton
                 href={ROUTES.BOOK_CONSULTATION}
-                label="Get in Touch"
-                mbLabel="Get in Touch"
+                label="Book a Design Call"
+                mbLabel="Book a Design Call"
               />
 
-              <SecondaryButton
+              {/* <SecondaryButton
                 href={ROUTES.OUR_NEW_DESIGN_EXPERT}
                 label="Our Design Services"
-              />
+              /> */}
             </>
           }
         />

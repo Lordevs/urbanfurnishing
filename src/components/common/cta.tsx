@@ -22,31 +22,59 @@ const mobileStats = [
   { value: "98%", label: "Client Satisfaction" },
 ];
 
-export default function CTA() {
+export default function CTA({
+  title = (
+    <>
+      Let&apos;s <span className="text-[#C9A76A] font-serif">Design</span> Your
+      Space Together
+    </>
+  ),
+  description = "Speak with our furnishing experts to plan, style, and optimize your room with the right package and pieces.",
+  buttonText = "Book Now",
+  buttonLink = ROUTES.BOOK_CONSULTATION,
+
+  mobileViewTitle = "Let's Design Your Space Together",
+  mobileViewDescription = "Start your interior design journey today with a free consultation from our expert team.",
+  mobileViewButtonText = "Book Free Consultation",
+  mobileViewButtonLink = ROUTES.BOOK_CONSULTATION,
+  mobileViewViewWorkText = "View Our Work",
+  mobileViewViewWorkLink = ROUTES.PACKAGES,
+}: {
+  title?: React.ReactNode;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  mobileViewTitle?: React.ReactNode;
+  mobileViewDescription?: string;
+  mobileViewButtonText?: string;
+  mobileViewButtonLink?: string;
+  mobileViewViewWorkText?: string;
+  mobileViewViewWorkLink?: string;
+}) {
   return (
     <section className="w-full">
       {/* Mobile View */}
       <div className="flex flex-col lg:hidden w-full bg-linear-to-b from-[#412A1F] to-[#5D4E3C] py-20 px-6">
         <div className="flex flex-col text-center items-center">
           <h2 className="text-[32px]  font-bold font-serif text-white mb-4 leading-tight max-w-[280px]">
-            Let&apos;s Design Your Space Together
+            {mobileViewTitle}
           </h2>
           <p className="text-white/80 text-[15px] leading-relaxed mb-10 max-w-[310px]">
-            Start your interior design journey today with a free consultation
-            from our expert team
+            {mobileViewDescription}
           </p>
 
           <div className="flex flex-col gap-4 w-full max-w-[340px] mb-16">
-            <Link href={ROUTES.BOOK_CONSULTATION} className="w-full">
+            <Link href={mobileViewButtonLink} className="w-full">
               <Button className="w-full bg-[#C9A76A] hover:bg-[#B3905A] text-white font-medium py-6 rounded-[12px] text-[15px] shadow-none border-none">
-                Book Free Consultation
+                {mobileViewButtonText}
               </Button>
             </Link>
-            <Link href={ROUTES.PACKAGES} className="w-full">
+            <Link href={mobileViewViewWorkLink} className="w-full">
               <Button
                 variant="outline"
-                className="w-full bg-transparent border-white/40 hover:bg-white/10 text-white font-medium py-6 rounded-[12px] text-[15px]">
-                View Our Work
+                className="w-full bg-transparent border-white/40 hover:bg-white/10 text-white font-medium py-6 rounded-[12px] text-[15px]"
+              >
+                {mobileViewViewWorkText}
               </Button>
             </Link>
           </div>
@@ -80,7 +108,8 @@ export default function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative rounded-[24px] overflow-hidden bg-[#433B35]">
+          className="relative rounded-[24px] overflow-hidden bg-[#433B35]"
+        >
           {/* Background SVG */}
           <div className="absolute inset-0 z-0 select-none pointer-events-none">
             <Image
@@ -96,20 +125,17 @@ export default function CTA() {
             {/* Left Content */}
             <div className="lg:w-[45%] w-full flex flex-col justify-center">
               <h2 className="text-[32px] sm:text-[42px] font-serif font-medium tracking-tight text-white mb-6 leading-[1.2]">
-                Let&apos;s{" "}
-                <span className="text-[#C9A76A] font-serif">Design</span> Your
-                Space Together
+                {title}
               </h2>
 
               <p className="text-white text-[15px] sm:text-[16px] leading-[1.8] font-light mb-10 max-w-[90%]">
-                Speak with our furnishing experts to plan, style, and optimize
-                your room with the right package and pieces.
+                {description}
               </p>
 
               <div>
-                <Link href={ROUTES.BOOK_CONSULTATION}>
+                <Link href={buttonLink}>
                   <Button className="rounded-full cursor-pointer bg-[#412A1F] hover:bg-[#2D1A12] text-white flex items-center gap-6 pr-1.5 pl-6 h-12 text-[13px] font-normal transition-all shadow-none border-none group">
-                    Book Now
+                    {buttonText}
                     <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
                       <Image
                         src="/common/arrow-up.svg"
@@ -129,7 +155,8 @@ export default function CTA() {
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="flex flex-col border-t border-[#FFCD96] pt-6 relative">
+                  className="flex flex-col border-t border-[#FFCD96] pt-6 relative"
+                >
                   <div className="flex justify-between items-start mb-3">
                     <span className="text-4xl sm:text-5xl font-serif font-normal text-white tracking-tight">
                       {stat.value}
