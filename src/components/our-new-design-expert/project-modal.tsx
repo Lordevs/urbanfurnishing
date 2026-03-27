@@ -96,9 +96,10 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
           {/* Close Button Outside */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 text-white hover:text-[#C9A76A] transition-colors p-2 z-110">
+            className="absolute top-6 right-6 text-white hover:text-[#C9A76A] transition-colors p-2 z-110 cursor-pointer">
             <X className="w-8 h-8" />
           </button>
+
 
           {(isLoadingDetail || isFetchingDetail) && !selectedProject ? (
             <div className="flex items-center justify-center">
