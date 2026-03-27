@@ -14,12 +14,7 @@ export default function SignatureDesign() {
   return (
     <section
       id="design-expert"
-<<<<<<< HEAD
       className="w-full lg:py-20 px-4 py-10` sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden">
-=======
-      className="w-full lg:py-20 px-4 py-10` sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden"
-    >
->>>>>>> 6e8862d74763f4be07ff712e16e7248909cd5fc8
       <div className="block lg:hidden">
         <h2 className="text-3xl sm:text-[32px] font-serif font-semibold tracking-tight mb-4 leading-[1.2]">
           <span className="text-[#3D261C] font-serif">Our </span>
@@ -75,8 +70,7 @@ export default function SignatureDesign() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:w-[45%] w-full flex justify-end"
-        >
+          className="lg:w-[45%] w-full flex justify-end">
           <div className="relative w-full h-[75vh] overflow-hidden">
             <Image
               src="/common/signature-design-img.webp"
@@ -93,8 +87,7 @@ export default function SignatureDesign() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:w-[55%] flex flex-col justify-center"
-        >
+          className="lg:w-[55%] flex flex-col justify-center">
           <h2 className="text-[32px] sm:text-[42px] font-medium tracking-tight font-serif text-[#5D4E3C] mb-8">
             Led by{" "}
             <span className="text-[#C9A76A] font-serif">
@@ -112,8 +105,7 @@ export default function SignatureDesign() {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-[#D3C3A8]"
-              >
+                className="text-[#D3C3A8]">
                 <path
                   d="M9 11C9 12.6569 7.65685 14 6 14H4C4 16.2091 5.79086 18 8 18V20C4.68629 20 2 17.3137 2 14V11V9V7C2 5.89543 2.89543 5 4 5H6C7.65685 5 9 6.34315 9 8V11ZM19 11C19 12.6569 17.6569 14 16 14H14C14 16.2091 15.7909 18 18 18V20C14.6863 20 12 17.3137 12 14V11V9V7C12 5.89543 12.8954 5 14 5H16C17.6569 5 19 6.34315 19 8V11Z"
                   stroke="currentColor"
@@ -189,8 +181,7 @@ export default function SignatureDesign() {
             <Button
               asChild
               variant="outline"
-              className="rounded-full border border-[#DED4C6] bg-transparent text-[#5D4E3C] hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer"
-            >
+              className="rounded-full border border-[#DED4C6] bg-transparent text-[#5D4E3C] hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer">
               <Link href={ROUTES.OUR_NEW_DESIGN_EXPERT}>Our Story</Link>
             </Button>
           </div>
