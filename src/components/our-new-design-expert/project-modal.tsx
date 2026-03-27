@@ -73,6 +73,19 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
     return () => clearInterval(interval);
   }, [slug, isPaused, selectedProject, nextImage]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (slug) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [slug]);
+
+
   return (
     <AnimatePresence>
       {slug && (

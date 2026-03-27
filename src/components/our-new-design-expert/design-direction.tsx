@@ -38,7 +38,8 @@ const ProjectCard = ({
         className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-105 group-hover:blur-[2px]"
       />
       {/* Overlay on hover */}
-      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 z-10">
+      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 z-10 pointer-events-none">
+
         <div className="text-center">
           <p className="text-white text-xs uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
             View Project
