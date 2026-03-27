@@ -3,7 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-import { Marquee } from "@/components/ui/marquee";
+import {
+  Marquee,
+  MarqueeContent,
+  MarqueeItem,
+} from "@/components/ui/marquee";
+
 
 const clients = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
@@ -39,44 +44,46 @@ export default function OurClient() {
         </div>
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <Marquee pauseOnHover repeat={8} className="[--duration:40s]">
-            {firstRow.map((client) => (
-              <div
-                key={client.id}
-                className="flex justify-center items-center px-6 sm:px-10">
-                <div className="relative w-[140px] h-[90px] sm:w-[160px] sm:h-[100px] lg:w-[180px] lg:h-[110px]">
-                  <Image
-                    src={client.src}
-                    alt={client.alt}
-                    fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 16vw"
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-            ))}
+          <Marquee className="relative">
+            <MarqueeContent pauseOnHover autoFill speed={40}>
+              {firstRow.map((client) => (
+                <MarqueeItem
+                  key={client.id}
+                  className="px-6 sm:px-10">
+                  <div className="relative w-[140px] h-[90px] sm:w-[160px] sm:h-[100px] lg:w-[180px] lg:h-[110px]">
+                    <Image
+                      src={client.src}
+                      alt={client.alt}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 16vw"
+                      className="object-contain"
+                    />
+                  </div>
+                </MarqueeItem>
+              ))}
+            </MarqueeContent>
           </Marquee>
-          <Marquee
-            reverse
-            pauseOnHover
-            repeat={8}
-            className="[--duration:40s] mt-4 sm:mt-8">
-            {secondRow.map((client) => (
-              <div
-                key={client.id}
-                className="flex justify-center items-center px-6 sm:px-10">
-                <div className="relative w-[140px] h-[90px] sm:w-[160px] sm:h-[100px] lg:w-[180px] lg:h-[110px]">
-                  <Image
-                    src={client.src}
-                    alt={client.alt}
-                    fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 16vw"
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-            ))}
+
+          <Marquee className="relative mt-4 sm:mt-8">
+            <MarqueeContent direction="right" pauseOnHover autoFill speed={40}>
+              {secondRow.map((client) => (
+                <MarqueeItem
+                  key={client.id}
+                  className="px-6 sm:px-10">
+                  <div className="relative w-[140px] h-[90px] sm:w-[160px] sm:h-[100px] lg:w-[180px] lg:h-[110px]">
+                    <Image
+                      src={client.src}
+                      alt={client.alt}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 16vw"
+                      className="object-contain"
+                    />
+                  </div>
+                </MarqueeItem>
+              ))}
+            </MarqueeContent>
           </Marquee>
+
 
           <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-white to-transparent dark:from-background"></div>
           <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-white to-transparent dark:from-background"></div>

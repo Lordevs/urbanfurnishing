@@ -6,14 +6,27 @@ import FastMarquee from "react-fast-marquee";
 
 import { cn } from "@/lib/utils";
 
-export type MarqueeProps = HTMLAttributes<HTMLDivElement>;
+export interface MarqueeProps extends HTMLAttributes<HTMLDivElement> {
+  pauseOnHover?: boolean;
+  reverse?: boolean;
+  repeat?: number;
+  vertical?: boolean;
+}
 
-export const Marquee = ({ className, ...props }: MarqueeProps) => (
+export const Marquee = ({
+  className,
+  pauseOnHover,
+  reverse,
+  repeat,
+  vertical,
+  ...props
+}: MarqueeProps) => (
   <div
     className={cn("relative w-full overflow-hidden", className)}
     {...props}
   />
 );
+
 
 export type MarqueeContentProps = FastMarqueeProps;
 
