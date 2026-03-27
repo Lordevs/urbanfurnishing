@@ -80,13 +80,11 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/90 backdrop-blur-sm"
-        >
+          className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/90 backdrop-blur-sm">
           {/* Close Button Outside */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 text-white hover:text-[#C9A76A] transition-colors p-2 z-110"
-          >
+            className="absolute top-6 right-6 text-white hover:text-[#C9A76A] transition-colors p-2 z-110">
             <X className="w-8 h-8" />
           </button>
 
@@ -102,8 +100,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white w-full max-w-7xl h-full lg:h-[85vh] rounded-[32px] overflow-hidden flex flex-col lg:flex-row relative"
-            >
+              className="bg-white w-full max-w-7xl h-full lg:h-[85vh] rounded-[32px] overflow-hidden flex flex-col lg:flex-row relative">
               {/* Left Side: Image Gallery & Active View */}
               <div className="flex-1 relative flex flex-col lg:flex-row h-full">
                 {/* Thumbnails Sidebar - Left */}
@@ -120,8 +117,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
                         activeImageIndex === idx
                           ? "border-[#C9A76A] ring-2 ring-[#C9A76A]/20"
                           : "border-transparent hover:border-gray-200"
-                      }`}
-                    >
+                      }`}>
                       <Image
                         src={img.image}
                         alt={img.alt_text || `Thumbnail ${idx}`}
@@ -136,8 +132,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
                 <div
                   className="flex-1 relative bg-gray-100 order-1 lg:order-2 group min-h-[300px] lg:min-h-0 overflow-hidden"
                   onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                >
+                  onMouseLeave={() => setIsPaused(false)}>
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={
@@ -152,8 +147,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
                         x: { type: "spring", stiffness: 300, damping: 30 },
                         opacity: { duration: 0.4 },
                       }}
-                      className="absolute inset-0"
-                    >
+                      className="absolute inset-0">
                       {selectedProject.images[activeImageIndex] && (
                         <Image
                           src={selectedProject.images[activeImageIndex].image}
@@ -177,8 +171,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
                           e.stopPropagation();
                           prevImage();
                         }}
-                        className="w-12 h-12 rounded-full bg-white/90 shadow-xl flex items-center justify-center hover:bg-white transition-all pointer-events-auto hover:scale-105 active:scale-95"
-                      >
+                        className="w-12 h-12 rounded-full bg-white/90 shadow-xl flex items-center justify-center hover:bg-white transition-all pointer-events-auto hover:scale-105 active:scale-95">
                         <ChevronLeft className="w-6 h-6 text-[#1A1A1A]" />
                       </button>
                       <button
@@ -186,8 +179,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
                           e.stopPropagation();
                           nextImage();
                         }}
-                        className="w-12 h-12 rounded-full bg-white/90 shadow-xl flex items-center justify-center hover:bg-white transition-all pointer-events-auto hover:scale-105 active:scale-95"
-                      >
+                        className="w-12 h-12 rounded-full bg-white/90 shadow-xl flex items-center justify-center hover:bg-white transition-all pointer-events-auto hover:scale-105 active:scale-95">
                         <ChevronRight className="w-6 h-6 text-[#1A1A1A]" />
                       </button>
                     </div>
@@ -196,21 +188,26 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
               </div>
 
               {/* Right Side: Info Panel */}
-              <div className="w-full lg:w-[400px] lg:min-w-[400px] flex flex-col lg:border-l border-gray-100 bg-white min-h-0">
-                <ScrollArea className="flex-1 p-8 lg:p-12">
-                  <div className="mb-8">
-                    <span className="text-[#C9A76A] text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
-                      Portfolio Detail
-                    </span>
-                    <h2 className="text-3xl sm:text-4xl font-serif font-medium text-[#1A1A1A] mb-6 leading-tight">
-                      {selectedProject.title}
-                    </h2>
-                    <div className="w-12 h-px bg-[#C9A76A] mb-8" />
-                    <p className="text-[#666666] text-lg font-light leading-relaxed whitespace-pre-wrap">
-                      {selectedProject.description || "No description available."}
-                    </p>
-                  </div>
-                </ScrollArea>
+              <div className="w-full lg:w-[400px] lg:min-w-[400px] flex flex-col lg:border-l border-gray-100 bg-white flex-1 lg:flex-none lg:h-full overflow-hidden min-h-0">
+                <div className="flex-1 min-h-0">
+                  <ScrollArea className="h-full">
+                    <div className="p-8 lg:p-12">
+                      <div className="mb-8">
+                        <span className="text-[#C9A76A] text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
+                          Portfolio Detail
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-serif font-medium text-[#1A1A1A] mb-6 leading-tight">
+                          {selectedProject.title}
+                        </h2>
+                        <div className="w-12 h-px bg-[#C9A76A] mb-8" />
+                        <p className="text-[#666666] text-lg font-light leading-relaxed whitespace-pre-wrap">
+                          {selectedProject.description ||
+                            "No description available."}
+                        </p>
+                      </div>
+                    </div>
+                  </ScrollArea>
+                </div>
 
                 <div className="p-8 lg:p-12 pt-0 md:pt-8 border-t border-gray-100 bg-white">
                   <p className="text-[#1A1A1A] font-medium text-sm mb-4">

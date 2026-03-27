@@ -27,8 +27,7 @@ const ProjectCard = ({
     viewport={{ once: true }}
     transition={{ duration: 0.6, delay: (index % 10) * 0.1 }}
     onClick={() => onOpen(project.slug)}
-    className="group relative overflow-hidden rounded-[20px] sm:rounded-[24px] cursor-pointer bg-[#F5F5F5] break-inside-avoid mb-4 sm:mb-5 lg:mb-6 block"
-  >
+    className="group relative overflow-hidden rounded-[20px] sm:rounded-[24px] cursor-pointer bg-[#F5F5F5] break-inside-avoid mb-4 sm:mb-5 lg:mb-6 block">
     <div className="relative w-full">
       <Image
         src={project.thumbnail}
@@ -127,8 +126,7 @@ export default function DesignDirection() {
                   variant="outline"
                   onClick={() => fetchNextPage()}
                   disabled={isFetchingNextPage}
-                  className="flex items-center gap-2 px-8 py-6 border border-[#1A1A1A]/10 hover:border-[#C9A76A] hover:bg-[#C9A76A] hover:text-white rounded-full font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group text-[#1A1A1A]"
-                >
+                  className="flex items-center gap-2 px-8 py-6 border border-[#1A1A1A]/10 hover:border-[#C9A76A] hover:bg-[#C9A76A] hover:text-white rounded-full font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group text-[#1A1A1A]">
                   {isFetchingNextPage && (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   )}
