@@ -85,7 +85,6 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
     };
   }, [slug]);
 
-
   return (
     <AnimatePresence>
       {slug && (
@@ -93,7 +92,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/90 backdrop-blur-sm">
+          className="fixed inset-0 z-100 flex items-start lg:items-center justify-center p-6 lg:p-10 bg-black/80 backdrop-blur-sm overflow-y-auto">
           {/* Close Button Outside */}
           <button
             onClick={onClose}
@@ -113,11 +112,12 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white w-full max-w-7xl h-full lg:h-[85vh] rounded-[32px] overflow-hidden flex flex-col lg:flex-row relative">
+              className="bg-white w-full max-w-7xl h-auto lg:h-[85vh] rounded-[32px] overflow-hidden flex flex-col lg:flex-row relative shadow-2xl">
+
               {/* Left Side: Image Gallery & Active View */}
-              <div className="flex-1 relative flex flex-col lg:flex-row h-full">
+              <div className="w-full h-auto lg:h-full flex flex-col lg:flex-row flex-none lg:flex-1">
                 {/* Thumbnails Sidebar - Left */}
-                <div className="w-full lg:w-[120px] bg-gray-50 p-4 lg:p-6 flex lg:flex-col gap-4 overflow-x-auto lg:overflow-y-auto order-2 lg:order-1 no-scrollbar border-r border-gray-100">
+                <div className="w-full lg:w-[120px] bg-gray-50 px-4 py-6 lg:p-6 flex lg:flex-col gap-4 overflow-x-auto lg:overflow-y-auto order-2 lg:order-1 no-scrollbar border-y lg:border-r border-gray-100">
                   {selectedProject.images.map((img, idx) => (
                     <button
                       key={img.id}
@@ -143,7 +143,7 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
 
                 {/* Main Active Image - Right of Thumbnails */}
                 <div
-                  className="flex-1 relative bg-gray-100 order-1 lg:order-2 group min-h-[300px] lg:min-h-0 overflow-hidden"
+                  className="w-full aspect-4/5 lg:aspect-auto lg:flex-1 relative bg-gray-100 order-1 lg:order-2 group overflow-hidden"
                   onMouseEnter={() => setIsPaused(true)}
                   onMouseLeave={() => setIsPaused(false)}>
                   <AnimatePresence initial={false} custom={direction}>
@@ -201,9 +201,9 @@ export const ProjectModal = ({ slug, onClose }: ProjectModalProps) => {
               </div>
 
               {/* Right Side: Info Panel */}
-              <div className="w-full lg:w-[400px] lg:min-w-[400px] flex flex-col lg:border-l border-gray-100 bg-white flex-1 lg:flex-none lg:h-full overflow-hidden min-h-0">
-                <div className="flex-1 min-h-0">
-                  <ScrollArea className="h-full">
+              <div className="w-full lg:w-[400px] lg:min-w-[400px] flex flex-col lg:border-l border-gray-100 bg-white flex-1 lg:flex-none lg:h-full min-h-0">
+                <div className="h-auto lg:flex-1 lg:min-h-0">
+                  <ScrollArea className="h-auto lg:h-full">
                     <div className="p-8 lg:p-12">
                       <div className="mb-8">
                         <span className="text-[#C9A76A] text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
