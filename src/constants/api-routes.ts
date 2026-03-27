@@ -38,4 +38,9 @@ export const API_ROUTES = {
 
   // ─── Design Calls ───────────────────────────────────────────
   DESIGN_CALLS: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/design-calls/`,
+
+  // ─── Portfolio/Projects ──────────────────────────────────────
+  PROJECTS: `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/projects/`,
+  PROJECT_DETAIL: (slug: string) =>
+    `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}/api/v1/projects/${slug}/`,
 } as const;
