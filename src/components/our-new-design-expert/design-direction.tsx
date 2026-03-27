@@ -1,276 +1,147 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
+import { useState, useEffect, useCallback } from "react";
 
-const BASE = "/landing/our-new-design-expert";
+import { usePortfolioProjects } from "@/hooks/queries/use-portfolio-projects";
+import type { PortfolioProjectListItem } from "@/types/api";
+
+import { ProjectModal } from "./project-modal";
+import { ProjectGridSkeleton } from "./project-skeleton";
+import { Button } from "../ui/button";
+
+const ProjectCard = ({
+  project,
+  onOpen,
+  index,
+}: {
+  project: PortfolioProjectListItem;
+  onOpen: (slug: string) => void;
+  index: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay: (index % 10) * 0.1 }}
+    onClick={() => onOpen(project.slug)}
+    className="group relative overflow-hidden rounded-[20px] sm:rounded-[24px] cursor-pointer bg-[#F5F5F5] break-inside-avoid mb-4 sm:mb-5 lg:mb-6 block"
+  >
+    <div className="relative w-full">
+      <Image
+        src={project.thumbnail}
+        alt={project.title}
+        width={500}
+        height={500}
+        loading="lazy"
+        className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-105 group-hover:blur-[2px]"
+      />
+      {/* Overlay on hover */}
+      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 z-10">
+        <div className="text-center">
+          <p className="text-white text-xs uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+            View Project
+          </p>
+          <h3 className="text-white text-xl sm:text-2xl font-serif font-medium opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
+            {project.title}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
 
 export default function DesignDirection() {
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+
+  const closeProject = useCallback(() => {
+    setSelectedSlug(null);
+  }, []);
+
+  // Portfolio list hook
+  const {
+    data,
+    isLoading,
+    isInitialLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = usePortfolioProjects(6);
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeProject();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [closeProject]);
+
+  const openProject = (slug: string) => {
+    setSelectedSlug(slug);
+  };
+
+  const projects = data?.pages.flatMap((page) => page.results) ?? [];
+
+  // If no projects are found after initial load, don't show the section at all
+  if (!isInitialLoading && !isLoading && projects.length === 0) {
+    return null;
+  }
+
   return (
     <section className="w-full">
-      {/* Mobile View */}
-      <div className="md:hidden flex flex-col py-12 px-4 bg-white">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold font-serif text-[#1A1A1A] mb-3 tracking-tight">
-            Design Direction
-          </h2>
-          <p className="text-[#666666] text-[13.5px] font-medium leading-[1.6] max-w-[280px] mx-auto">
-            Explore our curated styles and find inspiration for your perfect
-            space
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          {/* Row 1: 2 items */}
-          <div className="grid grid-cols-2 gap-3">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image
-                src={`${BASE}/design-direction-1.webp`}
-                alt="Design 1"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="relative aspect-4/5 rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image
-                src={`${BASE}/design-direction-2.webp`}
-                alt="Design 2"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-          </div>
-
-          {/* Row 2: 3 items */}
-          <div className="grid grid-cols-3 gap-3">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image
-                src={`${BASE}/design-direction-3.webp`}
-                alt="Design 3"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image
-                src={`${BASE}/design-direction-4.webp`}
-                alt="Design 4"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image
-                src={`${BASE}/design-direction-5.webp`}
-                alt="Design 5"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-          </div>
-
-          {/* Row 3: 2 items */}
-          <div className="grid grid-cols-2 gap-3">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image
-                src={`${BASE}/design-direction-6.webp`}
-                alt="Design 6"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="relative aspect-square rounded-[16px] overflow-hidden bg-[#F5F5F5] shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-            >
-              <Image
-                src={`${BASE}/design-direction-7.webp`}
-                alt="Design 7"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop View */}
-      <div className="hidden md:block py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
-        {/* Header */}
+      {/* Main Container */}
+      <div className="py-12 md:py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-[46px] font-serif font-bold tracking-tight text-[#000000] mb-3 sm:mb-4">
+          <h2 className="text-4xl sm:text-[46px] font-serif font-bold tracking-tight text-[#1A1A1A] mb-3 sm:mb-4">
             Design Direction
           </h2>
-          <p className="text-[#000000]/50 text-[15px] sm:text-[18px] font-light max-w-lg mx-auto leading-[1.7]">
-            Explore our diverse portfolio of design styles and find
-            <br className="hidden sm:block" /> the perfect aesthetic for your
-            space
+          <p className="text-[#666666] text-[15px] sm:text-[18px] font-medium sm:font-light max-w-lg mx-auto leading-[1.6]">
+            Explore our diverse portfolio of design styles and find the perfect
+            aesthetic for your space
           </p>
         </div>
 
-        <div className="flex flex-col gap-4 sm:gap-5">
-          {/* TOP BLOCK */}
-          <div className="flex flex-col lg:flex-row gap-4 sm:gap-5 w-full items-stretch">
-            {/* Left large */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="w-full lg:w-[42%] relative rounded-[20px] sm:rounded-[24px] overflow-hidden min-h-[350px] sm:min-h-[450px] lg:min-h-0"
-            >
-              <Image
-                src={`${BASE}/design-direction-1.webp`}
-                alt="Design Direction 1"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </motion.div>
-
-            {/* Right staggered grid */}
-            <div className="w-full lg:w-[58%] flex gap-4 sm:gap-5 min-h-[400px] sm:min-h-[500px] lg:min-h-[640px]">
-              {/* Col 1 */}
-              <div className="flex-1 flex flex-col gap-4 sm:gap-5">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.43] w-full"
-                >
-                  <Image
-                    src={`${BASE}/design-direction-2.webp`}
-                    alt="Design Direction 2"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.57] w-full"
-                >
-                  <Image
-                    src={`${BASE}/design-direction-4.webp`}
-                    alt="Design Direction 4"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </motion.div>
-              </div>
-
-              {/* Col 2 */}
-              <div className="flex-1 flex flex-col gap-4 sm:gap-5">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.15 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.57] w-full"
-                >
-                  <Image
-                    src={`${BASE}/design-direction-3.webp`}
-                    alt="Design Direction 3"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.25 }}
-                  className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden flex-[0.43] w-full"
-                >
-                  <Image
-                    src={`${BASE}/design-direction-5.webp`}
-                    alt="Design Direction 5"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </motion.div>
-              </div>
-            </div>
-          </div>
-
-          {/* BOTTOM BLOCK */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-            {[
-              {
-                src: `${BASE}/design-direction-6.webp`,
-                alt: "Design Direction 6",
-                delay: 0.3,
-              },
-              {
-                src: `${BASE}/design-direction-7.webp`,
-                alt: "Design Direction 7",
-                delay: 0.35,
-              },
-              {
-                src: `${BASE}/design-direction-8.webp`,
-                alt: "Design Direction 8",
-                delay: 0.4,
-              },
-            ].map((img, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: img.delay }}
-                className="relative rounded-[20px] sm:rounded-[24px] overflow-hidden w-full h-[240px] sm:h-[240px] lg:h-[300px]"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
+        {isInitialLoading ? (
+          <ProjectGridSkeleton />
+        ) : (
+          <div className="flex flex-col gap-8 w-full">
+            {/* Masonry Grid Setup */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-5 w-full">
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onOpen={openProject}
+                  index={index}
                 />
-              </motion.div>
-            ))}
+              ))}
+            </div>
+
+            {/* Load More Button */}
+            {hasNextPage && (
+              <div className="flex justify-center mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => fetchNextPage()}
+                  disabled={isFetchingNextPage}
+                  className="flex items-center gap-2 px-8 py-6 border border-[#1A1A1A]/10 hover:border-[#C9A76A] hover:bg-[#C9A76A] hover:text-white rounded-full font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group text-[#1A1A1A]"
+                >
+                  {isFetchingNextPage && (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  )}
+                  {isFetchingNextPage ? "Loading..." : "Load More Projects"}
+                </Button>
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </div>
+
+      {/* Project Modal */}
+      <ProjectModal slug={selectedSlug} onClose={closeProject} />
     </section>
   );
 }

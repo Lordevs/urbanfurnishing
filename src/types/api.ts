@@ -329,3 +329,29 @@ export const NewsletterResponseSchema = z.object({
 
 export type NewsletterPayload = z.infer<typeof NewsletterPayloadSchema>;
 export type NewsletterResponse = z.infer<typeof NewsletterResponseSchema>;
+// ─── Portfolio/Projects ──────────────────────────────────────────────────────
+export const PortfolioProjectListItemSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string(),
+  slug: z.string(),
+  thumbnail: z.string().url(),
+});
+
+export type PortfolioProjectListItem = z.infer<typeof PortfolioProjectListItemSchema>;
+
+export const PortfolioProjectImageSchema = z.object({
+  id: z.string().uuid(),
+  image: z.string().url(),
+  alt_text: z.string().optional().nullable(),
+  order: z.number().int(),
+});
+
+export const PortfolioProjectDetailSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string(),
+  slug: z.string(),
+  description: z.string().optional().nullable(),
+  images: z.array(PortfolioProjectImageSchema),
+});
+
+export type PortfolioProjectDetail = z.infer<typeof PortfolioProjectDetailSchema>;

@@ -197,4 +197,17 @@
   body {
     @apply bg-background text-foreground;
   }
+<<<<<<< HEAD
 }
+=======
+}
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+>>>>>>> 6e8862d74763f4be07ff712e16e7248909cd5fc8
