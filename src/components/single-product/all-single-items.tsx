@@ -65,7 +65,8 @@ function GridSkeleton() {
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse">
+          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse"
+        >
           <div className="aspect-4/3 bg-[#F0EBE4]" />
           <div className="p-5 flex flex-col gap-3">
             <div className="h-3 w-16 bg-[#F0EBE4] rounded" />
@@ -94,7 +95,7 @@ export function AllSingleItems({
   const selectedCategorySlug = searchParams.get("category");
   const searchQuery = searchParams.get("search") || "";
   const currentPage = Number(searchParams.get("page")) || 1;
-  const PAGE_SIZE = 9;
+  const PAGE_SIZE = 30;
 
   const { data: categoryData } = useProductCategories();
   const { data, isLoading } = useProducts({
@@ -116,6 +117,7 @@ export function AllSingleItems({
   );
 
   const items = (data?.results ?? []).map(toGridItem);
+  const count = data?.count;
 
   if (isLoading) {
     return (
@@ -180,6 +182,7 @@ export function AllSingleItems({
       title="All Single Items"
       categories={categoryLabels}
       items={items}
+      count={count}
       activeCategory={activeCategoryName}
       detailRoute={(id) => ROUTES.SINGLE_PRODUCT_DETAIL(id)}
       limit={limit}
