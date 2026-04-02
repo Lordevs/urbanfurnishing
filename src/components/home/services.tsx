@@ -1,299 +1,287 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Check, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, ArrowRight, ArrowRightIcon, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ROUTES } from "@/constants/route";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import { usePackages } from "@/hooks/queries/use-packages";
+import { cn } from "@/lib/utils";
 
-const servicesData = [
-  {
-    id: "packages",
-    title: "Select Packages",
-    desc: "Browse our curated collections designed for every room. Complete furniture sets that work together perfectly.",
-    img: "/landing/home/services/services-img-1.webp",
-    href: ROUTES.PACKAGES,
-    features: [
-      "Complete room solutions",
-      "Pre-matched furniture sets",
-      "Up to 30% savings",
-    ],
-  },
-  {
-    id: "shop",
-    title: "Shop Individually",
-    desc: "Pick and choose exactly what you need. Build your own style with our extensive single product collection.",
-    img: "/landing/home/services/services-img-2.webp",
-    href: ROUTES.SINGLE_PRODUCTS,
-    features: [
-      "1000+ unique pieces",
-      "Mix and match styles",
-      "Full flexibility",
-    ],
-  },
-  {
-    id: "expert",
-    title: "Use Our Design Expert",
-    desc: "Work with professional interior designers who bring your vision to life with personalized service.",
-    img: "/landing/home/services/services-img-3.webp",
-    href: ROUTES.OUR_NEW_DESIGN_EXPERT,
-    features: [
-      "1-on-1 consultation",
-      "Custom design plans",
-      "Full project management",
-    ],
-  },
-];
-
-const mobileServicesData = [
-  {
-    id: "packages",
-    title: "Select Packages",
-    desc: "Pre-designed room packages with curated furniture and decor",
-    img: "/landing/home/services/services-img-1.webp",
-    href: ROUTES.PACKAGES,
-    features: [
-      "Complete room sets",
-      "Professional styling",
-      "Budget-friendly",
-      "Fast delivery",
-    ],
-  },
-  {
-    id: "shop",
-    title: "Shop Individually",
-    desc: "Curate your unique space piece by piece from our premium collection",
-    img: "/landing/home/services/services-img-2.webp",
-    href: ROUTES.SINGLE_PRODUCTS,
-    features: [
-      "1000+ unique pieces",
-      "Mix and match styles",
-      "Premium quality",
-      "Flexible selection",
-    ],
-  },
-  {
-    id: "expert",
-    title: "Design Expert",
-    desc: "Collaborate with professional designers for a fully customized interior",
-    img: "/landing/home/services/services-img-3.webp",
-    href: ROUTES.BOOK_CONSULTATION,
-    features: [
-      "1-on-1 consultation",
-      "Custom 3D planning",
-      "Project management",
-      "White-glove service",
-    ],
-  },
+const CATEGORIES = [
+  "STUDIO",
+  "1 BEDROOM",
+  "2 BEDROOM",
+  "3 BEDROOM",
+  "VILLA",
+  "KIDS",
 ];
 
 export default function Services() {
-  const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState("STUDIO");
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const { data, isLoading, isError } = usePackages({ page_size: 100 });
+
+  // Filter packages based on active category
+  const activePackages = useMemo(() => {
+    if (!data?.results) return [];
+
+    return data.results
+      .map((pkg) => {
+        // Find the property that matches the active category
+        const matchingProperty = pkg.properties_info.find((prop) => {
+          const name = prop.name.toUpperCase();
+          if (activeCategory === "STUDIO") return name.includes("STUDIO");
+          if (activeCategory === "VILLA") return name.includes("VILLA");
+          if (activeCategory === "KIDS") return name.includes("KIDS");
+          return name.includes(activeCategory);
+        });
+
+        if (!matchingProperty) return null;
+
+        return {
+          ...pkg,
+          displayPrice: matchingProperty.price,
+          propertyName: matchingProperty.name,
+        };
+      })
+      .filter((pkg) => pkg !== null);
+  }, [data, activeCategory]);
+
+  // Filter categories that have at least one package
+  const availableCategories = useMemo(() => {
+    if (!data?.results) return [];
+
+    return CATEGORIES.filter((category) => {
+      return data.results.some((pkg) => {
+        return pkg.properties_info.some((prop) => {
+          const name = prop.name.toUpperCase();
+          if (category === "STUDIO") return name.includes("STUDIO");
+          if (category === "VILLA") return name.includes("VILLA");
+          if (category === "KIDS") return name.includes("KIDS");
+          return name.includes(category);
+        });
+      });
+    });
+  }, [data]);
+
+  // Set initial category to the first available one if current one is not available
+  useEffect(() => {
+    if (availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
+      setActiveCategory(availableCategories[0]);
+    }
+  }, [availableCategories]);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+    };
+
+    setCount(api.scrollSnapList().length);
+    onSelect();
+
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
+
+  // Reset carousel when category or data changes
+  useEffect(() => {
+    if (api) {
+      api.scrollTo(0);
+    }
+  }, [activeCategory, api, data]);
+
+  const getCategorySlug = (categoryName: string | null | undefined) => {
+    return (categoryName || "general").toLowerCase().replace(/ /g, "-");
+  };
+
+  if (!isLoading && !isError && (!data?.results || data.results.length === 0)) {
+    return null;
+  }
 
   return (
-    <section id="services" className="py-5 sm:py-20 w-full bg-muted">
-      <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
-        {/* Mobile View */}
-        <div className="flex flex-col md:hidden">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-serif font-semibold text-[#302B27] mb-3">
-              Three <span className="text-[#C9A76A]">Pathway</span> Services
-            </h2>
-            <p className="text-[#8F877C] text-[13px] leading-relaxed max-w-[90%] mx-auto">
-              Choose the perfect approach for your interior design journey
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-8">
-            {mobileServicesData.map((service) => (
-              <div
-                key={service.id}
-                className="bg-white rounded-[16px] border border-[#EAEADF] shadow-sm overflow-hidden flex flex-col">
-                <Link
-                  href={service.href}
-                  className="block relative w-full aspect-[1.4] overflow-hidden">
-                  <Image
-                    src={service.img}
-                    alt={service.title}
-                    fill
-                    className="object-cover"
-                  />
-                </Link>
-                <div className="p-6 flex flex-col flex-1">
-                  <Link href={service.href} className="block">
-                    <h3 className="text-[20px] font-bold font-serif text-[#412A1F] mb-3">
-                      {service.title}
-                    </h3>
-                  </Link>
-                  <p className="text-[13px] text-[#8F877C] mb-6 leading-relaxed">
-                    {service.desc}
-                  </p>
-
-                  <ul className="space-y-3 mb-8">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <Check className="w-[14px] h-[14px] text-[#C9A76A] stroke-3" />
-                        <span className="text-[13px] text-[#8F877C]">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link href={service.href} className="w-full mt-auto">
-                    <Button className="w-full bg-[#5D4E3C] hover:bg-[#412A1F] text-[#F3EFE7] rounded-[8px] h-[46px] text-[13px] font-medium shadow-none border-none">
-                      Learn More
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+    <section id="services" className="py-16 sm:py-24 bg-white overflow-hidden">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[#C9A76A] font-medium tracking-[0.2em] text-xs sm:text-sm uppercase mb-4"
+          >
+            EXPLORE BY STYLE & SPACE
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-[56px] font-serif text-[#3D261C] leading-tight"
+          >
+            Discover Furniture{" "}
+            <span className="text-[#C9A76A] font-serif">Packages</span>
+          </motion.h2>
         </div>
 
-        {/* Desktop View */}
-        <div className="hidden md:block">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-[#1a1a1a] mb-6">
-              Three <span className="text-[#C9A76A]">Pathway</span> <br />
-              Services
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-              Three distinct ways to furnish your space. Each designed to match
-              your preferences, timeline, and budget.
-            </p>
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {availableCategories.map((category, idx) => (
+            <motion.button
+              key={category}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05 }}
+              onClick={() => setActiveCategory(category)}
+              className={cn(
+                "px-6 py-2.5 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-300 border",
+                activeCategory === category
+                  ? "bg-[#3D261C] border-[#3D261C] text-white shadow-lg"
+                  : "bg-transparent border-[#E5E0DA] text-[#5D4E3C] hover:border-[#3D261C]"
+              )}
+            >
+              {category}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Content Section */}
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20 gap-4">
+            <Loader2 className="w-10 h-10 text-[#C9A76A] animate-spin" />
+            <p className="text-[#5D4E3C] font-medium">Fetching Packages...</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {servicesData.map((service, idx) => {
-              const isActive = activeCard === service.id;
-
-              return (
-                <motion.div
-                  key={service.id}
-                  className="relative rounded-[24px] overflow-visible cursor-pointer"
-                  onMouseEnter={() => setActiveCard(service.id)}
-                  onMouseLeave={() => setActiveCard(null)}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}>
-                  <Link href={service.href} className="block h-full">
-                    <div
-                      className={`absolute inset-0 rounded-[24px] transition-opacity duration-300 z-0 pointer-events-none ${
-                        isActive ? "opacity-100" : "opacity-0"
-                      }`}
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #72727D 2%, #C9A76A 4%, #C9A76A 48%, transparent 50%)",
-                      }}
-                    />
-
-                    <Card
-                      className={`relative flex flex-col h-full rounded-[23px] overflow-hidden transition-all duration-300 z-10 m-px border bg-[#FDFCF9] ${
-                        isActive
-                          ? "text-white border-transparent"
-                          : "text-black border-[#E5E0DA]"
-                      }`}
-                      style={{
-                        boxShadow: isActive
-                          ? "0 20px 40px rgba(0,0,0,0.15)"
-                          : "0 4px 6px rgba(0,0,0,0.02)",
-                      }}>
-                      {/* Expanding dark background from bottom right */}
-                      <div
-                        className="absolute inset-0 bg-[#251814] transition-all duration-500 ease-out z-0 pointer-events-none"
-                        style={{
-                          clipPath: isActive
-                            ? "circle(150% at 100% 100%)"
-                            : "circle(0% at 100% 100%)",
-                        }}
-                      />
-
-                      {/* Background SVG for all states */}
-                      <div className="absolute inset-0 w-full h-full z-1 pointer-events-none opacity-100 transition-opacity duration-300">
-                        <Image
-                          src="/landing/home/services/services.svg"
-                          alt="bg effect"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-
-                      {/* Card Content - relative to be above background */}
-                      <CardContent className="relative z-10 p-3 sm:p-4 flex flex-col h-full">
-                        <div className="relative w-full aspect-4/3 sm:aspect-4/3 rounded-[16px] overflow-hidden mb-6 filter drop-shadow-sm">
+        ) : isError ? (
+          <div className="text-center py-20 text-red-500">
+            Failed to load packages. Please try again later.
+          </div>
+        ) : activePackages.length === 0 ? null : (
+          <div className="relative max-w-8xl mx-auto">
+            <Carousel
+              setApi={setApi}
+              opts={{
+                align: "start",
+                loop: false,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 md:-ml-8">
+                <AnimatePresence mode="popLayout">
+                  {activePackages.map((pkg, index) => (
+                    <CarouselItem
+                      key={`${activeCategory}-${pkg!.id}`}
+                      className="pl-4 md:pl-8 basis-full md:basis-1/2"
+                    >
+                      <motion.div
+                        layout
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        className="group"
+                      >
+                        <Link
+                          href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
+                          className="relative block aspect-16/11 rounded-[24px] overflow-hidden mb-6 bg-[#F5F5F5] cursor-pointer group"
+                        >
                           <Image
-                            src={service.img}
-                            alt={service.title}
+                            src={pkg!.thumbnail || "/landing/home/services/services-img-1.webp"}
+                            alt={pkg!.name}
                             fill
-                            className="object-cover"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
-                        </div>
+                          {pkg!.tag === "BEST_SELLER" && (
+                            <div className="absolute top-4 right-4 bg-[#C9A76A] text-white px-3 py-1 text-[10px] sm:text-xs rounded-full font-medium z-10">
+                              Bestseller
+                            </div>
+                          )}
+                        </Link>
 
-                        <div className="px-2 pb-6 flex flex-col flex-1">
-                          <h3
-                            className={`text-xl sm:text-2xl font-semibold font-serif mb-3 transition-colors duration-300 ${
-                              isActive ? "text-white" : "text-black"
-                            }`}>
-                            {service.title}
-                          </h3>
-                          <p
-                            className={`text-[15px] mb-2 leading-relaxed transition-colors duration-300 ${
-                              isActive ? "text-white/80" : "text-black"
-                            }`}>
-                            {service.desc}
+                        <div className="space-y-4">
+                          <p className="text-[#5D4E3C] text-sm sm:text-base">
+                            From{" "}
+                            <span className="font-bold text-[#3D261C]">
+                              {pkg!.displayPrice.toLocaleString()}
+                            </span>{" "}
+                            AED
                           </p>
-
-                          <ul className="space-y-4 mb-2 mt-auto">
-                            {service.features.map((feature, index) => (
-                              <li
-                                key={index}
-                                className="flex items-center gap-3">
-                                <div
-                                  className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 transition-colors duration-300 ${
-                                    isActive
-                                      ? "bg-[#C9A76A] text-white"
-                                      : "bg-[#544641] text-white"
-                                  }`}>
-                                  <Check className="w-3 h-3 stroke-3" />
-                                </div>
-                                <span
-                                  className={`text-sm font-medium transition-colors duration-300 ${
-                                    isActive ? "text-white/90" : "text-black"
-                                  }`}>
-                                  {feature}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
+                          <Link
+                            href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
+                            className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-[#3D261C] hover:text-black transition-colors"
+                          >
+                            Explore{" "}
+                            <span className="font-bold underline underline-offset-4 decoration-1 group-hover/link:decoration-2 transition-all">
+                              {pkg!.name} {pkg!.propertyName}
+                            </span>
+                            <ArrowRightIcon className="w-5 h-5 transition-transform group-hover/link:translate-x-1.5" />
+                          </Link>
                         </div>
-                      </CardContent>
-                    </Card>
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </AnimatePresence>
+              </CarouselContent>
+            </Carousel>
 
-                    {/* Floating Arrow Button */}
-                    <div
-                      className={`absolute -bottom-4 -right-4 z-20 transition-all duration-300 ease-out origin-top-left ${
-                        isActive
-                          ? "opacity-100 scale-100 pointer-events-auto"
-                          : "opacity-0 scale-75 pointer-events-none"
-                      }`}>
-                      <div className="bg-[#F7F7F7] p-2 rounded-full">
-                        <div className="w-12 h-12 bg-[#412A1F] text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-[#2b1b16] transition-colors">
-                          <ArrowUpRight className="w-6 h-6" />
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
+            {/* Controls */}
+            <div className="flex items-center justify-center gap-6 mt-16">
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#3D261C] hover:text-white transition-all disabled:opacity-30"
+                onClick={() => api?.scrollPrev()}
+                disabled={!canScrollPrev}
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+
+              <div className="flex gap-2.5">
+                {Array.from({ length: count }).map((_, i) => (
+                  <button
+                    key={i}
+                    className={cn(
+                      "w-2.5 h-2.5 rounded-full transition-all duration-300",
+                      current === i ? "bg-[#C9A76A] scale-110" : "bg-[#D1D5DB]"
+                    )}
+                    onClick={() => api?.scrollTo(i)}
+                  />
+                ))}
+              </div>
+
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#3D261C] hover:text-white transition-all disabled:opacity-30"
+                onClick={() => api?.scrollNext()}
+                disabled={!canScrollNext}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
