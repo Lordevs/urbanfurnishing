@@ -139,17 +139,6 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                       className="object-contain"
                     />
                   )}
-                  
-                  {/* Progress Bar */}
-                  <div className="absolute bottom-0 left-0 h-1 bg-white/10 w-full overflow-hidden">
-                    <motion.div 
-                      key={`progress-${autoplayIndex}`}
-                      initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 5, ease: "linear" }}
-                      className="h-full bg-[#C9A76A]" 
-                    />
-                  </div>
                 </motion.div>
               </AnimatePresence>
 
@@ -169,9 +158,33 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                 </button>
               </div>
 
-              {/* Counter */}
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium backdrop-blur-md border border-white/5">
-                {autoplayIndex + 1} / {images.length}
+              {/* Lightbox Thumbnails & Counter */}
+              <div className="absolute -bottom-28 left-1/2 -translate-x-1/2 w-full flex flex-col items-center gap-6">
+                {/* Counter */}
+                <div className="bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium backdrop-blur-md border border-white/5">
+                  {autoplayIndex + 1} / {images.length}
+                </div>
+
+                {/* Thumbnails in Lightbox */}
+                <div className="flex gap-3 px-4 max-w-full overflow-x-auto pb-4 scrollbar-none">
+                  {images.map((img, idx) => (
+                    <button
+                      key={`lightbox-thumb-${img.id}`}
+                      onClick={(e) => { e.stopPropagation(); setAutoplayIndex(idx); }}
+                      className={cn(
+                        "relative w-20 aspect-16/10 rounded-lg overflow-hidden border-2 transition-all shrink-0",
+                        autoplayIndex === idx ? "border-[#C9A76A]" : "border-transparent opacity-50 hover:opacity-100"
+                      )}
+                    >
+                      <Image
+                        src={img.image}
+                        alt="thumbnail"
+                        fill
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
