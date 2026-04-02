@@ -30,6 +30,7 @@ interface ProductGridProps {
   title: string;
   categories: string[];
   items: GridItemProps[];
+  count?: number;
   detailRoute?: (id: string) => string;
   limit?: number;
   hidePagination?: boolean;
@@ -56,6 +57,7 @@ export function ProductGrid({
   title,
   categories,
   items,
+  count,
   detailRoute,
   limit,
   hidePagination,
@@ -134,7 +136,7 @@ export function ProductGrid({
               {dynamicTitle}
             </h2>
             <span className="bg-[#F5F5F5] text-[#888888] text-[12px] font-medium px-3 py-1 rounded-full">
-              {filteredItems.length} results
+              {count} results
             </span>
           </div>
 

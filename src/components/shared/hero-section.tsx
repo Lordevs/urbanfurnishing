@@ -21,7 +21,7 @@ export function HeroSection({
   imageSrc,
   imageAlt = "Hero Background",
   overlayGradient = "bg-linear-to-b from-[#170D0D]/70 via-[#170D0D]/40 to-transparent",
-  heightClass = "h-[80dvh]",
+  heightClass = "h-[60dvh]",
   title,
   description,
   buttons,
@@ -50,7 +50,7 @@ export function HeroSection({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className={cn(
-              "text-[32px] leading-[1.1] sm:text-5xl md:text-[50px] font-serif font-semibold tracking-tight text-white mb-2 max-w-2xl text-center mx-auto",
+              "text-[32px] leading-[1.1] sm:text-5xl md:text-[50px] font-serif font-semibold tracking-tight text-white mb-2 max-w-2xl text-center mx-auto mt-20",
               titleClassName,
             )}
           >

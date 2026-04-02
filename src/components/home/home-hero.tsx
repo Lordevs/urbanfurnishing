@@ -11,7 +11,8 @@ export default function HomeHero() {
     <HeroSection
       imageSrc="/landing/home/hero-section.webp"
       imageAlt="Modern Architecture"
-      heightClass="h-auto md:h-[80dvh] gap-10 pb-20 pt-40"
+      heightClass="h-auto md:h-[60dvh] gap-10 pb-20 pt-40"
+      titleClassName="mt-0"
       title="Design Your Space. Define Your Comfort."
       description="Explore curated room packages and premium furnishing essentials crafted to transform your home into a modern, functional, and beautifully styled living space all in one place."
       buttons={

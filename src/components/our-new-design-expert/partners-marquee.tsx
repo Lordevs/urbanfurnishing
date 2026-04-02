@@ -19,21 +19,14 @@ type PartnersMarqueeProps = {
   speed?: number;
 };
 
+const clients = Array.from({ length: 12 }, (_, i) => ({
+  id: i + 1,
+  src: `/landing/home/our-client/client-${i + 1}.webp`,
+  alt: `Client ${i + 1}`,
+}));
+
 export function PartnersMarquee({
-  logos = [
-    { src: "/logos/grosvenor.png", alt: "Grosvenor House" },
-    { src: "/logos/royal.png", alt: "Royal Meridien" },
-    { src: "/logos/creek.png", alt: "Dubai Creek Resort" },
-    { src: "/logos/ritz.png", alt: "The Ritz-Carlton" },
-    { src: "/logos/blue.png", alt: "Blue Waters" },
-    { src: "/logos/ajman.png", alt: "Ajman Saray Resort" },
-    { src: "/logos/andaz.png", alt: "Andaz" },
-    { src: "/logos/kempinski.png", alt: "Kempinski Hotel" },
-    { src: "/logos/hilton.png", alt: "Hiton Garden Inn" },
-    { src: "/logos/anantara.png", alt: "Anantara" },
-    { src: "/logos/rove.png", alt: "Rove Hotels" },
-    { src: "/logos/stregis.png", alt: "St. Regis" },
-  ],
+  logos = clients,
   speed = 40,
 }: PartnersMarqueeProps) {
   return (
