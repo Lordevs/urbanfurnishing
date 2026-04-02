@@ -1,7 +1,6 @@
-"use client";
-
-import { Minus, Plus } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface AccordionProps {
   title: string;
@@ -17,25 +16,33 @@ export function PackageAccordion({
   const [isOpen, setIsOpen] = useState(defaultOpen);
   
   return (
-    <div className="border-b border-gray-100">
+    <div className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-5 flex items-center justify-between text-left group"
+        className="w-full px-5 py-4 flex items-center justify-between text-left transition-colors hover:bg-gray-50/50"
       >
-        <span className="text-xs font-bold text-[#412A1F] uppercase tracking-wider">
+        <span className="text-[14px] font-bold text-[#3D261C]">
           {title}
         </span>
-        {isOpen ? (
-          <Minus className="w-3.5 h-3.5 text-gray-800" />
-        ) : (
-          <Plus className="w-3.5 h-3.5 text-gray-800" />
-        )}
+        <ChevronDown 
+          className={cn(
+            "w-4 h-4 text-gray-400 transition-transform duration-300",
+            isOpen && "rotate-180"
+          )} 
+        />
       </button>
-      {isOpen && (
-        <div className="pb-6 animate-in fade-in slide-in-from-top-1">
-          {children}
+      <div 
+        className={cn(
+          "grid transition-all duration-300 ease-in-out",
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="px-5 pb-5 text-[14px] text-gray-500 leading-relaxed">
+            {children}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

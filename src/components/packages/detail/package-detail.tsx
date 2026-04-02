@@ -52,7 +52,9 @@ export function PackageDetail({ slug }: { slug: string }) {
 
   const selectedType = pkg.properties[selectedTypeIndex];
   const sortedImages =
-    pkg.images.length > 0 ? [...pkg.images].sort((a, b) => a.order - b.order) : [];
+    pkg.images.length > 0
+      ? [...pkg.images].sort((a, b) => a.order - b.order)
+      : [];
 
   const handleAddToCart = () => {
     if (!pkg || !selectedType) return;
@@ -73,68 +75,45 @@ export function PackageDetail({ slug }: { slug: string }) {
   };
 
   return (
-    <div className="bg-white" data-package-slug={slug}>
+    <div className="bg-white min-h-screen" data-package-slug={slug}>
       <section className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 pt-32 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          <PackageGallery images={sortedImages} packageName={pkg.name} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          {/* Left Column: Gallery (Increased Width) */}
+          <div className="lg:col-span-8">
+            <PackageGallery images={sortedImages} packageName={pkg.name} />
+          </div>
 
-          <div className="flex flex-col">
-            <PackageInfo
-              pkg={pkg}
-              selectedTypeIndex={selectedTypeIndex}
-              setSelectedTypeIndex={setSelectedTypeIndex}
-              handleAddToCart={handleAddToCart}
-              selectedType={selectedType}
-            />
+          {/* Right Column: Info Card (Reduced Width) */}
+          <div className="lg:col-span-4 h-fit lg:sticky lg:top-32">
+            <div className="bg-[#F9F9F9] rounded-[32px] p-6 sm:p-8">
+              <PackageInfo
+                pkg={pkg}
+                selectedTypeIndex={selectedTypeIndex}
+                setSelectedTypeIndex={setSelectedTypeIndex}
+                handleAddToCart={handleAddToCart}
+                selectedType={selectedType}
+              />
 
-            {/* Feature Accordions */}
-            <div className="mt-10 space-y-0.5">
-              <PackageAccordion title="Description" defaultOpen={true}>
-                <p className="text-[13px] text-gray-500 leading-relaxed max-w-[90%]">
-                  {pkg.description}
-                </p>
-              </PackageAccordion>
+              {/* Action Accordions */}
+              <div className="mt-8 space-y-3">
+                <PackageAccordion title="Delivery & Assembly">
+                  <p className="text-[14px2 text-gray-500 leading-relaxed">
+                    Professionally installed and styled within 9-12 business days (subject to site readiness).
+                  </p>
+                </PackageAccordion>
 
-              {selectedType && (
-                <>
-                  {selectedType.features.length > 0 && (
-                    <PackageAccordion title="Package Features">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
-                        {selectedType.features.map((feature: string, i: number) => (
-                          <div key={i} className="flex items-center gap-3">
-                            <Check className="w-3.5 h-3.5 text-[#412A1F] shrink-0" />
-                            <span className="text-[13px] text-gray-500 leading-tight">
-                              {feature}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </PackageAccordion>
-                  )}
+                <PackageAccordion title="Cleaning Service">
+                  <p className="text-[14px] text-gray-500 leading-relaxed">
+                    Post-furnishing professional cleaning to make your home move-in ready.
+                  </p>
+                </PackageAccordion>
 
-                  {selectedType.additional_info.length > 0 && (
-                    <PackageAccordion title="Additional Information">
-                      <div className="space-y-4">
-                        {selectedType.additional_info.map(
-                          (info: { key: string; value: string }, i: number) => (
-                            <div
-                              key={i}
-                              className="flex items-center justify-between pb-3 border-b border-gray-50 last:border-0 last:pb-0"
-                            >
-                              <span className="text-[13px] text-gray-400 font-medium">
-                                {info.key}
-                              </span>
-                              <span className="text-[13px] text-[#412A1F] font-semibold">
-                                {info.value}
-                              </span>
-                            </div>
-                          ),
-                        )}
-                      </div>
-                    </PackageAccordion>
-                  )}
-                </>
-              )}
+                <PackageAccordion title="Supervising Service">
+                  <p className="text-[14px] text-gray-500 leading-relaxed">
+                    Dedicated project manager to oversee logistics and final touches.
+                  </p>
+                </PackageAccordion>
+              </div>
             </div>
           </div>
         </div>
