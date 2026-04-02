@@ -14,7 +14,6 @@ export default function Home() {
     <main className="min-h-screen">
       <HomeHero />
       <Stats />
-      <OurClient />
       <Services />
       <PathwayNav />
       <Packages />
@@ -22,6 +21,7 @@ export default function Home() {
       <SignatureDesign />
       <HowWeWork />
       <CTA />
+      <OurClient />
     </main>
   );
 }
