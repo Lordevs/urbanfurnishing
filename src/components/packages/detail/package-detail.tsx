@@ -94,25 +94,40 @@ export function PackageDetail({ slug }: { slug: string }) {
                 selectedType={selectedType}
               />
 
-              {/* Action Accordions */}
+              {/* Action Accordions - Dynamic Content */}
               <div className="mt-8 space-y-3">
-                <PackageAccordion title="Delivery & Assembly">
-                  <p className="text-[14px2 text-gray-500 leading-relaxed">
-                    Professionally installed and styled within 9-12 business days (subject to site readiness).
-                  </p>
-                </PackageAccordion>
+                {pkg.description && (
+                  <PackageAccordion title="Description" defaultOpen={true}>
+                    <p className="text-[14px] text-gray-500 leading-relaxed">
+                      {pkg.description}
+                    </p>
+                  </PackageAccordion>
+                )}
 
-                <PackageAccordion title="Cleaning Service">
-                  <p className="text-[14px] text-gray-500 leading-relaxed">
-                    Post-furnishing professional cleaning to make your home move-in ready.
-                  </p>
-                </PackageAccordion>
+                {selectedType && selectedType.features.length > 0 && (
+                  <PackageAccordion title="What's Included">
+                    <ul className="space-y-2 list-disc list-inside">
+                      {selectedType.features.map((feature, i) => (
+                        <li key={i} className="text-[14px] text-gray-500 leading-relaxed">
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </PackageAccordion>
+                )}
 
-                <PackageAccordion title="Supervising Service">
-                  <p className="text-[14px] text-gray-500 leading-relaxed">
-                    Dedicated project manager to oversee logistics and final touches.
-                  </p>
-                </PackageAccordion>
+                {selectedType && selectedType.additional_info.length > 0 && (
+                  <PackageAccordion title="Specifications">
+                    <div className="space-y-3">
+                      {selectedType.additional_info.map((info, i) => (
+                        <div key={i} className="flex justify-between items-center pb-2 border-b border-gray-50 last:border-0 last:pb-0">
+                          <span className="text-[13px] text-gray-400">{info.key}</span>
+                          <span className="text-[13px] text-[#412A1F] font-semibold">{info.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </PackageAccordion>
+                )}
               </div>
             </div>
           </div>

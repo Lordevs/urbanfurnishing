@@ -1,4 +1,4 @@
-import { Search, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ZoomIn, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,13 +15,23 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [autoplayIndex, setAutoplayIndex] = useState(0);
 
-  // Autoplay for lightbox
+  // Helper to detect if a URL is likely a video
+  const isVideo = (url: string) => {
+    return (
+      url.toLowerCase().endsWith(".mp4") ||
+      url.toLowerCase().endsWith(".webm") ||
+      url.toLowerCase().endsWith(".ogg") ||
+      url.toLowerCase().includes("video")
+    );
+  };
+
+  // Autoplay for lightbox - slow down to 5 seconds
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isLightboxOpen) {
       interval = setInterval(() => {
         setAutoplayIndex((prev) => (prev + 1) % images.length);
-      }, 3000);
+      }, 5000);
     }
     return () => clearInterval(interval);
   }, [isLightboxOpen, images.length]);
@@ -37,36 +47,36 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
   return (
     <div className="flex flex-col gap-6">
       {/* Main Image View */}
-      <div className="relative aspect-16/10 w-full rounded-[32px] overflow-hidden bg-gray-100 group">
+      <div className="relative aspect-16/10 w-full rounded-[32px] overflow-hidden bg-gray-100 group shadow-sm">
         <Image
           src={images[activeImage].image}
           alt={packageName}
           fill
-          className="object-cover transition-all duration-700"
+          className="object-cover transition-all duration-1000"
           priority
         />
         
-        {/* Lightbox Trigger */}
+        {/* Lightbox Trigger - ZoomIn icon */}
         <button 
           onClick={() => {
             setAutoplayIndex(activeImage);
             setIsLightboxOpen(true);
           }}
-          className="absolute bottom-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform active:scale-95 z-20"
+          className="absolute bottom-6 right-6 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform active:scale-95 z-20"
         >
-          <Search className="w-5 h-5 text-[#3D261C]" />
+          <ZoomIn className="w-7 h-7 text-[#3D261C]" />
         </button>
       </div>
 
       {/* Thumbnails */}
-      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-none">
+      <div className="flex gap-4 overflow-x-auto pb-4 pt-1 scrollbar-none snap-x">
         {images.map((img, idx) => (
           <button
             key={img.id}
             onClick={() => setActiveImage(idx)}
             className={cn(
-              "relative min-w-[120px] aspect-16/10 rounded-2xl overflow-hidden border-2 transition-all shrink-0",
-              activeImage === idx ? "border-[#C9A76A]" : "border-transparent opacity-70 hover:opacity-100"
+              "relative min-w-[140px] aspect-16/10 rounded-2xl overflow-hidden border-2 transition-all shrink-0 snap-start",
+              activeImage === idx ? "border-[#C9A76A]" : "border-transparent opacity-80 hover:opacity-100"
             )}
           >
             <Image
@@ -75,10 +85,11 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
               fill
               className="object-cover"
             />
-            {idx === 1 && (
+            {/* Show video icon if it's a video */}
+            {isVideo(img.image) && (
                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                  <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                    <Play className="w-4 h-4 text-white fill-white" />
+                  <div className="w-10 h-10 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center border border-white/30">
+                    <Play className="w-5 h-5 text-white fill-white" />
                   </div>
                </div>
             )}
@@ -93,7 +104,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-100 bg-black/95 flex items-center justify-center p-4 sm:p-10"
+            className="fixed inset-0 z-100 bg-black/98 flex items-center justify-center p-4 sm:p-10"
           >
             <button 
               onClick={() => setIsLightboxOpen(false)}
@@ -106,26 +117,36 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={autoplayIndex}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 1.02 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
                   className="relative w-full h-full rounded-2xl overflow-hidden"
                 >
-                  <Image
-                    src={images[autoplayIndex].image}
-                    alt="Lightbox Gallery"
-                    fill
-                    className="object-contain sm:object-cover"
-                  />
+                  {isVideo(images[autoplayIndex].image) ? (
+                    <video 
+                      src={images[autoplayIndex].image} 
+                      autoPlay 
+                      muted 
+                      loop 
+                      className="w-full h-full object-contain bg-black"
+                    />
+                  ) : (
+                    <Image
+                      src={images[autoplayIndex].image}
+                      alt="Lightbox Gallery"
+                      fill
+                      className="object-contain"
+                    />
+                  )}
                   
                   {/* Progress Bar */}
-                  <div className="absolute bottom-0 left-0 h-1.5 bg-white/20 w-full overflow-hidden">
+                  <div className="absolute bottom-0 left-0 h-1 bg-white/10 w-full overflow-hidden">
                     <motion.div 
                       key={`progress-${autoplayIndex}`}
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
-                      transition={{ duration: 3, ease: "linear" }}
+                      transition={{ duration: 5, ease: "linear" }}
                       className="h-full bg-[#C9A76A]" 
                     />
                   </div>
@@ -133,23 +154,23 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
               </AnimatePresence>
 
               {/* Navigation */}
-              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 pointer-events-none">
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-6 pointer-events-none">
                 <button 
                   onClick={(e) => { e.stopPropagation(); setAutoplayIndex((prev) => (prev - 1 + images.length) % images.length); }}
-                  className="w-12 h-12 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-sm"
+                  className="w-14 h-14 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-sm transition-all hover:scale-110"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-8 h-8" />
                 </button>
                 <button 
                   onClick={(e) => { e.stopPropagation(); setAutoplayIndex((prev) => (prev + 1) % images.length); }}
-                  className="w-12 h-12 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-sm"
+                  className="w-14 h-14 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-sm transition-all hover:scale-110"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-8 h-8" />
                 </button>
               </div>
 
               {/* Counter */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/40 text-white px-4 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm">
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium backdrop-blur-md border border-white/5">
                 {autoplayIndex + 1} / {images.length}
               </div>
             </div>
