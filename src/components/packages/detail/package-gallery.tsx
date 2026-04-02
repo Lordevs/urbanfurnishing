@@ -158,7 +158,8 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
               <X className="w-6 h-6" />
             </button>
 
-            <div className="relative w-full max-w-7xl h-full max-h-[85vh] flex items-center justify-center">
+            {/* Lightbox Image Container - Fixed Aspect & Height Constrained */}
+            <div className="relative w-full max-w-7xl aspect-16/10 max-h-[80vh] rounded-[32px] overflow-hidden shadow-2xl flex items-center justify-center bg-black/20">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={autoplayIndex}
@@ -166,50 +167,51 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                  className="absolute inset-0 w-full h-full"
+                >
                   {isVideo(images[autoplayIndex].image) ? (
                     <video
                       src={images[autoplayIndex].image}
                       autoPlay
                       muted
                       loop
-                      className="w-full h-full object-contain bg-black"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <Image
                       src={images[autoplayIndex].image}
                       alt="Lightbox Gallery"
                       fill
-                      className="object-contain"
+                      className="object-cover"
                     />
                   )}
 
-                  {/* Counter - Positioned on the image */}
-                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/40 text-white px-5 py-2 rounded-full text-sm font-medium backdrop-blur-md border border-white/10 z-30">
+                  {/* Counter - Fixedly on the bottom center of the active picture */}
+                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/60 text-white px-6 py-2.5 rounded-full text-sm font-semibold backdrop-blur-xl border border-white/10 z-50">
                     {autoplayIndex + 1} / {images.length}
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Navigation */}
-              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-6 pointer-events-none z-40">
+              {/* Navigation Arrows */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-8 z-40 pointer-events-none">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    setAutoplayIndex(
-                      (prev) => (prev - 1 + images.length) % images.length,
-                    );
+                    setAutoplayIndex((prev) => (prev - 1 + images.length) % images.length);
                   }}
-                  className="w-14 h-14 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-sm transition-all hover:scale-110">
-                  <ChevronLeft className="w-8 h-8" />
+                  className="w-16 h-16 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-md transition-all hover:scale-110 shadow-2xl"
+                >
+                  <ChevronLeft className="w-10 h-10" />
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setAutoplayIndex((prev) => (prev + 1) % images.length);
                   }}
-                  className="w-14 h-14 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-sm transition-all hover:scale-110">
-                  <ChevronRight className="w-8 h-8" />
+                  className="w-16 h-16 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-md transition-all hover:scale-110 shadow-2xl"
+                >
+                  <ChevronRight className="w-10 h-10" />
                 </button>
               </div>
             </div>
