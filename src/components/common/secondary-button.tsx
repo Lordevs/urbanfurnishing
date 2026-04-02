@@ -8,7 +8,7 @@ export const SecondaryButton = ({
   href,
   className,
 }: {
-  label: string;
+  label: string | React.ReactNode;
   href: string;
   className?: string;
 }) => {

@@ -108,7 +108,9 @@ export function PackageDetail({ slug }: { slug: string }) {
                   <PackageAccordion title="What's Included">
                     <ul className="space-y-2 list-disc list-inside">
                       {selectedType.features.map((feature, i) => (
-                        <li key={i} className="text-[14px] text-gray-500 leading-relaxed">
+                        <li
+                          key={i}
+                          className="text-[14px] text-gray-500 leading-relaxed">
                           {feature}
                         </li>
                       ))}
@@ -120,9 +122,15 @@ export function PackageDetail({ slug }: { slug: string }) {
                   <PackageAccordion title="Specifications">
                     <div className="space-y-3">
                       {selectedType.additional_info.map((info, i) => (
-                        <div key={i} className="flex justify-between items-center pb-2 border-b border-gray-50 last:border-0 last:pb-0">
-                          <span className="text-[13px] text-gray-400">{info.key}</span>
-                          <span className="text-[13px] text-[#412A1F] font-semibold">{info.value}</span>
+                        <div
+                          key={i}
+                          className="flex justify-between items-center pb-2 border-b border-gray-50 last:border-0 last:pb-0">
+                          <span className="text-[13px] text-gray-400">
+                            {info.key}
+                          </span>
+                          <span className="text-[13px] text-[#412A1F] font-semibold">
+                            {info.value}
+                          </span>
                         </div>
                       ))}
                     </div>
