@@ -158,7 +158,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
               <X className="w-6 h-6" />
             </button>
 
-            <div className="relative w-full max-w-7xl aspect-16/10">
+            <div className="relative w-full max-w-7xl h-full max-h-[85vh] flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={autoplayIndex}
@@ -173,14 +173,14 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                       autoPlay
                       muted
                       loop
-                      className="w-full h-full object-cover bg-black"
+                      className="w-full h-full object-contain bg-black"
                     />
                   ) : (
                     <Image
                       src={images[autoplayIndex].image}
                       alt="Lightbox Gallery"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   )}
 
