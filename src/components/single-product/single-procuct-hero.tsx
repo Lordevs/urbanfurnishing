@@ -31,17 +31,15 @@ export default function SingleProductHero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight"
-            >
+              className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
               Expertly Curated <br />
-              <span className="text-[#C9A76A] font-serif">Room Products.</span>
+              <span className="text-secondary font-serif">Room Products.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-sm leading-[1.6] text-white/95 mb-8 font-light pr-4"
-            >
+              className="text-sm leading-[1.6] text-white/95 mb-8 font-light pr-4">
               Designer-selected furniture packages that bring harmony to your
               space. Each collection is thoughtfully coordinated to save you
               time, money, and design guesswork
@@ -50,8 +48,7 @@ export default function SingleProductHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4"
-            >
+              className="flex flex-col gap-4">
               <PrimaryButton
                 href={ROUTES.BOOK_CONSULTATION}
                 label="Get in Touch"

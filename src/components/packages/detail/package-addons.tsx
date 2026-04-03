@@ -19,7 +19,7 @@ export function PackageAddOns({
   if (!addOns || addOns.length === 0) return null;
 
   return (
-    <section className=" py-20 border-t border-muted-foreground/10">
+    <section className="py-20 border-t border-muted-foreground/10">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="mb-10">
           <h2 className="text-[15px] font-bold text-secondary uppercase tracking-[0.2em]">
@@ -37,8 +37,8 @@ export function PackageAddOns({
                 className={cn(
                   "group relative p-5 rounded-2xl border-2 transition-all duration-300 cursor-pointer flex flex-col ring-offset-white",
                   isSelected
-                    ? "bg-[#F9F9F9] border-[#C9A76A]"
-                    : "bg-white border-gray-100 hover:border-[#F2EBE0]",
+                    ? "bg-secondary/10 border-secondary/10"
+                    : "bg-secondary/20 border-secondary/10 hover:border-secondary/10",
                 )}>
                 <div className="flex justify-between items-start mb-3">
                   {/* Select Circle */}
@@ -46,7 +46,7 @@ export function PackageAddOns({
                     className={cn(
                       "w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
                       isSelected
-                        ? "bg-[#C9A76A] border-[#C9A76A]"
+                        ? "bg-secondary border-secondary"
                         : "bg-white border-gray-200 group-hover:border-gray-300",
                     )}>
                     {isSelected && (

@@ -129,13 +129,13 @@ export function ProductGrid({
   return (
     <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto sm:pt-12">
       {/* Filter Header */}
-      <div className="bg-white border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+      <div className="bg-secondary/15 border border-secondary/30 rounded-[24px] p-5 lg:p-6 mb-12 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <h2 className="text-[20px] lg:text-[22px] font-bold text-[#1A1A1A] tracking-tight">
+            <h2 className="text-[20px] lg:text-[22px] font-bold text-primary tracking-tight">
               {dynamicTitle}
             </h2>
-            <span className="bg-[#F5F5F5] text-[#888888] text-[12px] font-medium px-3 py-1 rounded-full">
+            <span className="bg-secondary/15 text-primary text-[12px] font-medium px-3 py-1 rounded-full">
               {count} results
             </span>
           </div>
@@ -144,7 +144,7 @@ export function ProductGrid({
             {/* Search */}
             <div className="relative w-full sm:w-auto flex-1 sm:flex-none">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <Search className="w-5 h-5 text-[#AAAAAA]" />
+                <Search className="w-5 h-5 text-muted" />
               </div>
               <input
                 type="text"
@@ -178,8 +178,7 @@ export function ProductGrid({
                 currentCategory === cat
                   ? "bg-[#422C20] text-white"
                   : "bg-[#F5F5F5] text-[#666666] hover:bg-[#EBEBEB] hover:text-[#1A1A1A]"
-              }`}
-            >
+              }`}>
               {cat}
             </Button>
           ))}
@@ -202,8 +201,7 @@ export function ProductGrid({
                   onClick={() =>
                     detailRoute && router.push(detailRoute(pkg.slug))
                   }
-                  className="bg-white rounded-[20px] sm:rounded-[24px] overflow-hidden flex flex-col h-full border border-[#F2F2F2] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-pointer"
-                >
+                  className="bg-card rounded-[20px] sm:rounded-[24px] overflow-hidden flex flex-col h-full border border-secondary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-pointer">
                   {/* Image Container */}
                   <div className="relative aspect-4/3 bg-[#F8F8F8] w-full shrink-0">
                     <Image
@@ -217,8 +215,7 @@ export function ProductGrid({
                       {pkg.badges.map((badge, idx) => (
                         <span
                           key={idx}
-                          className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}
-                        >
+                          className={`px-2.5 py-1 ${badge.color} text-white text-[9px] font-bold tracking-widest uppercase rounded-[4px] w-max`}>
                           {badge.text}
                         </span>
                       ))}
@@ -232,25 +229,25 @@ export function ProductGrid({
 
                   {/* Content */}
                   <div className="p-5 lg:p-6 flex flex-col flex-1">
-                    <h4 className="text-[#C5A67C] text-[10px] sm:text-[11px] font-bold tracking-[0.12em] uppercase mb-1.5">
+                    <h4 className="text-secondary text-[10px] sm:text-[11px] font-bold tracking-[0.12em] uppercase mb-1.5">
                       {pkg.category}
                     </h4>
-                    <h3 className="text-[18px] sm:text-[20px] font-bold text-[#1A1A1A] leading-tight mb-2">
+                    <h3 className="text-[18px] sm:text-[20px] font-bold text-primary leading-tight mb-2">
                       {pkg.title}
                     </h3>
-                    <p className="text-[#888888] text-[13px] leading-relaxed mb-6 line-clamp-2">
+                    <p className="text-muted-foreground text-[13px] leading-relaxed mb-6 line-clamp-2">
                       {pkg.description}
                     </p>
 
                     {/* Footer Price Block */}
-                    <div className="mt-auto flex items-end justify-between border-t border-[#F0F0F0] pt-5 lg:pt-6">
+                    <div className="mt-auto flex items-end justify-between border-t border-muted-foreground/20 pt-5 lg:pt-6">
                       <div className="flex flex-col">
                         <div className="flex items-baseline gap-2 mb-0.5 whitespace-nowrap">
-                          <span className="text-[20px] lg:text-[24px] font-bold text-[#1A1A1A] leading-none tracking-tight">
+                          <span className="text-[20px] lg:text-[24px] font-bold text-primary leading-none tracking-tight">
                             {pkg.price}
                           </span>
                           {pkg.originalPrice && (
-                            <span className="text-[#B3B3B3] text-[13px] lg:text-[14px] font-medium tracking-tight line-through mt-0.5">
+                            <span className="text-muted-foreground text-[13px] lg:text-[14px] font-medium tracking-tight line-through mt-0.5">
                               {pkg.originalPrice}
                             </span>
                           )}
@@ -271,8 +268,7 @@ export function ProductGrid({
                           pkg.isInStock
                             ? "bg-[#412A1F]/90 hover:bg-[#412A1F] text-white hover:scale-105"
                             : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                        }`}
-                      >
+                        }`}>
                         {pkg.isInStock ? (
                           <>
                             <ShoppingCart className="w-[15px] lg:w-[16px] h-[15px] lg:h-[16px]" />
@@ -301,8 +297,7 @@ export function ProductGrid({
           <button
             onClick={() => onPageChange?.(Math.max(1, currentPage - 1))}
             disabled={currentPage === 1}
-            className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+            className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
             <ChevronLeft className="w-4 h-4" />
           </button>
 
@@ -310,8 +305,7 @@ export function ProductGrid({
             item === "..." ? (
               <span
                 key={`ellipsis-${idx}`}
-                className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest"
-              >
+                className="text-[#1A1A1A] px-1 text-[14px] lg:text-[15px] font-bold tracking-widest">
                 ...
               </span>
             ) : (
@@ -322,8 +316,7 @@ export function ProductGrid({
                   currentPage === item
                     ? "bg-white border-2 border-[#8A7969] text-[#8A7969]"
                     : "bg-white border border-[#EBEBEB] text-[#1A1A1A] hover:border-[#8A7969] hover:text-[#8A7969]"
-                }`}
-              >
+                }`}>
                 {item}
               </button>
             ),
@@ -334,8 +327,7 @@ export function ProductGrid({
               onPageChange?.(Math.min(totalPages, currentPage + 1))
             }
             disabled={currentPage === totalPages}
-            className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+            className="w-[36px] lg:w-[40px] h-[38px] lg:h-[42px] rounded-[6px] lg:rounded-[8px] bg-white border border-[#EBEBEB] text-[#AAAAAA] hover:text-[#1A1A1A] hover:border-[#8A7969] transition-all flex items-center justify-center shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>

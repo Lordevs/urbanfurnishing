@@ -65,8 +65,7 @@ function GridSkeleton() {
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse"
-        >
+          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse">
           <div className="aspect-4/3 bg-[#F0EBE4]" />
           <div className="p-5 flex flex-col gap-3">
             <div className="h-3 w-16 bg-[#F0EBE4] rounded" />

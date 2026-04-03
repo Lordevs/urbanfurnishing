@@ -14,29 +14,25 @@ export function PackageAccordion({
   defaultOpen = false,
 }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  
+
   return (
-    <div className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm">
+    <div className="bg-card rounded-xl border border-secondary/10 overflow-hidden shadow-sm">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-5 py-4 flex items-center justify-between text-left transition-colors hover:bg-gray-50/50"
-      >
-        <span className="text-[14px] font-bold text-[#3D261C]">
-          {title}
-        </span>
-        <ChevronDown 
+        className="w-full px-5 py-4 flex items-center justify-between text-left transition-colors hover:bg-gray-50/50">
+        <span className="text-[14px] font-bold text-primary">{title}</span>
+        <ChevronDown
           className={cn(
-            "w-4 h-4 text-gray-400 transition-transform duration-300",
-            isOpen && "rotate-180"
-          )} 
+            "w-4 h-4 text-muted-foreground transition-transform duration-300",
+            isOpen && "rotate-180",
+          )}
         />
       </button>
-      <div 
+      <div
         className={cn(
           "grid transition-all duration-300 ease-in-out",
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        )}
-      >
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+        )}>
         <div className="overflow-hidden">
           <div className="px-5 pb-5 text-[14px] text-gray-500 leading-relaxed">
             {children}
