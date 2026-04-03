@@ -45,7 +45,7 @@ function ProductItemCarousel({
 
   return (
     <div className="relative w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence initial={false}>
         <motion.div
           key={index}
           initial={{ opacity: 0, x: 40 }}
@@ -57,15 +57,15 @@ function ProductItemCarousel({
         </motion.div>
       </AnimatePresence>
 
-      {/* Mini Pagination Dots */}
+      {/* Mini Dynamic Pills */}
       {displayImages.length > 1 && (
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
           {displayImages.map((_, i) => (
             <div
               key={i}
               className={cn(
-                "w-1 h-1 rounded-full transition-all duration-300",
-                index === i ? "bg-white w-2.5" : "bg-white/40",
+                "h-1 rounded-full transition-all duration-500",
+                index === i ? "bg-white w-5" : "bg-white/40 w-1",
               )}
             />
           ))}

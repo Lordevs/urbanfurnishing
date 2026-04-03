@@ -53,7 +53,7 @@ function PackageCardImage({ thumbnail, images, alt }: PackageCardImageProps) {
 
   return (
     <div className="absolute inset-0">
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence initial={false}>
         <motion.div
           key={index}
           initial={{ opacity: 0, x: 40 }}
@@ -61,7 +61,7 @@ function PackageCardImage({ thumbnail, images, alt }: PackageCardImageProps) {
           exit={{ opacity: 0, x: -40 }}
           transition={{
             duration: 0.8,
-            ease: [0.32, 0.72, 0, 1], // Custom cubic-bezier for a more premium slide
+            ease: [0.32, 0.72, 0, 1],
           }}
           className="absolute inset-0">
           <Image
@@ -74,6 +74,23 @@ function PackageCardImage({ thumbnail, images, alt }: PackageCardImageProps) {
           />
         </motion.div>
       </AnimatePresence>
+
+      {/* Dynamic Pills for Inner Image Gallery */}
+      {allImages.length > 1 && (
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+          {allImages.map((_, i) => (
+            <div
+              key={i}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-500",
+                index === i 
+                  ? "bg-white w-7" 
+                  : "bg-white/40 w-1.5"
+              )}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

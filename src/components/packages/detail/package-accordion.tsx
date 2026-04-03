@@ -16,7 +16,7 @@ export function PackageAccordion({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="bg-card rounded-xl border border-secondary/10 overflow-hidden shadow-sm">
+    <div className="bg-secondary/15 rounded-xl border border-secondary/10 overflow-hidden shadow-sm">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full px-5 py-4 flex items-center justify-between text-left transition-colors hover:bg-gray-50/50">
