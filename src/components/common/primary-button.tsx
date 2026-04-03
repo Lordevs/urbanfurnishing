@@ -25,7 +25,7 @@ export const PrimaryButton = ({
           "w-full sm:w-auto group rounded-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center sm:justify-between sm:gap-3 py-2 sm:pr-2 sm:pl-7 h-11 md:h-12 text-sm md:text-[15px] font-normal transition-all duration-300 shadow-none sm:border border-[#413D3D] hover:border-[#413D3D]/25",
           className,
         )}>
-        <span className="sm:hidden">{mbLabel}</span>
+        <span className="sm:hidden text-white">{mbLabel || label}</span>
         <span className="hidden sm:inline text-white">{label}</span>
         <div
           className={cn(
@@ -35,9 +35,9 @@ export const PrimaryButton = ({
           <Image
             src="/common/arrow-up.svg"
             alt="Arrow Up"
-            width={12}
-            height={12}
-            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 w-2.5 h-2.5 md:h-3 md:w-3"
+            width={16}
+            height={16}
+            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 w-3.5 h-3.5 md:h-4 md:w-4"
           />
         </div>
       </Button>

@@ -57,7 +57,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
   return (
     <div className="flex flex-col gap-6">
       {/* Main Image View with Slide Effect */}
-      <div className="relative aspect-16/10 w-full rounded-[32px] overflow-hidden bg-gray-100 group shadow-sm">
+      <div className="relative aspect-16/10 w-full rounded-lg overflow-hidden bg-gray-100 group shadow-sm">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeImage}
@@ -65,8 +65,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
+            className="absolute inset-0 w-full h-full">
             {isVideo(images[activeImage].image) ? (
               <video
                 src={images[activeImage].image}
@@ -90,15 +89,21 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
         {/* Navigation Arrows - Show on hover */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 z-20 pointer-events-none">
           <button
-            onClick={(e) => { e.stopPropagation(); setActiveImage((prev) => (prev - 1 + images.length) % images.length); }}
-            className="w-12 h-12 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-[#3D261C] shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:scale-110 pointer-events-auto"
-          >
+            onClick={(e) => {
+              e.stopPropagation();
+              setActiveImage(
+                (prev) => (prev - 1 + images.length) % images.length,
+              );
+            }}
+            className="w-12 h-12 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-[#3D261C] shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:scale-110 pointer-events-auto">
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); setActiveImage((prev) => (prev + 1) % images.length); }}
-            className="w-12 h-12 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-[#3D261C] shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:scale-110 pointer-events-auto"
-          >
+            onClick={(e) => {
+              e.stopPropagation();
+              setActiveImage((prev) => (prev + 1) % images.length);
+            }}
+            className="w-12 h-12 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-[#3D261C] shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:scale-110 pointer-events-auto">
             <ChevronRight className="w-6 h-6" />
           </button>
         </div>
@@ -109,8 +114,8 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
             setAutoplayIndex(activeImage);
             setIsLightboxOpen(true);
           }}
-          className="absolute bottom-6 right-6 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform active:scale-95 z-20">
-          <ZoomIn className="w-7 h-7 text-[#3D261C]" />
+          className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform active:scale-95 z-20">
+          <ZoomIn className="w-5 h-5 sm:w-6 sm:h-6 text-[#3D261C]" />
         </button>
       </div>
 
@@ -121,7 +126,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
             key={img.id}
             onClick={() => setActiveImage(idx)}
             className={cn(
-              "relative min-w-[140px] aspect-16/10 rounded-2xl overflow-hidden border-2 transition-all shrink-0 snap-start",
+              "relative min-w-[140px] aspect-16/10 rounded-lg overflow-hidden border-2 transition-all shrink-0 snap-start",
               activeImage === idx
                 ? "border-[#C9A76A]"
                 : "border-transparent opacity-80 hover:opacity-100",
@@ -167,8 +172,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="absolute inset-0 w-full h-full"
-                >
+                  className="absolute inset-0 w-full h-full">
                   {isVideo(images[autoplayIndex].image) ? (
                     <video
                       src={images[autoplayIndex].image}
@@ -198,10 +202,11 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    setAutoplayIndex((prev) => (prev - 1 + images.length) % images.length);
+                    setAutoplayIndex(
+                      (prev) => (prev - 1 + images.length) % images.length,
+                    );
                   }}
-                  className="w-16 h-16 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-md transition-all hover:scale-110 shadow-2xl"
-                >
+                  className="w-16 h-16 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-md transition-all hover:scale-110 shadow-2xl">
                   <ChevronLeft className="w-10 h-10" />
                 </button>
                 <button
@@ -209,8 +214,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                     e.stopPropagation();
                     setAutoplayIndex((prev) => (prev + 1) % images.length);
                   }}
-                  className="w-16 h-16 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-md transition-all hover:scale-110 shadow-2xl"
-                >
+                  className="w-16 h-16 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center text-white pointer-events-auto backdrop-blur-md transition-all hover:scale-110 shadow-2xl">
                   <ChevronRight className="w-10 h-10" />
                 </button>
               </div>

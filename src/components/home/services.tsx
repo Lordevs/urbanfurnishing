@@ -191,7 +191,7 @@ export default function Services() {
                   {activePackages.map((pkg, index) => (
                     <CarouselItem
                       key={`${activeCategory}-${pkg!.id}`}
-                      className="pl-4 md:pl-8 basis-full md:basis-1/2">
+                      className="pl-4 md:pl-8 basis-full md:basis-1/2 lg:basis-1/3">
                       <motion.div
                         layout
                         initial={{ opacity: 0, x: 20 }}
@@ -201,7 +201,7 @@ export default function Services() {
                         className="group">
                         <Link
                           href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
-                          className="relative block aspect-16/11 rounded-[24px] overflow-hidden mb-6 bg-[#F5F5F5] cursor-pointer group">
+                          className="relative block aspect-video rounded-xl overflow-hidden mb-6 bg-[#F5F5F5] cursor-pointer group">
                           <Image
                             src={
                               pkg!.thumbnail ||
