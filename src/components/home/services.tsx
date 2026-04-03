@@ -125,7 +125,7 @@ export default function Services() {
   }
 
   return (
-    <section id="services" className="py-16 sm:py-24 bg-white overflow-hidden">
+    <section id="services" className="py-16 sm:py-24 overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header Section */}
         <div className="text-center mb-12">

@@ -55,7 +55,7 @@ function Counter({
 
 export default function Stats() {
   return (
-    <section className="bg-white pt-5 lg:py-10">
+    <section className="pt-5 lg:py-10">
       <div className="max-w-8xl mx-auto px-2 sm:px-10 lg:px-16">
         <div className="grid grid-cols-3 gap-4 sm:gap-14 lg:gap-24 items-center justify-items-center">
           {stats.map((stat, index) => (

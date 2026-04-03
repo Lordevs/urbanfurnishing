@@ -3,65 +3,79 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
-
 :root {
-  --background: oklch(1 0 0); /* #FFFFFF */
-  --foreground: oklch(0.26 0.034 54); /* #412A1F */
-  --card: oklch(0.992 0.005 80); /* #FFFBF5 */
-  --card-foreground: oklch(0.26 0.034 54);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.26 0.034 54);
-  --primary: oklch(0.26 0.034 54); /* #412A1F */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.72 0.091 78); /* #C9A76A */
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.985 0 0); /* #FAFAFA */
-  --muted-foreground: oklch(0.45 0.02 54);
-  --accent: oklch(0.95 0.026 71); /* #FFEDD9 */
-  --accent-foreground: oklch(0.26 0.034 54);
+  /* 🌿 Base */
+  --background: oklch(0.94 0.02 75); /* #F2EBE0 */
+  --foreground: oklch(0.18 0.02 50); /* #1A1614 */
+
+  /* 🧱 Surfaces */
+  --card: oklch(0.91 0.02 75); /* #EAE2D6 */
+  --card-foreground: oklch(0.18 0.02 50);
+
+  --popover: oklch(0.94 0.02 75);
+  --popover-foreground: oklch(0.18 0.02 50);
+
+  /* 🎯 Brand Primary (Ink-based for strong contrast) */
+  --primary: oklch(0.18 0.02 50); /* #1A1614 */
+  --primary-foreground: oklch(0.98 0 0); /* white text */
+
+  /* ✨ Accent (Signature Gold) */
+  --secondary: oklch(0.7 0.08 75); /* #C8A882 */
+  --secondary-foreground: oklch(0.18 0.02 50);
+
+  --accent: oklch(0.7 0.08 75); /* same as primary accent */
+  --accent-foreground: oklch(0.18 0.02 50);
+
+  /* 🧾 Text hierarchy */
+  --muted: oklch(0.9 0.01 75);
+  --muted-foreground: oklch(0.55 0.02 60); /* #A89E94 */
+
+  /* ⚠️ System */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.92 0.01 75);
-  --input: oklch(0.92 0.01 75);
-  --ring: oklch(0.26 0.034 54);
-  --chart-1: oklch(0.72 0.091 78);
-  --chart-2: oklch(0.26 0.034 54);
-  --chart-3: oklch(0.95 0.026 71);
+
+  /* 🪟 UI Elements */
+  --border: oklch(0.85 0.01 75);
+  --input: oklch(0.85 0.01 75);
+  --ring: oklch(0.7 0.08 75); /* accent ring */
+
+  /* 📊 Charts */
+  --chart-1: oklch(0.7 0.08 75); /* gold */
+  --chart-2: oklch(0.18 0.02 50); /* ink */
+  --chart-3: oklch(0.6 0.05 70);
   --chart-4: oklch(0.75 0.04 80);
-  --chart-5: oklch(0.6 0.03 65);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.434 0.0345 71.8);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.9362 0.0177 81.33);
-  --sidebar-accent-foreground: oklch(0.145 0 0);
-  --sidebar-border: oklch(0.9 0.01 75);
-  --sidebar-ring: oklch(0.55 0.03 70);
+  --chart-5: oklch(0.5 0.03 60);
+
+  /* 📌 Sidebar */
+  --sidebar: oklch(0.92 0.02 75);
+  --sidebar-foreground: oklch(0.18 0.02 50);
+
+  --sidebar-primary: oklch(0.7 0.08 75);
+  --sidebar-primary-foreground: oklch(0.18 0.02 50);
+
+  --sidebar-accent: oklch(0.88 0.03 75);
+  --sidebar-accent-foreground: oklch(0.18 0.02 50);
+
+  --sidebar-border: oklch(0.85 0.01 75);
+  --sidebar-ring: oklch(0.7 0.08 75);
+
+  /* 🔤 Typography */
   --font-sans: var(--font-inter);
   --font-serif: var(--font-cormorant);
-  --radius: 0.625rem;
-  --shadow-x: 0;
-  --shadow-y: 1px;
-  --shadow-blur: 3px;
-  --shadow-spread: 0px;
-  --shadow-opacity: 0.1;
-  --shadow-color: oklch(0 0 0);
-  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-  --shadow-md:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-  --shadow-lg:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-  --shadow-xl:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-  --tracking-normal: 0em;
-  --spacing: 0.25rem;
-}
 
+  /* 📐 Layout */
+  --radius: 0.75rem;
+
+  /* 🌫 Shadows (soft luxury feel) */
+  --shadow-color: oklch(0 0 0);
+  --shadow-opacity: 0.08;
+
+  --shadow-sm: 0 2px 6px hsl(0 0% 0% / 0.06);
+  --shadow: 0 4px 12px hsl(0 0% 0% / 0.08);
+  --shadow-md: 0 6px 18px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0 10px 30px hsl(0 0% 0% / 0.12);
+  --shadow-xl: 0 20px 40px hsl(0 0% 0% / 0.14);
+}
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
