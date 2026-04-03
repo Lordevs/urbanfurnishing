@@ -39,7 +39,6 @@ const ProjectCard = ({
       />
       {/* Overlay on hover */}
       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6 z-10 pointer-events-none">
-
         <div className="text-center">
           <p className="text-white text-xs uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
             View Project
@@ -91,7 +90,7 @@ export default function DesignDirection() {
   }
 
   return (
-    <section className="w-full">
+    <section className="w-full bg-secondary/5">
       {/* Main Container */}
       <div className="py-12 md:py-20 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto">
         <div className="text-center mb-12 sm:mb-16">

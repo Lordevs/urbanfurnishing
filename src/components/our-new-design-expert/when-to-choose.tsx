@@ -37,7 +37,9 @@ const reasons = [
 
 export default function WhenToChoose() {
   return (
-    <section id="when-to-choose" className="py-20 lg:py-28 overflow-hidden">
+    <section
+      id="when-to-choose"
+      className="py-20 lg:py-28 bg-secondary/5  overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         {/* Mobile View */}
         <div className="flex flex-col lg:hidden">

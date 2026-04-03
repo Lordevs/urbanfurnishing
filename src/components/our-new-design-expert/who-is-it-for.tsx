@@ -45,7 +45,7 @@ const cardVariants = {
 
 export default function WhoIsItFor() {
   return (
-    <section className="py-24 lg:py-36 px-4 sm:px-10 lg:px-16 overflow-hidden">
+    <section className="py-24 bg-secondary/5 lg:py-36 px-4 sm:px-10 lg:px-16 overflow-hidden">
       <div className="max-w-8xl mx-auto">
         <div className="text-center mb-20 md:mb-28">
           <motion.div
