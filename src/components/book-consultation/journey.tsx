@@ -27,14 +27,14 @@ const steps = [
 
 export default function Journey() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="text-center mb-20">
-          <h2 className="text-3xl sm:text-[52px] font-serif font-semibold tracking-tight text-[#1a1a1a] mb-2">
-            Your <span className="text-[#C9A76A] font-serif">Journey</span> With
+          <h2 className="text-3xl sm:text-[52px] font-serif font-semibold tracking-tight text-primary mb-2">
+            Your <span className="text-secondary font-serif">Journey</span> With
             Us
           </h2>
-          <p className="text-[#000000]/50 text-[18px] sm:text-[20px] font-light tracking-wide max-w-md mx-auto">
+          <p className="text-muted-foreground text-[18px] sm:text-[20px] font-light tracking-wide max-w-md mx-auto">
             From consultation to completion, here&apos;s what to expect
           </p>
         </div>

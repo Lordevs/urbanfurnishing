@@ -53,8 +53,7 @@ const ChevronDown = () => (
       height="12"
       viewBox="0 0 24 24"
       fill="none"
-      className="text-[#8F877C]"
-    >
+      className="text-[#8F877C]">
       <path
         d="M6 9L12 15L18 9"
         stroke="currentColor"
@@ -104,10 +103,10 @@ export default function ConsultationForm() {
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-[#1a1a1a] mb-4">
-            Book <span className="text-[#C9A76A] font-serif">Free</span>{" "}
+            Book <span className="text-secondary font-serif">Free</span>{" "}
             Consultation
           </h2>
-          <p className="text-[#8F877C] text-base sm:text-lg font-light tracking-wide">
+          <p className="text-muted-foreground text-base sm:text-lg font-light tracking-wide">
             Book free Consultation and get the guide
           </p>
         </div>
@@ -124,8 +123,7 @@ export default function ConsultationForm() {
               style={{
                 background:
                   "linear-gradient(135deg, #2A1F15 0%, #412A1F 45%, #5D4E3C 100%)",
-              }}
-            >
+              }}>
               <div className="inline-flex items-center justify-center border border-white/20 bg-white/10 rounded-full px-4 py-1.5 mb-8">
                 <span className="text-[10px] font-semibold tracking-[0.15em] text-[#E0Dcd8] uppercase">
                   CONTACT DETAILS
@@ -152,8 +150,7 @@ export default function ConsultationForm() {
                 ].map(({ icon: Icon, label, value }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-4 bg-white/25 p-4 sm:p-5 rounded-[16px]"
-                  >
+                    className="flex items-center gap-4 bg-white/25 p-4 sm:p-5 rounded-[16px]">
                     <div className="w-10 h-10 rounded-full bg-[#C9A76A] flex items-center justify-center shrink-0">
                       <Icon className="w-4 h-4 text-white" />
                     </div>
@@ -178,19 +175,18 @@ export default function ConsultationForm() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-white p-8 sm:p-12 lg:p-14 rounded-[32px] shadow-sm border border-[#F0EBE6]"
-            >
-              <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-[#FCFAF8] rounded-full px-4 py-1.5 mb-6">
-                <span className="text-[10px] font-semibold tracking-[0.15em] text-[#C9A76A] uppercase">
+              className="bg-card p-8 sm:p-12 lg:p-14 rounded-[32px] shadow-sm border border-secondary/10">
+              <div className="inline-flex items-center justify-center border border-muted-foreground/50 bg-muted/50 rounded-full px-4 py-1.5 mb-6">
+                <span className="text-[10px] font-semibold tracking-[0.15em] text-secondary uppercase">
                   CONSULTATION FORM
                 </span>
               </div>
 
-              <h3 className="text-3xl sm:text-4xl font-serif font-medium text-[#1a1a1a] mb-4 tracking-tight">
+              <h3 className="text-3xl sm:text-4xl font-serif font-medium text-primary mb-4 tracking-tight">
                 Let&apos;s Start Your{" "}
-                <span className="text-[#C9A76A] font-serif">Journey</span>
+                <span className="text-secondary font-serif">Journey</span>
               </h3>
-              <p className="text-[#8F877C] text-[13px] sm:text-[14px] font-light mb-12 tracking-wide">
+              <p className="text-muted-foreground text-[13px] sm:text-[14px] font-light mb-12 tracking-wide">
                 Fill in the details below and we&apos;ll get back to you within
                 24 hours to schedule your consultation.
               </p>
@@ -199,11 +195,10 @@ export default function ConsultationForm() {
                 <div className="bg-[#F6F9F3] border border-[#C9A76A]/30 rounded-[16px] p-8 text-center flex flex-col items-center gap-4">
                   <div className="w-14 h-14 rounded-full bg-[#C9A76A]/10 flex items-center justify-center">
                     <svg
-                      className="w-7 h-7 text-[#C9A76A]"
+                      className="w-7 h-7 text-primary"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                      stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -212,10 +207,10 @@ export default function ConsultationForm() {
                       />
                     </svg>
                   </div>
-                  <h4 className="text-[#1a1a1a] text-xl font-semibold">
+                  <h4 className="text-primary text-xl font-semibold">
                     Inquiry Submitted!
                   </h4>
-                  <p className="text-[#8F877C] text-[13px] font-light leading-relaxed">
+                  <p className="text-muted-foreground text-[13px] font-light leading-relaxed">
                     Thank you for reaching out. Our team will contact you within
                     24 hours.
                   </p>
@@ -224,13 +219,12 @@ export default function ConsultationForm() {
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className="flex flex-col gap-6"
-                  noValidate
-                >
+                  noValidate>
                   {/* Name Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
-                      <label className="text-[12px] text-[#412A1F] font-medium tracking-wide">
-                        First Name <span className="text-[#C9A76A]">*</span>
+                      <label className="text-[12px] text-primary font-medium tracking-wide">
+                        First Name <span className="text-secondary">*</span>
                       </label>
                       <Input
                         {...register("first_name")}
@@ -294,8 +288,7 @@ export default function ConsultationForm() {
                         <select
                           {...register("package_interest")}
                           className={SELECT_CLASS}
-                          defaultValue=""
-                        >
+                          defaultValue="">
                           <option value="" disabled>
                             Select a package
                           </option>
@@ -316,8 +309,7 @@ export default function ConsultationForm() {
                         <select
                           {...register("project_timeline")}
                           className={SELECT_CLASS}
-                          defaultValue=""
-                        >
+                          defaultValue="">
                           <option value="" disabled>
                             Select timeline
                           </option>
@@ -352,8 +344,7 @@ export default function ConsultationForm() {
                             selectedPropertyType === type
                               ? "bg-[#C9A76A]/5 border border-[#C9A76A] text-[#412A1F]"
                               : "bg-[#FFF8F0] border border-[#E8E1DA] text-[#8F877C] hover:border-[#C9A76A]/50"
-                          }`}
-                        >
+                          }`}>
                           {type}
                         </button>
                       ))}
@@ -394,8 +385,7 @@ export default function ConsultationForm() {
                             selectedContactMethod === value
                               ? "bg-[#C9A76A]/5 border border-[#C9A76A] text-[#412A1F]"
                               : "bg-[#FFF8F0] border border-[#E8E1DA] text-[#8F877C] hover:border-[#C9A76A]/50"
-                          }`}
-                        >
+                          }`}>
                           {label}
                         </button>
                       ))}
@@ -412,8 +402,7 @@ export default function ConsultationForm() {
                     />
                     <label
                       htmlFor="marketing_consent"
-                      className="text-[#8F877C] text-[11px] leading-relaxed font-light cursor-pointer"
-                    >
+                      className="text-[#8F877C] text-[11px] leading-relaxed font-light cursor-pointer">
                       I agree to receive communications from UH Furnishing
                       regarding my consultation request. I understand that my
                       information will be kept confidential and I can
@@ -425,8 +414,7 @@ export default function ConsultationForm() {
                   <Button
                     type="submit"
                     disabled={isPending}
-                    className="group w-full rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-4 py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4 disabled:opacity-70"
-                  >
+                    className="group w-full rounded-full cursor-pointer bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-4 py-2 pr-2 pl-8 h-[56px] text-[14px] font-medium transition-all duration-300 shadow-md border-none mt-4 disabled:opacity-70">
                     <span className="flex-1 text-center pr-4">
                       {isPending ? "Submitting..." : "Book Free Consultation"}
                     </span>
