@@ -136,6 +136,15 @@ export const PackagePropertiesInfoSchema = z.object({
   price: z.number(),
 });
 
+export const PackageImageSchema = z.object({
+  id: z.string().uuid(),
+  image: z.string(),
+  alt_text: z.string().optional().nullable(),
+  order: z.number(),
+});
+
+export type PackageImage = z.infer<typeof PackageImageSchema>;
+
 export const PackageListItemSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
@@ -157,6 +166,7 @@ export const PackageListItemSchema = z.object({
   property_count: z.number().optional(),
   properties_info: z.array(PackagePropertiesInfoSchema).optional().default([]),
   thumbnail: z.string().optional().nullable(),
+  images: z.array(PackageImageSchema).optional().default([]),
 });
 
 export const PackageItemSchema = z.object({
@@ -194,15 +204,6 @@ export const PackageAddOnSchema = z.object({
 });
 
 export type PackageAddOn = z.infer<typeof PackageAddOnSchema>;
-
-export const PackageImageSchema = z.object({
-  id: z.string().uuid(),
-  image: z.string(),
-  alt_text: z.string().optional().nullable(),
-  order: z.number(),
-});
-
-export type PackageImage = z.infer<typeof PackageImageSchema>;
 
 export const PackageDetailSchema = z.object({
   id: z.string().uuid(),

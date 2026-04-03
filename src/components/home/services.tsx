@@ -25,6 +25,72 @@ const CATEGORIES = [
   "KIDS",
 ];
 
+interface PackageCardImageProps {
+  thumbnail: string | null | undefined;
+  images: Array<{ image: string }>;
+  alt: string;
+}
+
+function PackageCardImage({ thumbnail, images, alt }: PackageCardImageProps) {
+  const [index, setIndex] = useState(0);
+
+  // Combine thumbnail with images if needed, ensuring unique URLs
+  const allImages = useMemo(() => {
+    const list = images.map((img) => img.image);
+    if (thumbnail && !list.includes(thumbnail)) {
+      list.unshift(thumbnail);
+    }
+    return list.slice(0, 5); // Limit to 5 for the card
+  }, [thumbnail, images]);
+
+  useEffect(() => {
+    if (allImages.length <= 1) return;
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % allImages.length);
+    }, 4000); // 4 seconds for services card
+    return () => clearInterval(timer);
+  }, [allImages.length]);
+
+  return (
+    <div className="absolute inset-0">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.32, 0.72, 0, 1], // Custom cubic-bezier for a more premium slide
+          }}
+          className="absolute inset-0">
+          <Image
+            src={allImages[index] || "/landing/home/services/services-img-1.webp"}
+            alt={alt}
+            fill
+            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Pagination Dots for Card Gallery */}
+      {allImages.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/10 border border-white/20">
+          {allImages.map((_, i) => (
+            <div
+              key={i}
+              className={cn(
+                "w-1.5 h-1.5 rounded-full transition-all duration-300",
+                index === i ? "bg-white scale-110 w-3" : "bg-white/40",
+              )}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState("STUDIO");
   const [api, setApi] = useState<CarouselApi>();
@@ -177,7 +243,7 @@ export default function Services() {
           <div className="text-center py-20 text-red-500">
             Failed to load packages. Please try again later.
           </div>
-        ) : activePackages.length === 0 ? null : (
+        ) : (
           <div className="relative max-w-8xl mx-auto">
             <Carousel
               setApi={setApi}
@@ -191,7 +257,7 @@ export default function Services() {
                   {activePackages.map((pkg, index) => (
                     <CarouselItem
                       key={`${activeCategory}-${pkg!.id}`}
-                      className="pl-4 md:pl-8 basis-full md:basis-1/2 lg:basis-1/3">
+                      className="pl-4 md:pl-8 basis-full md:basis-1/3">
                       <motion.div
                         layout
                         initial={{ opacity: 0, x: 20 }}
@@ -201,27 +267,23 @@ export default function Services() {
                         className="group">
                         <Link
                           href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
-                          className="relative block aspect-video rounded-xl overflow-hidden mb-6 bg-[#F5F5F5] cursor-pointer group">
-                          <Image
-                            src={
-                              pkg!.thumbnail ||
-                              "/landing/home/services/services-img-1.webp"
-                            }
+                          className="relative block aspect-[16/11] rounded-[40px] overflow-hidden mb-6 bg-[#F5F5F5] cursor-pointer group shadow-sm transition-shadow duration-300 hover:shadow-xl border border-black/5">
+                          <PackageCardImage
+                            thumbnail={pkg!.thumbnail}
+                            images={pkg!.images || []}
                             alt={pkg!.name}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
                           {pkg!.tag === "BEST_SELLER" && (
-                            <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 text-[10px] sm:text-xs rounded-full font-medium z-10">
+                            <div className="absolute top-4 right-4 bg-[#C9A76A] text-white px-4 py-1.5 text-[11px] sm:text-xs rounded-full font-bold z-10 shadow-lg tracking-wider uppercase">
                               Bestseller
                             </div>
                           )}
                         </Link>
 
-                        <div className="space-y-4">
-                          <p className="text-primary text-sm sm:text-base">
+                        <div className="space-y-4 px-1">
+                          <p className="text-primary text-sm sm:text-base font-medium">
                             From{" "}
-                            <span className="font-bold text-[#3D261C]">
+                            <span className="font-bold text-[#3D261C] text-lg sm:text-xl">
                               {pkg!.displayPrice.toLocaleString()}
                             </span>{" "}
                             AED
@@ -230,7 +292,7 @@ export default function Services() {
                             href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
                             className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-primary hover:text-secondary transition-colors">
                             Explore{" "}
-                            <span className="font-bold underline underline-offset-4 decoration-1 group-hover/link:decoration-2 transition-all">
+                            <span className="font-bold underline underline-offset-8 decoration-1 group-hover/link:underline-offset-4 group-hover/link:decoration-2 transition-all">
                               {pkg!.name} {pkg!.propertyName}
                             </span>
                             <ArrowRightIcon className="w-5 h-5 transition-transform group-hover/link:translate-x-1.5" />
@@ -244,23 +306,25 @@ export default function Services() {
             </Carousel>
 
             {/* Controls */}
-            <div className="flex items-center justify-center gap-6 mt-16">
+            <div className="flex items-center justify-center gap-10 mt-20">
               <Button
                 variant="outline"
                 size="icon"
-                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#8A6A4A] hover:text-white transition-all disabled:opacity-30"
+                className="rounded-full w-12 h-12 border-[#E5E0DA] hover:bg-secondary hover:border-secondary hover:text-white transition-all disabled:opacity-30 shadow-sm"
                 onClick={() => api?.scrollPrev()}
                 disabled={!canScrollPrev}>
                 <ArrowLeft className="w-5 h-5" />
               </Button>
 
-              <div className="flex gap-2.5">
+              <div className="flex gap-3">
                 {Array.from({ length: count }).map((_, i) => (
                   <button
                     key={i}
                     className={cn(
-                      "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                      current === i ? "bg-secondary scale-110" : "bg-[#D1D5DB]",
+                      "h-1.5 transition-all duration-300 rounded-full",
+                      current === i
+                        ? "bg-secondary w-8"
+                        : "bg-[#D1D5DB] w-3 hover:bg-gray-400",
                     )}
                     onClick={() => api?.scrollTo(i)}
                   />
@@ -270,7 +334,7 @@ export default function Services() {
               <Button
                 variant="outline"
                 size="icon"
-                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#8A6A4A] hover:text-white transition-all disabled:opacity-30"
+                className="rounded-full w-12 h-12 border-[#E5E0DA] hover:bg-secondary hover:border-secondary hover:text-white transition-all disabled:opacity-30 shadow-sm"
                 onClick={() => api?.scrollNext()}
                 disabled={!canScrollNext}>
                 <ArrowRight className="w-5 h-5" />
