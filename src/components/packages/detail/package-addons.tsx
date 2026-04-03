@@ -19,10 +19,10 @@ export function PackageAddOns({
   if (!addOns || addOns.length === 0) return null;
 
   return (
-    <section className="bg-white py-20 border-t border-gray-100">
+    <section className=" py-20 border-t border-muted-foreground/10">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="mb-10">
-          <h2 className="text-[15px] font-bold text-[#A89E94] uppercase tracking-[0.2em]">
+          <h2 className="text-[15px] font-bold text-secondary uppercase tracking-[0.2em]">
             Available Add-ons
           </h2>
         </div>

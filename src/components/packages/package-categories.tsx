@@ -66,7 +66,7 @@ export function PackageCategories() {
         <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-primary mb-4">
           Our <span className="text-secondary">Collections</span>
         </h2>
-        <p className="text-muted max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           Discover our thoughtfully curated furnishing collections, each
           designed to bring style, comfort, and functionality to your home.
         </p>

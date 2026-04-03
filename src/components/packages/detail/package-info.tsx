@@ -30,7 +30,7 @@ export function PackageInfo({
   return (
     <div className="flex flex-col">
       {/* Title */}
-      <h1 className="text-xl sm:text-[32px] font-serif text-[#3D261C] leading-tight mb-2">
+      <h1 className="text-xl sm:text-[32px] font-serif text-primary leading-tight mb-2">
         {pkg.name} Package
       </h1>
 
@@ -44,7 +44,7 @@ export function PackageInfo({
               className={cn(
                 "px-4 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-300 border",
                 selectedTypeIndex === idx
-                  ? "bg-[#3D261C] border-[#3D261C] text-white shadow-lg shadow-black/5"
+                  ? "bg-secondary border-secondary/20 text-white shadow-lg shadow-black/5"
                   : "bg-white border-gray-200 text-[#5D4E3C] hover:border-[#3D261C]/30",
               )}>
               {type.name}
