@@ -72,8 +72,7 @@ export default function CTA({
             <Link href={mobileViewViewWorkLink} className="w-full">
               <Button
                 variant="outline"
-                className="w-full bg-transparent border-white/40 hover:bg-white/10 text-white font-medium py-6 rounded-[12px] text-[15px]"
-              >
+                className="w-full bg-transparent border-white/40 hover:bg-white/10 text-white font-medium py-6 rounded-[12px] text-[15px]">
                 {mobileViewViewWorkText}
               </Button>
             </Link>
@@ -108,8 +107,7 @@ export default function CTA({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative rounded-[24px] overflow-hidden bg-[#433B35]"
-        >
+          className="relative rounded-[24px] overflow-hidden bg-[#433B35]">
           {/* Background SVG */}
           <div className="absolute inset-0 z-0 select-none pointer-events-none">
             <Image
@@ -155,8 +153,7 @@ export default function CTA({
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="flex flex-col border-t border-[#FFCD96] pt-6 relative"
-                >
+                  className="flex flex-col border-t border-[#FFCD96] pt-6 relative">
                   <div className="flex justify-between items-start mb-3">
                     <span className="text-4xl sm:text-5xl font-serif font-normal text-white tracking-tight">
                       {stat.value}

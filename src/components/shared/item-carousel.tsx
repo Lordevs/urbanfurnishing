@@ -54,10 +54,10 @@ export function ItemCarousel({
       )}>
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-6">
         <h2 className="text-3xl sm:text-6xl  font-semibold tracking-tight">
-          <span className="text-[#1a1a1a] font-serif ">{titlePrefix} </span>
-          <span className="text-[#C9A76A] font-serif ">{titleHighlight}</span>
+          <span className="text-primary font-serif ">{titlePrefix} </span>
+          <span className="text-secondary font-serif ">{titleHighlight}</span>
         </h2>
-        <p className="max-w-md lg:max-w-xl text-gray-500 text-sm sm:text-lg leading-relaxed">
+        <p className="max-w-md lg:max-w-xl text-muted-foreground text-sm sm:text-lg leading-relaxed">
           {description}
         </p>
       </div>

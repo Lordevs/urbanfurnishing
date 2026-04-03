@@ -16,7 +16,7 @@ const secondRow = [...clients].reverse();
 
 export default function OurClient() {
   return (
-    <section className="py-16 lg:pb-24 pt-8">
+    <section className="pb-10 pt-20 ">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         <div className="text-center mb-12 sm:mb-16">
           <motion.h2
@@ -24,17 +24,15 @@ export default function OurClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl font-serif font-semibold text-[#1a1a1a] tracking-tight mb-4"
-          >
-            Our <span className="text-[#C9A76A]">Valued</span> Clients
+            className="text-4xl sm:text-5xl font-serif font-semibold text-primary tracking-tight mb-4">
+            Our <span className="text-secondary">Valued</span> Clients
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-sm md:text-base text-[#8F877C]"
-          >
+            className="text-sm md:text-base text-muted-foreground">
             Proud to collaborate with some of the most respected names across
             industries.
           </motion.p>

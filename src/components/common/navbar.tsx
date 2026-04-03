@@ -62,14 +62,12 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        isNavOpaque ? "bg-white/90 backdrop-blur-md" : "bg-transparent"
-      }`}
-    >
+        isNavOpaque ? "bg-secondary/20 backdrop-blur-md" : "bg-transparent"
+      }`}>
       {/* Promo Banner */}
       <Link
         href={ROUTES.PACKAGES}
-        className={`flex h-10 w-full items-center justify-center px-4 transition-all duration-300 bg-primary text-white`}
-      >
+        className={`flex h-10 w-full items-center justify-center px-4 transition-all duration-300 bg-primary text-white`}>
         <p className="text-[10px] sm:text-[11px] font-medium tracking-widest text-center">
           15% OFF BULK ORDERS — VISIT OUR PACKAGES STORE →
         </p>
@@ -80,8 +78,7 @@ const Navbar = () => {
           {/* Logo Section */}
           <Link
             href={ROUTES.HOME}
-            className="flex items-center gap-2 group shrink-0"
-          >
+            className="flex items-center gap-2 group shrink-0">
             <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/common/logo.svg"
@@ -110,8 +107,7 @@ const Navbar = () => {
                       : isNavOpaque
                         ? "text-[#412A1F] hover:text-primary"
                         : "text-white hover:text-white/80"
-                  }`}
-                >
+                  }`}>
                   {item.title}
                 </Link>
               );
@@ -122,8 +118,7 @@ const Navbar = () => {
             {/* Cart Icon - Both Mobile (visible) and Desktop */}
             <Link
               href={ROUTES.CART}
-              className="relative p-2.5 rounded-full hover:bg-white/10 transition-colors group"
-            >
+              className="relative p-2.5 rounded-full hover:bg-white/10 transition-colors group">
               <ShoppingCart
                 className={`h-6 w-6 transition-colors ${
                   isNavOpaque ? "text-[#412A1F]" : "text-white"
@@ -155,8 +150,7 @@ const Navbar = () => {
                     aria-label="Open navigation menu"
                     className={`h-11 w-11 ${
                       isNavOpaque ? "text-[#412A1F]" : "text-white"
-                    } hover:bg-white/10`}
-                  >
+                    } hover:bg-white/10`}>
                     <Menu className="h-7 w-7" />
                   </Button>
                 </SheetTrigger>
@@ -169,8 +163,7 @@ const Navbar = () => {
                       <Link
                         href={ROUTES.HOME}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-2 group"
-                      >
+                        className="flex items-center gap-2 group">
                         <div className="relative h-10 w-12 transition-transform duration-300 group-hover:scale-105">
                           <Image
                             src="/common/logo.svg"
@@ -198,8 +191,7 @@ const Navbar = () => {
                               isActive
                                 ? "text-primary bg-primary/5 border-l-4 border-primary"
                                 : "text-muted-foreground hover:bg-gray-50"
-                            }`}
-                          >
+                            }`}>
                             <item.icon
                               className={`h-5 w-5 ${isActive ? "text-primary" : "text-muted-foreground"}`}
                             />
@@ -212,8 +204,7 @@ const Navbar = () => {
                     <div className="p-8 border-t bg-gray-50/50">
                       <Link
                         href={ROUTES.BOOK_CONSULTATION}
-                        onClick={() => setIsOpen(false)}
-                      >
+                        onClick={() => setIsOpen(false)}>
                         <Button className="w-full rounded-full bg-[#412A1F] hover:bg-primary/90 text-white flex items-center justify-between px-8 h-14 text-md font-medium shadow-lg transition-transform active:scale-95 cursor-pointer">
                           Get in Touch
                           <div className="bg-white rounded-full p-2 text-[#412A1F]">

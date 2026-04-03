@@ -88,9 +88,9 @@ export default function SignatureDesign() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="lg:w-[55%] flex flex-col justify-center">
-          <h2 className="text-[32px] sm:text-[42px] font-medium tracking-tight font-serif text-[#5D4E3C] mb-8">
+          <h2 className="text-[32px] sm:text-[42px] font-medium tracking-tight font-serif text-primary mb-8">
             Led by{" "}
-            <span className="text-[#C9A76A] font-serif">
+            <span className="text-secondary font-serif">
               Elena Falconer
             </span>{" "}
           </h2>
@@ -116,26 +116,26 @@ export default function SignatureDesign() {
               </svg>
             </div>
 
-            <p className="italic text-[#603D2C] text-[14px] leading-[1.8] mb-3 mt-1 pr-6 tracking-wide">
+            <p className="italic text-muted-foreground text-[14px] leading-[1.8] mb-3 mt-1 pr-6 tracking-wide">
               &quot;Every space tells a story. Our mission is to help you tell
               yours through thoughtfully curated interiors that combine
               functionality with timeless elegance.&quot;
             </p>
-            <p className="text-[11px] text-[#5D4E3C]/60">
+            <p className="text-[11px] text-primary">
               Elena Falconer, Founder & CEO
             </p>
           </div>
 
-          <p className="text-[#5D4E3C]/60 text-[13px] sm:text-sm leading-[1.8] tracking-wide mb-2 max-w-[95%] font-light">
+          <p className="text-muted-foreground text-[13px] sm:text-sm leading-[1.8] tracking-wide mb-2 max-w-[95%] font-light">
             Elena Falconer brings a luxury-trained eye and a commercially
             grounded approach to every project.
           </p>
-          <p className="text-[#5D4E3C]/60 text-[13px] sm:text-sm leading-[1.8] tracking-wide mb-2 max-w-[95%] font-light">
+          <p className="text-muted-foreground text-[13px] sm:text-sm leading-[1.8] tracking-wide mb-2 max-w-[95%] font-light">
             Her work sits at the intersection of design, client experience and
             property value. Each space is considered not only for how it looks,
             but how it feels, functions and performs.
           </p>
-          <p className="text-[#5D4E3C]/60 text-[13px] sm:text-[13px] leading-[1.8] tracking-wide mb-12 max-w-[95%] font-light">
+          <p className="text-muted-foreground text-[13px] sm:text-[13px] leading-[1.8] tracking-wide mb-12 max-w-[95%] font-light">
             Within UH Furnishing, Elena leads the projects that require a
             stronger design direction, a more refined result and a higher level
             of personal involvement.
@@ -181,7 +181,7 @@ export default function SignatureDesign() {
             <Button
               asChild
               variant="outline"
-              className="rounded-full border border-[#DED4C6] bg-transparent text-[#5D4E3C] hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer">
+              className="rounded-full border border-secondary bg-transparent text-primary hover:bg-[#FDF4E7]/40 hover:text-[#3D261C] h-12 px-8 text-[14.5px] font-medium transition-all duration-300 shadow-none cursor-pointer">
               <Link href={ROUTES.OUR_NEW_DESIGN_EXPERT}>Our Story</Link>
             </Button>
           </div>

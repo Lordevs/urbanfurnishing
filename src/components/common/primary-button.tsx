@@ -22,7 +22,7 @@ export const PrimaryButton = ({
     <Link href={href}>
       <Button
         className={cn(
-          "w-full sm:w-auto group rounded-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center sm:justify-between sm:gap-3 py-2 sm:pr-2 sm:pl-7 h-11 md:h-12 text-sm md:text-[15px] font-normal transition-all duration-300 shadow-none sm:border border-[#413D3D] hover:border-[#413D3D]/25",
+          "w-full sm:w-auto group rounded-full bg-[#412A1F] hover:bg-primary/90 text-primary-foreground flex items-center justify-center sm:justify-between sm:gap-3 py-2 sm:pr-2 sm:pl-7 h-11 md:h-12 text-sm md:text-[15px] font-normal transition-all duration-300 shadow-none sm:border border-[#413D3D] hover:border-[#413D3D]/25",
           className,
         )}>
         <span className="sm:hidden text-white">{mbLabel || label}</span>

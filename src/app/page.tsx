@@ -7,7 +7,7 @@ import PathwayNav from "@/components/home/pathway-nav";
 import Services from "@/components/home/services";
 import SingleItems from "@/components/home/single-items";
 import Stats from "@/components/home/stats";
-import OurClient from "@/components/our-client/our-client";
+import OurClient from "@/components/home/our-client";
 
 export default function Home() {
   return (

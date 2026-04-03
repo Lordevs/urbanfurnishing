@@ -55,23 +55,22 @@ export default function Footer() {
       <div className="lg:hidden bg-card py-16 px-5 border-b border-[#F0EBE6] w-full">
         <div className="flex flex-col items-start w-full">
           <div className="inline-flex items-center justify-center border border-[#F0EBE6] bg-white rounded-full px-6 py-2 mb-6 shadow-sm">
-            <span className="text-[11px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
+            <span className="text-[11px] font-semibold tracking-[0.15em] text-primary uppercase">
               Newsletter
             </span>
           </div>
-          <h2 className="text-3xl md:text-[32px] font-serif font-medium tracking-tight text-[#412A1F] mb-4 leading-tight">
+          <h2 className="text-3xl md:text-[32px] font-serif font-medium tracking-tight text-primary mb-4 leading-tight">
             Get Design{" "}
-            <span className="text-[#C9A76A] font-serif">Inspiration</span>
+            <span className="text-secondary font-serif">Inspiration</span>
           </h2>
-          <p className="text-[#8F877C] text-sm md:text-[15px] leading-relaxed tracking-wide font-light mb-8">
+          <p className="text-muted-foreground text-sm md:text-[15px] leading-relaxed tracking-wide font-light mb-8">
             Join our community for curated interior tips, new collection
             launches, and exclusive promotions.
           </p>
 
           <form
             onSubmit={handleSubscribe}
-            className="w-full flex flex-col items-center"
-          >
+            className="w-full flex flex-col items-center">
             <div className="flex flex-row items-center gap-2 w-full">
               <Input
                 type="email"
@@ -84,8 +83,7 @@ export default function Footer() {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-2 py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 cursor-pointer"
-              >
+                className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-between gap-2 py-2 pr-1.5 pl-4 h-[48px] text-[13px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 cursor-pointer">
                 {isPending ? "Subscribing..." : "Subscribe"}
                 {!isPending && (
                   <div className="flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0">
@@ -100,7 +98,7 @@ export default function Footer() {
                 )}
               </Button>
             </div>
-            <p className="text-[#B0B0B0] text-[10px] md:text-xs mt-4 font-light tracking-wide text-center">
+            <p className="text-muted-foreground text-[10px] md:text-xs mt-4 font-light tracking-wide text-center">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </form>
@@ -112,15 +110,15 @@ export default function Footer() {
         <div className="max-w-8xl mx-auto px-10 lg:px-16 flex flex-row gap-24 items-center justify-between">
           <div className="w-[45%]">
             <div className="inline-flex items-center justify-center border border-[#EAEADF] bg-white rounded-full px-5 py-2 mb-6 shadow-sm">
-              <span className="text-[11px] font-semibold tracking-[0.15em] text-[#5D4E3C] uppercase">
+              <span className="text-[11px] font-semibold tracking-[0.15em] text-primary uppercase">
                 Newsletter
               </span>
             </div>
-            <h2 className="text-[42px] font-serif font-medium tracking-tight text-[#302B27] mb-5">
+            <h2 className="text-[42px] font-serif font-medium tracking-tight text-primary mb-5">
               Get Design{" "}
-              <span className="text-[#C9A76A] font-serif">Inspiration</span>
+              <span className="text-secondary font-serif">Inspiration</span>
             </h2>
-            <p className="text-[#8F877C] text-[15px] leading-[1.8] tracking-wide font-light max-w-[95%]">
+            <p className="text-muted-foreground text-[15px] leading-[1.8] tracking-wide font-light max-w-[95%]">
               Join our community for curated interior tips, new collection
               launches, and exclusive promotions.
             </p>
@@ -128,8 +126,7 @@ export default function Footer() {
 
           <form
             onSubmit={handleSubscribe}
-            className="w-full flex flex-col items-end"
-          >
+            className="w-full flex flex-col items-end">
             <div className="w-[80%] max-w-[500px]">
               <div className="flex flex-row items-center gap-3">
                 <Input
@@ -143,8 +140,7 @@ export default function Footer() {
                 <Button
                   type="submit"
                   disabled={isPending}
-                  className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer"
-                >
+                  className="group rounded-full bg-[#3D261C] hover:bg-[#2C1A11] text-[#F3EFE7] flex items-center justify-center gap-4 py-2 pr-1.5 pl-6 h-[50px] text-[14px] font-medium transition-all duration-300 shadow-sm border-none shrink-0 w-[155px] cursor-pointer">
                   {isPending ? "Connecting..." : "Subscribe"}
                   {!isPending && (
                     <div className="hidden sm:flex bg-[#FFF8F0] rounded-full w-[30px] h-[30px] items-center justify-center text-[#412A1F] transition-transform duration-300 group-hover:scale-95 shrink-0 ml-4 sm:ml-0">
@@ -159,7 +155,7 @@ export default function Footer() {
                   )}
                 </Button>
               </div>
-              <p className="text-[#B0B0B0] text-[12px] mt-3 ml-4 font-light tracking-wide">
+              <p className="text-muted-foreground text-[12px] mt-3 ml-4 font-light tracking-wide">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </div>
@@ -217,8 +213,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={ROUTES.SINGLE_PRODUCTS}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -235,8 +230,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={ROUTES.PACKAGES}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -253,8 +247,7 @@ export default function Footer() {
                     <li key={item.title}>
                       <Link
                         href={item.href}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {item.title}
                       </Link>
                     </li>
@@ -271,8 +264,7 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href={`${ROUTES.HOME}#services`}
-                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors"
-                      >
+                        className="text-[#D0CACA] hover:text-white text-[12px] sm:text-[13px] font-normal tracking-wide transition-colors">
                         {link}
                       </Link>
                     </li>
@@ -291,20 +283,17 @@ export default function Footer() {
             <div className="flex items-center flex-wrap justify-center gap-6 sm:gap-8">
               <Link
                 href={ROUTES.PRIVACY_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Privacy
               </Link>
               <Link
                 href={ROUTES.TERMS_AND_CONDITION}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Terms
               </Link>
               <Link
                 href={ROUTES.COOKIES_POLICY}
-                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors"
-              >
+                className="text-[#A3A3A3] hover:text-white text-[11px] font-normal tracking-wide transition-colors">
                 Cookies
               </Link>
               {/* <Link
