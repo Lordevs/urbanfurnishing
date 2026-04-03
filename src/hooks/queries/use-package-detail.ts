@@ -9,7 +9,12 @@ export function usePackageDetail(slug: string | null | undefined) {
     queryKey: ["packages", "detail", slug],
     queryFn: async () => {
       const raw = await apiClient.get<unknown>(API_ROUTES.PACKAGE_DETAIL(slug!));
-      return PackageDetailSchema.parse(raw);
+      const parsed = PackageDetailSchema.safeParse(raw);
+      if (!parsed.success) {
+        console.error("Package detail validation failed:", parsed.error);
+        throw parsed.error;
+      }
+      return parsed.data;
     },
     enabled: Boolean(slug),
   });

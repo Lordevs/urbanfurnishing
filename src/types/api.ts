@@ -174,7 +174,7 @@ export const PackageItemSchema = z.object({
   product_id: z.string().uuid(),
   product_name: z.string(),
   product_slug: z.string(),
-  product_thumbnail: z.string().nullable(),
+  product_thumbnail: z.string().optional().nullable(),
   quantity: z.number(),
   display_order: z.number(),
 });
@@ -182,7 +182,7 @@ export const PackageItemSchema = z.object({
 export const PackagePropertySchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
-  price: z.string(),
+  price: z.union([z.string(), z.number()]).transform((v) => v.toString()),
   features: z.preprocess(parseJsonArray, z.array(z.string())),
   additional_info: z.preprocess(
     parseJsonArray,
@@ -199,7 +199,8 @@ export const PackageAddOnSchema = z.object({
   id: z.string().uuid(),
   title: z.string(),
   description: z.string().optional().nullable(),
-  price: z.string(),
+  price: z.union([z.string(), z.number()]).transform((v) => v.toString()),
+  image: z.string().optional().nullable(),
   display_order: z.number(),
 });
 

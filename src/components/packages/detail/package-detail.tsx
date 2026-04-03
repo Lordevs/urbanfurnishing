@@ -110,7 +110,7 @@ export function PackageDetail({ slug }: { slug: string }) {
 
           {/* Right Column: Info Card (Reduced Width) */}
           <div className="lg:col-span-4 h-fit lg:sticky lg:top-32">
-            <div className="bg-secondary/80 rounded-2xl sm:rounded-[32px] p-5 sm:p-8">
+            <div className="bg-secondary/10 rounded-2xl sm:rounded-[32px] p-5 sm:p-8">
               <PackageInfo
                 pkg={{ ...pkg, add_ons: allAddOns }}
                 selectedTypeIndex={selectedTypeIndex}

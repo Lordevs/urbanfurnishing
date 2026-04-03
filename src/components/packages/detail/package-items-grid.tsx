@@ -14,9 +14,9 @@ export function PackageItemsGrid({ selectedType }: PackageItemsGridProps) {
   if (!selectedType.items || selectedType.items.length === 0) return null;
 
   return (
-    <section className="bg-[#FAFAFA] py-24">
+    <section className="py-24">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
-        <h2 className="text-3xl font-serif font-bold text-[#412A1F] mb-12">
+        <h2 className="text-3xl font-serif font-bold text-primary mb-12">
           Items in this Package
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -24,8 +24,7 @@ export function PackageItemsGrid({ selectedType }: PackageItemsGridProps) {
             <Link
               key={item.id}
               href={ROUTES.SINGLE_PRODUCT_DETAIL(item.product_slug)}
-              className="group cursor-pointer"
-            >
+              className="group cursor-pointer">
               <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 bg-white">
                 {item.product_thumbnail ? (
                   <Image

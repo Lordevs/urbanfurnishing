@@ -1,6 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import type { PackageAddOn } from "@/types/api";
@@ -35,41 +36,53 @@ export function PackageAddOns({
                 key={addon.id}
                 onClick={() => onToggle(addon.id)}
                 className={cn(
-                  "group relative p-5 rounded-2xl border-2 transition-all duration-300 cursor-pointer flex flex-col ring-offset-white",
+                  "group relative p-4 rounded-2xl border-2 transition-all duration-300 cursor-pointer flex gap-4 ring-offset-white",
                   isSelected
-                    ? "bg-secondary/10 border-secondary/10"
-                    : "bg-secondary/20 border-secondary/10 hover:border-secondary/10",
+                    ? "bg-secondary/15 border-secondary/20 shadow-md"
+                    : "bg-card border-secondary/10 hover:border-secondary/20 hover:bg-secondary/5",
                 )}>
-                <div className="flex justify-between items-start mb-3">
-                  {/* Select Circle */}
-                  <div
-                    className={cn(
-                      "w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all duration-300 shrink-0",
-                      isSelected
-                        ? "bg-secondary border-secondary"
-                        : "bg-white border-gray-200 group-hover:border-gray-300",
-                    )}>
-                    {isSelected && (
-                      <Check className="w-4 h-4 text-white stroke-[3px]" />
-                    )}
-                  </div>
-
-                  {/* Price Label */}
-                  <div className="flex items-center gap-1 shrink-0">
-                    <span className="text-[17px] font-bold text-[#1A1614] tracking-tight">
-                      +AED {Number(addon.price).toLocaleString()}
-                    </span>
-                  </div>
+                
+                {/* Left Side: Image Container */}
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-xl overflow-hidden bg-muted/20">
+                  <Image
+                    src={addon.image || "/package-details/placeholder.webp"}
+                    alt={addon.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  
+                  {/* Selection Overlay */}
+                  {isSelected && (
+                    <div className="absolute inset-0 bg-secondary/20 backdrop-blur-[1px] flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg border border-white/20">
+                        <Check className="w-5 h-5 stroke-[3px]" />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Text Content */}
-                <div className="flex-1">
-                  <h3 className="text-[18px] font-bold text-[#1A1614] mb-0.5 leading-tight capitalize">
-                    {addon.title}
-                  </h3>
-                  <p className="text-[13px] text-[#A89E94] font-medium leading-normal">
-                    {addon.description}
-                  </p>
+                {/* Right Side: Content */}
+                <div className="flex flex-col flex-1 justify-between py-0.5">
+                  <div>
+                    <h3 className="text-lg font-bold text-primary leading-tight capitalize mb-1">
+                      {addon.title}
+                    </h3>
+                    <p className="text-[13px] text-muted-foreground font-medium leading-snug line-clamp-2">
+                      {addon.description}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-2 flex items-center justify-between">
+                    <span className="text-[16px] font-bold text-primary tracking-tight">
+                      +AED {Number(addon.price).toLocaleString()}
+                    </span>
+                    
+                    {!isSelected && (
+                      <div className="w-6 h-6 rounded-full border-2 border-secondary/20 group-hover:border-secondary/60 flex items-center justify-center transition-all duration-300">
+                        <Check className="w-3 h-3 text-secondary/0 group-hover:text-secondary group-hover:opacity-40 transition-all" />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             );
