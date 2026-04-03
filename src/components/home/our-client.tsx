@@ -7,7 +7,7 @@ import { Marquee, MarqueeContent, MarqueeItem } from "@/components/ui/marquee";
 
 const clients = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
-  src: `/landing/home/our-client/client-${i + 1}.webp`,
+  src: `/landing/home/our-client/client-${i + 1}.svg`,
   alt: `Client ${i + 1}`,
 }));
 
@@ -75,8 +75,8 @@ export default function OurClient() {
             </MarqueeContent>
           </Marquee>
 
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-white to-transparent dark:from-background"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-white to-transparent dark:from-background"></div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-background to-transparent dark:from-background"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-background to-transparent dark:from-background"></div>
         </div>
       </div>
     </section>
