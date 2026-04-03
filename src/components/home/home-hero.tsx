@@ -21,7 +21,7 @@ export default function HomeHero() {
             href={ROUTES.BOOK_CONSULTATION}
             label="Get in Touch"
             mbLabel="Get Started"
-            className="rounded-xl sm:rounded-full bg-[#C3A16A] sm:bg-[#3D261C] hover:bg-[#b08e58] sm:hover:bg-[#2C1A11] text-sm"
+            className="rounded-xl sm:rounded-full bg-secondary sm:bg-[#3D261C] hover:bg-[#b08e58] sm:hover:bg-[#2C1A11] text-sm"
             iconClassName="hidden sm:flex"
           />
 

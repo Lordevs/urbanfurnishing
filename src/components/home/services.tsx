@@ -65,28 +65,15 @@ function PackageCardImage({ thumbnail, images, alt }: PackageCardImageProps) {
           }}
           className="absolute inset-0">
           <Image
-            src={allImages[index] || "/landing/home/services/services-img-1.webp"}
+            src={
+              allImages[index] || "/landing/home/services/services-img-1.webp"
+            }
             alt={alt}
             fill
             className="object-cover transition-transform duration-1000 group-hover:scale-110"
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* Pagination Dots for Card Gallery */}
-      {allImages.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/10 border border-white/20">
-          {allImages.map((_, i) => (
-            <div
-              key={i}
-              className={cn(
-                "w-1.5 h-1.5 rounded-full transition-all duration-300",
-                index === i ? "bg-white scale-110 w-3" : "bg-white/40",
-              )}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
@@ -267,7 +254,7 @@ export default function Services() {
                         className="group">
                         <Link
                           href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
-                          className="relative block aspect-[16/11] rounded-[40px] overflow-hidden mb-6 bg-[#F5F5F5] cursor-pointer group shadow-sm transition-shadow duration-300 hover:shadow-xl border border-black/5">
+                          className="relative block aspect-16/11 rounded-lg overflow-hidden mb-6 bg-[#F5F5F5] cursor-pointer group shadow-sm transition-shadow duration-300 hover:shadow-xl border border-black/5">
                           <PackageCardImage
                             thumbnail={pkg!.thumbnail}
                             images={pkg!.images || []}
@@ -290,9 +277,9 @@ export default function Services() {
                           </p>
                           <Link
                             href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
-                            className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-primary hover:text-secondary transition-colors">
+                            className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-primary transition-colors">
                             Explore{" "}
-                            <span className="font-bold underline underline-offset-8 decoration-1 group-hover/link:underline-offset-4 group-hover/link:decoration-2 transition-all">
+                            <span className="font-bold border-b-2 border-primary pb-1.5 leading-none transition-all group-hover/link:border-secondary group-hover/link:pb-1 group-hover/link:border-b-2">
                               {pkg!.name} {pkg!.propertyName}
                             </span>
                             <ArrowRightIcon className="w-5 h-5 transition-transform group-hover/link:translate-x-1.5" />
@@ -306,7 +293,7 @@ export default function Services() {
             </Carousel>
 
             {/* Controls */}
-            <div className="flex items-center justify-center gap-10 mt-20">
+            <div className="flex items-center justify-center gap-10 mt-16">
               <Button
                 variant="outline"
                 size="icon"

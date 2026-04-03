@@ -28,7 +28,7 @@ export function PackageCategories() {
 
   if (isLoading) {
     return (
-      <section className="py-16 md:py-24 px-4 sm:px-10 lg:px-16 mx-auto bg-[#FDFBF9]">
+      <section className="py-16 md:py-24 px-4 sm:px-10 lg:px-16 mx-auto">
         <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
           <div className="h-12 w-64 bg-[#F0EBE4] rounded mx-auto mb-4 animate-pulse" />
           <div className="h-4 w-96 bg-[#F0EBE4] rounded mx-auto animate-pulse" />
@@ -61,12 +61,12 @@ export function PackageCategories() {
   }
 
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-10 lg:px-16 mx-auto bg-[#FDFBF9]">
+    <section className="py-16 md:py-24 px-4 sm:px-10 lg:px-16 mx-auto">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
-        <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-[#412A1F] mb-4">
-          Our Collections
+        <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-primary mb-4">
+          Our <span className="text-secondary">Collections</span>
         </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto">
+        <p className="text-muted max-w-2xl mx-auto">
           Discover our thoughtfully curated furnishing collections, each
           designed to bring style, comfort, and functionality to your home.
         </p>

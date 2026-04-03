@@ -132,8 +132,7 @@ export function FeaturedCollections() {
             <div
               key={item.id}
               onClick={() => router.push(ROUTES.PACKAGES_DETAIL(item.slug))}
-              className="bg-white rounded-[16px] shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-[#F0EBE6] overflow-hidden flex flex-col cursor-pointer"
-            >
+              className="bg-white rounded-[16px] shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-[#F0EBE6] overflow-hidden flex flex-col cursor-pointer">
               {/* Image Section */}
               <div className="relative w-full aspect-4/3 bg-[#f8f8f8]">
                 <Image
@@ -209,11 +208,11 @@ export function FeaturedCollections() {
                 <button
                   onClick={(e) => item.isInStock && handleAddToCart(e, item)}
                   disabled={!item.isInStock}
-                  className={`w-full rounded-[12px] h-[48px] flex items-center justify-center gap-2 text-[14px] font-medium transition-colors ${item.isInStock
+                  className={`w-full rounded-[12px] h-[48px] flex items-center justify-center gap-2 text-[14px] font-medium transition-colors ${
+                    item.isInStock
                       ? "bg-[#412A1F] hover:bg-[#2C1A11] text-white"
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    }`}
-                >
+                  }`}>
                   {item.isInStock ? (
                     <>
                       <ShoppingCart className="w-[18px] h-[18px]" />
@@ -233,11 +232,11 @@ export function FeaturedCollections() {
           <button
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
-            className={`w-[32px] h-[32px] flex items-center justify-center rounded-[4px] transition-colors ${currentPage === 1
+            className={`w-[32px] h-[32px] flex items-center justify-center rounded-[4px] transition-colors ${
+              currentPage === 1
                 ? "bg-[#A89B93] opacity-90 cursor-not-allowed border-none"
                 : "bg-white border hover:bg-gray-50 border-[#E0E0E0]"
-              }`}
-          >
+            }`}>
             <Image
               src="/common/arrow-left.svg"
               alt="Previous"
@@ -254,13 +253,13 @@ export function FeaturedCollections() {
                 typeof pageNum === "number" && setCurrentPage(pageNum)
               }
               disabled={pageNum === "..."}
-              className={`w-[32px] h-[32px] flex items-center justify-center rounded-[4px] text-[13px] font-bold transition-colors ${pageNum === currentPage
+              className={`w-[32px] h-[32px] flex items-center justify-center rounded-[4px] text-[13px] font-bold transition-colors ${
+                pageNum === currentPage
                   ? "border-[1.5px] border-[#603D2C] text-[#603D2C] bg-white"
                   : pageNum === "..."
                     ? "text-[#1A1A1A] cursor-default bg-white border border-[#F0F0F0]"
                     : "border border-[#F0F0F0] text-[#1A1A1A] hover:bg-gray-50 bg-white"
-                }`}
-            >
+              }`}>
               {pageNum}
             </button>
           ))}
@@ -270,11 +269,11 @@ export function FeaturedCollections() {
               setCurrentPage((prev) => Math.min(totalPages, prev + 1))
             }
             disabled={currentPage === totalPages}
-            className={`w-[32px] h-[32px] flex items-center justify-center rounded-[4px] transition-colors bg-white ${currentPage === totalPages
+            className={`w-[32px] h-[32px] flex items-center justify-center rounded-[4px] transition-colors bg-white ${
+              currentPage === totalPages
                 ? "border border-[#F0F0F0] cursor-not-allowed"
                 : "border border-[#F0F0F0] hover:bg-gray-50 cursor-pointer"
-              }`}
-          >
+            }`}>
             <Image
               src="/common/arrow-right.svg"
               alt="Next"

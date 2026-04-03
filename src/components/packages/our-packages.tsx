@@ -6,7 +6,7 @@ import { PackageCard } from "./package-card";
 
 function PackageSkeleton() {
   return (
-    <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 flex flex-col h-full animate-pulse">
+    <div className="rounded-3xl overflow-hidden border border-gray-100 flex flex-col h-full animate-pulse">
       <div className="h-[320px] w-full bg-[#F0EBE4]" />
       <div className="p-8 flex flex-col flex-1 gap-4">
         <div className="flex items-center gap-3">
@@ -34,7 +34,7 @@ export function OurPackages({ categorySlug }: { categorySlug?: string } = {}) {
 
   if (isLoading) {
     return (
-      <section className="pb-24 pt-12 bg-[#FAFAFA]">
+      <section className="pb-24 pt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
           <div className="h-12 w-64 bg-[#F0EBE4] rounded mx-auto mb-4 animate-pulse" />
           <div className="h-4 w-96 bg-[#F0EBE4] rounded mx-auto animate-pulse" />
@@ -55,12 +55,12 @@ export function OurPackages({ categorySlug }: { categorySlug?: string } = {}) {
   }
 
   return (
-    <section className="pb-24 pt-12 bg-[#FAFAFA]">
+    <section className="pb-24 pt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-16 text-center mb-16">
         <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-[#412A1F] mb-4">
-          Our Packages
+          Our <span className="text-secondary">Packages</span>
         </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           Carefully curated furnishing solutions for every need
         </p>
       </div>

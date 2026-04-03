@@ -32,10 +32,10 @@ export default function PackagesHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-[32px] font-semibold font-serif leading-tight text-white mb-5 tracking-tight">
-              Complete <span className="text-[#C9A76A] font-serif">Room</span>{" "}
-              <span className="text-[#C9A76A] font-serif">Packages.</span>{" "}
+              Complete <span className="text-secondary font-serif">Room</span>{" "}
+              <span className="text-secondary font-serif">Packages.</span>{" "}
               Complete{" "}
-              <span className="text-[#C9A76A] font-serif">Peace of Mind</span>
+              <span className="text-secondary font-serif">Peace of Mind</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -73,9 +73,9 @@ export default function PackagesHero() {
           title={
             <>
               Complete{" "}
-              <span className="text-[#C9A76A] font-serif">Room Packages.</span>{" "}
+              <span className="text-secondary font-serif">Room Packages.</span>{" "}
               Complete{" "}
-              <span className="text-[#C9A76A] font-serif">Peace of Mind</span>
+              <span className="text-secondary font-serif">Peace of Mind</span>
             </>
           }
           titleClassName="max-w-4xl"

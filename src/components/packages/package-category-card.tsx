@@ -98,23 +98,20 @@ export function PackageCategoryCard({ category }: Props) {
   return (
     <div
       onClick={handleCardClick}
-      className="group bg-white rounded-3xl overflow-hidden border border-gray-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
-    >
-      <div className="w-full relative overflow-hidden bg-[#F5F1EE] aspect-3/2 group/image">
+      className="group rounded-3xl overflow-hidden border border-secondary/20 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer">
+      <div className="w-full relative overflow-hidden aspect-3/2 group/image">
         {slides.length > 0 ? (
           <>
             <Carousel
               setApi={setApi}
               plugins={[plugin.current]}
-              className="w-full h-full relative group/carousel"
-            >
+              className="w-full h-full relative group/carousel">
               <CarouselContent>
                 {slides.map((slide) => (
                   <CarouselItem key={slide.id}>
                     <div
                       onClick={(e) => handleSlideClick(e, slide)}
-                      className="w-full aspect-3/2 relative cursor-pointer"
-                    >
+                      className="w-full aspect-3/2 relative cursor-pointer">
                       <Image
                         src={slide.image}
                         alt={slide.name}
@@ -174,16 +171,16 @@ export function PackageCategoryCard({ category }: Props) {
 
       <div className="p-8 flex flex-col flex-1">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 rounded-lg bg-gray-50">
-            <LayoutGrid className="w-5 h-5 text-[#412A1F]" />
+          <div className="p-2 rounded-lg bg-secondary/10">
+            <LayoutGrid className="w-5 h-5 text-secondary" />
           </div>
-          <h3 className="text-lg sm:text-xl font-semibold font-serif text-[#1A1A1A]">
+          <h3 className="text-lg sm:text-xl font-semibold font-serif text-secondary">
             {category.name}
           </h3>
         </div>
 
         {category.description && (
-          <p className="text-sm text-[#4A5565] leading-relaxed mb-6 line-clamp-3">
+          <p className="text-sm text-primary leading-relaxed mb-6 line-clamp-3">
             {category.description}
           </p>
         )}

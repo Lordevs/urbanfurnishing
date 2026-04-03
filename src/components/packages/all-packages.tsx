@@ -65,8 +65,7 @@ function GridSkeleton() {
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse"
-        >
+          className="bg-white rounded-[24px] overflow-hidden border border-[#F2F2F2] animate-pulse">
           <div className="aspect-4/3 bg-[#F0EBE4]" />
           <div className="p-5 flex flex-col gap-3">
             <div className="h-3 w-16 bg-[#F0EBE4] rounded" />
@@ -114,7 +113,7 @@ export function AllPackages() {
   if (isLoading) {
     return (
       <section className="px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto pb-24">
-        <div className="bg-white border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 animate-pulse">
+        <div className="border border-[#EDEDED] rounded-[24px] p-5 lg:p-6 mb-12 animate-pulse">
           <div className="flex gap-2">
             {[...Array(5)].map((_, i) => (
               <div key={i} className="h-9 w-24 bg-[#F0EBE4] rounded-full" />
@@ -129,9 +128,9 @@ export function AllPackages() {
   const activeCategoryName =
     selectedCategorySlug && categoryData
       ? (categoryData.find(
-        (c: { slug: string; name: string }) =>
-          c.slug === selectedCategorySlug,
-      )?.name ?? "All")
+          (c: { slug: string; name: string }) =>
+            c.slug === selectedCategorySlug,
+        )?.name ?? "All")
       : "All";
 
   const handleCategoryChange = (cat: string) => {
