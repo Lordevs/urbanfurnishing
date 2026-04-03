@@ -65,9 +65,9 @@ export default function SingleProductDetails({
   if (isError || !data) {
     return (
       <section className="py-24 px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto text-center">
-        <div className="inline-flex items-center justify-center w-12 h-12 bg-[#F8F8F8] rounded-full mb-4">
+        <div className="inline-flex items-center justify-center w-12 h-12 bg-card rounded-full mb-4">
           <svg
-            className="w-6 h-6 text-[#C9A76A]"
+            className="w-6 h-6 text-secondary"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor">
@@ -199,32 +199,32 @@ export default function SingleProductDetails({
         {/* Right: Product Info */}
         <div className="w-full lg:w-[45%] flex flex-col">
           {/* Breadcrumbs Placeholder */}
-          <div className="flex items-center gap-2 text-[13px] font-medium text-[#888888] mb-4 uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-[13px] font-medium text-muted-foreground mb-4 uppercase tracking-wider">
             <span>PRODUCTS</span>
             <span>/</span>
-            <span className="text-[#C9A76A]">
+            <span className="text-secondary">
               {(data.category_name ?? "Uncategorized").toUpperCase()}
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#1A1A1A] leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-primary leading-tight mb-4">
             {data.name}
           </h1>
 
-          <p className="text-[#666666] text-[15px] sm:text-[16px] leading-relaxed mb-8">
+          <p className="text-muted-foreground text-[15px] sm:text-[16px] leading-relaxed mb-8">
             {data.description ||
               data.short_description ||
               "No description provided."}
           </p>
 
           {/* Price Box */}
-          <div className="bg-[#FAFAFA] border border-[#F2F2F2] rounded-[20px] p-6 lg:p-8 mb-8">
+          <div className="bg-card border border-muted-foreground/20 rounded-[20px] p-6 lg:p-8 mb-8">
             <div className="flex items-end gap-3 mb-2">
-              <span className="text-3xl lg:text-[36px] font-serif font-bold text-[#1A1A1A] leading-none tracking-tight">
+              <span className="text-3xl lg:text-[36px] font-serif font-bold text-primary leading-none tracking-tight">
                 {formatAED(price)}
               </span>
               {originalPrice && (
-                <span className="text-[#AAAAAA] text-[16px] lg:text-[18px] font-medium tracking-tight line-through mb-1">
+                <span className="text-muted-foreground text-[16px] lg:text-[18px] font-medium tracking-tight line-through mb-1">
                   {formatAED(originalPrice)}
                 </span>
               )}
