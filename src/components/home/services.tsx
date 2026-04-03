@@ -294,9 +294,9 @@ export default function Services() {
                           </p>
                           <Link
                             href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
-                            className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-primary transition-colors">
+                            className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-primary transition-colors hover:text-secondary group-hover/link:text-secondary">
                             Explore{" "}
-                            <span className="font-bold border-b-2 border-primary pb-1.5 leading-none transition-all group-hover/link:border-secondary group-hover/link:pb-1 group-hover/link:border-b-2">
+                            <span className="font-bold border-b-2 border-primary pb-1.5 leading-none transition-all group-hover/link:border-secondary group-hover/link:pb-1">
                               {pkg!.name} {pkg!.propertyName}
                             </span>
                             <ArrowRightIcon className="w-5 h-5 transition-transform group-hover/link:translate-x-1.5" />

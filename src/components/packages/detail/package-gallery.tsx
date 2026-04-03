@@ -184,7 +184,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
             className="fixed inset-0 z-100 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-10">
             <button
               onClick={() => setIsLightboxOpen(false)}
-              className="absolute bottom-8 right-8 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all z-110 cursor-pointer hover:rotate-90">
+              className="absolute top-8 right-8 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all z-[110] cursor-pointer hover:rotate-90">
               <X className="w-8 h-8" />
             </button>
 
@@ -216,7 +216,7 @@ export function PackageGallery({ images, packageName }: PackageGalleryProps) {
                   )}
 
                   {/* Counter */}
-                  <div className="absolute bottom-8 right-10 bg-black/40 text-white px-8 py-3 rounded-full text-[15px] font-bold backdrop-blur-2xl border border-white/10 z-50 tracking-tight">
+                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/40 text-white px-8 py-3 rounded-full text-[15px] font-bold backdrop-blur-2xl border border-white/10 z-50 tracking-tight">
                     {autoplayIndex + 1}{" "}
                     <span className="opacity-40 mx-2">/</span> {images.length}
                   </div>
