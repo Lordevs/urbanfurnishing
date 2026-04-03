@@ -35,7 +35,7 @@ export default function OurDesignExpertPage() {
         title={
           <>
             Book a Design Call with{" "}
-            <span className="text-[#C9A76A] font-serif">Elena Falconer</span>
+            <span className="text-secondary font-serif">Elena Falconer</span>
           </>
         }
         description="For clients who want a more refined result and a property that stands out from the first impression."
@@ -43,7 +43,7 @@ export default function OurDesignExpertPage() {
         mobileViewTitle={
           <>
             Book a Design Call with{" "}
-            <span className="text-[#C9A76A] font-serif">Elena Falconer</span>
+            <span className="text-secondary font-serif">Elena Falconer</span>
           </>
         }
         mobileViewDescription="For clients who want a more refined result and a property that stands out from the first impression."

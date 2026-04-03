@@ -27,12 +27,12 @@ const steps = [
 
 export default function HowItWorksSteps() {
   return (
-    <section className="py-20 lg:py-28 px-4 sm:px-10 lg:px-16 bg-white overflow-hidden">
+    <section className="py-20 lg:py-28 px-4 sm:px-10 lg:px-16 overflow-hidden">
       <div className="max-w-8xl mx-auto">
         <div className="mb-16 md:mb-24">
-          <h2 className="text-4xl md:text-[56px] font-serif font-medium text-[#1A1A1A] tracking-tight leading-[1.1] mb-6 text-center">
+          <h2 className="text-4xl md:text-[56px] font-serif font-medium text-primary tracking-tight leading-[1.1] mb-6 text-center">
             How it{" "}
-            <span className="text-[#C9A76A] font-serif italic">Works</span>
+            <span className="text-secondary font-serif italic">Works</span>
           </h2>
         </div>
 
@@ -47,8 +47,7 @@ export default function HowItWorksSteps() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative z-10 flex flex-col gap-6 items-center justify-center md:items-start md:justify-start"
-            >
+              className="relative z-10 flex flex-col gap-6 items-center justify-center md:items-start md:justify-start">
               <div className="w-12 h-12 rounded-full bg-white border-2 border-[#C9A76A] flex items-center justify-center text-[#C9A76A] font-serif font-bold text-lg shadow-sm">
                 {step.number}
               </div>

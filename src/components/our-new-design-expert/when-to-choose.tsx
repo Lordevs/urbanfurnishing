@@ -37,16 +37,13 @@ const reasons = [
 
 export default function WhenToChoose() {
   return (
-    <section
-      id="when-to-choose"
-      className="py-20 lg:py-28 bg-[#FDFBF9] overflow-hidden"
-    >
+    <section id="when-to-choose" className="py-20 lg:py-28 overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16">
         {/* Mobile View */}
         <div className="flex flex-col lg:hidden">
-          <h2 className="text-3xl font-serif font-bold text-[#1a1a1a] mb-8 tracking-tight text-center">
+          <h2 className="text-3xl font-serif font-bold text-primary mb-8 tracking-tight text-center">
             When to choose{" "}
-            <span className="text-[#C9A76A]">Design Signature</span>
+            <span className="text-secondary">Design Signature</span>
           </h2>
 
           <motion.div
@@ -54,8 +51,7 @@ export default function WhenToChoose() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full aspect-[1.5] rounded-[16px] overflow-hidden mb-10 shadow-sm"
-          >
+            className="relative w-full aspect-[1.5] rounded-[16px] overflow-hidden mb-10 shadow-sm">
             <Image
               src="/landing/home/how-we-work/work-img.webp"
               alt="When to choose UH"
@@ -72,16 +68,15 @@ export default function WhenToChoose() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex items-start gap-4 p-6 rounded-[16px] bg-white border border-[#F0EBE6] shadow-xs"
-              >
+                className="flex items-start gap-4 p-6 rounded-[16px] bg-white border border-[#F0EBE6] shadow-xs">
                 <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#C9A76A] text-white">
                   <ArrowRight className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="text-[17px] font-serif font-bold text-[#1a1a1a] mb-1 leading-tight">
+                  <h3 className="text-[17px] font-serif font-bold text-primary mb-1 leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[#8F877C] text-[13px] leading-relaxed font-light">
+                  <p className="text-secondary text-[13px] leading-relaxed font-light">
                     {item.description}
                   </p>
                 </div>
@@ -113,7 +108,7 @@ export default function WhenToChoose() {
             <div className="relative mt-8 sm:mt-12 lg:mt-16">
               {/* background text */}
               <div className="absolute top-0 lg:-top-[25px] left-0 select-none font-serif pointer-events-none z-0 opacity-[0.06]">
-                <p className="text-[#B37531] text-[130px] font-semibold tracking-normal leading-none italic">
+                <p className="text-[#8A6A4A] text-[130px] font-semibold tracking-normal leading-none italic">
                   Signature
                 </p>
               </div>
@@ -124,8 +119,7 @@ export default function WhenToChoose() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative z-20 pt-16 rounded-[16px] overflow-hidden w-full"
-              >
+                className="relative z-20 pt-16 rounded-[16px] overflow-hidden w-full">
                 <div className="aspect-[1.5] relative w-full">
                   <Image
                     src="/landing/home/how-we-work/work-img.webp"
@@ -148,8 +142,7 @@ export default function WhenToChoose() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="py-10 first:pt-0 last:pb-0 flex items-start gap-8 group"
-                >
+                  className="py-10 first:pt-0 last:pb-0 flex items-start gap-8 group">
                   <div className="relative shrink-0 mt-1">
                     <div className="w-[64px] h-[64px] rounded-full bg-[#F5EFE9] flex items-center justify-center border border-[#F0EBE6] transition-transform group-hover:scale-105">
                       <Image

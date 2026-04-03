@@ -71,7 +71,7 @@ export default function OurDesignExpertHero() {
           title={
             <>
               Design Signature by <br />
-              <span className="text-[#C9A76A] font-serif">Elena Falconer</span>
+              <span className="text-secondary font-serif">Elena Falconer</span>
             </>
           }
           description="A tailored interior design service for clients who want more than a standard furnishing package."
