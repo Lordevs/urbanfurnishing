@@ -76,7 +76,7 @@ export function PackageDetail({ slug }: { slug: string }) {
 
   return (
     <div className="bg-white min-h-screen" data-package-slug={slug}>
-      <section className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 pt-32 pb-20">
+      <section className="max-w-8xl mx-auto px-4 sm:px-10 lg:px-16 pt-24 sm:pt-32 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           {/* Left Column: Gallery (Increased Width) */}
           <div className="lg:col-span-8">
@@ -85,7 +85,7 @@ export function PackageDetail({ slug }: { slug: string }) {
 
           {/* Right Column: Info Card (Reduced Width) */}
           <div className="lg:col-span-4 h-fit lg:sticky lg:top-32">
-            <div className="bg-[#F9F9F9] rounded-[32px] p-6 sm:p-8">
+            <div className="bg-[#F9F9F9] rounded-2xl sm:rounded-[32px] p-5 sm:p-8">
               <PackageInfo
                 pkg={pkg}
                 selectedTypeIndex={selectedTypeIndex}
