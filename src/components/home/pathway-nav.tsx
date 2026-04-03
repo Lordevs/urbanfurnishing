@@ -112,7 +112,7 @@ export default function PathwayNav() {
     <div className="hidden md:block sticky top-20 z-40 w-full px-4 sm:px-10 lg:px-16 max-w-8xl mx-auto py-4 sm:py-10 pointer-events-none -mt-4 mb-4">
       <div
         ref={scrollContainerRef}
-        className="inline-flex items-center gap-2 p-1.5 rounded-full bg-card backdrop-blur-md border border-[#F0EBE3] shadow-md pointer-events-auto transition-all overflow-x-auto max-w-full no-scrollbar relative">
+        className="inline-flex items-center gap-2 p-1.5 rounded-full bg-muted-foreground backdrop-blur-md border border-[#F0EBE3] shadow-md pointer-events-auto transition-all overflow-x-auto max-w-full no-scrollbar relative">
         <button
           onClick={scrollToHero}
           className="w-10 h-10 rounded-full cursor-pointer border border-gray-100 flex items-center justify-center bg-white shadow-sm shrink-0 hover:bg-gray-50 transition-colors"

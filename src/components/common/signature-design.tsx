@@ -14,7 +14,7 @@ export default function SignatureDesign() {
   return (
     <section
       id="design-expert"
-      className="w-full lg:py-20 px-4 py-10` sm:px-10 lg:px-16 max-w-8xl mx-auto bg-white overflow-hidden">
+      className="w-full lg:py-20 px-4 py-10` sm:px-10 lg:px-16 max-w-8xl mx-auto overflow-hidden">
       <div className="block lg:hidden">
         <h2 className="text-3xl sm:text-[32px] font-serif font-semibold tracking-tight mb-4 leading-[1.2]">
           <span className="text-[#3D261C] font-serif">Our </span>
@@ -98,7 +98,7 @@ export default function SignatureDesign() {
           {/* Quote Block */}
           <div className="relative border-l border-[#DFD1B8] pl-5 mb-8">
             {/* Custom Quote Icon Positioned on Top of the line */}
-            <div className="absolute -left-[14px] -top-1 bg-white pb-2 pr-2">
+            <div className="absolute -left-[14px] -top-1  pb-2 pr-2">
               <svg
                 width="28"
                 height="28"

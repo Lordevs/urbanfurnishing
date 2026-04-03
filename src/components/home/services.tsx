@@ -141,9 +141,9 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-[56px] font-serif text-[#3D261C] leading-tight">
+            className="text-4xl sm:text-5xl md:text-[56px] font-serif text-primary leading-tight">
             Discover Furniture{" "}
-            <span className="text-[#C9A76A] font-serif">Packages</span>
+            <span className="text-secondary font-serif">Packages</span>
           </motion.h2>
         </div>
 
@@ -159,7 +159,7 @@ export default function Services() {
               className={cn(
                 "px-6 py-2.5 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-300 border",
                 activeCategory === category
-                  ? "bg-[#3D261C] border-[#3D261C] text-white shadow-lg"
+                  ? "bg-[#8A6A4A] border-secondary text-white shadow-lg"
                   : "bg-transparent border-[#E5E0DA] text-[#5D4E3C] hover:border-[#3D261C]",
               )}>
               {category}
@@ -170,7 +170,7 @@ export default function Services() {
         {/* Content Section */}
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
-            <Loader2 className="w-10 h-10 text-[#C9A76A] animate-spin" />
+            <Loader2 className="w-10 h-10 text-secondary animate-spin" />
             <p className="text-[#5D4E3C] font-medium">Fetching Packages...</p>
           </div>
         ) : isError ? (
@@ -212,14 +212,14 @@ export default function Services() {
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
                           {pkg!.tag === "BEST_SELLER" && (
-                            <div className="absolute top-4 right-4 bg-[#C9A76A] text-white px-3 py-1 text-[10px] sm:text-xs rounded-full font-medium z-10">
+                            <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 text-[10px] sm:text-xs rounded-full font-medium z-10">
                               Bestseller
                             </div>
                           )}
                         </Link>
 
                         <div className="space-y-4">
-                          <p className="text-[#5D4E3C] text-sm sm:text-base">
+                          <p className="text-primary text-sm sm:text-base">
                             From{" "}
                             <span className="font-bold text-[#3D261C]">
                               {pkg!.displayPrice.toLocaleString()}
@@ -228,7 +228,7 @@ export default function Services() {
                           </p>
                           <Link
                             href={`/packages/${getCategorySlug(pkg!.category_name)}/${pkg!.slug}`}
-                            className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-[#3D261C] hover:text-black transition-colors">
+                            className="group/link inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-primary hover:text-secondary transition-colors">
                             Explore{" "}
                             <span className="font-bold underline underline-offset-4 decoration-1 group-hover/link:decoration-2 transition-all">
                               {pkg!.name} {pkg!.propertyName}
@@ -248,7 +248,7 @@ export default function Services() {
               <Button
                 variant="outline"
                 size="icon"
-                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#3D261C] hover:text-white transition-all disabled:opacity-30"
+                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#8A6A4A] hover:text-white transition-all disabled:opacity-30"
                 onClick={() => api?.scrollPrev()}
                 disabled={!canScrollPrev}>
                 <ArrowLeft className="w-5 h-5" />
@@ -260,7 +260,7 @@ export default function Services() {
                     key={i}
                     className={cn(
                       "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                      current === i ? "bg-[#C9A76A] scale-110" : "bg-[#D1D5DB]",
+                      current === i ? "bg-secondary scale-110" : "bg-[#D1D5DB]",
                     )}
                     onClick={() => api?.scrollTo(i)}
                   />
@@ -270,7 +270,7 @@ export default function Services() {
               <Button
                 variant="outline"
                 size="icon"
-                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#3D261C] hover:text-white transition-all disabled:opacity-30"
+                className="rounded-full w-10 h-10 border-[#E5E0DA] hover:bg-[#8A6A4A] hover:text-white transition-all disabled:opacity-30"
                 onClick={() => api?.scrollNext()}
                 disabled={!canScrollNext}>
                 <ArrowRight className="w-5 h-5" />
