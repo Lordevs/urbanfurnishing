@@ -174,7 +174,7 @@ export const PackageItemSchema = z.object({
   product_id: z.string().uuid(),
   product_name: z.string(),
   product_slug: z.string(),
-  product_thumbnail: z.string().optional().nullable(),
+  product_images: z.array(ProductImageSchema).optional().default([]),
   quantity: z.number(),
   display_order: z.number(),
 });
