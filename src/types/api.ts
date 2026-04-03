@@ -193,6 +193,8 @@ export const PackageAddOnSchema = z.object({
   display_order: z.number(),
 });
 
+export type PackageAddOn = z.infer<typeof PackageAddOnSchema>;
+
 export const PackageImageSchema = z.object({
   id: z.string().uuid(),
   image: z.string(),

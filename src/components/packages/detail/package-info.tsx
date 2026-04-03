@@ -10,6 +10,7 @@ interface PackageInfoProps {
   setSelectedTypeIndex: (index: number) => void;
   handleAddToCart: () => void;
   selectedType?: PackageProperty;
+  selectedAddOnIds: string[];
 }
 
 export function PackageInfo({
@@ -18,7 +19,14 @@ export function PackageInfo({
   setSelectedTypeIndex,
   handleAddToCart,
   selectedType,
+  selectedAddOnIds,
 }: PackageInfoProps) {
+  const addOnsTotal = pkg.add_ons
+    .filter((a) => selectedAddOnIds.includes(a.id))
+    .reduce((sum, a) => sum + Number(a.price), 0);
+
+  const totalPrice = Number(selectedType?.price || 0) + addOnsTotal;
+  const originalPrice = totalPrice * 1.15;
   return (
     <div className="flex flex-col">
       {/* Title */}
@@ -49,14 +57,13 @@ export function PackageInfo({
       <div className="mb-5">
         <div className="flex items-baseline gap-3">
           <span className="text-2xl sm:text-[40px] font-serif text-[#3D261C] leading-none">
-            AED {Number(selectedType?.price || 0).toLocaleString()}
+            AED {totalPrice.toLocaleString()}
           </span>
-          {selectedType?.price && (
+          {totalPrice > 0 && (
             <span className="text-lg text-gray-400 line-through decoration-gray-300">
-              {Number(Number(selectedType.price) * 1.15).toLocaleString(
-                undefined,
-                { maximumFractionDigits: 0 },
-              )}
+              {originalPrice.toLocaleString(undefined, {
+                maximumFractionDigits: 0,
+              })}
             </span>
           )}
         </div>

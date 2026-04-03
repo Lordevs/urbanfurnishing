@@ -11,6 +11,7 @@ import { useCart } from "@/context/cart-context";
 import { usePackageDetail } from "@/hooks/queries/use-package-detail";
 
 import { PackageAccordion } from "./package-accordion";
+import { PackageAddOns } from "./package-addons";
 import { PackageGallery } from "./package-gallery";
 import { PackageInfo } from "./package-info";
 import { PackageItemsGrid } from "./package-items-grid";
@@ -19,12 +20,14 @@ export function PackageDetail({ slug }: { slug: string }) {
   const router = useRouter();
   const { data: pkg, isLoading, error } = usePackageDetail(slug);
   const [selectedTypeIndex, setSelectedTypeIndex] = useState(0);
+  const [selectedAddOnIds, setSelectedAddOnIds] = useState<string[]>([]);
   const [prevSlug, setPrevSlug] = useState(slug);
 
-  // Reset selected type index when slug changes
+  // Reset selection when slug changes
   if (slug !== prevSlug) {
     setPrevSlug(slug);
     setSelectedTypeIndex(0);
+    setSelectedAddOnIds([]);
   }
 
   const { addItem } = useCart();
@@ -56,20 +59,42 @@ export function PackageDetail({ slug }: { slug: string }) {
       ? [...pkg.images].sort((a, b) => a.order - b.order)
       : [];
 
+  const handleToggleAddOn = (id: string) => {
+    setSelectedAddOnIds((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
+    );
+  };
+
+  const allAddOns = Array.from(
+    new Map(pkg.add_ons.map((item) => [item.title, item])).values(),
+  );
+
   const handleAddToCart = () => {
     if (!pkg || !selectedType) return;
+
+    const selectedAddOns = allAddOns.filter((addon) =>
+      selectedAddOnIds.includes(addon.id),
+    );
+    const addOnsTotal = selectedAddOns.reduce(
+      (sum, addon) => sum + Number(addon.price),
+      0,
+    );
 
     addItem({
       id: pkg.id,
       slug: pkg.slug,
       name: `${pkg.name} - ${selectedType.name}`,
       packageBaseName: pkg.name,
-      price: Number(selectedType.price),
+      price: Number(selectedType.price) + addOnsTotal,
       image: sortedImages[0]?.image || "",
       itemType: "PACKAGE",
       selectedPropertyId: selectedType.id,
-      selectedAddOnIds: [],
-      selectedAddOns: [],
+      selectedAddOnIds: selectedAddOnIds,
+      selectedAddOns: selectedAddOns.map((a) => ({
+        id: a.id,
+        title: a.title,
+        price: Number(a.price),
+      })),
     });
     router.push(ROUTES.CART);
   };
@@ -87,11 +112,12 @@ export function PackageDetail({ slug }: { slug: string }) {
           <div className="lg:col-span-4 h-fit lg:sticky lg:top-32">
             <div className="bg-[#F9F9F9] rounded-2xl sm:rounded-[32px] p-5 sm:p-8">
               <PackageInfo
-                pkg={pkg}
+                pkg={{ ...pkg, add_ons: allAddOns }}
                 selectedTypeIndex={selectedTypeIndex}
                 setSelectedTypeIndex={setSelectedTypeIndex}
                 handleAddToCart={handleAddToCart}
                 selectedType={selectedType}
+                selectedAddOnIds={selectedAddOnIds}
               />
 
               {/* Action Accordions - Dynamic Content */}
@@ -143,6 +169,12 @@ export function PackageDetail({ slug }: { slug: string }) {
       </section>
 
       {selectedType && <PackageItemsGrid selectedType={selectedType} />}
+
+      <PackageAddOns
+        addOns={allAddOns}
+        selectedAddOnIds={selectedAddOnIds}
+        onToggle={handleToggleAddOn}
+      />
     </div>
   );
 }
