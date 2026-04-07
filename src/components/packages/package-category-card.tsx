@@ -122,6 +122,7 @@ export function PackageCategoryCard({ category }: Props) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         priority={slide.type === "category"}
+                        unoptimized
                       />
                     </div>
                   </CarouselItem>
@@ -155,11 +156,10 @@ export function PackageCategoryCard({ category }: Props) {
                 {Array.from({ length: count }).map((_, index) => (
                   <div
                     key={index}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      index + 1 === current
+                    className={`h-1.5 rounded-full transition-all duration-300 ${index + 1 === current
                         ? "w-4 bg-white"
                         : "w-1.5 bg-white/50"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>

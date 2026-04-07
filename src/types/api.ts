@@ -164,9 +164,19 @@ export const PackageItemSchema = z.object({
   product_id: z.string().uuid(),
   product_name: z.string(),
   product_slug: z.string(),
-  product_thumbnail: z.string().nullable(),
+  product_thumbnail: z.string().optional().nullable(),
+  product_images: z.array(ProductImageSchema).optional().default([]),
   quantity: z.number(),
   display_order: z.number(),
+}).transform((data) => {
+  // If product_thumbnail is missing but images exist, use the first image as thumbnail
+  if (!data.product_thumbnail && data.product_images.length > 0) {
+    return {
+      ...data,
+      product_thumbnail: data.product_images[0].image,
+    };
+  }
+  return data;
 });
 
 export const PackagePropertySchema = z.object({

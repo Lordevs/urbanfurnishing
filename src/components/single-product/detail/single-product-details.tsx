@@ -90,13 +90,13 @@ export default function SingleProductDetails({
   const loadedImages: string[] =
     data.images.length > 0
       ? [
-          ...data.images
-            .filter((i) => i.is_primary || i.order === 0)
-            .map((i) => i.image),
-          ...data.images
-            .filter((i) => !i.is_primary && i.order !== 0)
-            .map((i) => i.image),
-        ]
+        ...data.images
+          .filter((i) => i.is_primary || i.order === 0)
+          .map((i) => i.image),
+        ...data.images
+          .filter((i) => !i.is_primary && i.order !== 0)
+          .map((i) => i.image),
+      ]
       : ["/landing/detail-page/detail-image-1.webp"];
 
   const actualPrice = parseFloat(data.actual_price);
@@ -147,6 +147,7 @@ export default function SingleProductDetails({
               src={loadedImages[activeImage]}
               alt={data.name}
               fill
+              unoptimized
               className="object-cover transition-transform duration-500 ease-in-out"
             />
             {data.tag && (
@@ -179,15 +180,15 @@ export default function SingleProductDetails({
                 <button
                   key={idx}
                   onClick={() => setActiveImage(idx)}
-                  className={`relative aspect-square w-full rounded-[16px] overflow-hidden border-2 transition-all cursor-pointer ${
-                    activeImage === idx
+                  className={`relative aspect-square w-full rounded-[16px] overflow-hidden border-2 transition-all cursor-pointer ${activeImage === idx
                       ? "border-[#412A1F] shadow-sm scale-100"
                       : "border-transparent hover:border-[#EBEBEB] scale-[0.98]"
-                  }`}>
+                    }`}>
                   <Image
                     src={img}
                     alt={`${data.name} Thumbnail ${idx + 1}`}
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                 </button>
@@ -270,11 +271,10 @@ export default function SingleProductDetails({
             <Button
               onClick={handleAddToCart}
               disabled={data.stock === 0 || data.is_in_stock === false}
-              className={`w-full h-[58px] rounded-full text-[16px] font-medium flex items-center justify-center transition-all duration-300 relative group px-4 ${
-                data.stock !== 0 && data.is_in_stock !== false
+              className={`w-full h-[58px] rounded-full text-[16px] font-medium flex items-center justify-center transition-all duration-300 relative group px-4 ${data.stock !== 0 && data.is_in_stock !== false
                   ? "bg-primary hover:bg-primary/90 text-white cursor-pointer"
                   : "bg-gray-200 text-gray-500 cursor-not-allowed"
-              }`}>
+                }`}>
               {data.stock !== 0 && data.is_in_stock !== false ? (
                 <>
                   <span className="flex-1 text-center">Add to Cart</span>
@@ -295,11 +295,10 @@ export default function SingleProductDetails({
             <Button
               onClick={handleBuyNow}
               disabled={data.stock === 0 || data.is_in_stock === false}
-              className={`w-full h-[58px] rounded-md text-[16px] font-medium flex items-center justify-center transition-all duration-300 border border-[#0000001A] ${
-                data.stock !== 0 && data.is_in_stock !== false
+              className={`w-full h-[58px] rounded-md text-[16px] font-medium flex items-center justify-center transition-all duration-300 border border-[#0000001A] ${data.stock !== 0 && data.is_in_stock !== false
                   ? "bg-white text-[#1A1A1A] hover:bg-gray-50 cursor-pointer"
                   : "bg-gray-100 text-gray-400 cursor-not-allowed"
-              }`}>
+                }`}>
               {data.stock !== 0 && data.is_in_stock !== false
                 ? "Buy Now"
                 : "Out of Stock"}
@@ -330,11 +329,10 @@ export default function SingleProductDetails({
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`relative pb-4 text-[14px] lg:text-[15px] font-medium transition-colors cursor-pointer ${
-                    activeTab === tab
+                  className={`relative pb-4 text-[14px] lg:text-[15px] font-medium transition-colors cursor-pointer ${activeTab === tab
                       ? "text-[#1A1A1A]"
                       : "text-[#888888] hover:text-[#1A1A1A]"
-                  }`}>
+                    }`}>
                   {tab}
                   {activeTab === tab && (
                     <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#412A1F]" />
@@ -351,8 +349,8 @@ export default function SingleProductDetails({
                 {data.overview && data.overview.length > 0
                   ? data.overview.join(" ")
                   : data.description ||
-                    data.short_description ||
-                    "No overview available."}
+                  data.short_description ||
+                  "No overview available."}
               </p>
             )}
 
